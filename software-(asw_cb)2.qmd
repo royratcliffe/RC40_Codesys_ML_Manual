@@ -1,0 +1,150 @@
+# Software (ASW/CB-ME) {#software-aswcb-me .p_Heading1 style="page-break-after: avoid;"}
+
++:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [Security](security.html) \> [Secure Flashing](secure-flashing.html) \> [Signature Verification](signature-verification.html) \> | [](javascript:HMToggleExpandAll(!HMAnyToggleOpen()) "Click to open/close expanding sections") [](signature-verification.html "Previous Topic") [](signature-verification.html "Parent Chapter") [](keyfile_unlockfile.html "Next Topic") |
+|                                                                                                                                                                                              |                                                                                                                                                                                                                                          |
+| # Software (ASW/CB-ME) {#software-aswcb-me-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                   |                                                                                                                                                                                                                                          |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+## Digital Signature and User Certificate Placement {#digital-signature-and-user-certificate-placement .p_Heading2 style="page-break-after: avoid;"}
+
+For the RC40 system, digital signatures and user certificates are stored in a fixed-size format within the software memory blocks. This section details how space is reserved and managed for these critical security components.
+
+1\. Reserved Space Allocation
+
+- Location: The digital signature for a software block is consistently placed within its epilogue section.
+
+- Fixed Size Reservations:
+
+oSignature: A fixed space of 512 bytes is reserved specifically for the digital signature.
+
+oUser Certificate: A fixed space of 2048 bytes is reserved for the associated user certificate.
+
+- Affected Software Blocks: These fixed-size reservations apply to the epilogue of the following software blocks:
+
+oASW0 (Application Software 0)
+
+oDS0 (Data Set 0)
+
+oCB-ME (Customer Boot loader)
+
+2\. Handling Variable Sizes (Padding)
+
+While fixed sizes are reserved, the actual size of the digital signature and user certificate generated may vary.
+
+- Maximum Limit: The actual size of the signature and user certificate must not exceed their respective reserved fixed limits (512 bytes for signature, 2048 bytes for certificate).
+
+- Padding Requirement: If the actual size of the signature or the user certificate is less than the reserved fixed size, the remaining bytes within their allocated space must be filled with zero-byte values (padded with zeros). This ensures that the fixed-size block is always completely filled, regardless of the actual content\'s length.
+
+Epilogue Structure and Signature Patching
+
+This section details the precise location of the epilogue, how digital signatures and certificates are embedded within it, and the necessary steps for updating these values in different memory configurations of the RC40 System.
+
+1\. Epilogue Start Address Location
+
+The starting address of the epilogue is crucial for correctly locating signature data.
+
+- Encoded Location: The epilogue\'s start address is stored within the prologue of the software block.
+
+- Offset: This address is located at offset 260 (decimal) within the prologue of the software block.
+
+- Endianness:
+
+oLittle-Endian: For RC40 MID, LARGE ECUs.
+
+oBig-Endian: For RC40 SMALL ECU.
+
+Ensure the correct endianness is applied when reading or writing this address based on the system\'s memory configuration.
+
+2\. Signature and Certificate Placement within the Epilogue
+
+Once the epilogue\'s start address is known, the components are found at specific offsets:
+
+- Digital Signature Start: The actual digital signature begins at offset 16 (decimal) from the start of the epilogue.
+
+- User Certificate Placement: The user certificate immediately follows the signature, occupying its reserved 2048 bytes after the 512-byte signature slot.
+
+3\. Initial Dummy Values (For Reference)
+
+- Pre-programmed Content: Initially, the software block may be pre-filled with dummy signature values (e.g., 12345678123\...) for both the data signature and the user certificate.
+
+- Purpose: These dummy values are placeholders and must be replaced with the actual, valid digital signature and user certificate during the patching process.
+
+4\. Memory Block Closure with CRC32 Calculation
+
+- CRC32 Location: After the digital signature and user certificate within the epilogue, a 4-byte CRC32 (Cyclic Redundancy Check) value closes the memory block. This CRC32 serves as an integrity check for the entire block.
+
+- CRC32 Calculation Range: The CRC32 is calculated starting from address offset 256 (decimal) of the software block and extends up to the end of the user certificate, including any padding bytes within the signature and user certificate fields.
+
+- Important Note for Patching: If you are patching or updating the digital signature and the user certificate within the epilogue, the CRC32 value must be recalculated and updated accordingly. Failure to do so will result in an invalid memory block.
+
+5\. Signature/Hash Calculation Scope
+
+- Data Covered: The digital signature or hash for verification is calculated over a specific range of the memory block.
+
+- Calculation Range: This calculation starts from index 0 (the very beginning) of the memory block and extends up to offset 0x0F (hexadecimal) within the epilogue.
+
+ 
+
+![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a1_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [ RC40 Software Signature Format in Epilog:](javascript:HMToggle('toggle','toggle0186a1','toggle0186a1_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"}
+
++-------------------------+------------------------+-------------+---------------+----------------------------------------------------------------------------------------------+
+| Name                    | Address offset (Bytes) | Type        | Length(Bytes) | Description                                                                                  |
++=========================+========================+=============+===============+==============================================================================================+
+| Data-Signature Length   | 0                      | uint32      | 4             | Length of the data signature in Bytes.                                                       |
+|                         |                        |             |               |                                                                                              |
+| (LENDATASIG)            |                        |             |               | Little-endian on RC18-12/40, RC27-18/40, RC18-12E/40, RC27-18E/40, RC30-20/41.               |
+|                         |                        |             |               |                                                                                              |
+|                         |                        |             |               | Big-endian on RC5-6/40.                                                                      |
+|                         |                        |             |               |                                                                                              |
+|                         |                        |             |               | Valid range: 512 bytes max length                                                            |
+|                         |                        |             |               |                                                                                              |
+|                         |                        |             |               |                                                                                              |
+|                         |                        |             |               |                                                                                              |
+|                         |                        |             |               | The RC CB-ME shall reject signature in case the length is invalid.                           |
++-------------------------+------------------------+-------------+---------------+----------------------------------------------------------------------------------------------+
+| User-Certificate-Length | 4                      | uint32      | 4             | Length of the user-certificate in Bytes.                                                     |
+|                         |                        |             |               |                                                                                              |
+| (LENUSER)               |                        |             |               | Little-endian on RC18-12/40, RC27-18/40, RC18-12E/40, RC27-18E/40, RC30-20/41.               |
+|                         |                        |             |               |                                                                                              |
+|                         |                        |             |               | Big-endian on RC5-6/40.                                                                      |
+|                         |                        |             |               |                                                                                              |
+|                         |                        |             |               | Valid range: 2048 bytes max length                                                           |
+|                         |                        |             |               |                                                                                              |
+|                         |                        |             |               |                                                                                              |
+|                         |                        |             |               |                                                                                              |
+|                         |                        |             |               | The RC CB-ME shall reject signature in case the length is invalid.                           |
++-------------------------+------------------------+-------------+---------------+----------------------------------------------------------------------------------------------+
+| Data-Signature          | 8                      | uint8\[\]   | 512           | Data-signature issued by user-certificate.\                                                  |
+|                         |                        |             |               | The field is always 512 Byte in length. Remaining Bytes (if any) shall be padded with zero.\ |
+| (DATASIG)               |                        |             |               |  \                                                                                           |
+|                         |                        |             |               | The RC CB-ME shall reject signature in case the data-signature is invalid.                   |
++-------------------------+------------------------+-------------+---------------+----------------------------------------------------------------------------------------------+
+| User-Certificate        | 520                    | uint8\[\]   | 2048          | User-certificate in X.509v3 DER format issued by ROOT.                                       |
+|                         |                        |             |               |                                                                                              |
+| (USER)                  |                        |             |               | The field is always 2048 Byte in length. Remaining Bytes (if any) shall be padded with zero. |
+|                         |                        |             |               |                                                                                              |
+|                         |                        |             |               |                                                                                              |
+|                         |                        |             |               |                                                                                              |
+|                         |                        |             |               |                                                                                              |
+|                         |                        |             |               |                                                                                              |
+|                         |                        |             |               | The RC CB-ME shall reject signature in case the user-certificate is invalid.                 |
++-------------------------+------------------------+-------------+---------------+----------------------------------------------------------------------------------------------+
+
+ 
+
+NOTE:
+
+ 
+
+- In C development environment, the ASW0 block has a floating epilog. This means the epilog is placed immediately after the ASW0 data, without any intermediate padding for unused space.
+
+- In the CODESYS development environment, the ASW0 block epilog resides at a fixed memory location near the end of the ASW0 block, as defined during compilation and linking, independent of the actual ASW0 size. For checksum-enabled builds, the checksum is calculated and written to this predefined epilog location ,Refer to [How to Calculate Checksum for CODESYS Merged HEX](how-to-calculate-checksum-for-.html){.topiclink} for additional details.
+
+- For checksum-disabled builds, the checksum is instead written to a predefined location preceding the CODESYS ASW0 block.
+
+- The fundamental difference in epilog placement directly affects the total time required to flash the ASW0 block. Codesys ASW0 flashing time is greater than C development ASW0 flashing time.
+
+ 
+
+ 

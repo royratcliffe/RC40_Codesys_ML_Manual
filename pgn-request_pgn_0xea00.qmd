@@ -1,0 +1,116 @@
+# PGN-Request (PGN = 0xEA00) {#pgn-request-pgn-0xea00 .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [ISOBUS/J1939](isobus-module.html) \> [ISOBUS services and PGNs](isobus_services_and_pgns.html) \> | [](name_management_pgn_0x9300.html "Previous Topic") [](isobus_services_and_pgns.html "Parent Chapter") [](stop_start_broadcast_dm13_pgn_0xdf00.html "Next Topic") |
+|                                                                                                                                                                                                                                                       |                                                                                                                                                                    |
+| # PGN-Request (PGN = 0xEA00) {#pgn-request-pgn-0xea00-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                 |                                                                                                                                                                    |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+## Supported PGNs for the service PGN-Request {#supported-pgns-for-the-service-pgn-request .p_Heading2 style="page-break-after: avoid;"}
+
+With the service PGN-Request another controller can request the following PGNs.
+
+- Address Claim: address claim message with CA name (PGN = 0xEE00)
+
+- DM1: active diagnostic trouble codes (PGN = 0xFECA)
+
+- DM2: previously active diagnostic trouble codes (PGN = 0xFECB)
+
+- DM3: clear previously active diagnostic trouble codes (PGN = 0xFECC)
+
+- DM5: diagnostic readiness (PGN = 0xFECE)
+
+- DM11: diagnostic data clear/reset for active diagnsotic trouble codes (PGN = 0xFED3)
+
+- All the PGNs which are defined wihtin the ISOBUS TX databox list.
+
+oPGN requests for PGNs with PDU1 format need not an address information any more. This address information will be not used any more for searching a PGN within the isobus TX databox list.
+
+oThe PGN request will be answered only if the destination address of a PDU1 PGN within the TX databox list is broadcast or if it corresponds to the source address of the PGN request sender.
+
+The PGNs DM1, 2, 3, 5, 11 are only defined within the stack if the corresponding failure list handling was previously initialized with the API function  bds_isobus_initFailureList. Without this initialization the application can define an own failure handling. In this case the application has to define also the corresponding isobus TX databoxes with these PGNs. The service RequestPgn then automatically also supports these PGNs.
+
+The following PGNs are predefined within the ISOBUS stack and can be also requested with a PGN-Request.. But these PGNs can be redefined within ISOBUS TX databoxes by the application, if another data contents is required.
+
+- SW-ID: software identification (PGN = 0xFEDA)
+
+This service reads and sends the application name, which has been defined within the application. This name is the same for all CA instances of the ECU. Furthermore an optional application task name, some API modules and the bootloader versions are read with this service. The application task name can be defined by the application with the API function  bds_isobus_setCaInfo. The total data length of this PGN request response is limitted to 300 characters. If a longer response string or another structure of the string is required then the application can re-define this PGN with an own isobus TX databox.
+
+In the following example the application task name \'ApplTask V01.00\' was defined with the API function  bds_isobus_setCaInfo.
+
+ 
+
+- HW-ID: hardware identification (PGN = 0xFDC5)
+
+This service reads the SAP number of the hardware, the serial number of the device and some ECU information (ECU location , ECU type and ECU manufacturer), which can be defined or suppressed per CA instance with the API function  bds_isobus_setCaInfo. The SAP and serial numbers are the same for all CA instances of the ECU. The total data length of this PGN request response is limitted to 300 characters. If a longer response string or another structure of the string is required then the application can re-define this PGN with an own isobus TX databox.
+
+In the following example the ECU information strings still have the default values without calling the API function  bds_isobus_setCaInfo.
+
+ 
+
+## Example: {#example .p_Heading2 style="page-break-after: avoid;"}
+
++---------+--------------------------------+------------------------------------------------------------------------+---------------------+--------------+----------------------+----------------------------+
+| PGN     | Short Name                     | Meaning                                                                | Format of data sent | No. of Bytes | API related          | Example                    |
++---------+--------------------------------+------------------------------------------------------------------------+---------------------+--------------+----------------------+----------------------------+
+| 0xFEDA  | SW-ID: software identification | Reads and sends:                                                       | ASCII               | 20           | bds_isobus_setCaInfo | Testprogramm V01.00#       |
+|         |                                |                                                                        |                     |              |                      |                            |
+|         |                                | • The application name                                                 |                     |              |                      | ApplTask V01.00#           |
+|         |                                |                                                                        |                     |              |                      |                            |
+|         |                                | • BSW name                                                             |                     |              |                      | \* BSW V01.04#             |
+|         |                                |                                                                        |                     |              |                      |                            |
+|         |                                | • BSW version                                                          |                     |              |                      | BSW-Cfg Project Vx.y#      |
+|         |                                |                                                                        |                     |              |                      |                            |
+|         |                                | • CB name                                                              |                     |              |                      | \*C-Loader V00#            |
+|         |                                |                                                                        |                     |              |                      |                            |
+|         |                                | • SB name                                                              |                     |              |                      | BootCtrl V00               |
+|         |                                |                                                                        |                     |              |                      |                            |
+|         |                                | •easyConfig project name                                               |                     |              |                      |                            |
++---------+--------------------------------+------------------------------------------------------------------------+---------------------+--------------+----------------------+----------------------------+
+| 0xFDC5  | HW-ID: hardware identification | Reads and sends:                                                       | ASCII               | 20           | bds_isobus_setCaInfo | R917011700\*               |
+|         |                                |                                                                        |                     |              |                      |                            |
+|         |                                | •The SAP number of the hardware                                        |                     |              |                      | 00001123\*                 |
+|         |                                |                                                                        |                     |              |                      |                            |
+|         |                                | • The serial number of the device                                      |                     |              |                      | ECU location not defined\* |
+|         |                                |                                                                        |                     |              |                      |                            |
+|         |                                | • ECU information such as ECU location , ECU type and ECU manufacturer |                     |              |                      | ECU type not defined\*     |
+|         |                                |                                                                        |                     |              |                      |                            |
+|         |                                |                                                                        |                     |              |                      | Bosch Rexroth\*            |
++---------+--------------------------------+------------------------------------------------------------------------+---------------------+--------------+----------------------+----------------------------+
+
+ 
+
++--------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
+| ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"} | The ISOBUS PGNs 0xFEDA and 0xFDC5 are not linked to the UDS Standard DIDs 0xF181, 0xF192 or 0xF193. |
+|                                                                                |                                                                                                     |
+|                                                                                |                                                                                                     |
++--------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
+
+## Format of the PGN-Request response {#format-of-the-pgn-request-response .p_Heading2 style="page-break-after: avoid;"}
+
+The answer message of the PGN-Request may have different formats which depend on the message type of the request message. The PDU format of the requested PGN, the data length of the requested PGN and the destination address (DA) of the request determines the type (global/specific) and the transport protocol of the response message. The following table gives an overview (it corresponds to the specification ISO11783-3 Table 5):
+
+ 
+
+  PDU format of requested PGN   Data length of requested PGN               Type of RequestPGN   Type of Response   Transport protocol of Response
+  ----------------------------- ------------------------------------------ -------------------- ------------------ --------------------------------
+  1                             \<= 8 bytes                                DA specific          DA specific        n.a.
+  1                             \<= 8 bytes                                DA global            DA global          n.a.
+  1                             8 bytes \< length \<= 1785 bytes           DA specific          DA specific        TP (RTS/CTS)
+  1                             8 bytes \< length \<= 1785 bytes           DA global            DA global          BAM
+  1                             1785 bytes \< length \<= 117440512 bytes   DA specific          DA specific        ETP (RTS/CTS)
+  1                             1785 bytes \< length \<= 117440512 bytes   DA global            n.a. \*\*)         n.a.
+  2                             \<= 8 bytes                                DA specific          DA global          n.a.
+  2                             \<= 8 bytes                                DA global            DA global          n.a.
+  2                             8 bytes \< length \<= 1785 bytes           DA specific          DA specific        TP (RTS/CTS)
+  2                             8 bytes \< length \<= 1785 bytes           DA global            DA global          BAM
+  2                             1785 bytes \< length \<= 117440512 bytes   DA specific          DA specific        ETP (RTS/CTS)
+  2                             1785 bytes \< length \<= 117440512 bytes   DA global            n.a. \*\*)         n.a.
+
+ 
+
+n.a. = not allowed
+
+\*\*) Remark: The ISOBUS extended transport prottocol (ETP) is not specified for BAM messages.  
+
+ 

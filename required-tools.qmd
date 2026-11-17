@@ -1,0 +1,59 @@
+# Configurations {#configurations .p_Heading1 style="page-break-after: avoid;"}
+
++:-------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [Introduction](introduction.html) \> [First steps with RC](preparation.html) \> | [](required-sw.html "Previous Topic") [](preparation.html "Parent Chapter") [](step-1-add-gateway_cfg.html "Next Topic") |
+|                                                                                                  |                                                                                                                          |
+| # Configurations {#configurations-1 .p_Heading1 style="page-break-after: avoid;"}                |                                                                                                                          |
++--------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------+
+
+ 
+
+ 
+
+ASW using IEC61131-3 for RC4x devices can be developed using the combination of easyConfig + CODESYS IDE + BODAS-RTS package
+
+ 
+
+ 
+
+ 
+
+## 1. Configure BSW in easyConfig {#configure-bsw-in-easyconfig .p_Heading2 style="page-break-after: avoid;"}
+
+## See easyConfig documentation for more details on your BSW configuration. {#see-easyconfig-documentation-for-more-details-on-your-bsw-configuration. .p_Heading2 style="page-break-after: avoid;"}
+
+##   {#section .p_Heading2 style="page-break-after: avoid;"}
+
+ 
+
+ 
+
+## 2. Install CODESYS {#install-codesys .p_Heading2 style="page-break-after: avoid;"}
+
+To develop ASW using CODESYS IDE, install CODESYS V3.5.21.40 32-bit for RC5-6, and CODESYS V3.5.21.40 32-bit for RC18-12 & RC27-18. The installation package can be downloaded directly from [CODESYS store](https://store.codesys.com/codesys.html#Alle%20Versionen){.weblink target="_blank"}.
+
+ 
+
+## 3. Get BODAS-RTS package {#get-bodas-rts-package .p_Heading2 style="page-break-after: avoid;"}
+
+After configuring BSW using easyConfig and successful software build, the build download includes a folder BODAS-RTS.
+
+The BODAS-RTS package is a combination of software plug-ins and files that are needed together with CODESYS IDE to develop ASW for RC4x devices. The artefacts of BODAS-RTS package are detailed in the below table.
+
+  Artefact                      Location
+  ----------------------------- -------------------------------------------------------------------------
+  Gateway.cfg                   myBODAS build download - BODAS-RTS/GatewayCFG
+  Device Description            myBODAS build download - BODAS-RTS/CodesysImports
+  BODAS-API library             myBODAS build download - BODAS-RTS/CodesysImports
+  easyConfig files              myBODAS build download - BODAS-RTS/CodesysImports/easyConfig
+  Additional CODESYS plug-ins   myBODAS build download - BODAS-RTS/CodesysImports/AdditionalPlugins.zip
+  BODAS-RTS hex file            myBODAS build download - BODAS-RTS/hex
+  BODAS-RTS a2l file            myBODAS build download - BODAS-RTS/hex
+
+ 
+
+ 
+
+ 
+
+ 

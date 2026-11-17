@@ -1,0 +1,191 @@
+# Electronic Data Sheets (EDS) {#electronic-data-sheets-eds .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [CANopen protocol description](canopen-protocol-description.html) \> | [](canopen-introduction.html "Previous Topic") [](canopen-protocol-description.html "Parent Chapter") [](emergency(emcy).html "Next Topic") |
+|                                                                                                                                                                                                                                                     |                                                                                                                                             |
+| # Electronic Data Sheets (EDS) {#electronic-data-sheets-eds-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                         |                                                                                                                                             |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+
+Electronic data sheets, also referred to as EDS files, are necessary for using CANopen devices. These files are structured according to a standardized text format. They describe both the most important parameters of an object (e.g. the transmission rate of a PDO) as well as the physical parameters of the device (e.g. the supported baud rates). Configuration tools can read EDS files. Such tools can also be used to configure a CANopen device.
+
+A base EDS file with all communication objects implemented by the CANopen library will be delivered along with this library. This base EDS file can then be extended based on the ASW profile and objects supported.
+
+[Extending CANopen Object Dictionary](canopen-library-concept.html){.topiclink}: This page shows how to extend the CANopen object dictionary.
+
+The subsections below detail the standard EDS naming conventions.
+
+ 
+
++----------------------------------------------+
+| Standard Data types                          |
++============+=================================+
+| 0x0001     | 1 Bit Boolean                   |
++------------+---------------------------------+
+| 0x0002     | 8 Bit Signed Integer            |
++------------+---------------------------------+
+| 0x0003     | 16 Bit Signed Integer           |
++------------+---------------------------------+
+| 0x0004     | 32 Bit Signed Integer           |
++------------+---------------------------------+
+| 0x0005     | 8 Bit Unsigned Integer          |
++------------+---------------------------------+
+| 0x0006     | 16 Bit Unsigned Integer         |
++------------+---------------------------------+
+| 0x0007     | 32 Bit Unsigned Integer         |
++------------+---------------------------------+
+| 0x0008     | Single Precision Floating Point |
++------------+---------------------------------+
+| 0x0009     | Visible String                  |
++------------+---------------------------------+
+| 0x000A     | Octet String                    |
++------------+---------------------------------+
+| 0x000B     | Date                            |
++------------+---------------------------------+
+| 0x000C     | Time of Day                     |
++------------+---------------------------------+
+| 0x000D     | Time Difference                 |
++------------+---------------------------------+
+| 0x000E     | Bit String                      |
++------------+---------------------------------+
+| 0x000F     | Domain                          |
++------------+---------------------------------+
+| 0x0020     | PDO Comm parameter              |
++------------+---------------------------------+
+| 0x0021     | PDO Mapping                     |
++------------+---------------------------------+
+| 0x0022     | SDO Parameter                   |
++------------+---------------------------------+
+
+ 
+
++-----------------------------+
+| Standard Object types       |
++=============+===============+
+| 0x07        | VAR(Variable) |
++-------------+---------------+
+| 0x08        | ARRAY         |
++-------------+---------------+
+| 0x09        | RECORD        |
++-------------+---------------+
+
+ 
+
++--------------------------------------+
+| Object Access                        |
++=========+============================+
+| const   | Read-only, will not change |
++---------+----------------------------+
+| ro      | Read Only                  |
++---------+----------------------------+
+| wo      | Write Only                 |
++---------+----------------------------+
+| rw      | Read/Write                 |
++---------+----------------------------+
+
+ 
+
++------------------------------------+
+| PDO Mapping                        |
++========+===========================+
+| 0x0    | Cannot be mapped to a PDO |
++--------+---------------------------+
+| 0x1    | Can be mapped to a PDO    |
++--------+---------------------------+
+
+ 
+
+## Sample EDS entries {#sample-eds-entries .p_Heading2 style="page-break-after: avoid;"}
+
+1.For example, if manufacturer-specific application object is 2000h  is unsigned 8 bit data type object named as \" Appl Manuf Object 1\" and PDO mapping is possible then entry of this object 2000h in EDS file should be done as below:
+
+\[2000\]
+
+ParameterName=Appl Manuf Object 1
+
+ObjectType=0x07
+
+DataType=0x0005
+
+AccessType=rw
+
+DefaultValue=0x00
+
+PDOMapping=1
+
+LowLimit=0x00
+
+HighLimit=0xFF
+
+ 
+
+2.For example, if manufacturer-specific application object is 2032h  is unsigned 32 bit data type object named as \" Velocity sensor \" and PDO mapping is possible then entry of this object 2032h in EDS file should be done as below:
+
+\[2032\]
+
+ParameterName=Velocity sensor
+
+ObjectType=0x07
+
+DataType=0x0007
+
+AccessType=const
+
+DefaultValue=
+
+PDOMapping=0
+
+LowLimit=0x00000000
+
+HighLimit=0xFFFFFFFF
+
+ 
+
+3.For example, if manufacturer-specific application object is 2033h  is signed 32 bit data type object named as \" Frequency_output \" and PDO mapping is possible then entry of this object 2033h in EDS file should be done as below:
+
+\[2033\]
+
+ParameterName=Frequency_output
+
+ObjectType=0x07
+
+DataType=0x0004
+
+AccessType=rw
+
+DefaultValue=0x00
+
+PDOMapping=1
+
+LowLimit=0x80000000
+
+HighLimit=0xFFFFFFFF
+
+ 
+
+4.For example, if manufacturer-specific application object is 2010h  is a visible string data type object named as \" Device-name \" and PDO mapping is not possible then entry of this object 2010h in EDS file should be done as below:
+
+\[2010\]
+
+ParameterName=Device-name
+
+ObjectType=0x07
+
+DataType=0x0009
+
+AccessType=const
+
+PDOMapping=0
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 

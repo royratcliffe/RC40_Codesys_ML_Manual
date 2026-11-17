@@ -1,0 +1,51 @@
+# Stop start broadcast (DM13, PGN = 0xDF00) {#stop-start-broadcast-dm13-pgn-0xdf00 .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [ISOBUS/J1939](isobus-module.html) \> [ISOBUS services and PGNs](isobus_services_and_pgns.html) \> | [](pgn-request_pgn_0xea00.html "Previous Topic") [](isobus_services_and_pgns.html "Parent Chapter") [](isobus_specifications.html "Next Topic") |
+|                                                                                                                                                                                                                                                       |                                                                                                                                                 |
+| # Stop start broadcast (DM13, PGN = 0xDF00) {#stop-start-broadcast-dm13-pgn-0xdf00-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                    |                                                                                                                                                 |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+
+With this PGN the service DM13 Stop Start Broadcast according SAE J1939-73 is supported. After receiving a Stop Start Broadcast message the contents of this message determines which of the following actions will be executed.
+
+Supported actions
+
+- Stop Broadcast
+
+This command deactivates the sending of any cyclic broadcast messages, e.g. DM1.  Suspended message formats see below. The Stop Broadcast state will be supervised with a 6s timer. After the expiration of this timer the state of the corresponding controller application reverts back to the state Start Broadcast.
+
+- Start Broadcast
+
+This command activates again the sending of all previously suspended cyclic broadcast messages. If the message was already suspended during the last cycle time then this message will be sent at once. Afterwards it will be sent with the defined cycle time.
+
+- Hold Signal
+
+This signal resets the expiration timer for the supervision of the Stop Broadcast state. This signal must be sent with a cycle of 5s to prevent a timeout of the supervision timer.
+
+- Suspend Signal
+
+The Suspend Signal and the Suspend Duration of a DM13 message will be not evaluated.
+
+- Actual DM13 state
+
+The actual state can be read with the API function  bds_isobus_getStatus. As long as the Stop Broadcast is active the substatus bit BDS_ISOBUS_SUBSTATUS_STOP_BC_DM13_DU16 is set.
+
+## Suspended messages {#suspended-messages .p_Heading2 style="page-break-after: avoid;"}
+
+In the Stop Broadcast state all cyclic messages with one of the following formats will be suspended (see also chapter ISOBUS Basics for the description of the formats):
+
+- PDU1 with a global destination
+
+- PDU2 with a global destination
+
+- BAM message
+
+## Remarks {#remarks .p_Heading2 style="page-break-after: avoid;"}
+
+- The sending of a BAM message will be continued if it has been already started before the reception of a Stop Broadcast command.
+
+- Requested broadcast messages (e.g. by a global PGN request) will be answered also in the Stop Broadcast state.
+
+- The DM13 service commands are always read from the first port (Current Data link).
+
+ 

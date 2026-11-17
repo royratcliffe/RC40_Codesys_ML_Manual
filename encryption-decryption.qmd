@@ -1,0 +1,122 @@
+# Encryption/Decryption {#encryptiondecryption .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [Security](security.html) \> [Secure Flashing](secure-flashing.html) \> | [](javascript:HMToggleExpandAll(!HMAnyToggleOpen()) "Click to open/close expanding sections") [](unlock-file.html "Previous Topic") [](secure-flashing.html "Parent Chapter") [](signature-verification.html "Next Topic") |
+|                                                                                                                                     |                                                                                                                                                                                                                            |
+| # Encryption/Decryption {#encryptiondecryption-1 .p_Heading1 style="page-break-after: avoid;"}                                      |                                                                                                                                                                                                                            |
++-------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+## RC40 Encryption Header {#rc40-encryption-header .p_Heading2 style="page-break-after: avoid;"}
+
+This section describes the functionality and specifications of the Encryption Header, which is used to protect sensitive data by enabling encryption of CB-ME/ASW/keyfile/unlockfile files to be flashed.
+
+1\. Goals of Encryption
+
+The primary objectives of implementing the encryption header are:
+
+- Protect sensitive data: Confidentiality of sensitive data (root certificate, decryption key and BODAS-service parameter passwords) contained within keyfile.hex is ensured.
+
+- Protect Intellectual Property (IP): Proprietary code and algorithms included in ASW.hex files is safeguarded from unauthorized access or reverse engineering.
+
+2\. General Definitions and Process Flow
+
+- Security Pipeline: Data (including CB-ME, ASW, and keyfile content) is processed in a specific order: first signed (if digital signatures are enabled for that data type), and then encrypted.
+
+- Header Placement: The encryption header is always placed BEFORE the actual payload data in the .hex file. This shifts the subsequent encrypted payload data backward in terms of memory addresses within the file structure.
+
+- Decryption Process: During flashing, CB-ME is responsible for interpreting this encryption header. It will effectively \"shift\" the encrypted payload data back to its original, intended memory address. This means the start address of the decryption header within the file conceptually represents the start address of the plaintext (original) payload.
+
+- Multiple Headers for ASW.hex: For ASW.hex files, both the ASW and DS0 memory segments require their own, separate encryption headers if they are to be encrypted.
+
+- Space Requirements: Since the encryption header is inserted before the payload, adding it requires sufficient free space within the memory segment. This space must be available at the end of the memory segment/block (i.e., after any existing end-pattern, digital signature, or epilogue).
+
+- Memory Block Constraint: Encrypted files must not extend beyond their original, unencrypted memory block boundaries. This ensures compatibility with existing service tools and memory layouts.
+
+oAdditional space needed: 64 bytes are required for the encryption header itself and additional 16 bytes for padding at the end.
+
+3\. Supported Encryption Algorithm
+
+The RC40 CB-ME (Customer Bootloader) supports the following robust encryption and authentication algorithms for decryption:
+
+- Encryption Scheme: AES128-CBC (Advanced Encryption Standard 128-bit in Cipher Block Chaining mode)
+
+- Authentication Scheme: AES128-CMAC (Advanced Encryption Standard 128-bit in Cipher-based Message Authentication Code mode)
+
+- Mode: Encrypt-then-MAC (data is encrypted, then the resulting ciphertext is authenticated with a MAC).
+
+- Padding: PKCS 5 / PKCS 7 padding is used to ensure that plaintext data blocks are a multiple of the AES block size (16 bytes).
+
+## Customer Bootloader (CB-ME) Software Decryption and Integrity {#customer-bootloader-cb-me-software-decryption-and-integrity .p_Heading2 style="page-break-after: avoid;"}
+
+The Customer Bootloader (CB-ME) manages the secure decryption and integrity verification of incoming software images (Application Software (ASW) or CB-ME updates).
+
+1\. Decryption Key Provisioning
+
+The CB-ME utilizes a 16-byte secret AES decryption key for decryption operations. This key must be securely flashed onto the device using a dedicated keyfile prior to any encrypted software updates.
+
+2\. AES-CMAC Integrity Verification Process
+
+The CB-ME employs a two-step AES-CMAC calculation to ensure the integrity of the encrypted ASW/CB-ME software:
+
+I.CMAC Key Derivation:
+
+1.The CB-ME performs an AES-CMAC calculation on the static string \"AUTHENTICATION\".
+
+2.This operation uses the provisioned 16-byte secret AES decryption key as its Message Authentication Code (MAC) key.
+
+3.The result is a 16-byte derived CMAC key.
+
+II.Software CMAC Calculation:
+
+1.The 16-byte derived CMAC key (from step I.) is then used as the MAC key.
+
+2.The CB-ME calculates the AES-CMAC of the length of the encrypted data (LENENCDATA) and entire encrypted ASW/CB-ME software image (ENCDATA).
+
+3\. Flashing Procedure and Integrity Check
+
+During the flashing process, the CB-ME performs the following integrity check:
+
+- The CB-ME compares the locally calculated AES-CMAC of the encrypted data (obtained from step 2 above) with the AES-CMAC value stored in the encryption header of the incoming software image.
+
+oIf the AES-CMAC values match: The CB-ME proceeds with the flashing operation.
+
+oIf the AES-CMAC values do not match: The CB-ME immediately aborts the flashing process to prevent flashing of compromised or corrupted software.
+
+ 
+
+![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a1_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [ RC40 Encryption Header Format:](javascript:HMToggle('toggle','toggle0186a1','toggle0186a1_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"}
+
++--------------------------------+------------------------+-------------+--------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| Name                           | Address offset (Bytes) | Type        | Length(Bytes)                                                                        | Description                                                                                                                |
++================================+========================+=============+======================================================================================+============================================================================================================================+
+| Magic Word                     | 0                      | uint32      | 4                                                                                    | Constant magic word \"ENCR\" i.e. 0x454E4352 (big-endian)                                                                  |
+|                                |                        |             |                                                                                      |                                                                                                                            |
+| (MAGIC)                        |                        |             |                                                                                      |                                                                                                                            |
+|                                |                        |             |                                                                                      |                                                                                                                            |
+|                                |                        |             |                                                                                      | The RC CB-ME shall only accept encrypted keyfile/unlockFile/CB-ME/ASW with the correct magic word.                         |
++--------------------------------+------------------------+-------------+--------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| Format Version                 | 4                      | uint32      | 4                                                                                    | Encryption header format version for future updates.\                                                                      |
+|                                |                        |             |                                                                                      | Constant for the version described in this document 0x00000001.\                                                           |
+| (VERSION)                      |                        |             |                                                                                      |  \                                                                                                                         |
+|                                |                        |             |                                                                                      | The CB-ME shall only accept encryption header with supported format versions.                                              |
++--------------------------------+------------------------+-------------+--------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| Length of Encrypted Data\      | 8                      | uint32      | 4                                                                                    | Length of the encrypted data in Bytes (big-endian)\                                                                        |
+| (LENENCDATA)                   |                        |             |                                                                                      |  \                                                                                                                         |
+|                                |                        |             |                                                                                      | The RC CB-ME shall reject encrypted data in case the length exceeds the memory block currently written.\                   |
+|                                |                        |             |                                                                                      | The RC CB-ME shall reject encrypted data in case the length of the data transmitted does not match with length value here. |
++--------------------------------+------------------------+-------------+--------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| Reserved                       | 12                     | uint8\[\]   | 4                                                                                    | Reserved. Should be random. Ignored by CB-ME.                                                                              |
++--------------------------------+------------------------+-------------+--------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| Initialization Vector / Nonce\ | 16                     | uint8\[\]   | 16                                                                                   | Random number generated during encryption process to ensure encryption is unique.                                          |
+| (IV)                           |                        |             |                                                                                      |                                                                                                                            |
++--------------------------------+------------------------+-------------+--------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| Message Authentication Code\   | 32                     | uint8\[\]   | 16                                                                                   | Message Authentication Code (tag) that proves the integrity of the ciphertext.                                             |
+| (MAC)                          |                        |             |                                                                                      |                                                                                                                            |
++--------------------------------+------------------------+-------------+--------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| Reserved                       | 48                     | uint8\[\]   | 16                                                                                   | Reserved. Should be random. Ignored by CB-ME.                                                                              |
++--------------------------------+------------------------+-------------+--------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| Encrypted Data\                | 64                     | uint8\[\]   | At least plaintext data length but can be up to 16 Bytes longer due to PKCS7 padding | Encrypted data. Is decrypted by CB-ME into RAM before writing to flash memory (for each transferData command).             |
+| (ENCDATA)                      |                        |             |                                                                                      |                                                                                                                            |
++--------------------------------+------------------------+-------------+--------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+
+ 

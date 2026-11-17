@@ -1,0 +1,131 @@
+# bds_out_aov_getStatus {#bds_out_aov_getstatus .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  »No topics above this level«                                                   | [](javascript:HMToggleExpandAll(!HMAnyToggleOpen()) "Click to open/close expanding sections") [](appendix.html "Parent Chapter") |
+|                                                                                                 |                                                                                                                                  |
+| # bds_out_aov_getStatus {#bds_out_aov_getstatus-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                  |
++-------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+
+Provides status of an analog voltage output.
+
+## Remarks: {#remarks .p_Heading2 style="page-break-after: avoid;"}
+
+- The status data holds all relevant information of the analog voltage output, see example below.
+
+oPart of the status data is also the fault status of every DFC (e.g. stDFC_SCB_u16), see topic [Proportional outputs](proportional-outputs.html){.topiclink} and [Diagnostic Fault Check](diagnostic-fault-check.html){.topiclink}.
+
+oWith the macros (e.g. bds_dsm_DFC_ldf) defined in bds_dsm_api.h , respective bit fields of the fault status can be read.
+
+## ![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a1_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [FFI](javascript:HMToggle('toggle','toggle0186a1','toggle0186a1_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#hmtoggle_plus1-ffi .p_Heading2 style="page-break-after: avoid;"}
+
+  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  This API can be used in trusted partitions. For untrusted partitions use bds_out_aov_getStatus_ffi. See [Freedom from Interference (FFI) concept](freedom-from-interference.html){.topiclink} for more details.
+  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ 
+
+## ![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a2_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [Declaration](javascript:HMToggle('toggle','toggle0186a2','toggle0186a2_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#hmtoggle_plus1-declaration .p_Heading2 style="page-break-after: avoid;"}
+
++---------------------------------------------------------------------------+
+| +-----------------------------------------------------------------------+ |
+| | CODESYS Declaration                                                   | |
+| +=========+=======================+========================+============+ |
+| | USINT   | bds_out_aov_getStatus | (bds_out_aov_signal_te | signal_e,  | |
+| +---------+-----------------------+------------------------+------------+ |
+| |         |                       | bds_out_aov_ts         | \*data_ps) | |
+| +---------+-----------------------+------------------------+------------+ |
+|                                                                           |
+|                                                                           |
++---------------------------------------------------------------------------+
+
+## ![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a3_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [Parameters](javascript:HMToggle('toggle','toggle0186a3','toggle0186a3_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#hmtoggle_plus1-parameters .p_Heading2 style="page-break-after: avoid;"}
+
++-----------------------------------------------------------------------+
+|   Parameter   Description                                             |
+|   ----------- ---------------------------------------------------     |
+|   signal_e    The connector assigned signal name of the output.       |
+|   data_ps     \<Storage address of the data.                          |
++-----------------------------------------------------------------------+
+
+## ![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a4_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [Return Values](javascript:HMToggle('toggle','toggle0186a4','toggle0186a4_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#hmtoggle_plus1-return-values .p_Heading2 style="page-break-after: avoid;"}
+
++-----------------------------------------------------------------------+
+|   Return value   Description                                          |
+|   -------------- -------------------------                            |
+|   0              No error.                                            |
+|   1              A parameter is invalid.                              |
++-----------------------------------------------------------------------+
+
+## ![Code Example](hmtoggle_plus1.gif "Code Example"){#toggle0186a5_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [Example](javascript:HMToggle('toggle','toggle0186a5','toggle0186a5_ICON') "Code Example"){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#code-example-example .p_Heading2 style="page-break-after: avoid;"}
+
++----------------------------------------------------------------------------------------------------------------------------+
+| +------------------------------------------------------------------------------------------------------------------------+ |
+| | CODESYS Example                                                                                                        | |
+| +========================================================================================================================+ |
+| | (\*                                                                                                                    | |
+| |                                                                                                                        | |
+| | (\* status flags for status_b16 \*)                                                                                    | |
+| |                                                                                                                        | |
+| |   initOut_DB16              16#0001u    (\* initialization after startup \*)                                           | |
+| |                                                                                                                        | |
+| |   cfgPOC_DB16               16#0002u    (\* configuration of closed loop control \*)                                   | |
+| |                                                                                                                        | |
+| |   cfgPeriod_DB16            16#0004u    (\* configuration of period \*)                                                | |
+| |                                                                                                                        | |
+| |   cfgDither_DB16            16#0008u    (\* configuration of dither \*)                                                | |
+| |                                                                                                                        | |
+| |   cfgDeviation_DB16         16#0010u    (\* configuration of deviation \*)                                             | |
+| |                                                                                                                        | |
+| |   cfgPI_DB16                16#0020u    (\* configuration of KpKi \*)                                                  | |
+| |                                                                                                                        | |
+| |   lockedSCB_DB16            16#0040u    (\* locked by SCB\...necessary for AOV \*)                                     | |
+| |                                                                                                                        | |
+| |   lockedSCG_DB16            16#0080u    (\* locked by SCG\...necessary for AOV \*)                                     | |
+| |                                                                                                                        | |
+| |   lockedOC_DB16             16#0100u    (\* locked by OC \*)                                                           | |
+| |                                                                                                                        | |
+| |   locked_DB16               16#0200u    (\* locked by Error Handler \*)                                                | |
+| |                                                                                                                        | |
+| |   lockedMO_DB16             16#0400u    (\* locked by [Self-monitoring](ecu-self-monitoring.html){.topiclink} Error\*) | |
+| |                                                                                                                        | |
+| |   lockCouTiReact_DB16       16#0800u    (\* locked reactivation timer reload after a hot short circuit \*)             | |
+| |                                                                                                                        | |
+| |   tiReactNotElapsed_DB16    16#1000u    (\* time for reactivation after a hot short circuit not elapsed \*)            | |
+| |                                                                                                                        | |
+| |   linked_DB16               16#2000u    (\* linked at least with one other safout output \*)                           | |
+| |                                                                                                                        | |
+| |   disabled_DB16             16#8000u    (\* output is disabled (avoid open load faults of unused outputs)\*)           | |
+| |                                                                                                                        | |
+| | \*)                                                                                                                    | |
+| |                                                                                                                        | |
+| |                                                                                                                        | |
+| |                                                                                                                        | |
+| | PROGRAM appl_10ms_task                                                                                                 | |
+| |                                                                                                                        | |
+| |   VAR                                                                                                                  | |
+| |                                                                                                                        | |
+| |     stK62_s: bds_out_aov_ts;                                                                                           | |
+| |                                                                                                                        | |
+| |     ldf_u8: USINT := 16#00;                                                                                            | |
+| |                                                                                                                        | |
+| |   END_VAR                                                                                                              | |
+| |                                                                                                                        | |
+| |                                                                                                                        | |
+| |                                                                                                                        | |
+| | (\* get the status of output K62 \*)                                                                                   | |
+| |                                                                                                                        | |
+| | bds_out_aov_getStatus(bds_out_aov_signal_te.K62, ADR(stK62_s));                                                        | |
+| |                                                                                                                        | |
+| |                                                                                                                        | |
+| |                                                                                                                        | |
+| |  (\* get last debounced fault \*)                                                                                      | |
+| |                                                                                                                        | |
+| |  ldf_u8 = bds_dsm_DFC_ldf(stK62_s.stDFC_SCB_u16);                                                                      | |
+| |                                                                                                                        | |
+| | END                                                                                                                    | |
+| +------------------------------------------------------------------------------------------------------------------------+ |
+|                                                                                                                            |
+|                                                                                                                            |
++----------------------------------------------------------------------------------------------------------------------------+
+
+ 

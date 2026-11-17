@@ -1,0 +1,186 @@
+# Parameter configuration in easyConfig {#parameter-configuration-in-easyconfig .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Diagnostic services (UDS)](diagnostic-services.html) \> [UDS overview](uds---overview.html) \> [Supported UDS services](supported-uds-services.html) \> [SID - InputOutputControlByIdentifier (0x2F)](iocbi.html) \> | [](integration-of-iocbi-in-asw.html "Previous Topic") [](iocbi.html "Parent Chapter") [](uds-specifications.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                      |                                                                                                                                |
+| # Parameter configuration in easyConfig {#parameter-configuration-in-easyconfig-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                                      |                                                                                                                                |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
+
+This topic explains the configuration of relevant parameters for the InputOutputControlByIdentifier in easyConfig.
+
+Note:
+
+1)Apart from the IOCBI service selection, session reference configuration, and IOCBI-related parameters (callbacks), other parameters are similar to the DID configuration in easyConfig, which are not intended for IO control. For further configuration details and a GUI overview, refer to the easyConfig manual.
+
+2)The default endianness configured for the DID signals is big endian (Motorola) format.
+
+1.IOCBI Enabled/Disabled
+
+  ---------------- --------------- -------- ---------------------- -------------------- ------------------------------------
+  Parameter Name   Default Value   Range    Description            Mandatory (Yes/No)   Other remarks
+  IOCBI Enabled    No              Yes/No   Enable/disable IOCBI   Yes                  Once set to YES, IOCBI is enabled.
+  ---------------- --------------- -------- ---------------------- -------------------- ------------------------------------
+
+## DID Configuration {#did-configuration .p_Heading2 style="page-break-after: avoid;"}
+
+2.Name
+
+  ---------------- --------------- -------------------------------- ------------------------------------------------------------- -------------------- ---------------
+  Parameter Name   Default Value   Range                            Description                                                   Mandatory (Yes/No)   Other remarks
+  Frame type       Standard        [DIDs](iocbi.html){.topiclink}   It contains the configuration of data belonging to the DID.   Yes                  \-
+  ---------------- --------------- -------------------------------- ------------------------------------------------------------- -------------------- ---------------
+
+3.Identifier
+
+  ---------------- --------------- -------------------------------- ---------------------------------------------------------------------------------------------------------- -------------------- ---------------
+  Parameter Name   Default Value   Range                            Description                                                                                                Mandatory (Yes/No)   Other remarks
+  Identifier       \-              [DIDs](iocbi.html){.topiclink}   This parameter identifies a server local input signal(s), internal parameter(s) and/or output signal(s).   Yes                  \-
+  ---------------- --------------- -------------------------------- ---------------------------------------------------------------------------------------------------------- -------------------- ---------------
+
+4.Session Refs
+
++----------------+-------------------------------+------------------------------------------------------+-----------------------------------------------------+--------------------+---------------------------------------------------------------------------------------------------+
+| Parameter Name | Default Value                 | Values supported for IOCBI                           | Description                                         | Mandatory (Yes/No) | Other remarks                                                                                     |
++----------------+-------------------------------+------------------------------------------------------+-----------------------------------------------------+--------------------+---------------------------------------------------------------------------------------------------+
+| Session Refs   | DcmDspDidInfo_ProcessData_All | DcmDspDidInfo_IOCBI_Parameter_Extended_OneSignal     | This parameter sets the session of the UDS Service. | Yes                | A DID can be classified as meant for IOCBI only when any of these Session References is selected. |
+|                |                               |                                                      |                                                     |                    |                                                                                                   |
+|                |                               | DcmDspDidInfo_IOCBI_Parameter_Extended_OneByteMask   |                                                     |                    |                                                                                                   |
+|                |                               |                                                      |                                                     |                    |                                                                                                   |
+|                |                               | DcmDspDidInfo_IOCBI_Parameter_Extended_TwoByteMask   |                                                     |                    |                                                                                                   |
+|                |                               |                                                      |                                                     |                    |                                                                                                   |
+|                |                               | DcmDspDidInfo_IOCBI_Parameter_Extended_ThreeByteMask |                                                     |                    |                                                                                                   |
+|                |                               |                                                      |                                                     |                    |                                                                                                   |
+|                |                               | DcmDspDidInfo_IOCBI_Parameter_Extended_FourByteMask  |                                                     |                    |                                                                                                   |
+|                |                               |                                                      |                                                     |                    |                                                                                                   |
+|                |                               | DcmDspDidInfo_IOCBI_Parameter_Safety_OneSignal       |                                                     |                    |                                                                                                   |
+|                |                               |                                                      |                                                     |                    |                                                                                                   |
+|                |                               | DcmDspDidInfo_IOCBI_Parameter_Safety_OneByteMask     |                                                     |                    |                                                                                                   |
+|                |                               |                                                      |                                                     |                    |                                                                                                   |
+|                |                               | DcmDspDidInfo_IOCBI_Parameter_Safety_TwoByteMask     |                                                     |                    |                                                                                                   |
+|                |                               |                                                      |                                                     |                    |                                                                                                   |
+|                |                               | DcmDspDidInfo_IOCBI_Parameter_Safety_ThreeByteMask   |                                                     |                    |                                                                                                   |
+|                |                               |                                                      |                                                     |                    |                                                                                                   |
+|                |                               | DcmDspDidInfo_IOCBI_Parameter_Safety_FourByteMask    |                                                     |                    |                                                                                                   |
+|                |                               |                                                      |                                                     |                    |                                                                                                   |
+|                |                               | DcmDspDidInfo_IOCBI_Parameter_EOL_OneSignal          |                                                     |                    |                                                                                                   |
+|                |                               |                                                      |                                                     |                    |                                                                                                   |
+|                |                               | DcmDspDidInfo_IOCBI_Parameter_EOL_OneByteMask        |                                                     |                    |                                                                                                   |
+|                |                               |                                                      |                                                     |                    |                                                                                                   |
+|                |                               | DcmDspDidInfo_IOCBI_Parameter_EOL_TwoByteMask        |                                                     |                    |                                                                                                   |
+|                |                               |                                                      |                                                     |                    |                                                                                                   |
+|                |                               | DcmDspDidInfo_IOCBI_Parameter_EOL_ThreeByteMask      |                                                     |                    |                                                                                                   |
+|                |                               |                                                      |                                                     |                    |                                                                                                   |
+|                |                               | DcmDspDidInfo_IOCBI_Parameter_EOL_FourByteMask       |                                                     |                    |                                                                                                   |
++----------------+-------------------------------+------------------------------------------------------+-----------------------------------------------------+--------------------+---------------------------------------------------------------------------------------------------+
+
+ 
+
++------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Attention](attention.png){style="margin:0;width:2.1667in;height:0.7083in;border:none"} | •Upon Selection of parameter 1 (IOCBI Enabled/Disabled) user shall be able to configure IOCBI DIDs in the first place.                                                                                                                   |
+|                                                                                          |                                                                                                                                                                                                                                          |
+|                                                                                          | •Upon Selection of parameter 4 (Session Refs) as above, user shall be able to configure a DID as Input/Output control related, and only upon its selection parameters 10, 11, 12, 13 will be visible in easyConfig and are configurable. |
+|                                                                                          |                                                                                                                                                                                                                                          |
+|                                                                                          | •On how to interpret the \"SessionRefs\":\                                                                                                                                                                                               |
+|                                                                                          | DcmDspDidInfo\_\<IOCBI\>\_Parameter\_\<Session\>\_\<Mask\>:\                                                                                                                                                                             |
+|                                                                                          | \<IOCBI\> - meant for IOCBI DID configuration\                                                                                                                                                                                           |
+|                                                                                          | \<Session\> - UDS Session\                                                                                                                                                                                                               |
+|                                                                                          | \<Mask\> - Number of bytes of Control Mask                                                                                                                                                                                               |
++------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+## DID Signal Configuration {#did-signal-configuration .p_Heading2 style="page-break-after: avoid;"}
+
+5.Name
+
++----------------+---------------+-----------+----------------------------------------------------------------------------------------------------------+--------------------+---------------+
+| Parameter Name | Default Value | Range     | Description                                                                                              | Mandatory (Yes/No) | Other remarks |
++----------------+---------------+-----------+----------------------------------------------------------------------------------------------------------+--------------------+---------------+
+| Name           | \-            | 32        | It contains the configuration of data belonging to the DID.                                              | Yes                | \-            |
+|                |               |           |                                                                                                          |                    |               |
+|                |               |           | Range mentioned here is that maximum number of DID signals that can be configured for a IOCBI DID is 32. |                    |               |
++----------------+---------------+-----------+----------------------------------------------------------------------------------------------------------+--------------------+---------------+
+
+6.Size(bit)
+
++----------------+---------------+-----------+-------------------------------------------------------------+--------------------+---------------+
+| Parameter Name | Default Value | Range     | Description                                                 | Mandatory (Yes/No) | Other remarks |
++----------------+---------------+-----------+-------------------------------------------------------------+--------------------+---------------+
+| Size(bit)      | \-            | 0-65535   | It contains the configuration of data belonging to the DID. | Yes                | \-            |
+|                |               |           |                                                             |                    |               |
+|                |               |           |                                                             |                    |               |
++----------------+---------------+-----------+-------------------------------------------------------------+--------------------+---------------+
+
+7.Datatype
+
++----------------+---------------+-----------+------------------------------------------------------------------+--------------------+---------------+
+| Parameter Name | Default Value | Range     | Description                                                      | Mandatory (Yes/No) | Other remarks |
++----------------+---------------+-----------+------------------------------------------------------------------+--------------------+---------------+
+| Datatype       | UINT16        | BOOLEAN   | Provide the implementation data type of data belonging to a DID. | Yes                | \-            |
+|                |               |           |                                                                  |                    |               |
+|                |               | SINT8     |                                                                  |                    |               |
+|                |               |           |                                                                  |                    |               |
+|                |               | SINT8_N   |                                                                  |                    |               |
+|                |               |           |                                                                  |                    |               |
+|                |               | SINT16    |                                                                  |                    |               |
+|                |               |           |                                                                  |                    |               |
+|                |               | SINT16_N  |                                                                  |                    |               |
+|                |               |           |                                                                  |                    |               |
+|                |               | SINT32    |                                                                  |                    |               |
+|                |               |           |                                                                  |                    |               |
+|                |               | SINT32_N  |                                                                  |                    |               |
+|                |               |           |                                                                  |                    |               |
+|                |               | UINT8     |                                                                  |                    |               |
+|                |               |           |                                                                  |                    |               |
+|                |               | UINT8_N   |                                                                  |                    |               |
+|                |               |           |                                                                  |                    |               |
+|                |               | UINT16    |                                                                  |                    |               |
+|                |               |           |                                                                  |                    |               |
+|                |               | UINT16_N  |                                                                  |                    |               |
+|                |               |           |                                                                  |                    |               |
+|                |               | UINT32    |                                                                  |                    |               |
+|                |               |           |                                                                  |                    |               |
+|                |               | UINT32_N  |                                                                  |                    |               |
++----------------+---------------+-----------+------------------------------------------------------------------+--------------------+---------------+
+
+8.Read Fnc
+
+  ---------------- --------------- ------- --------------------------------------------------------- -------------------- ---------------
+  Parameter Name   Default Value   Range   Description                                               Mandatory (Yes/No)   Other remarks
+  Read Fnc         \-              \-      Callback for Reading the input/output DID signal value.   Yes                  \-
+  ---------------- --------------- ------- --------------------------------------------------------- -------------------- ---------------
+
+9.Write Fnc
+
+  ---------------- --------------- ------- ---------------------------------------------------------------------------------------------------- -------------------- ---------------
+  Parameter Name   Default Value   Range   Description                                                                                          Mandatory (Yes/No)   Other remarks
+  Write Fnc        \-              \-      Callback for writing the input/output DID signal value and related to InputOutputControlParameter.   No                   \-
+  ---------------- --------------- ------- ---------------------------------------------------------------------------------------------------- -------------------- ---------------
+
+10\. FreezeCurrentState Fnc
+
+  ------------------------ --------------- ------- -------------------------------------------------------------------------------------------------------- -------------------- -----------------------------------------------------------------
+  Parameter Name           Default Value   Range   Description                                                                                              Mandatory (Yes/No)   Other remarks
+  FreezeCurrentState Fnc   \-              \-      Callback for freezing the current state for input/output DID signal referenced by the Data Identifier.   Yes                  Configurable only if SessionRef is configured related to IOCBI.
+  ------------------------ --------------- ------- -------------------------------------------------------------------------------------------------------- -------------------- -----------------------------------------------------------------
+
+## 10. DataResetToDefault Fnc {#dataresettodefault-fnc .p_Heading2 style="page-break-after: avoid;"}
+
+  ------------------------ --------------- ------- -------------------------------------------------------------------------------------------------------------- -------------------- -----------------------------------------------------------------
+  Parameter Name           Default Value   Range   Description                                                                                                    Mandatory (Yes/No)   Other remarks
+  DataResetToDefault Fnc   \-              \-      Callback for requesting to reset the input/output signal referenced by the Data Identifier to default value.   Yes                  Configurable only if SessionRef is configured related to IOCBI.
+  ------------------------ --------------- ------- -------------------------------------------------------------------------------------------------------------- -------------------- -----------------------------------------------------------------
+
+## 11. ReturnControlToECU Fnc {#returncontroltoecu-fnc .p_Heading2 style="page-break-after: avoid;"}
+
+  ------------------------ --------------- ------- --------------------------------------------------------------------------------------------------------------------------------------------- -------------------- -----------------------------------------------------------------
+  Parameter Name           Default Value   Range   Description                                                                                                                                   Mandatory (Yes/No)   Other remarks
+  ReturnControlToECU Fnc   \-              \-      Callback to indicate the server (RC) that the client no longer has control about the input/output signal referenced by the Data Identifier.   Yes                  Configurable only if SessionRef is configured related to IOCBI.
+  ------------------------ --------------- ------- --------------------------------------------------------------------------------------------------------------------------------------------- -------------------- -----------------------------------------------------------------
+
+ 
+
+12\. ShortTermAdjustment Fnc
+
+  ------------------------- --------------- ------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------------- -----------------------------------------------------------------
+  Parameter Name            Default Value   Range   Description                                                                                                                                                                                    Mandatory (Yes/No)   Other remarks
+  ShortTermAdjustment Fnc   \-              \-      Callback to indicate the server (RC) that it is requested to adjust the input/output signal(s). The IO signal in ASW, represented by the selected DID, is overwritten by the provided value.   Yes                  Configurable only if SessionRef is configured related to IOCBI.
+  ------------------------- --------------- ------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------------- -----------------------------------------------------------------

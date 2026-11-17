@@ -1,0 +1,15 @@
+# Data Identifier (DID) {#data-identifier-did .p_Heading1 style="page-break-after: avoid;"}
+
++:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Diagnostic services (UDS)](diagnostic-services.html) \> [UDS overview](uds---overview.html) \> | [](uds---overview.html "Previous Topic") [](uds---overview.html "Parent Chapter") [](data-identifiers-(did)-for-rea.html "Next Topic") |
+|                                                                                                                                                                                |                                                                                                                                        |
+| # Data Identifier (DID) {#data-identifier-did-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                  |                                                                                                                                        |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+
+This section gives information about supported DIDs in BODAS-BSW and steps to use DIDs.
+
+## References {#references .p_Heading2 style="page-break-after: avoid;"}
+
+- For information about standard DIDs refer chapter [Standard DIDs](standard-dids.html){.topiclink} and sub-chapters.
+
+- For information about IOCBI DIDs and related documentation refer chapter [SID - InputOutputControlByIdentifier (0x2F)](iocbi.html){.topiclink} and sub-chapters.

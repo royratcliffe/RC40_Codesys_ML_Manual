@@ -1,0 +1,11 @@
+# Flashing using CODESYS IDE {#flashing-using-codesys-ide .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [How-Tos](how-to.html) \>                                                                | [](migration_of_asw_from_rc30_to_rc40.html "Previous Topic") [](how-to.html "Parent Chapter") [](limitations.html "Next Topic") |
+|                                                                                                           |                                                                                                                                 |
+| # Flashing using CODESYS IDE {#flashing-using-codesys-ide-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                 |
++-----------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+
+For a quick start with flashing, make sure to prepare a proper environment, as outlined in this chapter. All the required tools and directories shall be in place.
+
+If you have questions, contact your Rexroth representative directly or visit [https://community.mybodas.boschrexroth.com/](https://community.mybodas.boschrexroth.com/){.weblink target="_blank"}.

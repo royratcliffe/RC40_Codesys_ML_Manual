@@ -1,0 +1,111 @@
+# bds_out_aov {#bds_out_aov .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  »No topics above this level«                               | [](javascript:HMToggleExpandAll(!HMAnyToggleOpen()) "Click to open/close expanding sections") [](appendix.html "Parent Chapter") |
+|                                                                             |                                                                                                                                  |
+| # bds_out_aov {#bds_out_aov-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                  |
++-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+
+Sets the analog voltage output to a given set point.
+
+## Remarks: {#remarks .p_Heading2 style="page-break-after: avoid;"}
+
+- The analog voltage has two output types namely PWM and AOV.
+
+oThe set point range of the PWM is 25 to 75% of the battery voltage (available signal refer to table \"PVG Proportional Voltage Output\" in).
+
+oThe set point range of the AOV is 0 to 10000mV (available signal refer to table \"AOV Analog Voltage Output\" in).
+
+oIf the set point has been set to 0 value then the output can also be used as analog voltage input. (see [bds_out_aov_getVoltage)](bds_out_aov_getvoltage.html){.topiclink}
+
+- For more information see [bds_out_aov_getStatus](bds_out_aov_getstatus.html){.topiclink} and [bds_out_aov_resetError](bds_out_aov_reseterror.html){.topiclink}.
+
+ 
+
+  -------------------------------------------------------------------------------- -----------------------------------------------------------------------------------------------------
+  ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"}   For the output type PWM an external load is mandatory, see Technical Data Sheet (RE-sheet RE95207).
+  -------------------------------------------------------------------------------- -----------------------------------------------------------------------------------------------------
+
+## ![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a1_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [FFI](javascript:HMToggle('toggle','toggle0186a1','toggle0186a1_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#hmtoggle_plus1-ffi .p_Heading2 style="page-break-after: avoid;"}
+
+  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  This API can be used in trusted partitions. For untrusted partitions use bds_out_aov_ffi. See [Freedom from Interference (FFI) concept](freedom-from-interference.html){.topiclink} for more details.
+  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ 
+
+## ![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a2_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [Declaration](javascript:HMToggle('toggle','toggle0186a2','toggle0186a2_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#hmtoggle_plus1-declaration .p_Heading2 style="page-break-after: avoid;"}
+
++-----------------------------------------------------------------------+
+| +------------------------------------------------------------+        |
+| | CODESYS Declaration                                        |        |
+| +=========+=============+========================+===========+        |
+| | USINT   | bds_out_aov | (bds_out_aov_signal_te | signal_e, |        |
+| +---------+-------------+------------------------+-----------+        |
+| |         |             | uint16                 | uSet_u16) |        |
+| +---------+-------------+------------------------+-----------+        |
+|                                                                       |
+|                                                                       |
++-----------------------------------------------------------------------+
+
+## ![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a3_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [Parameters](javascript:HMToggle('toggle','toggle0186a3','toggle0186a3_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#hmtoggle_plus1-parameters .p_Heading2 style="page-break-after: avoid;"}
+
++-----------------------------------------------------------------------------------------------+
+| +-----------------------------------+-------------------------------------------------------+ |
+| | Parameter                         | Description                                           | |
+| +===================================+=======================================================+ |
+| | signal_e                          | The connector assigned signal name of the output.     | |
+| +-----------------------------------+-------------------------------------------------------+ |
+| | uSet_u16                          | New set point for PWM \[0.1%\] respective AOV \[mV\]. | |
+| |                                   |                                                       | |
+| |                                   |                                                       | |
+| |                                   |                                                       | |
+| |                                   | Range:                                                | |
+| |                                   |                                                       | |
+| |                                   | PWM: 0 and 250 to 750                                 | |
+| |                                   |                                                       | |
+| |                                   | AOV: 0 to 10000                                       | |
+| +-----------------------------------+-------------------------------------------------------+ |
++-----------------------------------------------------------------------------------------------+
+
+## ![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a4_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [Return Values](javascript:HMToggle('toggle','toggle0186a4','toggle0186a4_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#hmtoggle_plus1-return-values .p_Heading2 style="page-break-after: avoid;"}
+
++-----------------------------------------------------------------------+
+|   Return value   Description                                          |
+|   -------------- -------------------------                            |
+|   0              No error.                                            |
+|   1              A parameter is invalid.                              |
+|   2              Output is locked                                     |
++-----------------------------------------------------------------------+
+
+## ![Code Example](hmtoggle_plus1.gif "Code Example"){#toggle0186a5_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [Example](javascript:HMToggle('toggle','toggle0186a5','toggle0186a5_ICON') "Code Example"){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#code-example-example .p_Heading2 style="page-break-after: avoid;"}
+
++---------------------------------------------------------------------------+
+| +-----------------------------------------------------------------------+ |
+| | CODESYS Example                                                       | |
+| +=======================================================================+ |
+| | PROGRAM appl_10ms_task                                                | |
+| |                                                                       | |
+| |   VAR                                                                 | |
+| |                                                                       | |
+| |   END_VAR                                                             | |
+| |                                                                       | |
+| |                                                                       | |
+| |                                                                       | |
+| | (\* set a voltage of 50% of Ubat for type PWM \*)                     | |
+| |                                                                       | |
+| | bds_out_aov(bds_out_aov_signal_te.K25, 500);                          | |
+| |                                                                       | |
+| |                                                                       | |
+| |                                                                       | |
+| | (\* set a voltage of 5000mV for type AOV \*)                          | |
+| |                                                                       | |
+| | bds_out_aov(bds_out_aov_signal_te.K62, 5000);                         | |
+| |                                                                       | |
+| | END                                                                   | |
+| +-----------------------------------------------------------------------+ |
+|                                                                           |
+|                                                                           |
++---------------------------------------------------------------------------+
+
+ 

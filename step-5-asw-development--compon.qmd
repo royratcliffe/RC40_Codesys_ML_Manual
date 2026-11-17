@@ -1,0 +1,26 @@
+# Step 5: ASW development & involved components {#step-5-asw-development-involved-components .p_Heading1 style="page-break-after: avoid;"}
+
++:---------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [Introduction](introduction.html) \> [First steps with RC](preparation.html) \> [Configurations](required-tools.html) \>    | [](step-4-install-additional-plug.html "Previous Topic") [](required-tools.html "Parent Chapter") [](add-device--library-to-empty-c.html "Next Topic") |
+|                                                                                                                                              |                                                                                                                                                        |
+| # Step 5: ASW development & involved components {#step-5-asw-development-involved-components-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                                        |
++----------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The below picture details the main components of ASW development using CODESYS and BODAS-RTS
+
+ 
+
+ 
+
+<figure style="margin:0;padding:0">
+<img src="hmfile_hash_6ee8a1b4.png" title="CODESYS ASW components" style="width:8.9375in;height:6.4896in;border:none" alt="CODESYS ASW components" />
+<figcaption aria-hidden="true"><p>CODESYS ASW components</p></figcaption>
+</figure>
+
+ 
+
+Each element is detailed in this chapter and its sub-chapters
+
+ 
+
+ 

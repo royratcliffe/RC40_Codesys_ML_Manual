@@ -1,0 +1,32 @@
+# Object 0x1300 global failsafe command Parameter {#object-0x1300-global-failsafe-command-parameter .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> [RC40 CANopen communication objects](rc40-canopen-communication-obj.html) \> | [](object-0x1280-client-sdo-param.html "Previous Topic") [](rc40-canopen-communication-obj.html "Parent Chapter") [](object-0x1301-to-0x1310-srdo-c.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                                  |                                                                                                                                                                        |
+| # Object 0x1300 global failsafe command Parameter {#object-0x1300-global-failsafe-command-parameter-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                              |                                                                                                                                                                        |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This object determines the support of the GFC.
+
+ 
+
+  Index           0x1300
+  --------------- -----------------------------------
+  Name            Global failsafe command parameter
+  Object Code     VAR
+  Data Type       UNSIGNED8
+  Category        Optional
+  Access          rw
+  PDO mapping     No
+  Value range     See below Value definitions
+  Default value   0x00
+
+ 
+
+ 
+
+Value definitions:
+
+00h: GFC is not valid
+
+01h: GFC is valid

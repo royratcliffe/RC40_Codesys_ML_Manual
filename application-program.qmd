@@ -1,0 +1,25 @@
+# Application program {#application-program .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [Application integration](application-integration.html) \> | [](application-integration.html "Previous Topic") [](application-integration.html "Parent Chapter") [](runtimemeasurement.html "Next Topic") |
+|                                                                                                                        |                                                                                                                                              |
+| # Application program {#application-program-1 .p_Heading1 style="page-break-after: avoid;"}                            |                                                                                                                                              |
++------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+The program flow is structured as follows:
+
+ 
+
+1)The operating system is initialized after a reset, and is  a part of the BSW.
+
+2)The preparations respective initializations for the application are now made. Callback functions, which are called for a specific event, can also be registered.
+
+3)The application functions are called in the predefined application tasks
+
+ 
+
+ 
+
+ 
+
+ 

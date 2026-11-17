@@ -1,0 +1,9 @@
+# Security components {#security-components .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [Security](security.html) \>    | [](interface-protection.html "Previous Topic") [](security.html "Parent Chapter") [](hardware-security-module.html "Next Topic") |
+|                                                                                             |                                                                                                                                  |
+| # Security components {#security-components-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                  |
++---------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+
+This section describes security related hard- or software components.

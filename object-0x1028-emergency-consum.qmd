@@ -1,0 +1,88 @@
+# Object 0x1028 emergency consumer {#object-0x1028-emergency-consumer .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> [RC40 CANopen communication objects](rc40-canopen-communication-obj.html) \> | [](object-0x1019-synchronous-coun.html "Previous Topic") [](rc40-canopen-communication-obj.html "Parent Chapter") [](object-0x1029-error-behaviour.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                                  |                                                                                                                                                                       |
+| # Object 0x1028 emergency consumer {#object-0x1028-emergency-consumer-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                                                            |                                                                                                                                                                       |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This object defines the emergency COB-IDs that an NMT slave device is consuming. The sub-index refers to the related node-ID.
+
+ 
+
+  Index         0x1028
+  ------------- --------------------
+  Name          Emergency consumer
+  Object Code   ARRAY
+  Data Type     UNSIGNED 32
+  Category      Optional
+
+ 
+
+ 
+
+SubIndex Supported
+
+ 
+
+  SubIndex        0
+  --------------- ------------------------------
+  Description     Number of emergency consumer
+  Default value   0x20
+
+ 
+
++-----------------------------------+-----------------------------------+
+| SubIndex                          | 1-32u                             |
++===================================+===================================+
+| Description                       | Emergency consumer 1 - 32         |
++-----------------------------------+-----------------------------------+
+| Default value                     | SubIndex 01h : 0x80000081         |
+|                                   |                                   |
+|                                   | SubIndex 02h : 0x80000082         |
+|                                   |                                   |
+|                                   | SubIndex 03h : 0x80000083         |
+|                                   |                                   |
+|                                   | .                                 |
+|                                   |                                   |
+|                                   | .                                 |
+|                                   |                                   |
+|                                   | .                                 |
+|                                   |                                   |
+|                                   | SubIndex 1Fh : 0x8000009F         |
+|                                   |                                   |
+|                                   | SubIndex 20h : 0x800000A0         |
++-----------------------------------+-----------------------------------+
+
+ 
+
+ 
+
+ 
+
+Subindex 1 and 2 entry definition:
+
+ 
+
+  --------------- ----- ---- ---- ------------------------------------- -------------------
+  Bits            31    30   29   28-11                                 10-0
+  For 11 bit ID   0/1   0    0    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   11 bit identifier
+  --------------- ----- ---- ---- ------------------------------------- -------------------
+
+ 
+
+Bit 31:
+
+0 - EMCY exists/is valid
+
+1 - EMCY does not exists/is not valid
+
+Bit 10-0: Emergency COB-ID\'s that NMT slave device is consuming
+
+ 
+
+ 
+
+ 
+
+ 

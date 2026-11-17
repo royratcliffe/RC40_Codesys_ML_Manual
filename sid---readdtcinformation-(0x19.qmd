@@ -1,0 +1,34 @@
+# SID - ReadDTCInformation (0x19) {#sid---readdtcinformation-0x19 .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Diagnostic services (UDS)](diagnostic-services.html) \> [UDS overview](uds---overview.html) \> [Supported UDS services](supported-uds-services.html) \> | [](sid---controldtcsetting-(0x85).html "Previous Topic") [](supported-uds-services.html "Parent Chapter") [](dtc-status_-sub-function-0x02.html "Next Topic") |
+|                                                                                                                                                                                                                                         |                                                                                                                                                               |
+| # SID - ReadDTCInformation (0x19) {#sid---readdtcinformation-0x19-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                       |                                                                                                                                                               |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This topic explains the service related to Stored data transmission functional unit - ReadDTCInformation.
+
+ 
+
+Definition and Short description as per ISO 14229-1:
+
+ 
+
+  -------------------- ------------------------------------------------------------------------------------------------------------
+  Service              Description
+  ReadDTCInformation   Allows the client to request diagnostic information from the server (including DTCs, captured data, etc.).
+  -------------------- ------------------------------------------------------------------------------------------------------------
+
+ReadDTCInformation service is used by the diagnostic tool (client) to retrieve different status data of DTCs.
+
+## Key status data retrieved from this service: {#key-status-data-retrieved-from-this-service .p_Heading2 style="page-break-after: avoid;"}
+
+  -------------------------------------------------------- ------------------ ------------------------------------
+  Key Status Data                                          UDS Sub-function   Sub-function Name
+  DTC Status (Active / Deactive / Previously Active DTC)   0x02               reportDTCByStatusMask
+  Freeze frame - Operating Hours                           0x04               reportDTCSnapshotRecordByDTCNumber
+  Freeze frame - Occurrence Counter                        0x06               reportDTCExtDataRecordByDTCNumber
+  Environment Data                                         0x04               reportDTCSnapshotRecordByDTCNumber
+  -------------------------------------------------------- ------------------ ------------------------------------
+
+ 

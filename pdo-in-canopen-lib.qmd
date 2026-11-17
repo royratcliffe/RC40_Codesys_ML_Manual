@@ -1,0 +1,49 @@
+# PDO in CANopen lib {#pdo-in-canopen-lib .p_Heading1 style="page-break-after: avoid;"}
+
++:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> [CANopen features description](canopen-features-description.html) \> | [](nmt-in-canopen-lib.html "Previous Topic") [](canopen-features-description.html "Parent Chapter") [](sdo-in-canopen-lib.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                          |                                                                                                                                              |
+| # PDO in CANopen lib {#pdo-in-canopen-lib-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                                                                                |                                                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+The CANopen library implements up to 8 PDO producers (TPDO) and 8 PDO consumers (RPDO). The CANopen lib supports both the synchronous and asynchronous transmission types. For the synchronous transmission type, the CANopen lib supports the sync protocol and for asynchronous transmission, the library supports event timers where PDOs are transmitted cyclically at given time intervals. The CANopen lib also provides an option to trigger PDO based on events of the ASW. For the reception of PDO, the CANopen lib provides an indication of whenever PDO is received and the status of reception.
+
+By default, the CANopen lib provides empty mapping for both TPDO and RPDO as this is specific to the application. This is done by enabling dynamic mapping capabilities to PDO mapping objects. The ASW needs to configure the mapping objects as per its requirement by modifying PDO mapping parameters using the API  bds_canopen_sdoWriteLocal. Refer to the sections RPDO configuration and TPDO configuration in chapter [Process data objects](process-data-objects(pdo).html){.topiclink}.
+
+Once the configuration is done by ASW, the CANopen lib handles everything needed for transmission and reception of PDO.
+
+ 
+
+## For transmission: {#for-transmission .p_Heading2 style="page-break-after: avoid;"}
+
+- If asynchronous transmission and event timer is configured, then the CANopen library will automatically start transmitting PDOs in the configured interval.
+
+- If synchronous transmission and sync consumers are configured, then the CANopen library will automatically start transmitting PDOs when a sync message is received. refer to SYNC protocol in [Process data objects](process-data-objects(pdo).html){.topiclink}.
+
+- The ASW needs to trigger PDO by calling bds_canopen_sendPdo only in case of asynchronous transmission and if the event timer is 0.
+
+- The CANopen lib will fetch the data from objects based on mapping configurations and dump it into the PDO frame in all cases.
+
+- The ASW is only responsible for updating data in its objects which will be used by the CANopen library to transmit over PDO.
+
+## For Reception: {#for-reception .p_Heading2 style="page-break-after: avoid;"}
+
+- The CANopen library will process the received PDO and automatically update the objects with the values received over PDO.
+
+- ASW can get an indication upon PDO reception by registering callbacks using API bds_canopen_regPdoCnsrIndcn
+
+- The CANopen library automatically copies PDO data into objects. When ASW needs the value of objects over PDO, then it can directly access its object data.
+
+ 
+
+The CANopen library also supports sync producer, refer to SYNC protocol in [Process data objects](process-data-objects(pdo).html){.topiclink}. ASW can use  bds_canopen_startSyncReq and  bds_canopen_stopSyncReq for that.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 

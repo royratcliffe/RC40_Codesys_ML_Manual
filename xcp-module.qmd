@@ -1,0 +1,54 @@
+# XCP {#xcp .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Configuration & calibration](configuration-calibration.html) \> | [](configuration-calibration.html "Previous Topic") [](configuration-calibration.html "Parent Chapter") [](xcp-on-can.html "Next Topic") |
+|                                                                                                                                                 |                                                                                                                                          |
+| # XCP {#xcp-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                     |                                                                                                                                          |
++-------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
+
+XCP - the Universal Measurement and Calibration Protocol - supports the calibration and measurement of application data:
+
+ 
+
+- Supported by XCP are the RAM segments RAM0, RAM1 and RAM2 and the Flash segment - DS0.\
+Details about memory segments can be found in project linker file.
+
+- XCP is disabled by default. It shall be enabled during development only from the application via the API bds_xcp_setMode.
+
+- XCP must be disabled for series software as mandated by the XCP standard.
+
+- XCP is based on the master-slave principle. The RC is the slave, and the measurement and calibration tool is the master.
+
+- The slave may only communicate with one master at any given time, whereas the master can communicate simultaneously with many slaves.
+
+## XCP communication {#xcp-communication .p_Heading2 style="page-break-after: avoid;"}
+
+- For the RC18-12/40 and RC27-18/40, both [XCP on CAN](xcp-on-can.html){.topiclink} and XCP on Ethernet are supported, but only one protocol can be active at any given time.
+
+- For XCP communication, CAN interfaces to connect to CANcaseXL ([Vector](xcp-usage-with-canape.html){.topiclink} tools) or ES581.4/ES582.1/any other related CAN interface to [INCA](xcp-usage-with-inca.html){.topiclink} tools can be used.
+
+- The data measurement is done synchronously by means of DAQ - Synchronous data acquisition unlike the polling method and thus synchronization between master and slave is ensured.
+
+- XCP is enabled with online memory calibration which facilitates writing into ECU memory and reading application variables\' value.
+
+- There are three time synchronous event channels available: event channel 1 ms, event channel 10ms and event channel 100ms. The event channel can be selected when using XCP with external tools like ETAS-INCA or Vector tools.
+
+ 
+
+                                ![Danger](danger.png){style="margin:0;width:8.3229in;height:0.4375in;border:none"}
+  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Software running on the ECU can be manipulated with XCP, which could lead to both security and safety risks, potentially endangering life and health. Therefore, it must be impossible to use XCP on series machines.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 

@@ -1,0 +1,261 @@
+# Keyfile {#keyfile .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [Security](security.html) \> [Secure Flashing](secure-flashing.html) \> | [](javascript:HMToggleExpandAll(!HMAnyToggleOpen()) "Click to open/close expanding sections") [](secure-flashing.html "Previous Topic") [](secure-flashing.html "Parent Chapter") [](unlock-file.html "Next Topic") |
+|                                                                                                                                     |                                                                                                                                                                                                                     |
+| # Keyfile {#keyfile-1 .p_Heading1 style="page-break-after: avoid;"}                                                                 |                                                                                                                                                                                                                     |
++-------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+## keyfile.hex Format Documentation {#keyfile.hex-format-documentation .p_Heading2 style="page-break-after: avoid;"}
+
+1\. Purpose
+
+The \`keyfile.hex\` format serves two primary objectives for RC40 devices:
+
+- Initial Provisioning: Critical cryptographic material like root certificate, decryption key and passwords are securely injected during the production phase.
+
+- Field Updates: Critical cryptographic material like root certificate, decryption key and passwords are securely updated on RC40 already deployed in the field.
+
+2\. General Specifications
+
+- Endianness: All integer fields within the \`keyfile.hex\` are encoded in Big-Endian format (Most Significant Byte first), irrespective of the target architecture.
+
+- Deployment: \`keyfile.hex\` files are flashed onto RC40 with CB-ME version (or higher) using BODAS-service flashing tool.
+
+- Keyfile Update and Protection Mechanisms:
+
+  To ensure the integrity, authenticity, and secure deployment of \`keyfile.hex\` updates, the following mechanisms are implemented:
+
+oUpdate Verification Protocol
+
+§Before any changes are applied to the RC\'s cryptographic storage, the following steps are mandatory:
+
+- Buffering and Verification: The entire \`keyfile.hex\` content is buffered into RAM by RC40. A comprehensive verification process (e.g., integrity check) is successfully completed before any data is written to persistent storage.
+
+- Downgrade Protection: A dedicated counter tracks the version of the active \`keyfile.hex\`. Any incoming \`keyfile.hex\` with a version number equal to or lower than the currently active version will be rejected to prevent the re-introduction of older, potentially vulnerable security settings.
+
+oAccess Control and Authentication
+
+§Strict access controls are enforced to authorize \`keyfile.hex\` updates:
+
+- Authentication Requirement: Users must authenticate with a Level 1 flashing password before initiating a \`keyfile.hex\` update. This ensures that only authorized personnel can modify the device\'s security configuration.
+
+oPassword Provisioning Rules
+
+§The provisioning and updating of access level passwords via keyfile are subject to specific security constraints:
+
+- One-time operation : This mechanism is enabled, if the ECU lacks security functions(i.e.neither a signature nor a decryption setting is present), and any one(or more) of the 10 available access level passwords is changed for the first time using any of the following methods
+
+                    1:via UDS service 0xBE: [Security change password in CB-ME](security-change-password-in-cb.html "Security-Change-Password-in-CB"){.topiclink}.
+
+                2:via C-API: [bds_sec_saveSecret](bds_sec_savesecret.html "bds_sec_saveSecret"){.topiclink}.
+
+                          3:via keyfile: An unsecured keyfile write(i.e.neither a signature nor a decryption setting is present on same keyfile).
+
+- Once one-time operation has been enabled, the ability to set passwords via keyfile will be permanently disabled.
+
+oUse cases:
+
+1.Keyfile contains signature info + access level passwords: Updates signature info, skips access level password updates.
+
+2.Keyfile contains decryption key + access level passwords: Updates decryption key, skips access level password updates.
+
+3.Keyfile contains signature info + decryption key + access level passwords: Updates signature info and decryption key, skips access level password updates.
+
+4.Keyfile contains access level passwords: keyfile is rejected.
+
+- Multiple updates to access-level passwords via keyfile are permitted only when the one-time operation constraint is disabled,
+
+                        and the ECU supports security features(signature or decryption).
+
+- Note : Even after the one-time operation has been enabled, access level passwords can still be updated
+
+      1:via UDS service 0xBE: [Security change password in CB-ME](security-change-password-in-cb.html "Security-Change-Password-in-CB"){.topiclink}.
+
+      2:via C-API: [bds_sec_saveSecret](bds_sec_savesecret.html "bds_sec_saveSecret"){.topiclink}.        
+
+oDigital Signature Requirements
+
+§Digital signatures are critical for authenticating the origin and integrity of \`keyfile.hex\` updates:
+
+- Initial Root Key/Certificate Injection: When a \`keyfile.hex\` contains the initial root key or certificate for injection, it must be signed by a user key that corresponds to the root key contained within that same \`keyfile.hex\`. This mechanism ensures that only authorized software development personnel, possessing the correct user key, can enable the signature check functionality on the device. It also mandates that the PC-side tooling for signing software is correctly configured before such critical \`keyfile.hex\` files can be generated.
+
+- Mandatory Signature Check: Once the signature check functionality has been enabled on the RC (typically after the initial root key/certificate injection), all subsequent \`keyfile.hex\` updates must be digitally signed and successfully verified by the RC. Unsigned \`keyfile.hex\` files will be rejected.
+
+oDigital Signature Hierarchy
+
+§The digital signature scheme employs a two-tier hierarchy:
+
+- Root Keys/Certificates: These form the top layer of trust. They are used to sign User Keys/Certificates.
+
+- User Keys/Certificates:These intermediate keys are used to sign the hash of the actual data payloads (e.g., software binaries, \`keyfile.hex\`, \`unlockFile.hex\`).
+
+§The trust chain can be visualized as:
+
+- Root (e.g., PKI) → User (e.g., TPM) → Data (SW/keyfile/unlockFile)
+
+oPackaging for Flashing
+
+§For manufacturing and deployment convenience, \`keyfile.hex\` files can be concatenated with other software images: \`keyfile.hex\` can be appended to either the \`CB-ME.hex\` (bootloader image) or \`ASW.hex\` (application software image) for unified flashing in production environments (e.g., Bosch Rexroth site / OEM facility).
+
+   The following table outlines the base address and maximum allowed size for \'keyfile.hex\', depending on the RC variant:
+
+ 
+
+  --------------------------------------------------------------------------------------------------------------------------------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  ![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a1_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"}   [RC40 Keyfile Address Table](javascript:HMToggle('toggle','toggle0186a1','toggle0186a1_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"}
+  --------------------------------------------------------------------------------------------------------------------------------------------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ 
+
++-----------------------+------------------------------------+-----------------------+
+| RC Variant            | Base Address for keyfile Injection | Maximum Size          |
++=======================+====================================+=======================+
+| RC5-6/40              |                                    | 256 kb                |
++-----------------------+------------------------------------+-----------------------+
+| RC18-12/40            | 0x809FC000                         | 16 kb                 |
+|                       |                                    |                       |
+| RC27-18/40            |                                    |                       |
+|                       |                                    |                       |
+| RC18-12E/40           |                                    |                       |
+|                       |                                    |                       |
+| RC27-18E/40           |                                    |                       |
++-----------------------+------------------------------------+-----------------------+
+
+ 
+
+  --------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  ![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a2_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"}   [ RC40 keyfile.hex Format:](javascript:HMToggle('toggle','toggle0186a2','toggle0186a2_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"}
+  --------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ 
+
++-------------------------------+------------------------+-------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Name                          | Address offset (Bytes) | Type        | Length(Bytes) | Description                                                                                                                                                                                                    |
++===============================+========================+=============+===============+================================================================================================================================================================================================================+
+| Magic Word                    | 0                      | uint32      | 4             | Constant magic word \"RC40\" i.e. 0x52433430                                                                                                                                                                   |
+|                               |                        |             |               |                                                                                                                                                                                                                |
+| (MAGIC)                       |                        |             |               |                                                                                                                                                                                                                |
+|                               |                        |             |               |                                                                                                                                                                                                                |
+|                               |                        |             |               | The RC/40 CB-ME shall only accept keyfiles with the correct magic word.                                                                                                                                        |
++-------------------------------+------------------------+-------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Format Version                | 4                      | uint32      | 4             | keyfile format version for future updates.                                                                                                                                                                     |
+|                               |                        |             |               |                                                                                                                                                                                                                |
+| (VERSION)                     |                        |             |               | Constant for the version described in this document 0x00000001.                                                                                                                                                |
+|                               |                        |             |               |                                                                                                                                                                                                                |
+|                               |                        |             |               |                                                                                                                                                                                                                |
+|                               |                        |             |               |                                                                                                                                                                                                                |
+|                               |                        |             |               | The CB-ME shall only accept keyfiles with supported format versions.                                                                                                                                           |
++-------------------------------+------------------------+-------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Downgrade Protection Counter\ | 8                      | uint32      | 4             | Counter that is incremented by one every time, a new keyfile is generated in a project.\                                                                                                                       |
+| (DWNGRDCNTR)                  |                        |             |               | During injection of first keyfile in plant, this value shall be stored on RC.\                                                                                                                                 |
+|                               |                        |             |               | During update of keyfile in field, the CB-ME shall only accept keyfiles for which the value increase compared to stored version.\                                                                              |
+|                               |                        |             |               | If the internal reference count reaches 0xFFFFFFFF, the CB-ME shall reject all keyfile updates and a bootloader unlock is needed to change security configuration any further.                                 |
++-------------------------------+------------------------+-------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Length of Root Information\   | 12                     | uint32      | 4             | Contains the length of the root-certificate to be used by CB-ME bootloader for SW signature check (Bytes).                                                                                                     |
+| (LENROOT)                     |                        |             |               |                                                                                                                                                                                                                |
+|                               |                        |             |               | A value of zero indicates SW signature check shall not be enabled or disabled (if already enabled).                                                                                                            |
++-------------------------------+------------------------+-------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Length of Encrypted Data\     | 16                     | uint32      | 4             | Contains the length of the encrypted part of the keyfile (Bytes).                                                                                                                                              |
+| (LENENCR)                     |                        |             |               |                                                                                                                                                                                                                |
+|                               |                        |             |               | A value of zero indicates no encrypted part is present.\                                                                                                                                                       |
+|                               |                        |             |               |                                                                                                                                                                                                                |
+|                               |                        |             |               |                                                                                                                                                                                                                |
+|                               |                        |             |               | Allowed range 0 or 256 Byte.                                                                                                                                                                                   |
+|                               |                        |             |               |                                                                                                                                                                                                                |
+|                               |                        |             |               | The CB-ME of the RC shall reject keyfile in case the length is invalid.                                                                                                                                        |
++-------------------------------+------------------------+-------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Hardware Type\                | 20                     | uint32      | 4             | Contains Rexroth HW-Type-Code (i.e. the same received with sys_getEcuInfo or bds_sys_getEcuInfo and written on some RC housings).                                                                              |
+| (HW-TYPE)                     |                        |             |               |                                                                                                                                                                                                                |
+|                               |                        |             |               | RC5-6/40 → 0x00000071                                                                                                                                                                                          |
+|                               |                        |             |               |                                                                                                                                                                                                                |
+|                               |                        |             |               | RC18-12/40 → 0x00000172                                                                                                                                                                                        |
+|                               |                        |             |               |                                                                                                                                                                                                                |
+|                               |                        |             |               | RC27-18/40 → 0x00000072                                                                                                                                                                                        |
+|                               |                        |             |               |                                                                                                                                                                                                                |
+|                               |                        |             |               | RC18-12E/40 → 0x00000372                                                                                                                                                                                       |
+|                               |                        |             |               |                                                                                                                                                                                                                |
+|                               |                        |             |               | RC27-18E/40 → 0x00000272                                                                                                                                                                                       |
+|                               |                        |             |               |                                                                                                                                                                                                                |
+|                               |                        |             |               | RC30-20/41 → 0x00000273                                                                                                                                                                                        |
+|                               |                        |             |               |                                                                                                                                                                                                                |
+|                               |                        |             |               | The CB-ME shall match the HW-Type against current hardware and only accept unlockfile if there is a match.                                                                                                     |
++-------------------------------+------------------------+-------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Reserved                      | 24                     | uint8\[\]   | 28            | IV for keyfile RSA-key decryption. Ignored if LENENCR is zero.                                                                                                                                                 |
+|                               |                        |             |               |                                                                                                                                                                                                                |
+|                               |                        |             |               | Reserved for future use,always zero.                                                                                                                                                                           |
++-------------------------------+------------------------+-------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Root Information (Optional)\  | 52                     | uint8\[\]   | LENROOT       | Optional field. Contains the root-certificate in X.509v3 DER format to be used by CB-ME bootloader for user-certificate check.\                                                                                |
+| (ROOT)                        |                        |             |               | Allowed range 0 - 2048 Byte.                                                                                                                                                                                   |
+|                               |                        |             |               |                                                                                                                                                                                                                |
+|                               |                        |             |               | The RC CB-ME shall reject keyfile in case the length is invalid.                                                                                                                                               |
++-------------------------------+------------------------+-------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Encrypted Data (Optional)\    | 52 + LENROOT           | uint8\[\]   | LENENCR       | Optional field. Contains confidential part of keyfile i.e. encrypted passwords and symmetric keys as defined in Table [RC40 keyfile Encrypted Data Field Format.](key-file.html){.topiclink}                   |
+| (ENCR)                        |                        |             |               |                                                                                                                                                                                                                |
++-------------------------------+------------------------+-------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| keyfile Digital Signature\    | 52 + LENROOT + LENENCR |             |               | Optional field. Digital signature of keyfile.                                                                                                                                                                  |
+| (SIG)                         |                        |             |               |                                                                                                                                                                                                                |
+|                               |                        |             |               | Signature check currently enabled?                                                                                                                                                                             |
+|                               |                        |             |               |                                                                                                                                                                                                                |
+|                               |                        |             |               | •No: If ROOTLEN unequal to zero, use ROOT in keyfile to verify the signature of the user-certificate and use user-certificate to verify the signature of the data. Otherwise signature is not needed/appended. |
+|                               |                        |             |               |                                                                                                                                                                                                                |
+|                               |                        |             |               | •Yes: Use ROOT stored on RC to verify the signature of the user-certificate and use user-certificate to verify the signature of the data.                                                                      |
+|                               |                        |             |               |                                                                                                                                                                                                                |
+|                               |                        |             |               | Signature format is defined in chapter [Key File and Unlock File Signature Format](keyfile_unlockfile.html){.topiclink}.                                                                                       |
++-------------------------------+------------------------+-------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+ 
+
+## keyfile Encrypted Data Field Format (ENCR) Documentation {#keyfile-encrypted-data-field-format-encr-documentation .p_Heading2 style="page-break-after: avoid;"}
+
+This section details the structure and processing of the Encrypted Data Field (ENCR) within a keyfile. The primary purpose of this encrypted field is to ensure the confidentiality of sensitive information, such as passwords and secret keys, during their transport to the RC.
+
+General Specifications and Requirements
+
+- Integer Field Encoding: All integer fields within the decrypted data is coded in Big-Endian format. This means the Most Significant Byte (MSByte) is always placed first, regardless of the target architecture\'s native byte ordering. This standardization ensures consistent interpretation across different systems.
+
+- Decryption Key Availability:
+
+oFor CB-ME to successfully decrypt the keyfile, the necessary decryption key must be available to the CB-ME. The decryption key is hardcoded within the HSM (Hardware Security Module) firmware of RC40.
+
+oOnce an AES decryption key is provisioned into RC40, the system will strictly only accept encrypted HEX files for flashing. Attempts to flash unencrypted HEX files will be rejected to maintain data confidentiality and integrity.
+
+- Asymmetric Cryptography for Key File Generation: To prevent the sensitive decryption key from ever being present on the PC tool used to generate the keyfile, asymmetric cryptography is employed.
+
+oThe keyfile generation tool uses a public key to encrypt the sensitive data.
+
+oThe RC40 holds the corresponding private key, which is never exposed externally.
+
+oThis design ensures that even if the PC tool is compromised, the private decryption key remains secure within the RC.
+
+- In case the encryption padding (RSAES-OAEP-2048 padding with SHA256 and MGF1-SHA256) is found to be invalid during decryption process, the keyfile is rejected
+
+- In case the length of the decrypted data does not match the expected size, the keyfile is rejected
+
+- Algorithm:
+
+oThe RC40 uses RSAES-OAEP-2048 with main hash = SHA256 and MGF1 = SHA256 to decrypt the Key-File-Encrypted-Data (KFED) into RAM
+
+oOn RC40 the keys can be injected to HSM and then be cleared from RAM again
+
+ 
+
+![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a3_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [ RC40 keyfile Encrypted Data Field Format (Total size 180 bytes):](javascript:HMToggle('toggle','toggle0186a3','toggle0186a3_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"}
+
+ 
+
++---------------------------------------------------+------------------------+-------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Name                                              | Address offset (Bytes) | Type        | Length(Bytes)  | Description                                                                                                                                                                                  |
++===================================================+========================+=============+================+==============================================================================================================================================================================================+
+| Magic Word                                        | 0                      | uint32      | 4              | Constant magic word Key-File-Encrypted-Data \"KFED\" i.e. 0x4B464544 (big-endian)\                                                                                                           |
+|                                                   |                        |             |                |  \                                                                                                                                                                                           |
+| (MAGIC)                                           |                        |             |                | The RC CB-ME shall only accept keyfiles containing encrypted data, if the correct magic word is found after decryption of the keyfileData.                                                   |
++---------------------------------------------------+------------------------+-------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--Decryption Key | 4                      | uint8\[\]   | 16             | Software decryption key for AES, 16 Bytes. This is used to decrypt the encrypted data (CB-ME/ASW/keyfile). Refer to chapter [Encryption Decryption](encryption-decryption.html){.topiclink}\ |
+|                                                   |                        |             |                | All zeros for the key indicates that decryption is not used or shall be disabled now.                                                                                                        |
+| (KEY)                                             |                        |             |                |                                                                                                                                                                                              |
++---------------------------------------------------+------------------------+-------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Level Passwords                                   | 20                     | uint8\[\]   | 10 passwords.\ | Security access level passwords from Level 1 - 10, each 16 Bytes.\                                                                                                                           |
+|                                                   |                        |             | 16 Byte each.  | Remaining bytes are filled with zero.\                                                                                                                                                       |
+| (PWLEVEL1 - PWLEVEL10)                            |                        |             |                | All zeros for a password indicates that this level password shall not be updated in HSM.                                                                                                     |
++---------------------------------------------------+------------------------+-------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

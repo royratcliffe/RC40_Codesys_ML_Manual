@@ -1,0 +1,127 @@
+# Integration of Variable length feature for DIDs {#integration-of-variable-length-feature-for-dids .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Diagnostic services (UDS)](diagnostic-services.html) \> [UDS overview](uds---overview.html) \> [Data Identifier (DID)](data-identifier-(did).html) \> | [](standard-dids.html "Previous Topic") [](data-identifier-(did).html "Parent Chapter") [](routine-identifier-(rid).html "Next Topic") |
+|                                                                                                                                                                                                                                       |                                                                                                                                        |
+| # Integration of Variable length feature for DIDs {#integration-of-variable-length-feature-for-dids-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                   |                                                                                                                                        |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+
+This section describes the usage of variable-length Data Identifiers (DIDs) configured using easyConfig. The explanation is divided into two parts to provide a clear understanding of both configuration and application‑level implementation.
+
+- The first part explains the configurations that must be performed in EasyConfig to enable variable-length DIDs.
+
+- The second part describes the implementation and usage of the corresponding callbacks at the application level.
+
+The accompanying example code illustrates how the required callbacks are defined by the user and how they are invoked from an application perspective during diagnostic service execution.
+
+Part 1 : Example Configuration in easyConfig tool
+
+A Data Identifier with ID 0xA800 is created in easyConfig. The following parameters are updated in the DID section.  \
+ 
+
+  Parameter Type      Description
+  ------------------- -----------------------------
+  DID Name            DcmDspDid_Parameter_A800
+  Data Identifier     0xA800
+  DID Type            Parameter As Callback
+  Session reference   DcmDspDidInfo_Parameter_All
+  Did Signal(s)       1
+
+   
+
+Under the DID signals list, add the signal parameters. An example configuration is given below:
+
+ 
+
+  Parameter Type    Description
+  ----------------- -------------------------------------------
+  DID signal Name   DcmDspDid_Parameter_A800_u8
+  Size              0x20
+  DID signal Type   UINT8_DYN
+  Read Fnc          bds_DID_USRDFND_A800_0_Read
+  Read Length Fnc   bds_DID_USRDFND_A800_0_ReadLengthCallback
+  Write Fnc         bds_DID_USRDFND_A800_0_Write
+
+ 
+
+After these configuration are done and build is complete, we get the callback declarations generated in the bds_diag_appl_adapt.c file. By using the corresponding function prototypes, users can define their own implementation of functions that shall be executed when read of write is triggered.
+
+ 
+
+Part 2 :  Example callback implementation
+
+For callbacks configured through easyConfig, the corresponding function implementations are automatically generated in the file bds_diag_appl_adapt.c. The user is required to provide only the function prototypes, while the easyConfig tool ensures proper linkage with the UDS stack.
+
+ 
+
+The following sections describe the callback invocation sequence for Read Data by Identifier (0x22) and Write Data by Identifier (0x2E) services.
+
+2.1 Read Data by Identifier (Service 0x22)
+
+When a DID is configured with a dynamic length data type (UINT8_DYN), the UDS stack invokes a dedicated Callback defined for configuration of DID length prior to the actual read operation.
+
+1.The function bds_DID_USRDFND_A800_0_ReadLengthCallback is called first to determine the length of the data associated with the DID.
+
+2.The length returned by the callback is validated by the UDS stack.
+
+3.Upon successful validation, the validated length is passed as an input parameter to the read callback bds_DID_USRDFND_A800_0_Read.
+
+4.The read callback then retrieves the requested data from the system and provides it to the UDS stack for transmission to the tester.
+
+2.2 Write Data by Identifier (Service 0x2E)
+
+For the write service, the data payload is provided by the tester.
+
+1.The received data is first validated by the UDS stack, including checks on data format and length.
+
+2.Each signal's maximum permissible data size is defined using the Size field in easyConfig.
+
+3.If the received data size exceeds the configured limit, the UDS stack rejects the request and responds with a negative response.
+
+4.If validation is successful, the data is passed to the write callback bds_DID_USRDFND_A800_0_Write, where the application processes and stores the data as required.
+
+ 
+
+Example Implementation of Variable Length for DID 0xA800
+
+ 
+
+ 
+
+3\. Request and Response for Read Data by Identifier
+
+- UDS Read Request message for DID A800
+
+  ------------ --------- ---------
+  Service ID   DID MSB   DID LSB
+  0x22         0xA8      0x00
+  ------------ --------- ---------
+
+ 
+
+- UDS Response (Positive response)
+
+  ----------------- ------------------- ------------------- ----------------------
+  Respose for SID   Requested DID MSB   Requested DID LSB   \[Data BYTES\.....\]
+  0x62              0xA8                0x00                \[ 01 02\]
+  ----------------- ------------------- ------------------- ----------------------
+
+ 
+
+4\. Request and Response for Write Data by Identifier
+
+- UDS Response (Positive response)
+
+  ----------------- ------------------- ------------------- ----------------------
+  Respose for SID   Requested DID MSB   Requested DID LSB   \[Data BYTES\.....\]
+  0x2E              0xA8                0x00                \[ 01 02\]
+  ----------------- ------------------- ------------------- ----------------------
+
+- UDS Read Request message for DID A800
+
+  ------------ --------- ---------
+  Service ID   DID MSB   DID LSB
+  0x6E         0xA8      0x00
+  ------------ --------- ---------
+
+ 

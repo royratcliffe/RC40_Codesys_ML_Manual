@@ -1,0 +1,35 @@
+# Required Hardware {#required-hardware .p_Heading1 style="page-break-after: avoid;"}
+
++:-------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [Introduction](introduction.html) \> [First steps with RC](preparation.html) \> | [](organizational.html "Previous Topic") [](preparation.html "Parent Chapter") [](required-sw.html "Next Topic") |
+|                                                                                                  |                                                                                                                  |
+| # Required Hardware {#required-hardware-1 .p_Heading1 style="page-break-after: avoid;"}          |                                                                                                                  |
++--------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+
+
+## Recommended equipment: {#recommended-equipment .p_Heading2 style="page-break-after: avoid;"}
+
+- [CAN-USB interface (VCI)](https://store.boschrexroth.com/Mobilelektronik-und-Telematik/BODAS-Hardware/Zubeh%C3%B6r?cclcl=en_DE){.weblink target="_blank"}
+
+- [Lab-Wiring RC40](https://www.boschrexroth.com/en/de/search.html?q=95482&lang=EN&origin=header&num=10&s=download){.weblink target="_blank"}
+
+- Stabilized power supply with nominal 12V or 24V output voltage
+
+ 
+
+For a smooth start, we recommend to purchase a [starter kit](https://www.boschrexroth.com/en/de/search.html?_3_vocabId_4354720=4677637&q=%2295227%22&s=download&c=de&lang=en&num=10){.weblink target="_blank"} for BODAS controllers RC of series 4x, which includes:
+
+- RC4x
+
+- License for BODAS-service 4.x
+
+- Laboratory cable RC4x for connecting the control unit to supply voltage and CAN bus or Ethernet
+
+- CAN-USB adapter (VCI)
+
+## Additional equipment: {#additional-equipment .p_Heading2 style="page-break-after: avoid;"}
+
+- [BODAS test box TB3](https://www.boschrexroth.com/en/de/search.html?_3_vocabId_4354720=4677637&q=%2295092%22&s=download&c=de&lang=en&num=10){.weblink target="_blank"}
+
+- [BODAS measuring adapter MA series 10](https://www.boschrexroth.com/en/de/search.html?_3_vocabId_4354720=4677637&q=%2295090%22&s=download&c=de&lang=en&num=10){.weblink target="_blank"}
+
+- [Configured wiring harness with connector](https://www.boschrexroth.com/en/de/search.html?q=95482&lang=EN&origin=header&num=10&s=download){.weblink target="_blank"}

@@ -1,0 +1,19 @@
+# CAN-FD legacy communication {#can-fd-legacy-communication .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CAN-FD](can-fd.html) \> | [](can-fd-parameter-configuration.html "Previous Topic") [](can-fd.html "Parent Chapter") [](buffers.html "Next Topic") |
+|                                                                                                                                                                             |                                                                                                                         |
+| # CAN-FD legacy communication {#can-fd-legacy-communication-1 .p_Heading1 style="page-break-after: avoid;"}                                                                 |                                                                                                                         |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------+
+
+This chapter gives a brief about the legacy way of communication using CAN protocol (CAN-FD) using:
+
+- Buffers
+
+- Databoxes
+
+## References {#references .p_Heading2 style="page-break-after: avoid;"}
+
+- Link to BSW API: CAN-FD legacy APIs
+
+- The corresponding APIs as in above link are similar to  CAN legacy APIs and similar to APIs of the series 30 ECUs.

@@ -1,0 +1,21 @@
+# ISOBUS specifications {#isobus-specifications .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [ISOBUS/J1939](isobus-module.html) \> | [](stop_start_broadcast_dm13_pgn_0xdf00.html "Previous Topic") [](isobus-module.html "Parent Chapter") [](isobus-address-info-table.html "Next Topic") |
+|                                                                                                                                                                                          |                                                                                                                                                        |
+| # ISOBUS specifications {#isobus-specifications-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                          |                                                                                                                                                        |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The following specifications have been taken into account for the implementation of the ISOBUS communication stack.
+
+- ISO11783-3 Data Link Layer
+
+- ISO11783-5 Network Management Layer
+
+- ISO11783-12 Diagnostics
+
+More information about the ISOBUS standard can be found on the ISO website:
+
+[http://www.iso.org](http://www.iso.org){.weblink target="_blank"}
+
+ 

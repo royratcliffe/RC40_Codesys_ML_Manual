@@ -1,0 +1,201 @@
+# bds_isobus_cfgDm3Dm11Handling {#bds_isobus_cfgdm3dm11handling .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  »No topics above this level«                                                                   | [](javascript:HMToggleExpandAll(!HMAnyToggleOpen()) "Click to open/close expanding sections") [](appendix.html "Parent Chapter") |
+|                                                                                                                 |                                                                                                                                  |
+| # bds_isobus_cfgDm3Dm11Handling {#bds_isobus_cfgdm3dm11handling-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                  |
++-----------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+
+This function configures how the BSW handles DM3 and DM11 diagnostic clear requests received on the selected ISOBUS instance.
+
+ 
+
+This API is not supported for CODESYS and cannot be used.
+
+ 
+
+## Remarks: {#remarks .p_Heading2 style="page-break-after: avoid;"}
+
+- DM3 (PGN 0xFECC) clears Previously Active Diagnostic Trouble Codes. DM11 (PGN 0xFED3) clears Active Diagnostic Trouble Codes.
+
+- By default, when both dm3ExtHandling_l and dm11ExtHandling_l are set to FALSE, the corresponding DTCs are cleared automatically and a Positive Acknowledgement (PACK) is sent to the requesting node. The callback registered via bds_isobus_registerErrClrCbk() is not invoked, because callback invocation is controlled by the corresponding ExtHandling flag. A callback is invoked only when dm3ExtHandling_l or dm11ExtHandling_l for the respective message type is set to TRUE.
+
+- When dm3ExtHandling_l or dm11ExtHandling_l is set to TRUE and a callback for the respective message type has been registered via bds_isobus_registerErrClrCbk(), the registered callback is invoked and a Positive Acknowledgement (PACK) is sent. The DTCs are not cleared automatically. The application is responsible for clearing them inside the callback.
+
+- When dm3ExtHandling_l or dm11ExtHandling_l is set to TRUE and no callback for the respective message type has been registered via bds_isobus_registerErrClrCbk(), a Negative Acknowledgement (NACK) is sent. No DTCs are cleared.
+
+- When dm3ExtHandling_l or dm11ExtHandling_l is set to FALSE and a callback for the respective message type has been registered via bds_isobus_registerErrClrCbk(), the DTCs are cleared automatically, the registered callback is invoked, and a Positive Acknowledgement (PACK) is sent. This allows the application to be notified while the clearing is handled automatically.
+
+- DM3 only: regardless of the dm3ExtHandling_l setting, if there are no previously active DTCs to clear when a DM3 request is received, a Negative Acknowledgement (NACK) is sent to the requesting node instead of a Positive Acknowledgement (PACK). The registered callback is not invoked in this case.
+
+- The external handling flag for DM3 (dm3ExtHandling_l) and for DM11 (dm11ExtHandling_l) can be set independently. Enabling external handling for DM3 does not affect the DM11 behaviour, and vice versa.
+
+- Both this function and bds_isobus_registerErrClrCbk() must be called from OsIniProc() only.
+
+## ![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a1_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [FFI](javascript:HMToggle('toggle','toggle0186a1','toggle0186a1_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#hmtoggle_plus1-ffi .p_Heading2 style="page-break-after: avoid;"}
+
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------
+  This API can be used in trusted partitions only. See [Freedom from Interference (FFI) concept](freedom-from-interference.html){.topiclink} for more details.
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## ![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a2_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"}[Declaration](javascript:HMToggle('toggle','toggle0186a2','toggle0186a2_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#hmtoggle_plus1declaration .p_Heading2 style="page-break-after: avoid;"}
+
++-----------------------------------------------------------------------------------------------------------------------------------------+
+| +-------------------------------------------------------------------------------------------------------------------------------------+ |
+| | C Declaration                                                                                                                       | |
+| +=======================================+===============================+========================================+====================+ |
+| | [uint16](data-types.html){.topiclink} | bds_isobus_cfgDm3Dm11Handling | ([uint8](data-types.html){.topiclink}  | instanceNum_u8,    | |
+| +---------------------------------------+-------------------------------+----------------------------------------+--------------------+ |
+| |                                       |                               | [boolean](data-types.html){.topiclink} | dm3ExtHandling_l,  | |
+| +---------------------------------------+-------------------------------+----------------------------------------+--------------------+ |
+| |                                       |                               | [boolean](data-types.html){.topiclink} | dm11ExtHandling_l) | |
+| +---------------------------------------+-------------------------------+----------------------------------------+--------------------+ |
++-----------------------------------------------------------------------------------------------------------------------------------------+
+
+## ![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a3_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"}[Parameters](javascript:HMToggle('toggle','toggle0186a3','toggle0186a3_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#hmtoggle_plus1parameters .p_Heading2 style="page-break-after: avoid;"}
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+ |
+| | Parameter                         | Description                                                                                                                                                                     | |
+| +===================================+=================================================================================================================================================================================+ |
+| | instanceNum_u8                    | ISOBUS instance number. This number identifies one instance of the ISOBUS stack.                                                                                                | |
+| |                                   |                                                                                                                                                                                 | |
+| |                                   |                                                                                                                                                                                 | |
+| |                                   |                                                                                                                                                                                 | |
+| |                                   | Value range: 1..n                                                                                                                                                               | |
+| |                                   |                                                                                                                                                                                 | |
+| |                                   | n is the number of ISOBUS instances configured by easyConfig.                                                                                                                   | |
+| +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+ |
+| | dm3ExtHandling_l                  | Selects whether the application or the BSW handles clearing of previously active DTCs when a DM3 request is received (PGN 0xFECC).                                              | |
+| |                                   |                                                                                                                                                                                 | |
+| |                                   |                                                                                                                                                                                 | |
+| |                                   |                                                                                                                                                                                 | |
+| |                                   | TRUE:                                                                                                                                                                           | |
+| |                                   |                                                                                                                                                                                 | |
+| |                                   | The BSW does not clear the DTCs. If a callback was registered, it is invoked and a PACK is sent. If no callback was registered, a NACK is sent.                                 | |
+| |                                   |                                                                                                                                                                                 | |
+| |                                   |                                                                                                                                                                                 | |
+| |                                   |                                                                                                                                                                                 | |
+| |                                   | FALSE (default):                                                                                                                                                                | |
+| |                                   |                                                                                                                                                                                 | |
+| |                                   | The BSW clears the DTCs automatically. A PACK is sent on success; a NACK is sent if clearing fails. If a callback was registered, it is also invoked after successful clearing. | |
+| +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+ |
+| | dm11ExtHandling_l                 | Selects whether the application or the BSW handles clearing of active DTCs when a DM11 request is received (PGN 0xFED3).                                                        | |
+| |                                   |                                                                                                                                                                                 | |
+| |                                   |                                                                                                                                                                                 | |
+| |                                   |                                                                                                                                                                                 | |
+| |                                   | TRUE:                                                                                                                                                                           | |
+| |                                   |                                                                                                                                                                                 | |
+| |                                   | The BSW does not clear the DTCs. If a callback was registered, it is invoked and a PACK is sent. If no callback was registered, a NACK is sent.                                 | |
+| |                                   |                                                                                                                                                                                 | |
+| |                                   |                                                                                                                                                                                 | |
+| |                                   |                                                                                                                                                                                 | |
+| |                                   | FALSE (default):                                                                                                                                                                | |
+| |                                   |                                                                                                                                                                                 | |
+| |                                   | The BSW clears the DTCs automatically and sends a PACK. If a callback was registered, it is also invoked after the clearing operation.                                          | |
+| +-----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+ |
+|                                                                                                                                                                                                                         |
+|                                                                                                                                                                                                                         |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+## ![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a4_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"}[Return Values:](javascript:HMToggle('toggle','toggle0186a4','toggle0186a4_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#hmtoggle_plus1return-values .p_Heading2 style="page-break-after: avoid;"}
+
++---------------------------------------------------------------------------------------------------------------------------------------------+
+|   Return value                           Description                                                                                        |
+|   -------------------------------------- -------------------------------------------------------------------------------------------------- |
+|   0: BDS_ISOBUS_RC_NO_ERRORS_DU16        Function executed successfully.                                                                    |
+|   80: BDS_ISOBUS_RC_INV_INST_NUM_DU16    Invalid ISOBUS instance number.                                                                    |
+|   85: BDS_ISOBUS_RC_INV_FUNC_SEQU_DU16   Function called outside the initialization phase. This API must be called from OsIniProc() only.   |
++---------------------------------------------------------------------------------------------------------------------------------------------+
+
+## ![Code Example](hmtoggle_plus1.gif "Code Example"){#toggle0186a5_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"}[Example:](javascript:HMToggle('toggle','toggle0186a5','toggle0186a5_ICON') "Code Example"){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#code-exampleexample .p_Heading2 style="page-break-after: avoid;"}
+
++----------------------------------------------------------------------------------------------+
+| +------------------------------------------------------------------------------------------+ |
+| | C Example                                                                                | |
+| +==========================================================================================+ |
+| | // include files                                                                         | |
+| |                                                                                          | |
+| | #include \"bds_bsw.h\"                                                                   | |
+| |                                                                                          | |
+| |                                                                                          | |
+| |                                                                                          | |
+| | // forward declarations for DM11 and DM3 callback functions                              | |
+| |                                                                                          | |
+| | void isobusDM11Callback(void);                                                           | |
+| |                                                                                          | |
+| | void isobusDM3Callback(void);                                                            | |
+| |                                                                                          | |
+| |                                                                                          | |
+| |                                                                                          | |
+| | void OsIniProc(void)                                                                     | |
+| |                                                                                          | |
+| | {                                                                                        | |
+| |                                                                                          | |
+| |  // initialize system for RC40, for other HW variants use corresponding value            | |
+| |                                                                                          | |
+| |  bds_sys_init(\"TestApplication\", \"RC40-0071\");                                       | |
+| |                                                                                          | |
+| |  bds_can_init(BDS_CAN_2_D, BDS_BAUD_250K_DU32);                                          | |
+| |                                                                                          | |
+| |                                                                                          | |
+| |                                                                                          | |
+| |  // initialize the failure list for ISOBUS instance 1                                    | |
+| |                                                                                          | |
+| |  bds_isobus_initFailureList(1, 9, 10, FALSE);                                            | |
+| |                                                                                          | |
+| |                                                                                          | |
+| |                                                                                          | |
+| |  // define the CAN channel and source address for instance 1                             | |
+| |                                                                                          | |
+| |  bds_isobus_setCaAddr(1, BDS_CAN_2_D, 0x55);                                             | |
+| |                                                                                          | |
+| |                                                                                          | |
+| |                                                                                          | |
+| |  // initialize and start ISOBUS communication                                            | |
+| |                                                                                          | |
+| |  bds_isobus_initComm(BDS_CAN_2_D, 20);                                                   | |
+| |                                                                                          | |
+| |                                                                                          | |
+| |                                                                                          | |
+| |  // register callback functions for DM11 and DM3 on instance 1                           | |
+| |                                                                                          | |
+| |  // bds_isobus_registerErrClrCbk() must be called before bds_isobus_cfgDm3Dm11Handling() | |
+| |                                                                                          | |
+| |  bds_isobus_registerErrClrCbk(1, isobusDM11Callback, isobusDM3Callback);                 | |
+| |                                                                                          | |
+| |                                                                                          | |
+| |                                                                                          | |
+| |  // enable external (application) handling for both DM3 and DM11                         | |
+| |                                                                                          | |
+| |  // PACK is sent; the BSW does not clear DTCs automatically                              | |
+| |                                                                                          | |
+| |  (void)bds_isobus_cfgDm3Dm11Handling(1u, TRUE, TRUE);                                    | |
+| |                                                                                          | |
+| | }                                                                                        | |
+| |                                                                                          | |
+| |                                                                                          | |
+| |                                                                                          | |
+| | void isobusDM11Callback(void)                                                            | |
+| |                                                                                          | |
+| | {                                                                                        | |
+| |                                                                                          | |
+| |  // called when a DM11 (clear active DTCs) request is received                           | |
+| |                                                                                          | |
+| |  // the application is responsible for clearing active DTCs here                         | |
+| |                                                                                          | |
+| | }                                                                                        | |
+| |                                                                                          | |
+| |                                                                                          | |
+| |                                                                                          | |
+| | void isobusDM3Callback(void)                                                             | |
+| |                                                                                          | |
+| | {                                                                                        | |
+| |                                                                                          | |
+| |  // called when a DM3 (clear previously active DTCs) request is received                 | |
+| |                                                                                          | |
+| |  // the application is responsible for clearing previously active DTCs here              | |
+| |                                                                                          | |
+| | }                                                                                        | |
+| +------------------------------------------------------------------------------------------+ |
++----------------------------------------------------------------------------------------------+

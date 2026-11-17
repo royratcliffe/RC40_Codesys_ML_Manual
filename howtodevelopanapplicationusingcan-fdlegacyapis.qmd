@@ -1,0 +1,10 @@
+# How to develop an application using CAN-FD legacy APIs {#how-to-develop-an-application-using-can-fd-legacy-apis .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [How-Tos](how-to.html) \>                                                                                                                        | [](howtoimplementcanlegacyusingtransmitreceivedataboxes.html "Previous Topic") [](how-to.html "Parent Chapter") [](how-to-configure-can-fd-relate_2.html "Next Topic") |
+|                                                                                                                                                                   |                                                                                                                                                                        |
+| # How to develop an application using CAN-FD legacy APIs {#how-to-develop-an-application-using-can-fd-legacy-apis-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                                                        |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+  ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"}   The details in this chapter and sub-chapters are applicable only to BSW C-API
+  -------------------------------------------------------------------------------- -------------------------------------------------------------------------------

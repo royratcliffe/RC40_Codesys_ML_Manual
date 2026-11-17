@@ -1,0 +1,115 @@
+# Safety function and safe state {#safety-function-and-safe-state .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [Safety manual](safety-manual.html) \> [Safety-related functions](safety-relatedfunctions.html) \> | [](externalstopswitch.html "Previous Topic") [](safety-relatedfunctions.html "Parent Chapter") [](systemarchitecture.html "Next Topic") |
+|                                                                                                                     |                                                                                                                                         |
+| # Safety function and safe state {#safety-function-and-safe-state-1 .p_Heading1 style="page-break-after: avoid;"}   |                                                                                                                                         |
++---------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+
+All RCs have the same safety functions that can be used by the machine manufacturers to support the machine safety functions. For both safety-related functions the common cause failure (CCF) rating according to ISO 13849 provides a value \> 65 points for the controller itself.
+
+Information about failure classification and handling can be found in [Error handling infrastructure](error-handling-infrastructure.html){.topiclink}.
+
+## Safety function 1: system integrity {#safety-function-1-system-integrity .p_Heading2 style="page-break-after: avoid;"}
+
+RCs are designed as universal ECUs. Its applications are to be defined by the machine manufacturers and implemented via the application software.
+
+In order to support the broad variety of applications as well as to cover the typical use cases, the safety function 1 is defined as the system integrity. It means, as demanded by the application software, the RC shall
+
+-read the safety-related inputs (see [Safety-related inputs](safety-relatedinputs.html){.topiclink}) and messages (see [Safety communication via CAN](safetycommunicationviacan.html){.topiclink}) correctly,
+
+-process the safety-related inputs (see [Safety-related inputs](safety-relatedinputs.html){.topiclink}) and messages (see [Safety communication via CAN](safetycommunicationviacan.html){.topiclink}) correctly, and
+
+-control the corresponding safety-related outputs (see [Safety-related outputs ─ power outputs in safe output configuration](safety-relatedoutputs.html){.topiclink}) without failure.
+
+Depending on the safe output configurations (see [Safety-related outputs ─ power outputs in safe output configuration](safety-relatedoutputs.html){.topiclink}), the correct control of the safety-related outputs can be concretized as
+
+-safe current control: the current flow though the actuators shall be set according to the ASW demands without failure (including the switch-off command)
+
+-safe deactivation of the actuators: the actuators shall be switched off without failure when demanded by the ASW
+
+-prevention from unintended actuation: actuators shall not be switched on when not demanded by the ASW
+
+-safe switching of the actuators: actuators connected to the switchable power outputs shall be actuated according to the ASW demands without failure
+
+Safe state 1: correct setting of the safety-related outputs OR all affected safety-related outputs are shut-OFF (see [Failure detection possibilities](failuredetectionpossibilities.html){.topiclink})
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Notice](notice.png){style="margin:0;width:8.3333in;height:0.4479in;border:none"}                                                                                                 |
++====================================================================================================================================================================================+
+| When the RC's power outputs are not used, any failure reaction that relies on disabling these outputs cannot be observed. As a result, failures within the RC may not be detected. |
+|                                                                                                                                                                                    |
+|                                                                                                                                                                                    |
+|                                                                                                                                                                                    |
+| What occurs if safety instructions are disregarded:                                                                                                                                |
+|                                                                                                                                                                                    |
+| Undetected failures can lead to non-detection of faults in the application, potentially reducing the intended safety level of the application software.                            |
+|                                                                                                                                                                                    |
+|                                                                                                                                                                                    |
+|                                                                                                                                                                                    |
+| Potential countermeasures:                                                                                                                                                         |
+|                                                                                                                                                                                    |
+| •Implement a dedicated failure‑detection mechanism when RC power outputs are not used.                                                                                             |
+|                                                                                                                                                                                    |
+| •Ensure the mechanism includes disabling of power outputs as the defined failure reaction.                                                                                         |
+|                                                                                                                                                                                    |
+| •Verify that the failure‑detection mechanism can identify faults even when outputs remain inactive.                                                                                |
+|                                                                                                                                                                                    |
+| •Perform regular diagnostic checks on sensor inputs and CAN communication to identify anomalies.                                                                                   |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+## Safety function 2: external stop switch {#safety-function-2-external-stop-switch .p_Heading2 style="page-break-after: avoid;"}
+
+ 
+
+For RC18-12/40, the external stop switch only works on cluster 1 power outputs (see [Safety-related outputs ─ power outputs in safe output configuration](safety-relatedoutputs.html){.topiclink}):
+
+Once the external stop switch is actuated, the RC shall switch off the actuators operated with cluster 1 power outputs in a safe output configuration (see [Safety-related outputs ─ power outputs in safe output configuration](safety-relatedoutputs.html){.topiclink}) within 200 ms. Thus, the corresponding actuators will be de-energized.
+
+Safe state 2: all power outputs in cluster 1 are shut-OFF.
+
+ 
+
+For RC27-18/40, the external stop switch only works on cluster 1 and cluster 3 power outputs (see [Safety-related outputs ─ power outputs in safe output configuration](safety-relatedoutputs.html){.topiclink}):
+
+Once the external stop switch is actuated, the RC shall switch off the actuators operated with cluster 1 or cluster 3 power outputs in a safe output configuration (see [Safety-related outputs ─ power outputs in safe output configuration](safety-relatedoutputs.html){.topiclink}) within 200 ms. Thus, the corresponding actuators will be de-energized.
+
+Safe state 2: all power outputs in cluster 1 and cluster 3 are shut-OFF
+
+ 
+
+Once the external stop switch is activated, the power outputs mentioned above will remain switched-off even if the external stop switch has returned to the "not activated" state.
+
+The release of the power outputs requires the calling of  bds_sys_resetINH function by the application software in addition.
+
+  ![Warning](warning.png){style="margin:0;width:8.3333in;height:0.4583in;border:none"}
+  ------------------------------------------------------------------------------------------------------------------------------------------------
+  Operator warnings are not part of the Safety Concept of the BODAS control units. Operator warnings are in the responsibility of the customers.
+
+ 
+
++------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------+
+| ![Attention](attention.png){style="margin:0;width:2.1667in;height:0.7083in;border:none"} | BODAS control units are only suitable for supporting fail-safe systems.                         |
+|                                                                                          |                                                                                                 |
+|                                                                                          | All failures that lead to de-energization of the power outputs are considered as safe failures. |
++------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------+
+
+ 
+
++--------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"} | The actuation of the external stop switch will switch off                                                                                         |
+|                                                                                |                                                                                                                                                   |
+|                                                                                | •all cluster 1 power outputs in RC18-12/40,                                                                                                       |
+|                                                                                |                                                                                                                                                   |
+|                                                                                | •all cluster 1 and cluster 3 power outputs in RC27-18/40                                                                                          |
+|                                                                                |                                                                                                                                                   |
+|                                                                                | within 200 ms, no matter if they are in a safe output configuration or not.                                                                       |
+|                                                                                |                                                                                                                                                   |
+|                                                                                | Cluster 2 power outputs will NOT be switched off by the external stop switch.                                                                     |
+|                                                                                |                                                                                                                                                   |
+|                                                                                | The Cat. 3 - PL d is only valid for the switch-off of actuators that are operated in a safe output configuration with no cluster 2 power outputs. |
++--------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+
+ 
+
+ 

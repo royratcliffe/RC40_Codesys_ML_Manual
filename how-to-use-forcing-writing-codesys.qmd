@@ -1,0 +1,21 @@
+# How to use Writing/Forcing for CODESYS {#how-to-use-writingforcing-for-codesys .p_Heading1 style="page-break-after: avoid;"}
+
++:---------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [How-Tos](how-to.html) \>                                                                                       | [](how-to-calculate-the-block-siz.html "Previous Topic") [](how-to.html "Parent Chapter") [](how-to-use-forcing-writing-codesys-concepts.html "Next Topic") |
+|                                                                                                                                  |                                                                                                                                                             |
+| # How to use Writing/Forcing for CODESYS {#how-to-use-writingforcing-for-codesys-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                                             |
++----------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+When debugging or testing a program in RC40, you often need to change the value of a variable while the program is running. CODESYS provides two primary methods for this: Writing and Forcing.
+
+This guide provides step-by-step instructions for using both methods effectively.
+
+ 
+
+                                ![Danger](danger.png){style="margin:0;width:8.3229in;height:0.4375in;border:none"}
+  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Software running on the ECU can be manipulated with Forcing and writing, which could lead to both security and safety risks, potentially endangering life and health. Therefore, evaluate possible dangers before forcing or writing variable values, and take the respective safety precautions. Depending on the controlled variables, this could result in property damage and personal injury.
+
+ 
+
+ 

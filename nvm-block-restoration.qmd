@@ -1,0 +1,107 @@
+# NVM block restoration {#nvm-block-restoration .p_Heading1 style="page-break-after: avoid;"}
+
++:-------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Memory](memory.html) \> [NVM management](nvm-management.html) \> | [](javascript:HMToggleExpandAll(!HMAnyToggleOpen()) "Click to open/close expanding sections") [](nvm-block-description.html "Previous Topic") [](nvm-management.html "Parent Chapter") [](nvm-general-description.html "Next Topic") |
+|                                                                                                                                                  |                                                                                                                                                                                                                                      |
+| # NVM block restoration {#nvm-block-restoration-1 .p_Heading1 style="page-break-after: avoid;"}                                                  |                                                                                                                                                                                                                                      |
++--------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+During start up the BSW loads the data of all NVM blocks into the corresponding RAM mirrors. In the application initialization phase the application must check the results of this loading procedure especially if the NVM blocks contain safety relevant data. The status of reading the NVM blocks can be checked per block with function  bds_mem_getBlockStatus.
+
+If there is a loading error detected (block status not equal BDS_MEM_NO_ERROR_DU16) then the application has to restore the faulty block by initialization it with valid data again. If necessary, the application can distinguish between a not yet initialized NVM block and an incorrect one.
+
+The application has to perform the following actions per used NVM block in a process of the OS_IniDrv_Task (e.g. in OsIniProc):
+
+- Read the current block status of each used block with function bds_mem_getBlockStatus.
+
+- Evaluate the returned read operation status of the block.
+
+- If status is equal to BDS_MEM_NO_ERROR_DU16:
+
+oNVM data was loaded correctly, there is nothing to do.
+
+- If status is not equal to BDS_MEM_NO_ERROR_DU16:
+
+oIf required the application can distinguish following loading errors after start up:
+
+§BDS_MEM_REQ_BLOCK_SKIPPED_DU16 means that the block was initialized for the first time in RAM mirror and DFLASH with value 0xFF.
+
+§BDS_MEM_REQ_RESTORED_FROM_ROM_DU16 means that the block was faulty in DFLASH and only the RAM mirror was initialized with value 0xFF.
+
+oIn both cases the application has to initialize all variables which are mapped into the corresponding NVM block.
+
+oAfterwards the application has to store this block with bds_mem_writeBlock into the NVM.
+
+## ![Code Example](hmtoggle_plus1.gif "Code Example"){#toggle0186a1_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [Examples:](javascript:HMToggle('toggle','toggle0186a1','toggle0186a1_ICON') "Code Example"){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#code-example-examples .p_Heading2 style="page-break-after: avoid;"}
+
++----------------------------------------------------------------------------+
+| // global data definitions for application data within NVM block 1         |
+|                                                                            |
+| typedef struct appl_para_t                                                 |
+|                                                                            |
+| {                                                                          |
+|                                                                            |
+|  uint16  para1_u16;                                                        |
+|                                                                            |
+|  uint16  para2_u16;                                                        |
+|                                                                            |
+| } appl_para_ts;                                                            |
+|                                                                            |
+|                                                                            |
+|                                                                            |
+| appl_para_ts  appl_para_s   BDS_MEM_LOCATE_BLOCK01_512_R_D;                |
+|                                                                            |
+| uint32        appl_para_u32 BDS_MEM_LOCATE_BLOCK01_512_R_D;                |
+|                                                                            |
+|                                                                            |
+|                                                                            |
+| void OsIniProc(void)                                                       |
+|                                                                            |
+| {                                                                          |
+|                                                                            |
+|  uint16 status_u16;                                                        |
+|                                                                            |
+|                                                                            |
+|                                                                            |
+|  // get the status of last NVM block 1 operation, i.e. read after power on |
+|                                                                            |
+|  status_u16 = bds_mem_getBlockStatus(bds_mem_nvmBlock01_512_R_D);          |
+|                                                                            |
+|                                                                            |
+|                                                                            |
+|  // check whether NVM block 1 data could be loaded successfully            |
+|                                                                            |
+|  if (status_u16 != BDS_MEM_ERR_NO_ERROR_DU16)                              |
+|                                                                            |
+|  {                                                                         |
+|                                                                            |
+|    // block01 data are invalid and have to be restored by the application  |
+|                                                                            |
+|    // 1) initialize all variables mapped into this block                   |
+|                                                                            |
+|    appl_para_s.para1_u16 = 0x1234;                                         |
+|                                                                            |
+|    appl_para_s.para2_u16 = 0x1234;                                         |
+|                                                                            |
+|    appl_para_u32         = 0x12345678;                                     |
+|                                                                            |
+|                                                                            |
+|                                                                            |
+|    // 2) store RAM mirror with valid data into NVM                         |
+|                                                                            |
+|    status_u16 = bds_mem_writeBlock(bds_mem_nvmBlock01_512_R_D);            |
+|                                                                            |
+|    if (BDS_MEM_ERR_NO_ERROR_DU16 == status_u16)                            |
+|                                                                            |
+|    {                                                                       |
+|                                                                            |
+|      // write command was successfully queued, proceed checking next block |
+|                                                                            |
+|    }                                                                       |
+|                                                                            |
+|  }                                                                         |
+|                                                                            |
+| }                                                                          |
++----------------------------------------------------------------------------+
+
+ 

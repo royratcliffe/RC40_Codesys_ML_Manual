@@ -1,0 +1,58 @@
+# CAN-FD (Controller Area Network - Flexible Datarate) {#can-fd-controller-area-network---flexible-datarate .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \>          | [](ethernet-introduction.html "Previous Topic") [](network-comm-protocols.html "Parent Chapter") [](can-fd-signal-based-communicat.html "Next Topic") |
+|                                                                                                                                                             |                                                                                                                                                       |
+| # CAN-FD (Controller Area Network - Flexible Datarate) {#can-fd-controller-area-network---flexible-datarate-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                                       |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This chapter provides overview about the CAN-FD protocol.
+
+### CAN-FD support in RC4x Variants: {#can-fd-support-in-rc4x-variants .p_Heading3 style="page-break-after: avoid;"}
+
+  CAN number   Pin number CAN-High   Pin number CAN-Low   RC5-6/40        RC18-12/40      RC27-18/40
+  ------------ --------------------- -------------------- --------------- --------------- ---------------
+  CAN_1        K88                   K66                  Supported       Supported       Supported
+  CAN_2        K89                   K67                  Supported       Supported       Supported
+  CAN_3        K90                   K68                  Not Supported   Not Supported   Not Supported
+  CAN_4        K91                   K69                  Supported       Supported       Supported
+
+For CAN-FD communication the required buffer sizes have to be defined within easyConfig or API. The CAN-FD messages with their identifiers and contents can be defined within application program during run time. New messages and message data can be added to the application without any actions in easyConfig. The corresponding CAN-FD APIs functions based on the API of the series 40 ECUs.
+
+### Features of the CAN-FD communication in RC4x: {#features-of-the-can-fd-communication-in-rc4x .p_Heading3 style="page-break-after: avoid;"}
+
+- Support for standard and extended identifier
+
+- Maximum nominal baud rate is upto 1 Mbps, maximum data baud rate is upto 2 Mbps.
+
+- Baud rate switchable by user for each CAN channel
+
+- Maximum payload upto 64 bytes supported
+
+- User defined receive and transmit buffer
+
+- Detailed error information for each function (e.g. Invalid CAN Channel, Invalid CAN-FD message ID, Invalid CAN-FD message format)
+
+- supports [UDS](uds---overview.html){.topiclink} diagnostics
+
+- supports flashing via [UDS](uds---overview.html){.topiclink}
+
+- supports calibration via [XCP](xcp-module.html){.topiclink}.
+
+- supports  CAN-FD legacy communication
+
+- supports  CAN-FD signal based communication
+
+ 
+
+ 
+
++--------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"} | •[CAN channels](can-communication.html){.topiclink} CAN 1, CAN 2 and CAN 4 support CAN-FD. CAN 3 does not support CAN-FD as it is ISOBUS compliant.                                                                                                                                                                          |
+|                                                                                |                                                                                                                                                                                                                                                                                                                              |
+|                                                                                | •By default, CAN 2.0 is enabled. CAN-FD should be enabled via easyConfig or API. For further details on how CAN-FD can be configured and used for legacy Transmit/Receive communication can be seen in [How to configure CAN-FD related parameters](howtoimplementcan-fdlegacyusingtransmitreceivebuffers.html){.topiclink}. |
++================================================================================+==============================================================================================================================================================================================================================================================================================================================+
+
+ 
+
+ 

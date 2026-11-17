@@ -1,0 +1,131 @@
+# Temperature profile {#temperature-profile .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [Safety manual](safety-manual.html) \>                                     | [](what-is-freedom-of-interferenc.html "Previous Topic") [](safety-manual.html "Parent Chapter") [](sw-api-reference-manual.html "Next Topic") |
+|                                                                                             |                                                                                                                                                |
+| # Temperature profile {#temperature-profile-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                                |
++---------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The temperature profile and the temperature fluctuation profile that the control unit is subject to have influences on the aging of components, their failure probability and thus the service life of the control unit.
+
+Therefore, the [reliability parameters](reliabilityparameters.html){.topiclink} and the service [lifetime](lifetime.html){.topiclink} of the RC depend strongly on the temperature profiles and the temperature change profiles as shown in the following tables:
+
++--------------------------------------+
+| Temperature profile T1               |
++=====================+================+
+| Ambient temperature | Operation time |
++---------------------+----------------+
+| 30 °C               | 8 %            |
++---------------------+----------------+
+| 40 °C               | 64,9 %         |
++---------------------+----------------+
+| 50 °C               | 25 %           |
++---------------------+----------------+
+| 60 °C               | 2 %            |
++---------------------+----------------+
+| 70 °C               | 0,1 %          |
++---------------------+----------------+
+
+ 
+
++--------------------------------------+
+| Temperature profile T2               |
++=====================+================+
+| Ambient temperature | Operation time |
++---------------------+----------------+
+| 15 °C               | 10 %           |
++---------------------+----------------+
+| 25 °C               | 10 %           |
++---------------------+----------------+
+| 35 °C               | 20 %           |
++---------------------+----------------+
+| 45 °C               | 20 %           |
++---------------------+----------------+
+| 55 °C               | 20 %           |
++---------------------+----------------+
+| 65 °C               | 10 %           |
++---------------------+----------------+
+| 75 °C               | 8 %            |
++---------------------+----------------+
+| 85 °C               | 2 %            |
++---------------------+----------------+
+
+ 
+
++--------------------------------------+
+| Temperature profile T3               |
++=====================+================+
+| Ambient temperature | Operation time |
++---------------------+----------------+
+| 10 °C               | 10 %           |
++---------------------+----------------+
+| 30 °C               | 10 %           |
++---------------------+----------------+
+| 40 °C               | 10 %           |
++---------------------+----------------+
+| 50 °C               | 10 %           |
++---------------------+----------------+
+| 60 °C               | 10 %           |
++---------------------+----------------+
+| 70 °C               | 20 %           |
++---------------------+----------------+
+| 80 °C               | 10 %           |
++---------------------+----------------+
+| 85 °C               | 20 %           |
++---------------------+----------------+
+
+ 
+
++------------------------------------------------------------+
+| Temperature change profile                                 |
++=============================+==============================+
+| Ambient  temperature change | Cycle of temperature changes |
++-----------------------------+------------------------------+
+| 25 K                        | 5250                         |
++-----------------------------+------------------------------+
+| 30 K                        | 710                          |
++-----------------------------+------------------------------+
+| 35 K                        | 800                          |
++-----------------------------+------------------------------+
+| 40 K                        | 3750                         |
++-----------------------------+------------------------------+
+| 45 K                        | 300                          |
++-----------------------------+------------------------------+
+| 50 K                        | 100                          |
++-----------------------------+------------------------------+
+| 55 K                        | 20                           |
++-----------------------------+------------------------------+
+| 60 K                        | 10                           |
++-----------------------------+------------------------------+
+| 65 K                        | 10                           |
++-----------------------------+------------------------------+
+
+ 
+
+Temperature changes below 20 K are not damage relevant and are therefore not considered here. Differences between 20 K and 40 K are counted as warm starts, above 40 K as cold starts.
+
+ 
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Warning](warning.png){style="margin:0;width:8.3333in;height:0.4583in;border:none"}                                                                                              |
++===================================================================================================================================================================================+
+| The [reliability parameters](reliabilityparameters.html){.topiclink} and the service [lifetime](lifetime.html){.topiclink}  cannot be guaranteed if the temperature profiles vary |
+|                                                                                                                                                                                   |
+| •A RC shall not be used if its temperature and temperature fluctuation profile do not meet the requirements of the machine application.                                           |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+ 
+
++--------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
+| ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"} | Select an appropriate installation location for the RC to reduce the ambient temperature and temperature fluctuations. |
+|                                                                                |                                                                                                                        |
+|                                                                                | It is recommended to install the RC as follows:                                                                        |
+|                                                                                |                                                                                                                        |
+|                                                                                | •Installation in the cab, where the ambient temperature is usually lower and with fewer temperature fluctuations       |
+|                                                                                |                                                                                                                        |
+|                                                                                | •Installation at a large cooling area with good heat conductance.                                                      |
+|                                                                                |                                                                                                                        |
+|                                                                                | •Installation at a place with good air convection for heat dissipation.                                                |
++--------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
+
+ 

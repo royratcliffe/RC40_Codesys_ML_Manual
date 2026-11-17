@@ -1,0 +1,201 @@
+# Digital outputs {#digital-outputs .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Outputs](outputs.html) \> | [](outputs.html "Previous Topic") [](outputs.html "Parent Chapter") [](linked-outputs.html "Next Topic") |
+|                                                                                                           |                                                                                                          |
+| # Digital outputs {#digital-outputs-1 .p_Heading1 style="page-break-after: avoid;"}                       |                                                                                                          |
++-----------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------+
+
+The BSW supports the following digital outputs:
+
+- Low power outputs
+
+- High power outputs
+
+The BSW supports the following features to control the digital outputs:
+
+- Configure a digital output
+
+- Control a digital output
+
+- Control test pulses for a digital output
+
+- Read the digital status and additional status information of a digital output
+
+- Reset diagnostics errors and unlocks the digital output
+
+## Low power outputs (low-side) {#low-power-outputs-low-side .p_Heading2 style="page-break-after: avoid;"}
+
+The low power outputs have the following functionality and behavior:
+
+- Used for the control of relays and LEDs.
+
+- The outputs are protected by the output device:
+
+oThe faults SCG and OL are detected in state STD_IDLE.
+
+oThe faults SCB and OT are detected in state STD_ACTIVE.
+
+oAfter the faults SCB and/or OT, the output is switched off by the output device.
+
+oWith any of these faults (SCG, SCB, OL or OT) the output will be disabled and locked by the BSW.
+
+- When bds_out_do_resetError is called, the BSW reset the faults and unlocks the output.
+
+- An unlocking is also possible with bds_out_do_unlock, if there are no more errors persistent.
+
+- The status can be read with bds_out_do_getStatus.
+
+- Loads connected to low side outputs must be powered from high side outputs (see bds_out_po_cfgPwrLs).
+
+- Test pulses are activated when a fault (e.g., SCG, SCB or OL) is active to check if the fault is healed; In this case, other faults can also be detected.
+
+ 
+
+Fault detection of the output device:
+
++--------------+-----------------------------------+-----------------------------------+
+| Error status | STD_IDLE                          | STD_ACTIVE                        |
+|              +-----------+-----------+-----------+-----------+-----------+-----------+
+|              | SCB       | SCG       | OL        | SCB       | SCG       | OL        |
++==============+===========+===========+===========+===========+===========+===========+
+| stDFC_SCB    | a1)       | \         | \         | a         | \         | \         |
++--------------+-----------+-----------+-----------+-----------+-----------+-----------+
+| stDFC_SCG    | \         | a         | a         | \         |           | \         |
++--------------+-----------+-----------+-----------+-----------+-----------+-----------+
+| stDFC_OL     | \         | a         | a         | \         | \         |           |
++--------------+-----------+-----------+-----------+-----------+-----------+-----------+
+
+a1): SCB only detected if there is any other active error is present e.g., OL (then additional test pulses active to detect all possible errors)
+
+a: Diagnostic error is detected.
+
+The stated error code in all cases of the table above is 0x3F7F. For detailed information about each hex code mentioned in the table please follow [diagnostics fault check](diagnostic-fault-check.html){.topiclink}.
+
+The over temperature fault cannot be detected. The temperature is detected by internal  NTC/PTCs. The user has to define the temperature limit and implement the temperature comparison in the application software.
+
+## High power outputs (high-side) {#high-power-outputs-high-side .p_Heading2 style="page-break-after: avoid;"}
+
+The high power outputs have the following functionality and behavior:
+
+- Used for the control of e.g., \"ON/OFF\" valves.
+
+- Current sensing is used for getting the actual current of the outputs.
+
+- The outputs are protected by the output device:
+
+oThe faults SCB, SCG, OL and OT are detected but the fault OT will mostly not happen because SCG is detected in general before and this output is switched off in this case.\
+Remark:\
+Detection is possible, but the fault itself will not occur as the reason for OT in most cases is a high current on all outputs connected to the same circuit (DGDI) and when the ambient temperature is high.
+
+oThe faults SCB and OL are detected in state STD_IDLE.
+
+oThe fault SCG can be detected in state STD_ACTIVE.
+
+oWith any of these faults (SCG, SCB or OL) the output will be disabled and locked by the BSW.
+
+- When bds_out_do_resetError is called, the BSW reset the faults and unlocks the output.
+
+- An unlocking is also possible with bds_out_do_unlock if there are no more errors persistent.
+
+- After the occurrence of SCG (hot short circuit) fault, the unlocking of the output is only possible after a reactivation time of 2s.\
+Remark:\
+Test pulses are used to detect hot faults when an output is in OFF state. Depending on the cable length and cross-section, these test pulses may not be sufficient to detect hot faults in OFF state.\
+Therefore, the fault could be healed although the hot fault is still present. The fault will be detected when the output is activated and consequently the output is shut OFF to protect the output from over current.
+
+- All faults which are not detected in \"OFF\" or \"ON\" state are marked with 1), these faults are detected with additional test pulses (set periodically every 100ms).\
+The time for the test pulse is 65μs \"OFF\" if the output state is continuously \"ON\" and 5μs \"ON\" if the output state is continuously \"OFF\".\
+If test pulses are disabled with the bds_out_do_disableTstPls function, these errors marked with 1) will not be detected or automatically removed.
+
+oAfter the debounce time the output is locked by the BSW.
+
+- The status can be read with bds_out_do_getStatus.
+
+ 
+
+Fault detection of the output device:
+
++--------------+--------------------+--------------------+
+| Error status | STD_IDLE           | STD_ACTIVE         |
+|              +------+------+------+------+------+------+
+|              | SCB  | SCG  | OL   | SCB  | SCG  | OL   |
++==============+======+======+======+======+======+======+
+| stDFC_SCB    | a    |      |      | a1)  |      |      |
++--------------+------+------+------+------+------+------+
+| stDFC_SCG    |      | a1)  |      |      | a    |      |
++--------------+------+------+------+------+------+------+
+| stDFC_OL     |      |      | a    |      |      | a1)  |
++--------------+------+------+------+------+------+------+
+
+a1): Detected with additional test pulses (set periodically every 100ms)
+
+a: Diagnostic error is detected.
+
+The stated error code in all cases of the table above is 0x3F7F. For detailed information about each hex code mentioned in the table please follow [diagnostics fault check](diagnostic-fault-check.html){.topiclink}.
+
+The over temperature fault cannot be detected. The temperature is detected by internal  NTC/PTCs. The user has to define the temperature limit and implement the temperature comparison in the application software.
+
+## High power outputs (low-side) {#high-power-outputs-low-side .p_Heading2 style="page-break-after: avoid;"}
+
+The high power outputs have the following functionality and behavior:
+
+- Used for the control of e.g., \"ON/OFF\" valves.
+
+- Current sensing is used for getting the actual current of the outputs.
+
+- The outputs are protected by the output device:
+
+oThe faults SCB, SCG, OL and OT are detected but the fault OT will mostly not happen because SCB is detected in general before and this output is switched off in this case.\
+Remark:\
+Detection is possible, but the fault itself will not occur as the reason for OT in most cases is a high current on all outputs connected to the same circuit (DGDI) and when the ambient temperature is high.
+
+oThe faults SCG and OL are detected in state STD_IDLE.
+
+oThe fault SCB can be detected in state STD_ACTIVE.
+
+oWith any of these faults (SCG, SCB or OL) the output will be disabled and locked by the BSW.
+
+- When bds_out_do_resetError is called, the BSW reset the faults and unlocks the output.
+
+- An unlocking is also possible with bds_out_do_unlock if there are no more errors persistent.
+
+- After the occurrence of SCB (hot short circuit) fault, the unlocking of the output is only possible after a reactivation time of 2s.\
+Remark:\
+Test pulses are used to detect hot faults when an output is in OFF state. Depending on the cable length and cross-section, these test pulses may not be sufficient to detect hot faults in OFF state.\
+Therefore, the fault could be healed although the hot fault is still present. The fault will be detected when the output is activated and consequently the output is shut OFF to protect the output from over current.
+
+- All faults which are not detected in \"OFF\" or \"ON\" state are marked with 1), these faults are detected with additional test pulses (set periodically every 100ms).\
+The time for the test pulse is 65us \"ON\" if the output state is continuously \"ON\" and it is 5us \"OFF\" if the output state is continuously \"OFF\".\
+If test pulses are disabled with the bds_out_do_disableTstPls function, these errors marked with 1) will not be detected or automatically removed.
+
+- Additionally, a fault OC (over current) is detected above 6000mA for the outputs with current sensing unit.
+
+oAfter the debounce time the output is locked by the BSW.
+
+- The status can be read with bds_out_do_getStatus.
+
+- Loads connected to low side outputs must be powered from high side outputs.
+
+ 
+
+Fault detection of the output device:
+
++--------------+--------------------+--------------------+
+| Error status | STD_IDLE           | STD_ACTIVE         |
+|              +------+------+------+------+------+------+
+|              | SCB  | SCG  | OL   | SCB  | SCG  | OL   |
++==============+======+======+======+======+======+======+
+| stDFC_SCB    | a1)  |      |      | a    |      |      |
++--------------+------+------+------+------+------+------+
+| stDFC_SCG    |      | a    |      |      | a1)  |      |
++--------------+------+------+------+------+------+------+
+| stDFC_OL     |      |      | a    |      |      | a1)  |
++--------------+------+------+------+------+------+------+
+
+a1): Detected with additional test pulses (set periodically every 100ms)
+
+a: Diagnostic error is detected.
+
+The stated error code in all cases of the table above is 0x3F7F. For detailed information about each hex code mentioned in the table please follow [diagnostics fault check](diagnostic-fault-check.html){.topiclink}.
+
+The over temperature fault cannot be detected. The temperature is detected by internal  NTC/PTCs. The user has to define the temperature limit and implement the temperature comparison in the application software.

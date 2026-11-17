@@ -1,0 +1,54 @@
+# Shut-OFF path test {#shut-off-path-test .p_Heading1 style="page-break-after: avoid;"}
+
++:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Self-monitoring](ecu-self-monitoring.html) \> [Startup monitoring](startup-monitoring.html) \> | [](startup-monitoring.html "Previous Topic") [](startup-monitoring.html "Parent Chapter") [](error-handling-infrastructure.html "Next Topic") |
+|                                                                                                                                                                                |                                                                                                                                               |
+| # Shut-OFF path test {#shut-off-path-test-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                      |                                                                                                                                               |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+
+In order to ensure that the high power outputs can be shut-OFF in case of a worst case error reaction from the monitoring software, it is necessary to check if the shut−OFF paths are working fine at least once in a driving cycle. This is achieved by the following tests.
+
+ 
+
+- External watchdog test        
+
+- Error Pin test - (microcontroller pin can shut-OFF all high power outputs)
+
+- Low side switch pin test-(microcontroller output pin can shut-OFF all low side high power outputs)
+
+- Overvoltage Test
+
+ 
+
+Shut-OFF path is designed in such a way that it can run the ASW even in case of delayed powering of inhibits. If shut-OFF path test is not performed, the error reaction is listed below,
+
+Error reaction:
+
+  Error                          Reaction
+  ------------------------------ ----------
+  DFC                            No
+  Error Code                     No
+  High Power Outputs(\...,OFF)   Yes
+  ECU Reset                      No
+
+ 
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Notice](notice.png){style="margin:0;width:8.3333in;height:0.4479in;border:none"}                                                                                                                                                                                                                           |
++==============================================================================================================================================================================================================================================================================================================+
+| •Shut-OFF path test should be completed successfully at-least once in a driving cycle for the outputs to be enabled.                                                                                                                                                                                         |
+|                                                                                                                                                                                                                                                                                                              |
+| •If the ECU is started with active or error inhibit states, then the [MoCSOP](shutoffpathtest.html){.topiclink} will be paused. The MoCSOP execution will be resumed only after the inhibits are in in-active state and the latch is reset using [bds_sys_resetINH()](shutoffpathtest.html){.topiclink} API. |
+|                                                                                                                                                                                                                                                                                                              |
+| •The power outputs will be enabled only if MoCSOP is completed successfully and MoCSOP execution will take approx 100 ms.                                                                                                                                                                                    |
+|                                                                                                                                                                                                                                                                                                              |
+| •In the latest workflow, the power outputs are locked until MoCSop is completed successfully.                                                                                                                                                                                                                |
+|                                                                                                                                                                                                                                                                                                              |
+| •For the information on DFCs refer [Diagnostic Trouble Code](diagnostic-trouble-code.html){.topiclink}.                                                                                                                                                                                                      |
+|                                                                                                                                                                                                                                                                                                              |
+| •Refer [Safety function and safe state](safetyfunctionandsafestate.html){.topiclink} for details on the safety functions provided by the RCs and the related considerations to be observed.                                                                                                                  |
+|                                                                                                                                                                                                                                                                                                              |
+| •Refer [Failure detection possibilities](failuredetectionpossibilities.html){.topiclink} for a broader overview of the different failure reactions observed.                                                                                                                                                 |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+ 

@@ -1,0 +1,168 @@
+# Ethernet introduction {#ethernet-introduction .p_Heading1 style="page-break-after: avoid;"}
+
++:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [Ethernet](ethernet.html) \> [Ethernet overview](ethernet-overview.html) \> | [](diagnostics-over-ip.html "Previous Topic") [](ethernet-overview.html "Parent Chapter") [](can-fd.html "Next Topic") |
+|                                                                                                                                                                                                                                |                                                                                                                        |
+| # Ethernet introduction {#ethernet-introduction-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                |                                                                                                                        |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
+
+Ethernet is a set of protocols and device standards that adapt Ethernet technologies for automotive use, specifically for in-vehicle networking and Diagnostics access to RC.
+
+Ethernet supports the standard 100BASE-T1 which supports the 100Mbps and uses single twisted pair(T1).
+
+1\. Ethernet vs CAN/LIN
+
+- Ethernet has much higher speed and bandwidth than CAN/CAN-FD or LIN.
+
+- Ethernet is full-duplex while CAN/LIN uses half-duplex.
+
+- CAN/LIN uses bus topology while Ethernet uses star topology in which all nodes are connected together. Basically, Ethernet is a Point-to-Point (P2P) connection.
+
+- Addressing used in CAN/LIN is message identifier, for example: CAN ID, while Ethernet uses node addressing i.e; each node has a specific MAC address (6 bytes e.g. FF-C0-D0-88-ED-10).
+
+- CAN/LIN uses broadcast communication. All nodes of a network shall receive the transmitting frame then apply filter to accept it or not - it\'s called receiver selective. Ethernet uses is transmitter selective, the source specifies the target node address (unicast). If it wants to send a frame to a set of nodes or all nodes, multicast or broadcast address must be used accordingly.
+
+ \
+ \
+2. OSI Reference model
+
+ 
+
++--------+--------------+----------------------+
+| Layers | OSI model    | Protocols            |
++--------+--------------+----------------------+
+| 7      | Application  | UDSonIP              |
++--------+--------------+                      |
+| 6      | Presentation |                      |
++--------+--------------+                      |
+| 5      | Session      |                      |
++--------+--------------+----------------------+
+| 4      | Transport    | TCP/IP, UDP          |
++--------+--------------+----------------------+
+| 3      | Network      | IP                   |
++--------+--------------+----------------------+
+| 2      | Datalink     | Ethernet MAC address |
++--------+--------------+----------------------+
+| 1      | Physical     | 100BASE-T1           |
++--------+--------------+----------------------+
+
+###   {#section .p_Heading3 style="page-break-after: avoid;"}
+
+### 2.1  Layer 1 {#layer-1 .p_Heading3 style="page-break-after: avoid;"}
+
+- Physical layer makes it possible to easily implement higher data rates within the network like 100BASE-T1 which is a full duplex single twisted pair(T1) and supports data speed till 100Mbps.
+
+ 
+
++--------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"} | •The 100BASE-T1 USB Interface MACH SYSTEMS VCI is supported for RC. It connects a 100BASE-T1 network to any computer with an USB port. The converter acts as an Ethernet network interface card when plugged into an USB port. The interface easily connects Ethernet devices with directly to any PC without a need of an on-board network card. |
+|                                                                                |                                                                                                                                                                                                                                                                                                                                                   |
+|                                                                                | •The channel's Master/Slave configuration is selected by a switch button.                                                                                                                                                                                                                                                                         |
+|                                                                                |                                                                                                                                                                                                                                                                                                                                                   |
+|                                                                                |                                                                                                                                                                                                                                                                                                                                                   |
++--------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+ \
+2.2 Layer 2
+
+- The layer implements the MAC address belongs to the data link layer of the OSI model, it is  a 48-bit hexadecimal address or 6 octet (e.g. FF-C0-D0-88-ED-10).
+
+ 
+
+2.3 Layer 3
+
+- This is also known as Network layer which uses IP where we define IP address(IPv4/IPv6). Ip address consists of the network address and the host address. We can determine network address using subnet mask.\
+Currently, only IPv4 address is supported and this can be configured in easyConfig.
+
+ 
+
+2.4 Layer 4
+
+- This is also known as Transport layer in which we define port number. Transport protocols are contained in the transport layer. These ensure that the Ethernet frame data reaches the corresponding process on the Ethernet node. Both TCP and UDP uses Port number. Each transmission therefore contains source and destination ports. According to standard ISO 13400-2, UDSonIP uses the 13400 as port number. Additionally, for UDSonIP, logical address is used  which helps us to communicate directly to the UDSonIP/DoIP entity and it needs to be configured for the Tester and the ECU in easyConfig.
+
+- UDP is a connectionless transport protocol where there is no flow control. This means that the package will be sent without a confirmation from the recipient that the package has arrived. In contrast, TCP is a connection-oriented transport protocol in which a connection is set up and every message that is received is also acknowledged. This way, the sender can be sure that the message has been received by the receiver.
+
+ 
+
+ 
+
+3 . Ethernet frame
+
+ 
+
+The Ethernet frame structure is given as shown in the table below.\
+ 
+
+<table style="width:80%; border:none; border-spacing:0; border-collapse:collapse;">
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="vertical-align: middle; width: 7%; height: 0.6146in; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Packet blocks</p></td>
+<td style="vertical-align: middle; width: 4%; height: 0.6146in; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Preamble</p></td>
+<td style="vertical-align: middle; width: 7%; height: 0.6146in; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Start Frame delimiter</p></td>
+<td style="vertical-align: middle; width: 15%; height: 0.6146in; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Destination MAC address</p></td>
+<td style="vertical-align: middle; width: 14%; height: 0.6146in; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Source MAC address</p></td>
+<td style="vertical-align: middle; width: 10%; height: 0.6146in; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Frame Type</p></td>
+<td style="vertical-align: middle; width: 10%; height: 0.6146in; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>IP Header</p></td>
+<td style="vertical-align: middle; width: 10%; height: 0.6146in; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>TCP/UDP Header</p></td>
+<td style="vertical-align: middle; width: 21%; height: 0.6146in; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Payload Data</p></td>
+<td style="vertical-align: middle; width: 17%; height: 0.6146in; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>CRC</p></td>
+<td style="vertical-align: middle; width: 19%; height: 0.6146in; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Inter Frame Delimiter</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top; width: 7%; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Size in bytes</p></td>
+<td style="vertical-align: middle; width: 4%; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>7</p></td>
+<td style="vertical-align: middle; width: 7%; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>1</p></td>
+<td style="vertical-align: middle; width: 15%; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>6</p></td>
+<td style="vertical-align: middle; width: 14%; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>6</p></td>
+<td style="vertical-align: middle; width: 10%; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>2</p></td>
+<td style="vertical-align: middle; width: 10%; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>20-60</p></td>
+<td style="vertical-align: middle; width: 10%; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>TCP : 20-60<br />
+UDP: 8</p></td>
+<td style="vertical-align: middle; width: 21%; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>46 to 1500</p></td>
+<td style="vertical-align: middle; width: 17%; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>4</p></td>
+<td style="vertical-align: middle; width: 19%; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>12</p></td>
+</tr>
+</tbody>
+</table>
+
+ 
+
+- Preamble -- informs the receiving system that a frame is starting and enables synchronisation.
+
+- SFD (Start Frame Delimiter) -- signifies that the Destination MAC Address field begins with the next byte.
+
+- Destination MAC Address -- identifies the receiving system.
+
+- Source MAC Address -- identifies the sending system.
+
+- Frame Type -- defines the type of protocol inside the frame, for example IPv4 or IPv6.
+
+- IP Header - The IP header is the part of the IP packet that contains information about the source and destination addresses, the version, the length, the identification, the flags, the fragment offset, the time to live, the protocol, the checksum, and the options. The IP header is usually 20 bytes long, but it can be up to 60 bytes if options are used.
+
+- TCP/UDP Header - The UDP header is only 8 bytes long, and it only contains the source and destination ports, the length, and the checksum. The UDP header does not have any sequence or acknowledgment numbers, flags, window size. TCP header in that it does not have any port numbers, sequence or acknowledgment numbers, window size, or flags.
+
+- Payload Data -- contains the payload data. Padding data is added to meet the minimum length requirement for this field (46 bytes).\
+Payload Data contains the DoIP Message data which is described in next following chapter [Diagnostics over Internet Protocol overview](diagnostics-over-ip.html){.topiclink}.
+
+- Cyclic Redundancy Check (CRC) -- CRC is 4 Byte field. This field contains a 32-bits hash code of data, which is generated over the Destination Address, Source Address, Length, and Data field.
+
+- Inter Frame Delimiter - marks the end of the packet preamble. It is immediately followed by the Ethernet frame.
+
+ 
+
+ 
+
+ 

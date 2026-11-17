@@ -1,0 +1,49 @@
+# How to calculate the block size during the transfer data phase of flashing? {#how-to-calculate-the-block-size-during-the-transfer-data-phase-of-flashing .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [How-Tos](how-to.html) \>                                                                                                                                                                 | [](howtoimplementcan-fdlegacyusingtransmitreceivebuffers.html "Previous Topic") [](how-to.html "Parent Chapter") [](how-to-use-forcing-writing-codesys.html "Next Topic") |
+|                                                                                                                                                                                                            |                                                                                                                                                                           |
+| # How to calculate the block size during the transfer data phase of flashing? {#how-to-calculate-the-block-size-during-the-transfer-data-phase-of-flashing-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                                                           |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+During the transfer data phase of flashing, the tester (client) transfers the data to the ECU. The transfer data phase may have two possible cases:
+
+- Block length is equal to 4095 (maximum block size).
+
+- Block length is less than 4095 (maximum block size).
+
+ 
+
+Case 1- When the block length is equal to 4095 (maximum block size)
+
+Example:
+
+§Received multi-frame message is 1F FF 36 01 C9 80 F0 F2
+
+          where,         1 -\> First Frame
+
+                          FFF -\> Size or length of the data bytes to be transferred (in hex)
+
+                            36 -\> Transfer Data UDS Service
+
+                            01 -\> Block sequence counter.
+
+§Convert FFF (in hex) to 4095 (in decimal), subtract "2" from the converted decimal value because of two bytes 36 and 01 present in the received message and then you will get the actual data length of the remaining bytes which is 4093.
+
+ 
+
+Case 2- When the block length is less than 4095 (maximum block size)
+
+Example:        
+
+§Received multi-frame message is 15 86 36 ED C9 80 F0 F2
+
+          where,           1 -\> First Frame
+
+                          586 -\> Size or length of the data bytes to be transferred (in hex)
+
+                            36 -\> Transfer Data UDS Service
+
+                            ED -\> Block sequence counter.
+
+§Convert 586 (in hex) to 1414 (in decimal), subtract "2" from the converted decimal value because of two bytes 36 and ED present in the received message and then you will get the actual data length of the remaining bytes which is 1412 bytes.

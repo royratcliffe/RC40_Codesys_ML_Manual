@@ -1,0 +1,68 @@
+# Document conventions {#document-conventions .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [Introduction](introduction.html) \>                                         | [](usingaservicetool.html "Previous Topic") [](introduction.html "Parent Chapter") [](sw-overview.html "Next Topic") |
+|                                                                                               |                                                                                                                      |
+| # Document conventions {#document-conventions-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                      |
++-----------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+
+## Symbols {#symbols .p_Heading2 style="page-break-after: avoid;"}
+
+The following symbols are used to mark safety relevant information:
+
+ 
+
+  Symbol                                                                                                             Meaning
+  ------------------------------------------------------------------------------------------------------------------ ----------------------------------------------------------------------------------------------------
+  ![Danger_cropped](danger_cropped.png){style="margin:0 auto 0 auto;width:2.0833in;height:0.2188in;border:none"}     Identifies a dangerous situation that will result in death or serious injury if it is not avoided.
+  ![Warning_cropped](warning_cropped.png){style="margin:0 auto 0 auto;width:2.0833in;height:0.2292in;border:none"}   Identifies a dangerous situation that may result in death or serious injury if it is not avoided.
+  ![Caution_cropped](caution_cropped.png){style="margin:0 auto 0 auto;width:2.0833in;height:0.2292in;border:none"}   Identifies a dangerous situation that may result in minor to moderate injury if it is not avoided.
+  ![Notice_cropped](notice_cropped.png){style="margin:0 auto 0 auto;width:2.0833in;height:0.2292in;border:none"}     Property damage: The product or surrounding area may be damaged.
+
+[]{#fig_f86185 .hmanchor}Table2: Hazard classes as defined in ANSI Z535.6.
+
+Additionally, the following symbols mark important \"non-safety\" aspects (e.g., security, SW, \...):\
+ 
+
+  Symbol                                                                                     Meaning
+  ------------------------------------------------------------------------------------------ ----------------------------------------------------------
+  ![Attention](attention.png){style="margin:0;width:2.1667in;height:0.7083in;border:none"}   Identifies a major issue the user needs to take care of.
+  ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"}             Identifies a minor issue the user needs to take care of.
+
+[]{#fig_6a2828 .hmanchor}Table3: Additional \'non-safety\' symbols.
+
+## Code examples {#code-examples .p_Heading2 style="page-break-after: avoid;"}
+
+This document provides code samples to better explain how to use the provided APIs.
+
+ 
+
++-----------------------------------------------------------------------+
+| CODESYS Example                                                       |
++=======================================================================+
+| PROGRAM appl_10ms_task                                                |
+|                                                                       |
+|  VAR                                                                  |
+|                                                                       |
+|  END_VAR                                                              |
+|                                                                       |
+|                                                                       |
+|                                                                       |
+|    (\* activate output K12 \*)                                        |
+|                                                                       |
+|    bds_out_do(bds_out_do_signal_te.K12, STD_ACTIVE);                  |
+|                                                                       |
+| END                                                                   |
++-----------------------------------------------------------------------+
+
+ 
+
++--------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"} | All provided code examples are only for information. It is not guaranteed that they are functional with each RC variant or inside each project! |
+|                                                                                |                                                                                                                                                 |
+|                                                                                | •When taking over code examples into productive code adapt and verify them for your specific need.                                              |
++--------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+
+ 
+
+ 

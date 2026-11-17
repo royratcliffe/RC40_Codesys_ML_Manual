@@ -1,0 +1,59 @@
+# VKL30 (ECU power supply) {#vkl30-ecu-power-supply .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Self-monitoring](ecu-self-monitoring.html) \> [Cyclic monitoring](cyclic-monitoring-checks.html) \> | [](vdd3v3-ecu-internal-voltage.html "Previous Topic") [](cyclic-monitoring-checks.html "Parent Chapter") [](vkl30-after-the-hw-firewall-s4850.html "Next Topic") |
+|                                                                                                                                                                                     |                                                                                                                                                                  |
+| # VKL30 (ECU power supply) {#vkl30-ecu-power-supply-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                 |                                                                                                                                                                  |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The cyclic check of the ECU power supply KL30.
+
+## Remarks: {#remarks .p_Heading2 style="page-break-after: avoid;"}
+
+- Monitoring of overvoltage for error.
+
+- Only Error are indicated.
+
+- The voltage can be queried using bds_sys_aiv().
+
+- Over Voltage Error Limit = 38.700V.
+
+- If the VKL30 is greater than 34.400V and less than 38.700V for more than 5 minutes of duration then the Over Voltage Error for Long time will be set.
+
+- Refer [Safety function and safe state](safetyfunctionandsafestate.html){.topiclink} for details on the safety functions provided by the RCs and the related considerations to be observed.
+
+- Refer [Failure detection possibilities](failuredetectionpossibilities.html){.topiclink} for a broader overview of the different failure reactions observed.
+
+ 
+
+Error Reaction:
+
+ 
+
+- Over Voltage Error (VKL30 \>= Over Voltage Error Limit)
+
+  Error Description              Reaction
+  ------------------------------ ------------------------
+  DFC                            DFC_rbr_mo_OV_UBAT_MON
+  Error Code                     0x080900
+  Error parameter                1
+  High Power Outputs(\...,OFF)   yes
+  ECU Reset                      no
+  Reaction time                  1000ms
+
+ 
+
+- Over Voltage Error for Long time
+
+  Error Description              Reaction
+  ------------------------------ ------------------------
+  DFC                            DFC_rbr_mo_OV_UBAT_MON
+  Error Code                     0x080900
+  Error parameter                2
+  High Power Outputs(\...,OFF)   yes
+  ECU Reset                      no
+  Reaction time                  1000ms
+
+ 
+
+ 

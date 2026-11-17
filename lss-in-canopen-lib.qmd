@@ -1,0 +1,59 @@
+# LSS in CANopen lib {#lss-in-canopen-lib .p_Heading1 style="page-break-after: avoid;"}
+
++:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> [CANopen features description](canopen-features-description.html) \> | [](canopen-features-description.html "Previous Topic") [](canopen-features-description.html "Parent Chapter") [](nmt-in-canopen-lib.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                          |                                                                                                                                                        |
+| # LSS in CANopen lib {#lss-in-canopen-lib-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                                                                                |                                                                                                                                                        |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The CANopen library implements both LSS master and LSS slave.
+
+ 
+
+- The NMT role should be assigned to each CANopen instance separately using API bds_canopen_setRole
+
+- The role assignment should be done before bds_canopen_initComm.
+
+- If bds_canopen_setRole is not used, The default role is assigned for each instance as below
+
+  BDS_CAN_1_D : Master , BDS_CAN_2_D : Slave ,BDS_CAN_3_D: Slave.
+
+- The LSS role is dependent on the NMT role i.e an NMT Master can be either LSS Master or slave. But NMT slave can only be LSS slave and not LSS master.
+
+- The configured LSS role of a given instance can be checked using API bds_canopen_getLssRole
+
+## LSS Master {#lss-master .p_Heading2 style="page-break-after: avoid;"}
+
+When configured as an LSS master, the CANopen library implements necessary LSS services to support both node-ID and bitrate configuration of a remote LSS slave. Refer to CiA-305 for a detailed description of the LSS protocol. A brief description is also available in section [Layer Setting Service(LSS)](layer-setting-service(lss).html){.topiclink}
+
+Before Starting LSS services it is recommended to stop the communication of the remote slave by sending the NMT stop command using the API  bds_canopen_sendNmtCmd. Switching state services is then achieved using the API  bds_canopen_writeLssSwitchMode. The remote LSS slave state can be changed to \"configuration mode\" or \"wait mode\" using this API.        
+
+The API  bds_canopen_writeLssConfigNodeIdReq is used to configure a node-ID.  With  bds_canopen_writeLssStoreReq the LSS master can command the remote slave to save the node-ID. Finally, the master can activate the new node-ID by sending the NMT reset communication command by using the API  bds_canopen_sendNmtCmd.
+
+To configure the bitrate of a slave the API  bds_canopen_writeLssConfigBitrateReq is used.  bds_canopen_writeLssStoreReq is used to indicate storing of a new bitrate. To activate the new bitrate the API  bds_canopen_writeLssActivateBitrateReq is used. Refer to code examples in LSS APIs for sample implementation. ASW is responsible for updating its CAN bitrate with the new bitrate.
+
+## LSS Slave {#lss-slave .p_Heading2 style="page-break-after: avoid;"}
+
+When configured as an LSS slave, the CANopen services LSS requests received from a remote LSS master.  In order to complete the implementation the ASW needs to handle the storing of node ID and bitrate into NVM and the changing of the bitrate of the CAN interface since the CAN layer is not directly coupled to the CANopen lib. To implement this additional part, ASW needs indications from the CANopen library based on the LSS states. This can be achieved by registering callback using the API  bds_canopen_regLssIndcn. Refer to code examples for sample implementation of LSS slave.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 

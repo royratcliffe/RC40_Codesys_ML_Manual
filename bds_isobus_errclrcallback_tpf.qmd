@@ -1,0 +1,21 @@
+# bds_isobus_errClrCallback_tpf {#bds_isobus_errclrcallback_tpf .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------+------------------------------------+
+| **Navigation:**  »No topics above this level«                                                                   | [](appendix.html "Parent Chapter") |
+|                                                                                                                 |                                    |
+| # bds_isobus_errClrCallback_tpf {#bds_isobus_errclrcallback_tpf-1 .p_Heading1 style="page-break-after: avoid;"} |                                    |
++-----------------------------------------------------------------------------------------------------------------+------------------------------------+
+
+ 
+
++-------------------------------+---------------------------------+-----------------+--------------------------------------------------------------------------+
+| Declaration                   | Meaning                         | Parameter       | Description                                                              |
++===============================+=================================+=================+==========================================================================+
+| bds_isobus_errClrCallback_tpf | ISOBUS error callback function. | DM11func_pf&    | Pointer to a callback function to application when DM11/DM3 is received. |
+|                               |                                 |                 |                                                                          |
+|                               |                                 | DM3func_pf      |                                                                          |
+|                               |                                 |                 |                                                                          |
+|                               |                                 |                 | typedef void(\*bds_isobus_errClrCallback_tpf) (void);                    |
+|                               |                                 |                 |                                                                          |
+|                               |                                 |                 |                                                                          |
++-------------------------------+---------------------------------+-----------------+--------------------------------------------------------------------------+

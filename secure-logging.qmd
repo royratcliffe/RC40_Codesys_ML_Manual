@@ -1,0 +1,23 @@
+# Secure Logging {#secure-logging .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [Security](security.html) \> | [](keyfile_unlockfile.html "Previous Topic") [](security.html "Parent Chapter") [](logging-in-cb-me.html "Next Topic") |
+|                                                                                          |                                                                                                                        |
+| # Secure Logging {#secure-logging-1 .p_Heading1 style="page-break-after: avoid;"}        |                                                                                                                        |
++------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
+
+This section describes the secure logging feature implemented in the RC40 to detect and record important security-related and diagnostic events that occur during the ECU runtime.
+
+ 
+
++------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Attention](attention.png){style="margin:0;width:2.1667in;height:0.7083in;border:none"} | •We cannot perform logging on the RC over an extended period of time, and do not have a time available on the device for reliable time stamps. |
+|                                                                                          |                                                                                                                                                |
+|                                                                                          | •The customer is advised to retrieve logged events periodically, and at least before flashing, to build a log on system level.                 |
++------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+| \                                                                                        |                                                                                                                                                |
++------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+
+ 
+
+ 

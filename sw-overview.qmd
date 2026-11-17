@@ -1,0 +1,46 @@
+# Software overview {#software-overview .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [Introduction](introduction.html) \>                                   | [](general-information.html "Previous Topic") [](introduction.html "Parent Chapter") [](system-overview.html "Next Topic") |
+|                                                                                         |                                                                                                                            |
+| # Software overview {#software-overview-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                            |
++-----------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+
+RCs are designed as freely programmable hardware platforms. They can be programmed:
+
+- In the programming language C
+
+- In the programming system CODESYS
+
+- Via model based development (e.g., MATLAB and Simulink) using a C code generator
+
+In all cases Rexroth provides a programming interface (API) to set up the application:
+
+<figure style="margin:0;padding:0">
+<img src="hmfile_hash_3cec047e.png" title="Figure4: API_ArchTopLevelView" id="fig168afda2" style="width:8.4271in;height:7.7813in;border:none" alt="Figure4: API_ArchTopLevelView" />
+<figcaption aria-hidden="true"><p>Figure4: API_ArchTopLevelView</p></figcaption>
+</figure>
+
+ 
+
+Both C and CODESYS API then use:
+
+- The Rexroth Basic SW which provides features specific for our environment (see [Applications)](application.html){.topiclink}
+
+- The Common Bosch Basis SW - a Bosch wide used, automotive grade basis SW that provides features like µC drivers, memory handling, etc.
+
+See [SW Architecture](sw-architecture.html){.topiclink} for more details.
+
+ 
+
++------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
+| ![Attention](attention.png){style="margin:0;width:2.1667in;height:0.7083in;border:none"} | The BSW does not run independently.                                                                                            |
+|                                                                                          |                                                                                                                                |
+|                                                                                          | •It must be configured for the specific ECU and needs a minimum application and a local build in order to generate a hex file. |
+|                                                                                          |                                                                                                                                |
+|                                                                                          | •That hex file is then flashed to run on the ECU.                                                                              |
+|                                                                                          |                                                                                                                                |
+|                                                                                          | See [the BODAS EcoSystem](ecosystem.html){.topiclink} for more details.                                                        |
++------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
+
+ 

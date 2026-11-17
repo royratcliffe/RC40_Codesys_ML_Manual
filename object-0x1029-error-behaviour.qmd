@@ -1,0 +1,46 @@
+# Object 0x1029 error behaviour {#object-0x1029-error-behaviour .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> [RC40 CANopen communication objects](rc40-canopen-communication-obj.html) \> | [](object-0x1028-emergency-consum.html "Previous Topic") [](rc40-canopen-communication-obj.html "Parent Chapter") [](object-0x1200-server-sdo-param.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                                  |                                                                                                                                                                        |
+| # Object 0x1029 error behaviour {#object-0x1029-error-behaviour-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                                                                  |                                                                                                                                                                        |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This object describes the device behavior in the event of an error, i.e. when an emergency message is generated, the device switches to the defined state.
+
+   The value of an error class can be:
+
+   0 = Pre - operational (only if current state is operational)
+
+   1 = No state change
+
+   2 = Stopped
+
+ 
+
+  Index       0x1029
+  ----------- -----------------
+  Name        Error Behaviour
+  Object      ARRAY
+  Data Type   UNSIGNED 8
+  Category    Optional
+
+ 
+
+  SubIndex        0
+  --------------- -------------------------
+  Description     number of Error classes
+  Default value   0x01
+
+ 
+
+  SubIndex        1
+  --------------- ---------------------
+  Description     Communication Error
+  Default value   0x00
+
+ 
+
+ 
+
+ 

@@ -1,0 +1,44 @@
+# VKL30 deviation 1 {#vkl30-deviation-1 .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Self-monitoring](ecu-self-monitoring.html) \> [Cyclic monitoring](cyclic-monitoring-checks.html) \> | [](vkl30-after-the-hw-firewall-via-input-device.html "Previous Topic") [](cyclic-monitoring-checks.html "Parent Chapter") [](vkl30-via-analog-feedback.html "Next Topic") |
+|                                                                                                                                                                                     |                                                                                                                                                                           |
+| # VKL30 deviation 1 {#vkl30-deviation-1-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                             |                                                                                                                                                                           |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The cyclic check of the voltage difference between ECU power supply KL30 and KL30 after the HW-Firewall via Input device.
+
+The \"HW-firewall\" is a protection circuitry in the supply path of the ECU.
+
+ 
+
+<figure style="margin:0;padding:0">
+<img src="hmfile_hash_8f5f5642.png" title="Figure55: Block diagram of VKL30 deviation 1" id="figbb70d14d" style="width:7.0208in;height:2.4375in;border:none" alt="Figure55: Block diagram of VKL30 deviation 1" />
+<figcaption aria-hidden="true"><p>Figure55: Block diagram of VKL30 deviation 1</p></figcaption>
+</figure>
+
+ 
+
+## Remarks: {#remarks .p_Heading2 style="page-break-after: avoid;"}
+
+- Monitoring of voltage difference for error.
+
+- If the voltage difference between KL30 and KL30 after the HW-Firewall via Input device is 3.100V then the voltage difference error will be set.
+
+- Refer [Safety function and safe state](safetyfunctionandsafestate.html){.topiclink} for details on the safety functions provided by the RCs and the related considerations to be observed.
+
+- Refer [Failure detection possibilities](failuredetectionpossibilities.html){.topiclink} for a broader overview of the different failure reactions observed.
+
+ 
+
+Error Reaction:
+
+- Voltage Difference Error
+
+  Error                          Reaction
+  ------------------------------ -----------------------
+  DFC                            DFC_rbr_mo_DvUBAT_FWs
+  Error Code                     0x080D00
+  High Power Outputs(\...,OFF)   no
+  ECU Reset                      no
+  Reaction time                  200ms

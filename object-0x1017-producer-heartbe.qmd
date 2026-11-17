@@ -1,0 +1,24 @@
+# Object 0x1017 producer heartbeat time {#object-0x1017-producer-heartbeat-time .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> [RC40 CANopen communication objects](rc40-canopen-communication-obj.html) \> | [](object-0x1016-heartbeat-consum.html "Previous Topic") [](rc40-canopen-communication-obj.html "Parent Chapter") [](object-0x1018-identity-object.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                                  |                                                                                                                                                                       |
+| # Object 0x1017 producer heartbeat time {#object-0x1017-producer-heartbeat-time-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                                                  |                                                                                                                                                                       |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The producer heartbeat time defines the cycle time of the heartbeat.
+
+If the time is 0 it is not used. The time has to be a multiple of 1 ms.
+
+ 
+
+  Index           0x1017
+  --------------- --------------------------------------------------
+  Name            Producer Heartbeat Time
+  Object          VAR
+  Data Type       UNSIGNED 16
+  Category        Conditional; Mandatory if guarding not supported
+  Access          RW
+  PDO Mapping     No
+  Value Range     UNSIGNED 16
+  Default Value   0

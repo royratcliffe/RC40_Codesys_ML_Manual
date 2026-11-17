@@ -1,0 +1,25 @@
+# bds_uds_setNodeIdTesterId_te {#bds_uds_setnodeidtesterid_te .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  »No topics above this level«                                                                 | [](javascript:HMToggleExpandAll(!HMAnyToggleOpen()) "Click to open/close expanding sections") [](appendix.html "Parent Chapter") |
+|                                                                                                               |                                                                                                                                  |
+| # bds_uds_setNodeIdTesterId_te {#bds_uds_setnodeidtesterid_te-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                  |
++---------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+
+Enumeration shows all possible status of the UDS API functions. For each specific API function, a subset of bds_uds_setNodeIdTesterId_te exists.
+
+## ![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a1_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [Enum declaration](javascript:HMToggle('toggle','toggle0186a1','toggle0186a1_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#hmtoggle_plus1-enum-declaration .p_Heading2 style="page-break-after: avoid;"}
+
++-----------------------------------------------------------------------------------------------------------------------------------+
+|                                                                                                                                   |
+|                                                                                                                                   |
+|   Name                                    Meaning                                                                                 |
+|   --------------------------------------- --------------------------------------------------------------------------------------- |
+|   bds_uds_nodeIdTesterIdOk_E              Node Id and Tester Id is set.                                                           |
+|   bds_uds_nodeIdNotOk_E                   0xFF is broadcast node ID which cannot be used                                          |
+|   bds_uds_testerIdNotOk_E                 0xFF is broadcast tester ID which cannot be used                                        |
+|   bds_uds_sameNodeIdTesterIdNotOk_E       Node ID and tester ID value cannot be same.                                             |
+|   bds_uds_setIdApiNotAvailable_E          This API shall be called from initialization task and cannot be called from elsewhere   |
+|                                                                                                                                   |
+|                                                                                                                                   |
++-----------------------------------------------------------------------------------------------------------------------------------+

@@ -1,0 +1,55 @@
+# Object 0x1014 COB-ID emergency object {#object-0x1014-cob-id-emergency-object .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> [RC40 CANopen communication objects](rc40-canopen-communication-obj.html) \> | [](object-0x1011-restore-default-.html "Previous Topic") [](rc40-canopen-communication-obj.html "Parent Chapter") [](object-0x1015-inhibit-time-emc.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                                  |                                                                                                                                                                        |
+| # Object 0x1014 COB-ID emergency object {#object-0x1014-cob-id-emergency-object-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                                                  |                                                                                                                                                                        |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This object COB-ID used for emergency message (emergency producer).
+
+ 
+
+  Index           0x1014
+  --------------- ---------------------------------------------------
+  Name            COB-ID Emergency Object
+  Object          VAR
+  Data Type       UNSIGNED 32
+  Category        Conditional; Mandatory for Emergency is supported
+  Access          RO; Optional RW
+  PDO Mapping     No
+  Value Range     UNSIGNED 32
+  Default Value   0x80 + Node-ID
+
+ 
+
+ 
+
+ 
+
+Structure of the EMCY Identifier entry
+
+ 
+
+  --------------- ----- ---- ---- ------------------------------------- -------------------
+  Bits            31    30   29   28-11                                 10-0
+  For 11 bit ID   0/1   0    0    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   11 bit identifier
+  --------------- ----- ---- ---- ------------------------------------- -------------------
+
+ 
+
+ 
+
+Bit 31:
+
+0 - EMCY exists/is valid
+
+1 - EMCY does not exists/is not valid
+
+Bit 10-0 : COB-ID of EMCY
+
+ 
+
+ 
+
+ 

@@ -1,0 +1,43 @@
+# Emergency flashing through CB-ME {#emergency-flashing-through-cb-me .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [Bootloader](bootloader.html) \>                          | [](bootloader.html "Previous Topic") [](bootloader.html "Parent Chapter") [](can-fd-in-cb-me.html "Next Topic") |
+|                                                                                                                       |                                                                                                                 |
+| # Emergency flashing through CB-ME {#emergency-flashing-through-cb-me-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                 |
++-----------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------+
+
+Emergency flashing is a mechanism which provides an option within CB-ME (starting rbr_CB_ME_ML_V03.02.00 onwards) to reprogram the ECU when the defined inhibit pins (K21 and K22) are set to high.
+
+This could be a fallback solution for situations where the ASW shows abnormal behavior and the re-programming request is never detected by it.
+
+## Emergency flashing procedure {#emergency-flashing-procedure .p_Heading2 style="page-break-after: avoid;"}
+
+- When the control comes to CB-ME after a T15 or T30 Off/ On reset, the two inhibits are checked based on the pre-conditions. If both the inhibit pins are observed as high, then CB-ME will wait for Wt (currently configured as 50ms).
+
+- If the re-programming request is received before Wt elapses, then CB-ME will perform re-programming of the software with standard CAN settings as given below:
+
+CAN 2.0B -
+
+  CAN Channel   Baud Rate   Node ID   Sampling point
+  ------------- ----------- --------- ----------------
+  CAN 2         250 Kbps    01        80%
+
+- If there is no emergency flashing request, then CB-ME will evaluate the conditions and decide its further course of action. Based on this evaluation, it may re-initialize the CAN settings with NVM settings as per project or customer specific configuration and decide to stay in CB, or perform an internal reset and start the ASW.
+
+For detailed steps on how to perform the emergency flashing through BODAS-service, please refer User Manual BODAS-service 4.4.8 (and onwards).
+
+ 
+
++--------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Info](info.png){style="margin:0 auto 0 auto;width:2.2083in;height:0.7188in;border:none"} | •Emergency flashing uses security level 1. The security levels in HSM will remain unchanged.                                                                                                                                                        |
+|                                                                                            |                                                                                                                                                                                                                                                     |
+|                                                                                            | •If CB-ME re-programming is requested by ASW/BSW there is no change in the current re-programming procedure.                                                                                                                                        |
+|                                                                                            |                                                                                                                                                                                                                                                     |
+|                                                                                            | •The entry condition for emergency flashing is either a T15 or T30 Off/ On reset. It is not supported for any other reset type.                                                                                                                     |
+|                                                                                            |                                                                                                                                                                                                                                                     |
+|                                                                                            | •Concept is for T15 enabled systems and is validated accordingly.                                                                                                                                                                                   |
+|                                                                                            |                                                                                                                                                                                                                                                     |
+|                                                                                            | •Emergency flashing is typically not possible when the RC4x is installed on a machine because both the inhibit pins must be pulled to high and the fixed CAN setting for emergency flashing might be different from the CAN setting on the machine. |
++============================================================================================+=====================================================================================================================================================================================================================================================+
+
+ 

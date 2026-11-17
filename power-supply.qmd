@@ -1,0 +1,9 @@
+# Power supply {#power-supply .p_Heading1 style="page-break-after: avoid;"}
+
++:-------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> | [](plmdh.html "Previous Topic") [](bsw.html "Parent Chapter") [](powersupplyconcept.html "Next Topic") |
+|                                                                                |                                                                                                        |
+| # Power supply {#power-supply-1 .p_Heading1 style="page-break-after: avoid;"}  |                                                                                                        |
++--------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+
+This section documents the power supply concept of the RC.

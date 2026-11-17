@@ -1,0 +1,13 @@
+# Flash/erase cycles {#flasherase-cycles .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Memory](memory.html) \> | [](datastorageininternaldataflash.html "Previous Topic") [](memory.html "Parent Chapter") [](nvm-management.html "Next Topic") |
+|                                                                                                         |                                                                                                                                |
+| # Flash/erase cycles {#flasherase-cycles-1 .p_Heading1 style="page-break-after: avoid;"}                |                                                                                                                                |
++---------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
+
+The microcontroller manufacturer guarantees a maximum number of flash/erase cycles for the program flash of 1000 cycles. For the RCs that are to be used for a machine in series production, it is safe to assume that this maximum flash/erase cycles will never be reached.
+
+However, for RCs that are used for development and testing purpose (referred to as "development control units"), this maximum flash/erase cycles may be exceeded and failures may occur. For this reason, development control units shall be marked as such and shall not be used for original series production nor as spare parts.
+
+ 

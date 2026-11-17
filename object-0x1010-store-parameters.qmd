@@ -1,0 +1,87 @@
+# Object 0x1010 store parameters for non-volatile storage {#object-0x1010-store-parameters-for-non-volatile-storage .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> [RC40 CANopen communication objects](rc40-canopen-communication-obj.html) \> | [](object-0x100a-manufacturer-sof.html "Previous Topic") [](rc40-canopen-communication-obj.html "Parent Chapter") [](object-0x1011-restore-default-.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                                  |                                                                                                                                                                        |
+| # Object 0x1010 store parameters for non-volatile storage {#object-0x1010-store-parameters-for-non-volatile-storage-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                              |                                                                                                                                                                        |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This object entry supports saving of parameters in non volatile memory.
+
+ 
+
+  Index       0x1010
+  ----------- -------------------------------------------
+  Name        Store Parameters for non volatile storage
+  Object      ARRAY
+  Data Type   UNSIGNED 32
+  Category    Optional
+
+ 
+
+ 
+
+SubIndex Supported
+
+  SubIndex        0
+  --------------- ----------------------------
+  Description     Largest subIndex supported
+  Access          RO
+  Value Range     0x1-0x7F
+  Default Value   0x4
+
+ 
+
+ 
+
+  SubIndex        1
+  --------------- ---------------------
+  Description     Save all parameters
+  Access          RW
+  Value Range     UNSIGNED 32
+  Default Value   No
+
+ 
+
+  SubIndex        2
+  --------------- -------------------------------
+  Description     Save communication parameters
+  Access          RW
+  Value Range     UNSIGNED 32
+  Default Value   0
+
+ 
+
+  SubIndex        3
+  --------------- -----------------------------
+  Description     Save application parameters
+  Access          RW
+  Value Range     UNSIGNED 32
+  Default Value   0
+
+ 
+
+  SubIndex        4
+  --------------- --------------------------------------
+  Description     Save manufacturer defined parameters
+  Access          RW
+  Value Range     UNSIGNED 32
+  Default Value   0
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 

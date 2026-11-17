@@ -1,0 +1,22 @@
+# Object 0x1015 inhibit time EMCY {#object-0x1015-inhibit-time-emcy .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> [RC40 CANopen communication objects](rc40-canopen-communication-obj.html) \> | [](object-0x1014-cob-id-emergency.html "Previous Topic") [](rc40-canopen-communication-obj.html "Parent Chapter") [](object-0x1016-heartbeat-consum.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                                  |                                                                                                                                                                        |
+| # Object 0x1015 inhibit time EMCY {#object-0x1015-inhibit-time-emcy-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                                                              |                                                                                                                                                                        |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Inhibit Time used for emergency message (emergency producer). The time has to be a multiple of 100 µs.
+
+ 
+
+  Index           0x1014
+  --------------- -------------------
+  Name            Inhibit Time EMCY
+  Object          VAR
+  Data Type       UNSIGNED 16
+  Category        Optional
+  Access          RW
+  PDO Mapping     No
+  Value Range     UNSIGNED 16
+  Default Value   0x01

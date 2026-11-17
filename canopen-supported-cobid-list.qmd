@@ -1,0 +1,42 @@
+# CANopen supported COBID list {#canopen-supported-cobid-list .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> | [](canopen-safety---srdo-and-gfc.html "Previous Topic") [](rc40-canopen-library.html "Parent Chapter") [](nvm-storage-support-for-canope.html "Next Topic") |
+|                                                                                                                                                                                                                                     |                                                                                                                                                             |
+| # CANopen supported COBID list {#canopen-supported-cobid-list-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                       |                                                                                                                                                             |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Below table lists predefined COB-ID (refer section CANopen COB-ID in [CANopen introduction](canopen-introduction.html){.topiclink}) used by the RC40 CANopen library based on feature supported.
+
+ 
+
+  ------------------------------ --------------- -------------------------------
+  Object                         Specification   CAN-ID
+  NMT                            CiA 301         000h
+  Global Fail Safe Command       CiA 304         001h
+  Sync                           CiA 301         080h
+  Emergency                      CiA 301         081h to 0FFh (080h + node-ID)
+  Safety Relevant Data Objects   CiA 304         101h to 180h
+  TPDO1                          CiA 301         181h to 1FFh (180h + node-ID)
+  RPDO1                          CiA 301         201h to 27Fh (200h + node-ID)
+  TPDO2                          CiA 301         281h to 2FFh (280h + node-ID)
+  RPDO2                          CiA 301         301h to 37Fh (300h + node-ID)
+  TPDO3                          CiA 301         381h to 3FFh (380h + node-ID)
+  RPDO3                          CiA 301         401h to 47Fh (400h + node-ID)
+  TPDO4                          CiA 301         481h to 4FFh (480h + node-ID)
+  RPDO4                          CiA 301         501h to 57Fh (500h + node-ID)
+  SDO1 server-to-client          CiA 301         581h to 5FFh (580h + node-ID)
+  SDO1 client-to-server          CiA 301         601h to 67Fh (600h + node-ID)
+  NMT error control              CiA 301         701h to 77Fh (700h + node-ID)
+  Layer setting services         CiA 305         7E4h to 7E5h
+  ------------------------------ --------------- -------------------------------
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 

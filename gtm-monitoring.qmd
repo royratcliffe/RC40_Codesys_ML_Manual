@@ -1,0 +1,39 @@
+# GTM monitoring {#gtm-monitoring .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Self-monitoring](ecu-self-monitoring.html) \> [Cyclic monitoring](cyclic-monitoring-checks.html) \> | [](errormanagementmodule.html "Previous Topic") [](cyclic-monitoring-checks.html "Parent Chapter") [](inhibitmonitoring.html "Next Topic") |
+|                                                                                                                                                                                     |                                                                                                                                            |
+| # GTM monitoring {#gtm-monitoring-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                   |                                                                                                                                            |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+
+In this module a continuous monitoring of the Generic Timer Module (GTM) is implemented.
+
+## Remarks: {#remarks .p_Heading2 style="page-break-after: avoid;"}
+
+- Refer [safety function and safe state](safetyfunctionandsafestate.html){.topiclink} for details on the safety functions provided by the RCs and the related considerations to be observed.
+
+- Refer [failure detection possibilities](failuredetectionpossibilities.html){.topiclink} for a broader overview of the different failure reactions observed.
+
+ 
+
+Error reaction:
+
++-----------------------------------+--------------------------------------------+
+| Error                             | Reaction                                   |
++===================================+============================================+
+| DFC                               | No                                         |
++-----------------------------------+--------------------------------------------+
+| Error Code                        | No                                         |
++-----------------------------------+--------------------------------------------+
+| High Power Outputs(\...,OFF)      | Yes                                        |
++-----------------------------------+--------------------------------------------+
+| ECU Reset                         | Yes                                        |
++-----------------------------------+--------------------------------------------+
+| Reaction time                     | 150 ms                                     |
++-----------------------------------+--------------------------------------------+
+| Reset Reason - Group ID           | RESET_SWRESET_MOC                          |
++-----------------------------------+--------------------------------------------+
+| Reset Reason  - Reset number      | RESET_SWRESET_MOCGTM_FAILED/               |
+|                                   |                                            |
+|                                   | RESET_SWRESET_MOCGTM_INI_COMPLEMENT_FAILED |
++-----------------------------------+--------------------------------------------+

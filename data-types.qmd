@@ -1,0 +1,26 @@
+# Data types and definitions {#data-types-and-definitions .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [BSW API](sw-api-reference-manual.html) \> [Common API elements](api-common.html) \>     | [](api-common.html "Previous Topic") [](api-common.html "Parent Chapter") [](canopen-for-codesys.html "Next Topic") |
+|                                                                                                           |                                                                                                                     |
+| # Data types and definitions {#data-types-and-definitions-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                     |
++-----------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------+
+
+ 
+
+The following basic numeric data types are used by the CODESYS API. It is recommended to use them also in the application.
+
+  CODESYS type   Storage Space   Meaning / Range
+  -------------- --------------- ---------------------------------------------------------
+  SINT           8bit            signed numeric value (-128 .. +127)
+  USINT          8bit            unsigned numeric value (0 .. 255)
+  INT            16 bit          signed numeric value (-32768 .. +32767)
+  UINT           16 bit          unsigned numeric value (0 .. 65535)
+  DINT           32 bit          signed numeric value (-2147483648 .. +2147483647)
+  UDINT          32 bit          unsigned numeric value (0 .. 4294967295)
+  LINT           64 bit          signed numeric value (-2\^63.. +2\^63-1)
+  ULINT          64 bit          unsigned numeric value (0 .. 2\^64-1)
+  REAL           32 bit          32-bit binary floating point according to IEEE 754-2008
+  LREAL          64 bit          64-bit binary floating point according to IEEE 754-2008
+
+Additional information regarding types can be found in the [CODESYS online help](https://help.codesys.com/webapp/_cds_struct_reference_datatypes;product=codesys;version=3.5.17.0){.weblink target="_blank"}.

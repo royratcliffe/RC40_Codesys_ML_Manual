@@ -1,0 +1,33 @@
+# ISOBUS services and PGNs {#isobus-services-and-pgns .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [ISOBUS/J1939](isobus-module.html) \> | [](isobus_message_formats_and_transport_protocols.html "Previous Topic") [](isobus-module.html "Parent Chapter") [](address_claimed_pgn_0xee00.html "Next Topic") |
+|                                                                                                                                                                                          |                                                                                                                                                                   |
+| # ISOBUS services and PGNs {#isobus-services-and-pgns-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                    |                                                                                                                                                                   |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The ISOBUS communication stack supports the following services by receiving the corresponding PGN. These special PGNs are handled within the ISOBUS stack.
+
+ 
+
+- [Address Claimed (PGN = 0xEE00)](address_claimed_pgn_0xee00.html){.topiclink}:
+
+With this PGN another controller can ask for a comparison of the controller application (CA) names.
+
+- [Commanded Address (PGN = 0xFED8):](commanded_address_pgn_0xfed8.html){.topiclink}
+
+With this PGN another controller can change the address of the controller application (CA).
+
+- [Name Management (PGN = 0x9300):](name_management_pgn_0x9300.html){.topiclink}
+
+This PGN handles the name management according ISO11783-5.
+
+- [PGN-Request (PGN = 0xEA00):](pgn-request_pgn_0xea00.html){.topiclink}
+
+With this PGN another controller can request the specific PGNs.
+
+- [Stop / Start Broadcast (DM13, PGN = 0xDF00):](stop_start_broadcast_dm13_pgn_0xdf00.html){.topiclink}
+
+With this PGN another controller can suspend the sending of cyclic broadcast messages.
+
+ 

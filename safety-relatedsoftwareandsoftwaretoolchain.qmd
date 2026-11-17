@@ -1,0 +1,39 @@
+# Safety-related software and software toolchain {#safety-related-software-and-software-toolchain .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [Safety manual](safety-manual.html) \>                                                                                           | [](safety-relatedoutputs.html "Previous Topic") [](safety-manual.html "Parent Chapter") [](freedom-from-interference.html "Next Topic") |
+|                                                                                                                                                   |                                                                                                                                         |
+| # Safety-related software and software toolchain {#safety-related-software-and-software-toolchain-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                         |
++---------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+
+The basic software fulfills the requirements of
+
+-ISO 13849 up to PL d,
+
+-ISO 25119 up to Software Requirements Level (SRL) 2, and
+
+-ISO 19014-4 up to MPL d
+
+To use the RCs for a machine safety function of certain PL or AgPL, it is the machine manufacturer's responsibility to check if the BODAS basic software is able to support the required PL / AgPL of machine safety functions, and to make sure that the ASW is developed according to the required PL / SRL.
+
+The complete tool-chain provided by Rexroth for the ASW development, except for the libspfpmath.a, is validated by Rexroth to fulfill the requirement of the ISO 13849, ISO 25119 and ISO 19014 to the above mentioned level.
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Warning](warning.png){style="margin:0;width:8.3333in;height:0.4583in;border:none"}                                                                                                                                                                                   |
++========================================================================================================================================================================================================================================================================+
+| If the wrong tool or the wrong version of the tool is used, the functional safety of the RC may not be guaranteed.                                                                                                                                                     |
+|                                                                                                                                                                                                                                                                        |
+| •The ASW developers shall use the same development tools of the same version as those used to create the BSW (the tools and versions to be used are given in [\[RE95207\]](references.html#re_95207){.topiclink} [\[RE95208\]](references.html#re_95208){.topiclink}). |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+ 
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Warning](warning.png){style="margin:0;width:8.3333in;height:0.4583in;border:none"}                                                                                                                           |
++================================================================================================================================================================================================================+
+| The conformity of the standard libraries to functional safety standards is not evaluated by Rexroth.                                                                                                           |
+|                                                                                                                                                                                                                |
+| •To integrate the math library, -nostdlib option has been removed from the makefile. Hence, now all the standard libraries are automatically included.                                                         |
+|                                                                                                                                                                                                                |
+| •If any standard library is to be used in safety-related applications, machine manufacturer/user has the responsibility to ensure the functional safety following the requirements of corresponding standards. |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

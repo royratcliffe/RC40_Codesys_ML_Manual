@@ -1,0 +1,26 @@
+# Safety communication via CAN {#safety-communication-via-can .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [Safety manual](safety-manual.html) \>                                                       | [](reliabilityparameterssystemintegrity.html "Previous Topic") [](safety-manual.html "Parent Chapter") [](safetyoperatingconditions.html "Next Topic") |
+|                                                                                                               |                                                                                                                                                        |
+| # Safety communication via CAN {#safety-communication-via-can-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                                        |
++---------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The CAN communication provided by the RC conforms to CAN 2.0 as specified in ISO 11898-1, with all the required safety measures implemented in the data link layer. As a result, the worst case residual error probability for a channel is R(PCAN) = 7­ • 10-9 ≈ 1• 10-8
+
+Except for the CANopen Safety library and J1939-76 communication over J1939, there is no additional safety communication layer provided with the RCs. To use the CAN interface for safety-related communications, it is machine manufacturer's responsibility that the safety communication layer is implemented as required by the corresponding standards.
+
+For the conformity with ISO 25119, depending on the required DC, diagnostic methods could be implemented by the ASW following Table C.6 of the ISO 25119-2.
+
+  Technique/ measure   Recommended maximum diagnostic coverage   Example
+  -------------------- ----------------------------------------- ------------------------------------------------
+  Message protection   Medium                                    1\. Checksum on selected message data bytes
+                       Medium                                    2\. Message enumeration (incrementing counter)
+                       Low                                       3\. Send frequency verification
+                       High                                      1 to 3. combined
+
+For the conformity with ISO 13849-1, all relevant requirements of IEC 61784-3 shall be fulfilled by the communication channel.
+
+With the additional CANopen Safety package, a safety communication layer according to CiA 304 is provided. All relevant requirements of ISO 25119 and ISO 13849 regarding safety-related data communication are fulfilled and DC = high can be reached.
+
+With the J1939-76 communication stack, a safety extension to J1939 according to J1939-76 standard is provided. All relevant requirements of ISO 25119 and IEC 61784 regarding safety-critical data communication are fulfilled and DC = high can be achieved. The communication error coverage details are provided in the section [\'Communication Error Coverage\'](j1939-76-protocol-description.html){.topiclink}.

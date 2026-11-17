@@ -1,0 +1,29 @@
+# CANopen features description {#canopen-features-description .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> | [](rc40-canopen-library.html "Previous Topic") [](rc40-canopen-library.html "Parent Chapter") [](lss-in-canopen-lib.html "Next Topic") |
+|                                                                                                                                                                                                                                     |                                                                                                                                        |
+| # CANopen features description {#canopen-features-description-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                       |                                                                                                                                        |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+
+Refer to [Features Supported](storage-of-confidential-inform.html){.topiclink} by the CANopen library.
+
+The implementation of major features is explained in the below sections
+
+ 
+
+- [NMT in CANopen lib](nmt-in-canopen-lib.html){.topiclink}
+
+- [SDO in CANopen lib](sdo-in-canopen-lib.html){.topiclink}
+
+- [PDO in CANopen lib](pdo-in-canopen-lib.html){.topiclink}
+
+- [LSS in CANopen lib](lss-in-canopen-lib.html){.topiclink}
+
+ 
+
+The implementation of features like heartbeat, emergency, and sync protocol are described by their respective API and code examples.
+
+Safety features like SRDO and GFC are described in [CANopen safety-SRDO and GFC](canopen-safety---srdo-and-gfc.html){.topiclink}
+
+A special implementation that allows for an easy-to-use configuration of the CANopen library, is described in the section  Easy-to-use APIs

@@ -1,0 +1,13 @@
+# SW architecture {#sw-architecture .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \>                         | [](runtimemeasurement.html "Previous Topic") [](system-concepts.html "Parent Chapter") [](sw-architecture-overview.html "Next Topic") |
+|                                                                                     |                                                                                                                                       |
+| # SW architecture {#sw-architecture-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                       |
++-------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+
+This section contains general information about the RC SW architecture, e.g.:
+
+oA high level view of the BSW structure
+
+oBackground information for partitioning, naming, etc.

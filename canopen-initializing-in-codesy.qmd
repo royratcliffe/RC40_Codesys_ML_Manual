@@ -1,0 +1,165 @@
+# CANopen Initialization in CODESYS {#canopen-initialization-in-codesys .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [BSW API](sw-api-reference-manual.html) \> [CANOpen for CODESYS](canopen-for-codesys.html) \>          | [](canopen-for-codesys.html "Previous Topic") [](canopen-for-codesys.html "Parent Chapter") [](canopen-library-installation.html "Next Topic") |
+|                                                                                                                         |                                                                                                                                                |
+| # CANopen Initialization in CODESYS {#canopen-initialization-in-codesys-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                                |
++-------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+
+To properly initialize CANopen communication in CODESYS, please follow these structured steps:
+
+1\. Create a dedicated initialization program (PRG) for the CANopen initialization sequence.
+
+2\. Assign this initialization program to a cyclic task with a 100 ms interval, the initialization code shall be guarded to only run once with a SW defined flag that is set after the init is done, this is shown in the code example below.
+
+3\. Separate Application Logic
+
+- For the user main application logic (ASW), create a different PRG. This PRG can be assigned to any cycle time that matches the application requirements.
+
+Important Notes:
+
+1.Make sure to define a shared global variable between both the init PRG and the ASW PRG to indicate whenever the init is done, the ASW shall also be guarded to only start executing when this flag is set to TRUE to indicate that the initialization is complete, e.g. bTask100msDone in the example code below
+
+2.For the callbacks required by this code example, please refer to the API documentation in the CANopen library in the bds_canopen_initComm API where a code example for each callback is provided.
+
+3.This code example is only restricted to the mandatory APIs to initialize CANopen and registering callbacks. More APIs can be added if needed.
+
+ 
+
++------------------------------------------------------------------------------------------------------------------+
+| CODESYS Example                                                                                                  |
++==================================================================================================================+
+| PROGRAM CANopen_init                                                                                             |
+|                                                                                                                  |
+| VAR                                                                                                              |
+|                                                                                                                  |
+|    data_pau8: ARRAY\[0..7\] OF USINT:=\[4,2\];                                                                   |
+|                                                                                                                  |
+|    flag_u8: USINT:=0;                                                                                            |
+|                                                                                                                  |
+|    retval_u16: UINT;                                                                                             |
+|                                                                                                                  |
+|    retval2_u16 : UINT:=0;                                                                                        |
+|                                                                                                                  |
+|    appl_canopen_nodeId4_u8 : BYTE := 12; // Node ID for Channel 3                                                |
+|                                                                                                                  |
+|    appl_canopen_nodeId2_u8 : BYTE := 20; // Node ID for Channel 2                                                |
+|                                                                                                                  |
+|    bdsErr_e:bds_canopen_ret_te;                                                                                  |
+|                                                                                                                  |
+|    appl_lssRole_e : bds_canopen_Role_te;                                                                         |
+|                                                                                                                  |
+|    applNmtRet : bds_canopen_ret_te;                                                                              |
+|                                                                                                                  |
+|    err_u16 : UINT;                                                                                               |
+|                                                                                                                  |
+|    data_au8 : ARRAY\[0..4\] OF USINT := \[16#31, 16#2E, 16#31, 16#39, 16#00\];                                   |
+|                                                                                                                  |
+|    appl_local_nodeId :USINT;                                                                                     |
+|                                                                                                                  |
+|    sdoClientStatus_e:bds_canopen_sdoClientReqStatus_te;                                                          |
+|                                                                                                                  |
+|    return_u16: UINT := 16#00;                                                                                    |
+|                                                                                                                  |
+|    applEmcyprod : bds_canopen_emcy_ts;                                                                           |
+|                                                                                                                  |
+|    applGfcRet : bds_canopen_ret_te;                                                                              |
+|                                                                                                                  |
+|    delayTimer : TIME;                                                                                            |
+|                                                                                                                  |
+|    BDS_CANOPEN_NUM_VAL_DU16 : UINT := 16#0010;                                                                   |
+|                                                                                                                  |
+|    BDS_CANOPEN_READ_PERM_DU16 : UINT := 16#0020;                                                                 |
+|                                                                                                                  |
+|    BDS_CANOPEN_WRITE_PERM_DU16 : UINT := 16#0040;                                                                |
+|                                                                                                                  |
+|    BDS_CANOPEN_MAP_PERM_DU16 : UINT := 16#0080;                                                                  |
+|                                                                                                                  |
+|    BDS_CANOPEN_TYPE_UNSIGNED8_DU8 : USINT:=2;                                                                    |
+|                                                                                                                  |
+|    BDS_CANOPEN_TYPE_VISSTRING_DU8 : USINT :=14;                                                                  |
+|                                                                                                                  |
+|    BDS_CANOPEN_TYPE_UNSIGNED64_DU8 : ULINT := 9;                                                                 |
+|                                                                                                                  |
+| END_VAR                                                                                                          |
+|                                                                                                                  |
+|                                                                                                                  |
+|                                                                                                                  |
+| IF(flag_u8 = 0) THEN                                                                                             |
+|                                                                                                                  |
+|    bds_can_init(bds_canopen_Chnl_te.BDS_CAN_2_D, BDS_BAUD_1000K_DU32);                                           |
+|                                                                                                                  |
+|    bds_can_init(bds_canopen_Chnl_te.BDS_CAN_3_D, BDS_BAUD_1000K_DU32);                                           |
+|                                                                                                                  |
+|                                                                                                                  |
+|                                                                                                                  |
+|    bds_can_registerRxCallback(bds_canopen_Chnl_te.BDS_CAN_2_D,ADR(canopen_ch2RxCallback));                       |
+|                                                                                                                  |
+|    bds_can_registerRxCallback(bds_canopen_Chnl_te.BDS_CAN_3_D,ADR(canopen_ch3RxCallback));                       |
+|                                                                                                                  |
+|                                                                                                                  |
+|                                                                                                                  |
+|    bds_canopen_regSendCanCbk(ADR(appl_canopen_can_send));                                                        |
+|                                                                                                                  |
+|                                                                                                                  |
+|                                                                                                                  |
+|    bds_canopen_setNodeId(bds_canopen_Chnl_te.BDS_CAN_2_D, appl_canopen_nodeId2_u8);                              |
+|                                                                                                                  |
+|    bds_canopen_setNodeId(bds_canopen_Chnl_te.BDS_CAN_3_D, appl_canopen_nodeId4_u8);                              |
+|                                                                                                                  |
+|                                                                                                                  |
+|                                                                                                                  |
+|    bds_canopen_regApplObjects(bds_canopen_Chnl_te.BDS_CAN_2_D,ADR(GVL.bds_canopen_applobj_ch2\[1\]),5);          |
+|                                                                                                                  |
+|    bds_canopen_regApplObjects(bds_canopen_Chnl_te.BDS_CAN_3_D,ADR(GVL.bds_canopen_applobj_ch3\[1\]),5);          |
+|                                                                                                                  |
+|                                                                                                                  |
+|                                                                                                                  |
+|    bds_canopen_setRole(bds_canopen_Chnl_te.BDS_CAN_2_D,BDS_CANOPEN_SLAVE_E,BDS_CANOPEN_SLAVE_E);                 |
+|                                                                                                                  |
+|    bds_canopen_setRole(bds_canopen_Chnl_te.BDS_CAN_3_D,BDS_CANOPEN_MASTER_E,BDS_CANOPEN_MASTER_E);               |
+|                                                                                                                  |
+|                                                                                                                  |
+|                                                                                                                  |
+|    bds_canopen_regHeartbeatErrCbk(ADR(appl_HeartbeatCallback));                                                  |
+|                                                                                                                  |
+|                                                                                                                  |
+|                                                                                                                  |
+|    retval_u16 := bds_canopen_setIdentity(bds_canopen_Chnl_te.BDS_CAN_2_D,16#24,16#1234,16#11223344,16#55661122); |
+|                                                                                                                  |
+|                                                                                                                  |
+|                                                                                                                  |
+|    bds_canopen_regNmtStateChangeIndcn(ADR(appl_canopen_NmtStateChange));                                         |
+|                                                                                                                  |
+|                                                                                                                  |
+|                                                                                                                  |
+|    retval2_u16 := bds_canopen_initComm(bds_canopen_Chnl_te.BDS_CAN_2_D, 90);                                     |
+|                                                                                                                  |
+|    retval2_u16 := bds_canopen_initComm(bds_canopen_Chnl_te.BDS_CAN_3_D, 90);                                     |
+|                                                                                                                  |
+|                                                                                                                  |
+|                                                                                                                  |
+|    retval1_u16 := bds_canopen_start(bds_canopen_Chnl_te.BDS_CAN_2_D);                                            |
+|                                                                                                                  |
+|    retval1_u16 := bds_canopen_start(bds_canopen_Chnl_te.BDS_CAN_3_D);                                            |
+|                                                                                                                  |
+|                                                                                                                  |
+|                                                                                                                  |
+|    appl_init_srdo_chnl2(bds_canopen_Chnl_te.BDS_CAN_2_D);                                                        |
+|                                                                                                                  |
+|    appl_init_srdo_chnl3(bds_canopen_Chnl_te.BDS_CAN_3_D);                                                        |
+|                                                                                                                  |
+|                                                                                                                  |
+|                                                                                                                  |
+|    GVL.bTask100msDone := TRUE;                                                                                   |
+|                                                                                                                  |
+|    flag_u8:=1;                                                                                                   |
+|                                                                                                                  |
+| END_IF                                                                                                           |
+|                                                                                                                  |
+|                                                                                                                  |
++------------------------------------------------------------------------------------------------------------------+
+|                                                                                                                  |
++------------------------------------------------------------------------------------------------------------------+
+
+ 

@@ -1,0 +1,9 @@
+# Tractor Implement Management (TIM) {#tractor-implement-management-tim .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [Security](security.html) \> [Security components](security-components.html) \> | [](security-manager.html "Previous Topic") [](security-components.html "Parent Chapter") [](configuring-the-authlib.html "Next Topic") |
+|                                                                                                                                             |                                                                                                                                        |
+| # Tractor Implement Management (TIM) {#tractor-implement-management-tim-1 .p_Heading1 style="page-break-after: avoid;"}                     |                                                                                                                                        |
++---------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+
+This section describes the Tractor Implement Management feature for RCs.

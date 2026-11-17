@@ -1,0 +1,37 @@
+# LIN integration into an application {#lin-integration-into-an-application .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [LIN](lin-module.html) \> | [](lin-module.html "Previous Topic") [](lin-module.html "Parent Chapter") [](message-formats.html "Next Topic") |
+|                                                                                                                                                                              |                                                                                                                 |
+| # LIN integration into an application {#lin-integration-into-an-application-1 .p_Heading1 style="page-break-after: avoid;"}                                                  |                                                                                                                 |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------+
+
+The integration of the LIN communication stack has to be done with the following steps:
+
+1)Prepare the BSW configuration within the easyConfig tool:
+
+ Load the application specific LDF file in easyConfig. The following details will be read from the LDF file.
+
+§The LIN communication baud rate information.
+
+§Schedule tables information.
+
+§Different frames along with the delay time\[ms\] information.
+
+§Signals and there properties information.
+
+    So based on the imported LDF file the BSW will be configured.
+
+2)Include header file bds_lin.h within the application.
+
+3)An example code is shown in the description of the function bds_lin_sendSignal() or bds_lin_receiveSignal().
+
+ 
+
+  ----------------------------------------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------------------------
+  ![Notice_RGB 39-153-209](hmfile_hash_c5013a84.png){style="margin:0;width:1.4792in;height:0.2813in;border:none"}   Only Unconditional Frames are supported. Event-Triggered, Sporadic and Diagonostic frames are not yet supported.
+  ----------------------------------------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------------------------
+
+ 
+
+ 

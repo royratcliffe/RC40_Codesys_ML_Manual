@@ -1,0 +1,49 @@
+# Battery Voltage Monitoring for Power Output {#battery-voltage-monitoring-for-power-output .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Self-monitoring](ecu-self-monitoring.html) \> [Cyclic monitoring](cyclic-monitoring-checks.html) \> | [](adc-test-voltage-monitoring.html "Previous Topic") [](cyclic-monitoring-checks.html "Parent Chapter") [](cyclic-ram-check.html "Next Topic") |
+|                                                                                                                                                                                     |                                                                                                                                                 |
+| # Battery Voltage Monitoring for Power Output {#battery-voltage-monitoring-for-power-output-1 .p_Heading1 style="page-break-after: avoid;"}                                         |                                                                                                                                                 |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The system continuously monitors battery voltage to manage power outputs safely during low-voltage and inhibit conditions. This monitoring kicks in when the battery voltage drops below a defined threshold (e.g., 7V) until around 50msec (\> 30msec) or when an emergency stop activates an inhibit signal, which locks power outputs to prevent actuation.
+
+ 
+
+This cyclic voltage check applies to power outputs belonging to cluster 1 and cluster 3 of the RC27-18/40. These outputs are locked in low-voltage or inhibit-active conditions to protect the hardware and prevent unintended actuation. For detailed information on specific outputs, refer to the power output specifications for the [RC27-18/40 - Outputs](hw-ml-outputs.html){.topiclink} for more details.
+
+ 
+
+The system determines the inhibit status based on the conditions of signals K21 and K22:
+
+Inhibit Signal Inactive        : K21 is connected to GND (0) and K22 to Battery Supply (1), setting the inhibit status to 1.
+
+Inhibit Signal Active        : K21 is connected to Battery Supply (1) and K22 to GND (0), setting the inhibit status to 0.
+
+ 
+
+Once battery voltage is above 9V continuously until around 50msec (\> 30msec), ASW should reset the inhibit latch using bds_sys_resetINH() and BSW should enable all used outputs of cluster 1 and cluster 3 for RC27-18/40.
+
+ 
+
+By continuously checking both battery voltage and inhibit signals, the system ensures reliable and safe operation, preventing false diagnostic errors during expected or temporary low-voltage situations.
+
+## Remarks: {#remarks .p_Heading2 style="page-break-after: avoid;"}
+
+- Refer [Safety function and safe state](safetyfunctionandsafestate.html){.topiclink} for details on the safety functions provided by the RCs and the related considerations to be observed.
+
+- Refer [Failure detection possibilities](failuredetectionpossibilities.html){.topiclink} for a broader overview of the different failure reactions observed.
+
+ 
+
+Error Reaction:
+
+  Error                          Reaction
+  ------------------------------ ----------
+  DFC                            no
+  Error Code                     no
+  High Power Outputs(\...,OFF)   yes
+  ECU Reset                      no
+  Reaction time                  50ms
+
+ 

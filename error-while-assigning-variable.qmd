@@ -1,0 +1,31 @@
+# Error while assigning variables to the NVM block {#error-while-assigning-variables-to-the-nvm-block .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Memory](memory.html) \> [NVM management](nvm-management.html) \>      | [](javascript:HMToggleExpandAll(!HMAnyToggleOpen()) "Click to open/close expanding sections") [](nvm-management.html "Previous Topic") [](nvm-management.html "Parent Chapter") [](nvm-block-access.html "Next Topic") |
+|                                                                                                                                                       |                                                                                                                                                                                                                        |
+| # Error while assigning variables to the NVM block {#error-while-assigning-variables-to-the-nvm-block-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                                                                                                        |
++-------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+ 
+
+This is actually not supported for CODESYS and can not be used.
+
+ 
+
+This problem can occur while using the non volatile memory (NVM) of the ECU, with the linker directive for mapping a struct variable or a group of variables exceeding the maximum block size of the respective configured NVM block or due to structure padding by the compiler. In either of the cases, the linker error pops up as, \"cannot move location counter backwards in .ram0_prot\".
+
+In the below example, occurrence of this error can be observed due to the effect of structure padding. Here the sum of size of individual struct members (29 Bytes) is not same as the size of struct (32 Bytes). This happens due to, structure padding done by the compiler to avoid data alignment issues.
+
+It can be observed that in the linker directive (\_Pragma(\"section \\\".BDS_NVM_BLOCK18_32_R\\\"\")) defined below, there is one instance of struct variable (32 Bytes) and another instance of uint8 variable created (2 Bytes), which causes the overflow of the NVM_BLOCK18 having maximum block size of 32 Bytes. Thus leading to a linker error as \"error: \[50176\] cannot move location counter backwards in .ram0_prot\".
+
+## ![Code Example](hmtoggle_plus1.gif "Code Example"){#toggle0186a1_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [Examples:](javascript:HMToggle('toggle','toggle0186a1','toggle0186a1_ICON') "Code Example"){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#code-example-examples .p_Heading2 style="page-break-after: avoid;"}
+
++-----------------------------------------------------------------------+
+|   CODESYS Example                                                     |
+|   -------------------------------------------------                   |
+|   This API is actually not supported for CODESYS.                     |
+|                                                                       |
+|                                                                       |
++-----------------------------------------------------------------------+
+
+In the similar lines it\'s important to make sure that the variables defined in a particular NVM block should not exceed its max block size.

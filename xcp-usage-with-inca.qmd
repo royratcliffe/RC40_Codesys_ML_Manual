@@ -1,0 +1,213 @@
+# XCP on CAN usage with INCA {#xcp-on-can-usage-with-inca .p_Heading1 style="page-break-after: avoid;"}
+
++:---------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [How-Tos](how-to.html) \> [XCP usage with tools](xcp-usage-with-tools.html) \> [INCA](inca.html) \> | [](inca.html "Previous Topic") [](inca.html "Parent Chapter") [](how-to-calculate-checksum-for-.html "Next Topic") |
+|                                                                                                                      |                                                                                                                    |
+| # XCP on CAN usage with INCA {#xcp-on-can-usage-with-inca-1 .p_Heading1 style="page-break-after: avoid;"}            |                                                                                                                    |
++----------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
+
+This page provides a step-by-step procedure for using the INCA tool as a master for performing measurement and calibration by importing an A2L file using CAN as the transport layer.
+
+Used tool version: V7.2.
+
+Prerequisite: ECU flashed and running.
+
+1\. Open INCA.
+
+2\. Menu -\> Database -\> New.
+
+ 
+
+  [![i1_zoom75](i1_zoom75.png){#toggle0186a1 .image-toggle style="width:3.7396in;height:2.0208in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i1.png){.imagetogglelink style="margin:0;width:3.7396in;height:2.0208in"}
+
+ 
+
+ 
+
+3\. Enter database name -\> Right click on \"Default\" under \"Database objects\" -\> Click on \"Add\" -\> Select \"Workspace\"\[Ctrl+W\].
+
+ 
+
+  [![i4_zoom69](i4_zoom69.png){#toggle0186a2 .image-toggle style="width:3.6875in;height:2.4688in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i4.png){.imagetogglelink style="margin:0;width:3.6875in;height:2.4688in"}
+
+ 
+
+4\. Enter workspace name -\> Click \"OK\". The workspace is created \[e.g., Example_ws\].
+
+ 
+
+  [![i5_zoom74](i5_zoom74.png){#toggle0186a3 .image-toggle style="width:3.7604in;height:2.2396in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i5.png){.imagetogglelink style="margin:0;width:3.7604in;height:2.2396in"}
+
+ 
+
+5\. Right click on the workspace created \[e.g., Example_ws\] -\> Click on \"Add\" -\> Select \"Experiment\" \[Ctrl+T\].
+
+ 
+
+  [![i6_zoom71](i6_zoom71.png){#toggle0186a4 .image-toggle style="width:3.8229in;height:3.3750in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i6.png){.imagetogglelink style="margin:0;width:3.8229in;height:3.3750in"}
+
+ 
+
+6\. Enter experiment name -\> Click \"OK\". The experiment is created.
+
+ 
+
+  [![i7_zoom71](i7_zoom71.png){#toggle0186a5 .image-toggle style="width:3.7292in;height:3.3333in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i7.png){.imagetogglelink style="margin:0;width:3.7292in;height:3.3333in"}  
+
+ 
+
+7\. Right click on the workspace created \[e.g., Example_ws\] -\> Click on \"Add\" -\> Select \"ECU Project(A2L)\" \[ Ctrl+P \].
+
+ 
+
+  [![i8_zoom73](i8_zoom73.png){#toggle0186a6 .image-toggle style="width:3.7813in;height:2.8021in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i8.png){.imagetogglelink style="margin:0;width:3.7813in;height:2.8021in"}
+
+ 
+
+8\. Browse to select a2l file -\> Click \"OPEN\" -\> a window for selecting the hex file will open. Since we have already flashed the hex file close the window.  a2l file is added.
+
+   
+
+  [![i9_zoom55](i9_zoom55.png){#toggle0186a7 .image-toggle style="width:3.8333in;height:2.6563in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i9.png){.imagetogglelink style="margin:0;width:3.8333in;height:2.6563in"} [![i10_zoom38](i10_zoom38.png){#toggle0186a8 .image-toggle style="width:2.6354in;height:2.0938in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i10.png){.imagetogglelink style="margin:0;width:2.6354in;height:2.0938in"} [![i11_zoom44](i11_zoom44.png){#toggle0186a9 .image-toggle style="width:2.2188in;height:2.1042in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i11.png){.imagetogglelink style="margin:0;width:2.2188in;height:2.1042in"}
+
+ 
+
+9\. Click on the \"Hardware Configuration\" icon.
+
+     
+
+    [![i12_zoom70](i12_zoom70.png){#toggle0186aa .image-toggle style="width:3.7396in;height:3.1563in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i12.png){.imagetogglelink style="margin:0;width:3.7396in;height:3.1563in"}
+
+ 
+
+10\. The Hardware devices window opens -\> Click on the search icon -\> In the drop down list, click \"OK\".
+
+ 
+
+      [![i13_zoom79](i13_zoom79.png){#toggle0186ab .image-toggle style="width:3.7188in;height:1.9896in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i13.png){.imagetogglelink style="margin:0;width:3.7188in;height:1.9896in"}   [![i14_zoom39](i14_zoom39.png){#toggle0186ac .image-toggle style="width:1.9583in;height:2.0208in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i14.png){.imagetogglelink style="margin:0;width:1.9583in;height:2.0208in"}  
+
+ 
+
+11\. If the message \"No connected hardware found\" is received -\> click \"OK\"  -\> Click on the \"Add\" icon -\> Select the hardware device -\> Click on \"OK\".
+
+ 
+
+    [![i15_zoom87](i15_zoom87.png){#toggle0186ad .image-toggle style="width:2.8854in;height:2.6458in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i15.png){.imagetogglelink style="margin:0;width:2.8854in;height:2.6458in"} [![i16_zoom59](i16_zoom59.png){#toggle0186ae .image-toggle style="width:2.6146in;height:1.5625in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i16.png){.imagetogglelink style="margin:0;width:2.6146in;height:1.5625in"}   [![i17_zoom54](i17_zoom54.png){#toggle0186af .image-toggle style="width:2.1458in;height:2.7083in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i17.png){.imagetogglelink style="margin:0;width:2.1458in;height:2.7083in"}
+
+ 
+
+12\. The \"Select project and working data for XCP\" window opens -\> Select the project -\> click \"OK\".
+
+ 
+
+    [![i18_edited_zoom27](i18_edited_zoom27.png){#toggle0186b0 .image-toggle style="width:1.6979in;height:1.1458in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i18_edited.png){.imagetogglelink style="margin:0;width:1.6979in;height:1.1458in"}     [![i19_zoom31](i19_zoom31.png){#toggle0186b1 .image-toggle style="width:2.0104in;height:1.8229in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i19.png){.imagetogglelink style="margin:0;width:2.0104in;height:1.8229in"}
+
+ 
+
+13\. The  \"Transport Layer Instance\" window opens -\> Select \"Calibration CAN(APPL)\" -\> Click \"OK\".
+
+     
+
+    [![i20_zoom39](i20_zoom39.png){#toggle0186b2 .image-toggle style="width:2.9688in;height:1.6250in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i20.png){.imagetogglelink style="margin:0;width:2.9688in;height:1.6250in"}
+
+     
+
+ 
+
+14\. Under XCP, some options are configurable(e.g., Meas. failure behavior, Connection behavior, Check memory pages at initialization) -\> Select the suitable option.
+
+[![i21_zoom52](i21_zoom52.png){#toggle0186b3 .image-toggle style="width:3.7500in;height:2.1354in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i21.png){.imagetogglelink style="margin:0;width:3.7500in;height:2.1354in"}   [![i22_edited_zoom30](i22_edited_zoom30.png){#toggle0186b4 .image-toggle style="width:2.1875in;height:0.5938in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i22_edited.png){.imagetogglelink style="margin:0;width:2.1875in;height:0.5938in"}   [![i23_edited_zoom30](i23_edited_zoom30.png){#toggle0186b5 .image-toggle style="width:3.0313in;height:1.2188in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i23_edited.png){.imagetogglelink style="margin:0;width:3.0313in;height:1.2188in"}
+
+ 
+
+15\. Click \"Apply\".
+
+ 
+
+    [![i24_zoom35](i24_zoom35.png){#toggle0186b6 .image-toggle style="width:3.7708in;height:2.5104in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i24.png){.imagetogglelink style="margin:0;width:3.7708in;height:2.5104in"}
+
+ 
+
+16\. Click on \"Initialize Hardware\" icon.
+
+ 
+
+    [![i25_zoom54](i25_zoom54.png){#toggle0186b7 .image-toggle style="width:3.7396in;height:2.1146in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i25.png){.imagetogglelink style="margin:0;width:3.7396in;height:2.1146in"}
+
+ 
+
+17\. The \"Connect Devices\" window opens -\> Click \"OK\" -\> ECU access is turned ON.
+
+ 
+
+      [![i26_zoom50](i26_zoom50.png){#toggle0186b8 .image-toggle style="width:3.7292in;height:2.0833in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i26.png){.imagetogglelink style="margin:0;width:3.7292in;height:2.0833in"}       [![i27_zoom50](i27_zoom50.png){#toggle0186b9 .image-toggle style="width:3.3958in;height:2.1042in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i27.png){.imagetogglelink style="margin:0;width:3.3958in;height:2.1042in"}
+
+ 
+
+18\. The \"memory pages\" window opens -\> Select \"working page\" and click on \"Do it\" -\> This opens a new working page for measuring variables. The \"Confirm - Hardware configuration\" dialog box appears -\> Click on \"YES\".
+
+       
+
+      [![i28_zoom50](i28_zoom50.png){#toggle0186ba .image-toggle style="width:3.7604in;height:2.8958in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i28.png){.imagetogglelink style="margin:0;width:3.7604in;height:2.8958in"}     [![i29_zoom48](i29_zoom48.png){#toggle0186bb .image-toggle style="width:3.8958in;height:2.9063in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i29.png){.imagetogglelink style="margin:0;width:3.8958in;height:2.9063in"}
+
+             
+
+ 
+
+19\. Write a name for the new working data -\> Click \"OK\".
+
+ 
+
+    [![i30_edited_zoom53](i30_edited_zoom53.png){#toggle0186bc .image-toggle style="width:2.2188in;height:1.9688in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i30_edited.png){.imagetogglelink style="margin:0;width:2.2188in;height:1.9688in"}
+
+ 
+
+20\. Click on the \"Experiment Environment\" icon.
+
+ 
+
+    [![i31_zoom63](i31_zoom63.png){#toggle0186bd .image-toggle style="width:3.9375in;height:2.5208in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i31.png){.imagetogglelink style="margin:0;width:3.9375in;height:2.5208in"}
+
+     
+
+21\. Once the working page opens -\> click on \"variable selection\" \[ Shift+F4 \].
+
+ 
+
+    [![i32_zoom91](i32_zoom91.png){#toggle0186be .image-toggle style="width:3.8750in;height:3.6875in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i32.png){.imagetogglelink style="margin:0;width:3.8750in;height:3.6875in"}
+
+ 
+
+22\. The \"Variable Selection\" window opens -\> Select the variable to be measured or calibrated -\> Click \"OK\".
+
+ 
+
+    [![i33_zoom51](i33_zoom51.png){#toggle0186bf .image-toggle style="width:3.9271in;height:2.7604in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i33.png){.imagetogglelink style="margin:0;width:3.9271in;height:2.7604in"}     [![i34_zoom51](i34_zoom51.png){#toggle0186c0 .image-toggle style="width:3.8125in;height:2.7500in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i34.png){.imagetogglelink style="margin:0;width:3.8125in;height:2.7500in"}
+
+ 
+
+23\. A table opens with all the measurement variables selected or a calibration table opens with all the calibration variables selected depending on the type of variables selected. Values of variables can be measured or calibrated.
+
+ 
+
+    [![i36_zoom55](i36_zoom55.png){#toggle0186c1 .image-toggle style="width:2.8542in;height:2.3333in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i36.png){.imagetogglelink style="margin:0;width:2.8542in;height:2.3333in"} [![i35_edited_zoom58](i35_edited_zoom58.png){#toggle0186c2 .image-toggle style="width:2.3125in;height:1.1146in;border:none"}![](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=){.image-toggle-magnifier}](i35_edited.png){.imagetogglelink style="margin:0;width:2.3125in;height:1.1146in"}
+
+ 
+
+24\. Finally, save the configuration.
+
+ 
+
+ 
+
+   
+
+     
+
+ 
+
+ 
+
+     
+
+ 

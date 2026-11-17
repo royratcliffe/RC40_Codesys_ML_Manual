@@ -1,0 +1,13 @@
+# Memory {#memory .p_Heading1 style="page-break-after: avoid;"}
+
++:-------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> | [](bsw.html "Previous Topic") [](bsw.html "Parent Chapter") [](memory-layout.html "Next Topic") |
+|                                                                                |                                                                                                 |
+| # Memory {#memory-1 .p_Heading1 style="page-break-after: avoid;"}              |                                                                                                 |
++--------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------+
+
+This section documents the data storage concepts of the RC (e.g., storage of non-volatile data).
+
+## References {#references .p_Heading2 style="page-break-after: avoid;"}
+
+- The corresponding BSW API is documented in chapter Memory API.

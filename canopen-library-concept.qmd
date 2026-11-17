@@ -1,0 +1,185 @@
+# CANopen library concept {#canopen-library-concept .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> | [](sdo-in-canopen-lib.html "Previous Topic") [](rc40-canopen-library.html "Parent Chapter") [](canopen-safety---srdo-and-gfc.html "Next Topic") |
+|                                                                                                                                                                                                                                     |                                                                                                                                                 |
+| # CANopen library concept {#canopen-library-concept-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                 |                                                                                                                                                 |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+
+## CANopen library highlights {#canopen-library-highlights .p_Heading2 style="page-break-after: avoid;"}
+
+ 
+
+ 
+
+- The CANopen library is designed as a pure CODESYS library that implements the functionality of base profile CiA-301 and CiA-302.
+
+ 
+
+- Necessary objects as per CiA-301 and CiA-302 are implemented and maintained by the BSW CANopen library. These are mainly communication objects related to features supported by this library.
+
+- Features supported by the CANopen library are implemented such that major functionality of a feature is already handled by this library, the callback is provided wherever ASW Interface is required and wherever ASW needs to be notified about events.
+
+- As per the principle of CiA specification, features are enabled and disabled through communication objects.
+
+- ASW can access all the communication objects supported by this library through API\'s. Refer to bds_canopen_sdoWriteLocal and bds_canopen_sdoReadLocal
+
+- ASW can implement necessary device/application profile functionality using API\'s provided by the CANopen library.
+
+- The CANopen library also provides mechanisms for extending the object dictionary. ASW can add objects in the manufacture-specific range (0x2000 to 0x5FFF) and the device profile range (0x6000 to 0x9FFF) with these mechanisms.
+
+- The CANopen library does not support NVM storage and restore functionality of the object dictionary. It provides necessary objects, API\'s and callbacks needed to realize storage functionality for the object dictionary. Demo files are delivered. These can be integrated into an ASW project to realize this functionality. Demo files can be adapted based on ASW needs. Refer to section [NVM storage support for CANopen Objects](nvm-storage-support-for-canope.html){.topiclink}.
+
+## CANopen Integration {#canopen-integration .p_Heading2 style="page-break-after: avoid;"}
+
+## The CANopen library will be an optional library delivered with the RC40 BSW package as a standalone library. In the context of RC40 BSW software, standalone library means by default CANopen is not coupled to RC40 CAN layers and RC40 OS tasks. So, ASW has to link CANopen to CAN legacy modules and task systems. {#the-canopen-library-will-be-an-optional-library-delivered-with-the-rc40-bsw-package-as-a-standalone-library.-in-the-context-of-rc40-bsw-software-standalone-library-means-by-default-canopen-is-not-coupled-to-rc40-can-layers-and-rc40-os-tasks.-so-asw-has-to-link-canopen-to-can-legacy-modules-and-task-systems. .p_Heading2 style="page-break-after: avoid;"}
+
+ 
+
+## 1. CAN Interfacing {#can-interfacing .p_Heading2 style="page-break-after: avoid;"}
+
+For receive: The CANopen library implements a function which can be called whenever a new message is received on CAN.
+
+For transmit: The CANopen library implements a callback mechanism, this callback will be called whenever the CANopen library needs to send any message over CAN. The callback should be registered by an application before initializing the CANopen library.
+
+ 
+
+- The ASW shall configure and initialize the CAN channel, on which CANopen shall be used, as a legacy CAN channel.
+
+- The ASW shall decide any three CAN channel among bds_can_Chnl_te which has to be configured for CANopen.
+
+- The ASW shall set the desired baud rate of the CAN channel.
+
+- The ASW shall register a callback using bds_can_registerRxCallback API, (a data box is not preferred, because the ASW would have to be aware of CAN ID\'s used inside CANopen)
+
+- The CANopen receive function bds_canopen_rxMsgProcess shall be called with the necessary arguments in the CAN legacy callback configured in the previous step.
+
+- The ASW shall register a callback using bds_canopen_regSendCanCbk API.
+
+- The CAN legacy send function bds_can_sendData shall be called with necessary arguments in the send callback function configured in the previous step.
+
+ 
+
+## 2. OS task Interfacing {#os-task-interfacing .p_Heading2 style="page-break-after: avoid;"}
+
+- bds_canopen_timerIncFunc should be called in the application 1ms task.
+
+- bds_canopen_protocolExec should be called in the application Idle/refresh task.
+
+## []{#multiplecanopeninstances .hmanchor}Multiple CANopen instances {#multiple-canopen-instances .p_Heading2 style="page-break-after: avoid;"}
+
+ 
+
+1\. Maximum supported instance: Maximum three instance are supported.
+
+2\. Instance Limitation: Only one instance of CANopen is supported per CAN channel.
+
+3\. Simultaneous Operation: Up to three CAN channels can have CANopen enabled at the same time. These channels can be selected using the bds_can_Chnl_te parameter.
+
+4\. Channel Addressing: Each CANopen instance is identified by its corresponding CAN channel. The API supports the parameter bds_can_Chnl_te canChnl_e.
+
+5\. Default State: All CANopen instances are disabled by default.
+
+6\. Initialization: CANopen will be enabled on the CAN channel that is initialized using the API bds_canopen_initComm/ and operational using API bds_canopen_start.
+
+7\. Error Handling: If the ASW attempts to configure CANopen on a fourth CAN channel after configuring three channels, an invalid channel error will occur.
+
+8\. Communication Objects: Each CANopen channel implements its own set of communication objects.
+
+9\. Role Assignment: Different NMT and LSS roles can be assigned to each CANopen channel using the API bds_canopen_setRole.
+
+10\. Node-ID Configuration: Each CANopen channel has its own Node-ID, which can be configured using the API bds_canopen_setNodeId.
+
+11\. Object Dictionary: Each CANopen channel allows ASW to add a dedicated object dictionary using the API bds_canopen_regApplObjects.
+
+ 
+
++--------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"} | When the Application Software (ASW) enables multiple channels for CANopen, it is crucial to set the Node-ID for each channel using the bds_canopen_setNodeId API prior to invoking any other APIs. This requirement is due to a limitation in the design of the CANopen library. |
+|                                                                                |                                                                                                                                                                                                                                                                                  |
+|                                                                                |                                                                                                                                                                                                                                                                                  |
+|                                                                                |                                                                                                                                                                                                                                                                                  |
+|                                                                                | Failure to follow this sequence may lead to improper configuration and initialization of the CANopen channels. Therefore, ensure that all Node-IDs are set for each channel before proceeding with the initialization of any channel.                                            |
++--------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+ 
+
+ 
+
+## Object Dictionary and Profiles {#object-dictionary-and-profiles .p_Heading2 style="page-break-after: avoid;"}
+
+ 
+
+- The CANopen library implements CiA-301 and related communication objects. Refer [Features Supported](supported-features.html){.topiclink} and [RC40 CANopen Communication objects](rc40-canopen-communication-obj.html){.topiclink}.
+
+- CANopen device profiles DS-4xx are not in the scope of the CANopen library and should be implemented by ASW.
+
+- The CANopen library provides the mechanism for extending the object dictionary by ASW.
+
+- ASW can add new objects in both the manufacturer range (0x2000 to 0x5FFF) and the device profile range (0x6000 to 0x9FFF).
+
+- ASW can access communication objects using the API bds_canopen_sdoWriteLocal and bds_canopen_sdoReadLocal.
+
+ 
+
+## Extending object dictionary with ASW objects {#extending-object-dictionary-with-asw-objects .p_Heading2 style="page-break-after: avoid;"}
+
+ASW can extend the object dictionary by adding ASW related objects in both manufacturer range (0x2000 to 0x5FFF) and device profile range (0x6000 to 0x9FFF) using the below mechanism.
+
+ 
+
+1\. The ASW creates an object structure table/list of type bds_canopen_objtype_ts.
+
+2\. This structure table/list is then registered using the API bds_canopen_regApplObjects so that it can be accessed by the CANopen library.
+
+ 
+
+Typical object structure table in a readable format with sample objects:
+
+ 
+
++--------+-----------------+-------+------------------------+--------------------------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------+
+| Index  | No of Sub-index | Sub-  | Data                   | Default                  | Size     | Object Data Type                                                                                                                                                                                 | Object Attributes                         |
+|        |                 |       |                        |                          |          |                                                                                                                                                                                                  |                                           |
+|        |                 | Index | Reference              | Value                    | in Bytes |                                                                                                                                                                                                  |                                           |
+|        |                 |       |                        |                          |          +--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+-------+--------+-------+-------+----------+
+|        |                 |       |                        |                          |          | bool         | u8           | u16          | u24          | u32          | u40          | u48          | u56          | u64          | i16          | i32          | i64          | Str          | Const | Number | Read  | Write | PDO/SRDO |
+|        |                 |       |                        |                          |          |              |              |              |              |              |              |              |              |              |              |              |              |              |       |        |       |       |          |
+|        |                 |       |                        |                          |          |              |              |              |              |              |              |              |              |              |              |              |              |              |       |        |       |       | Mapping  |
++========+=================+=======+========================+==========================+==========+==============+==============+==============+==============+==============+==============+==============+==============+==============+==============+==============+==============+==============+=======+========+=======+=======+==========+
+| 0x2000 | 1               | 0     | appl_obj_2000_u8       | appl_obj_2000_Defval_u8  | 1        |              | \*           |              |              |              |              |              |              |              |              |              |              |              |       | \*     | \*    | \*    | \*       |
++--------+-----------------+-------+------------------------+--------------------------+----------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+-------+--------+-------+-------+----------+
+| 0x2002 | 3               | 0     | appl_obj_2002_au8\[0\] | appl_obj_2002_Defval_u8  | 1        |              | \*           |              |              |              |              |              |              |              |              |              |              |              |       | \*     | \*    | \*    |          |
+|        |                 +-------+------------------------+--------------------------+----------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+-------+--------+-------+-------+----------+
+|        |                 | 1     | appl_obj_2002_au8\[1\] | appl_obj_2002_Defval_u8  | 1        |              | \*           |              |              |              |              |              |              |              |              |              |              |              |       | \*     | \*    | \*    |          |
+|        |                 +-------+------------------------+--------------------------+----------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+-------+--------+-------+-------+----------+
+|        |                 | 2     | appl_obj_2002_au8\[2\] | appl_obj_2002_Defval_u8  | 1        |              | \*           |              |              |              |              |              |              |              |              |              |              |              |       | \*     | \*    | \*    |          |
++--------+-----------------+-------+------------------------+--------------------------+----------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+-------+--------+-------+-------+----------+
+| 0x2034 | 1               | 0     | appl_obj_2034_s32      | appl_obj_2034_Defval_s32 | 4        |              |              |              |              |              |              |              |              |              |              | \*           |              |              |       | \*     | \*    | \*    | \*       |
++--------+-----------------+-------+------------------------+--------------------------+----------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+-------+--------+-------+-------+----------+
+
+ 
+
++--------------------------------------------------------------------------------+-----------------------------------------------------------------+
+| ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"} | •Only objects of type VARIABLE and ARRAY are supported for ASW. |
+|                                                                                |                                                                 |
+|                                                                                | •Objects of type RECORD are not supported for ASW.              |
++--------------------------------------------------------------------------------+-----------------------------------------------------------------+
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 

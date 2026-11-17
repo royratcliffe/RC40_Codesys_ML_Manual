@@ -1,0 +1,11 @@
+# Diagnostics services (UDS) in Bootloader {#diagnostics-services-uds-in-bootloader .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [Bootloader](bootloader.html) \>                                        | [](can-fd-in-cb-me.html "Previous Topic") [](bootloader.html "Parent Chapter") [](accessible-dids.html "Next Topic") |
+|                                                                                                                                     |                                                                                                                      |
+| # Diagnostics services (UDS) in Bootloader {#diagnostics-services-uds-in-bootloader-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                      |
++-------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------+
+
+This chapter provides an overview of the Unified Diagnostic Services (UDS) implemented within the Bootloader environment based on the ISO 14229-1.
+
+It outlines the supported UDS services, the security levels governing access to these services and all the accessible Data Identifiers (DIDs), including their session and security prerequisites.

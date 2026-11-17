@@ -1,0 +1,38 @@
+# SW architecture overview {#sw-architecture-overview .p_Heading1 style="page-break-after: avoid;"}
+
++:-------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [SW architecture](sw-architecture.html) \> | [](sw-architecture.html "Previous Topic") [](sw-architecture.html "Parent Chapter") [](functional-overview-bsw.html "Next Topic") |
+|                                                                                                        |                                                                                                                                   |
+| # SW architecture overview {#sw-architecture-overview-1 .p_Heading1 style="page-break-after: avoid;"}  |                                                                                                                                   |
++--------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
+
+On the topmost level the SW running on the RC is structured as follows:
+
+<figure style="margin:0;padding:0">
+<img src="hmfile_hash_3cec047e.png" title="Figure 29: Software architecture overview" id="fig168afda2" style="width:8.4271in;height:7.7813in;border:none" alt="Figure 29: Software architecture overview" />
+<figcaption aria-hidden="true"><p>Figure 29: Software architecture overview</p></figcaption>
+</figure>
+
+ 
+
+From a high level view, the RC SW architecture consists of the following parts:
+
+oThe application software (ASW)
+
+oThe basic software (BSW) consisting of:
+
+§The Rexroth BSW and BODAS Driver library (BDL) providing RC specific functionality and the C-Api for the ASW
+
+§A common Bosch Basic SW (based on an AUTOSAR stack) providing basic drivers and infrastructure
+
+§The CODESYS runtime (optionally for CODESYS enabled RCs)
+
+oA separate boot-application consisting of:
+
+§A common Rexroth bootloader (CB-ME: Customer Bootloader - Mobile Electronics)
+
+§Optional: a customer bootloader connected via the CLAPI
+
+ 
+
+ 

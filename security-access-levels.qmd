@@ -1,0 +1,117 @@
+# Security access levels {#security-access-levels .p_Heading1 style="page-break-after: avoid;"}
+
++:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Diagnostic services (UDS)](diagnostic-services.html) \> [UDS customer tool](uds-customer-tool.html) \> | [](uds-customer-tool.html "Previous Topic") [](uds-customer-tool.html "Parent Chapter") [](sid---communicationcontrol-(0x28).html "Next Topic") |
+|                                                                                                                                                                                        |                                                                                                                                                 |
+| # Security access levels {#security-access-levels-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                      |                                                                                                                                                 |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This topic explains the callbacks for the customer security levels.
+
+## Remarks: {#remarks .p_Heading2 style="page-break-after: avoid;"}
+
+- Refer the below table for the callbacks to implement the seed and key algorithm with respect to the security levels.
+
+- These security levels can be mapped with application defined parameters and access the permitted [UDS services](supported-uds-services.html){.topiclink}.
+
+- For an overview of the Diagnostic Authentication concept, which includes security access levels, refer to the section titled [Diagnostic Authentication](diagnostic-authentication.html){.topiclink}.
+
+- The Addition and deletion of the security levels is supported in the eC tool.
+
+- By default only two customer levels are configured in the eC tool as a reference for the user to configure other required levels. Only 10 Levels can be configured in the eC tool by the user.
+
+   i.e: Level 1 - 10 can be configured in the eC tool.
+
+- If the BODAS Security Manager is selected for the security levels then the BSW will handle the seed and the key negotiation. The Size of the Seed and the Key is fixed to 16 bytes.
+
+- The callbacks for the seed and the key for the security levels will be available only if the BODAS security manager is not selected in the eC tool.
+
+   i.e: BODAS Security Manager is not selected.
+
+- The Size of the Seed and the Key can be configured by the user in the eC tool only if the BODAS security manager is not selected in the eC tool.
+
+- Delay time of 10 seconds is activated when a Wrong Key is entered or sent in Send Key Request. Tried to request for security access within this Delay time(i.e 10 seconds) negative response is sent from ECU with NRC 0x37.
+
+- Three consecutive failure attempts of security access due to Wrong Key or Wrong Password security level is locked respectively.Requested for security level after security level is locked we get negative response with NRC 0x36.
+
+- ECU will not accept the key for the seed request from the Tester for all security levels after the time period of 20 seconds and negative response is sent after the time period of 20 seconds from ECU with NRC 0x24.
+
+Note: Refer bds_diag_appl_adapt.c for actual function prototypes.
+
+ 
+
++-----------------------+-----------------------------------------------------------+------------------------------------------------------------------+
+| Security Level        | Callbacks for getting seed and send key                   | CAN request format to get seed and send Key                      |
++=======================+===========================================================+==================================================================+
+| Application Level 1   | If BODAS Security Manager is not selected in eC tool:     |   ------------------------------ ------------------------------- |
+|                       |                                                           |   Request seed (Tool)            0x27 0x01                       |
+|                       | \- seed : bds_uds_getSeed bds_uds_getSeed bds_uds_getSeed |   Positive response (from ECU)   0x67 0x01 \<16 bytes seed\>     |
+|                       |                                                           |   Send key (Tool)                0x27 0x02 \<16 bytes of key\>   |
+|                       | \- key : bds_uds_evalKey bds_uds_evalKey bds_uds_evalKey  |   Positive response (from ECU)   0x67 0x02                       |
+|                       |                                                           |   ------------------------------ ------------------------------- |
++-----------------------+-----------------------------------------------------------+------------------------------------------------------------------+
+| Application Level 2   | If BODAS Security Manager is not selected in eC tool:     |   ------------------------------ ------------------------------- |
+|                       |                                                           |   Request seed (Tool)            0x27 0x03                       |
+|                       | \- seed : bds_uds_getSeed bds_uds_getSeed bds_uds_getSeed |   Positive response (from ECU)   0x67 0x03 \<16 bytes seed\>     |
+|                       |                                                           |   Send key (Tool)                0x27 0x04 \<16 bytes of key\>   |
+|                       | \- key : bds_uds_evalKey bds_uds_evalKey bds_uds_evalKey  |   Positive response (from ECU)   0x67 0x04                       |
+|                       |                                                           |   ------------------------------ ------------------------------- |
++-----------------------+-----------------------------------------------------------+------------------------------------------------------------------+
+| Application Level 3   | If BODAS Security Manager is not selected in eC tool:     |   ------------------------------ ------------------------------- |
+|                       |                                                           |   Request seed (Tool)            0x27 0x05                       |
+|                       | \- seed : bds_uds_getSeed bds_uds_getSeed bds_uds_getSeed |   Positive response (from ECU)   0x67 0x05 \<16 bytes seed\>     |
+|                       |                                                           |   Send key (Tool)                0x27 0x06 \<16 bytes of key\>   |
+|                       | \- key : bds_uds_evalKey bds_uds_evalKey bds_uds_evalKey  |   Positive response (from ECU)   0x67 0x06                       |
+|                       |                                                           |   ------------------------------ ------------------------------- |
++-----------------------+-----------------------------------------------------------+------------------------------------------------------------------+
+| Application Level 4   | If BODAS Security Manager is not selected in eC tool:     |   ------------------------------ ------------------------------- |
+|                       |                                                           |   Request seed (Tool)            0x27 0x07                       |
+|                       | \- seed : bds_uds_getSeed bds_uds_getSeed bds_uds_getSeed |   Positive response (from ECU)   0x67 0x07 \<16 bytes seed\>     |
+|                       |                                                           |   Send key (Tool)                0x27 0x08 \<16 bytes of key\>   |
+|                       | \- key : bds_uds_evalKey bds_uds_evalKey bds_uds_evalKey  |   Positive response (from ECU)   0x67 0x08                       |
+|                       |                                                           |   ------------------------------ ------------------------------- |
++-----------------------+-----------------------------------------------------------+------------------------------------------------------------------+
+| Application Level 5   | If BODAS Security Manager is not selected in eC tool:     |   ------------------------------ ------------------------------- |
+|                       |                                                           |   Request seed (Tool)            0x27 0x09                       |
+|                       | \- seed : bds_uds_getSeed bds_uds_getSeed bds_uds_getSeed |   Positive response (from ECU)   0x67 0x09 \<16 bytes seed\>     |
+|                       |                                                           |   Send key (Tool)                0x27 0x0A \<16 bytes of key\>   |
+|                       | \- key : bds_uds_evalKey bds_uds_evalKey bds_uds_evalKey  |   Positive response (from ECU)   0x67 0x0A                       |
+|                       |                                                           |   ------------------------------ ------------------------------- |
++-----------------------+-----------------------------------------------------------+------------------------------------------------------------------+
+| Application Level 6   | If BODAS Security Manager is not selected in eC tool:     |   ------------------------------ ------------------------------- |
+|                       |                                                           |   Request seed (Tool)            0x27 0x0B                       |
+|                       | \- seed : bds_uds_getSeed bds_uds_getSeed bds_uds_getSeed |   Positive response (from ECU)   0x67 0x0B \<16 bytes seed\>     |
+|                       |                                                           |   Send key (Tool)                0x27 0x0C \<16 bytes of key\>   |
+|                       | \- key : bds_uds_evalKey bds_uds_evalKey bds_uds_evalKey  |   Positive response (from ECU)   0x67 0x0C                       |
+|                       |                                                           |   ------------------------------ ------------------------------- |
++-----------------------+-----------------------------------------------------------+------------------------------------------------------------------+
+| Application Level 7   | If BODAS Security Manager is not selected in eC tool:     |   ------------------------------ ------------------------------- |
+|                       |                                                           |   Request seed (Tool)            0x27 0x0D                       |
+|                       | \- seed : bds_uds_getSeed bds_uds_getSeed bds_uds_getSeed |   Positive response (from ECU)   0x67 0x0D \<16 bytes seed\>     |
+|                       |                                                           |   Send key (Tool)                0x27 0x0E \<16 bytes of key\>   |
+|                       | \- key : bds_uds_evalKey bds_uds_evalKey bds_uds_evalKey  |   Positive response (from ECU)   0x67 0x0E                       |
+|                       |                                                           |   ------------------------------ ------------------------------- |
++-----------------------+-----------------------------------------------------------+------------------------------------------------------------------+
+| Application Level 8   | If BODAS Security Manager is not selected in eC tool:     |   ------------------------------ ------------------------------- |
+|                       |                                                           |   Request seed (Tool)            0x27 0x0F                       |
+|                       | \- seed : bds_uds_getSeed bds_uds_getSeed bds_uds_getSeed |   Positive response (from ECU)   0x67 0x0F \<16 bytes seed\>     |
+|                       |                                                           |   Send key (Tool)                0x27 0x10 \<16 bytes of key\>   |
+|                       | \- key : bds_uds_evalKey bds_uds_evalKey bds_uds_evalKey  |   Positive response (from ECU)   0x67 0x10                       |
+|                       |                                                           |   ------------------------------ ------------------------------- |
++-----------------------+-----------------------------------------------------------+------------------------------------------------------------------+
+| Application Level 9   | If BODAS Security Manager is not selected in eC tool:     |   ------------------------------ ------------------------------- |
+|                       |                                                           |   Request seed (Tool)            0x27 0x11                       |
+|                       | \- seed : bds_uds_getSeed bds_uds_getSeed bds_uds_getSeed |   Positive response (from ECU)   0x67 0x11 \<16 bytes seed\>     |
+|                       |                                                           |   Send key (Tool)                0x27 0x12 \<16 bytes of key\>   |
+|                       | \- key : bds_uds_evalKey bds_uds_evalKey bds_uds_evalKey  |   Positive response (from ECU)   0x67 0x12                       |
+|                       |                                                           |   ------------------------------ ------------------------------- |
++-----------------------+-----------------------------------------------------------+------------------------------------------------------------------+
+| Application Level 10  | If BODAS Security Manager is not selected in eC tool:     |   ------------------------------ ------------------------------- |
+|                       |                                                           |   Request seed (Tool)            0x27 0x13                       |
+|                       | \- seed : bds_uds_getSeed bds_uds_getSeed bds_uds_getSeed |   Positive response (from ECU)   0x67 0x13 \<16 bytes seed\>     |
+|                       |                                                           |   Send key (Tool)                0x27 0x14 \<16 bytes of key\>   |
+|                       | \- key : bds_uds_evalKey bds_uds_evalKey bds_uds_evalKey  |   Positive response (from ECU)   0x67 0x14                       |
+|                       |                                                           |   ------------------------------ ------------------------------- |
++-----------------------+-----------------------------------------------------------+------------------------------------------------------------------+
+
+ 

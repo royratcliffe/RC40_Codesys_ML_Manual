@@ -1,0 +1,124 @@
+# NVM block description {#nvm-block-description .p_Heading1 style="page-break-after: avoid;"}
+
++:-------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Memory](memory.html) \> [NVM management](nvm-management.html) \> | [](javascript:HMToggleExpandAll(!HMAnyToggleOpen()) "Click to open/close expanding sections") [](nvm-block-access.html "Previous Topic") [](nvm-management.html "Parent Chapter") [](nvm-block-restoration.html "Next Topic") |
+|                                                                                                                                                  |                                                                                                                                                                                                                               |
+| # NVM block description {#nvm-block-description-1 .p_Heading1 style="page-break-after: avoid;"}                                                  |                                                                                                                                                                                                                               |
++--------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+ 
+
+The following tables shows all available NVM blocks which can be used by the application.
+
+![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a1_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [FFI](javascript:HMToggle('toggle','toggle0186a1','toggle0186a1_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"}
+
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  NVM blocks of ID bds_mem_nvmBlock76_512_N_D, bds_mem_nvmBlock77_1024_N_D, bds_mem_nvmBlock78_1024_N_D and bds_mem_nvmBlock79_1024_N_D can be read/written/marked for writing by using \_ffi APIs for NVM when used in untrusted partition.
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ 
+
+ 
+
+  ----------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  ![Notice_RGB 39-153-209](hmfile_hash_c5013a84.png){style="margin:0;width:1.4792in;height:0.2813in;border:none"}   DFlash cells of the NVM have limited number of write cycles. The bds_mem_writeBlock function always stores all bytes of this block in the NVM independent on the real changed data. Therefore Data which are written more often should be located in blocks that are as small as possible.
+  ----------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+  ----------------------------- ----------------- ------------ --------------
+  NVM block ID                  Size (in bytes)   Block type   Block Number
+  bds_mem_nvmBlock01_512_R_D    512               redundant    1
+  bds_mem_nvmBlock02_512_R_D    512               redundant    2
+  bds_mem_nvmBlock03_512_R_D    512               redundant    3
+  bds_mem_nvmBlock04_512_R_D    512               redundant    4
+  bds_mem_nvmBlock05_256_R_D    256               redundant    5
+  bds_mem_nvmBlock06_256_R_D    256               redundant    6
+  bds_mem_nvmBlock07_256_R_D    256               redundant    7
+  bds_mem_nvmBlock08_256_R_D    256               redundant    8
+  bds_mem_nvmBlock09_256_R_D    256               redundant    9
+  bds_mem_nvmBlock10_256_R_D    256               redundant    10
+  bds_mem_nvmBlock11_256_R_D    256               redundant    11
+  bds_mem_nvmBlock12_256_R_D    256               redundant    12
+  bds_mem_nvmBlock13_128_R_D    128               redundant    13
+  bds_mem_nvmBlock14_128_R_D    128               redundant    14
+  bds_mem_nvmBlock15_128_R_D    128               redundant    15
+  bds_mem_nvmBlock16_128_R_D    128               redundant    16
+  bds_mem_nvmBlock17_32_R_D     32                redundant    17
+  bds_mem_nvmBlock18_32_R_D     32                redundant    18
+  bds_mem_nvmBlock19_512_N_D    512               native       19
+  bds_mem_nvmBlock20_512_N_D    512               native       20
+  bds_mem_nvmBlock21_512_N_D    512               native       21
+  bds_mem_nvmBlock22_512_N_D    512               native       22
+  bds_mem_nvmBlock23_256_N_D    256               native       23
+  bds_mem_nvmBlock24_256_N_D    256               native       24
+  bds_mem_nvmBlock25_256_N_D    256               native       25
+  bds_mem_nvmBlock26_256_N_D    256               native       26
+  bds_mem_nvmBlock27_256_N_D    256               native       27
+  bds_mem_nvmBlock28_256_N_D    256               native       28
+  bds_mem_nvmBlock29_256_N_D    256               native       29
+  bds_mem_nvmBlock30_256_N_D    256               native       30
+  bds_mem_nvmBlock31_128_N_D    128               native       31
+  bds_mem_nvmBlock32_128_N_D    128               native       32
+  bds_mem_nvmBlock33_128_N_D    128               native       33
+  bds_mem_nvmBlock34_128_N_D    128               native       34
+  bds_mem_nvmBlock35_32_N_D     32                native       35
+  bds_mem_nvmBlock36_32_N_D     32                native       36
+  bds_mem_nvmBlock37_64_N_D     64                native       37
+  bds_mem_nvmBlock38_64_N_D     64                native       38
+  bds_mem_nvmBlock39_64_N_D     64                native       39
+  bds_mem_nvmBlock40_64_N_D     64                native       40
+  bds_mem_nvmBlock41_64_N_D     64                native       41
+  bds_mem_nvmBlock42_64_N_D     64                native       42
+  bds_mem_nvmBlock43_64_N_D     64                native       43
+  bds_mem_nvmBlock44_64_N_D     64                native       44
+  bds_mem_nvmBlock45_64_N_D     64                native       45
+  bds_mem_nvmBlock46_64_N_D     64                native       46
+  bds_mem_nvmBlock47_128_R_D    128               redundant    47
+  bds_mem_nvmBlock48_128_R_D    128               redundant    48
+  bds_mem_nvmBlock49_128_R_D    128               redundant    49
+  bds_mem_nvmBlock50_128_R_D    128               redundant    50
+  bds_mem_nvmBlock51_128_R_D    128               redundant    51
+  bds_mem_nvmBlock52_128_R_D    128               redundant    52
+  bds_mem_nvmBlock53_128_R_D    128               redundant    53
+  bds_mem_nvmBlock54_128_R_D    128               redundant    54
+  bds_mem_nvmBlock55_128_R_D    128               redundant    55
+  bds_mem_nvmBlock56_128_R_D    128               redundant    56
+  bds_mem_nvmBlock57_128_R_D    128               redundant    57
+  bds_mem_nvmBlock58_128_R_D    128               redundant    58
+  bds_mem_nvmBlock59_128_R_D    128               redundant    59
+  bds_mem_nvmBlock60_128_R_D    128               redundant    60
+  bds_mem_nvmBlock61_128_R_D    128               redundant    61
+  bds_mem_nvmBlock62_128_R_D    128               redundant    62
+  bds_mem_nvmBlock63_256_R_D    256               redundant    63
+  bds_mem_nvmBlock64_256_R_D    256               redundant    64
+  bds_mem_nvmBlock65_256_R_D    256               redundant    65
+  bds_mem_nvmBlock66_256_R_D    256               redundant    66
+  bds_mem_nvmBlock67_256_R_D    256               redundant    67
+  bds_mem_nvmBlock68_256_R_D    256               redundant    68
+  bds_mem_nvmBlock69_256_R_D    256               redundant    69
+  bds_mem_nvmBlock70_512_R_D    512               redundant    70
+  bds_mem_nvmBlock71_512_R_D    512               redundant    71
+  bds_mem_nvmBlock72_512_R_D    512               redundant    72
+  bds_mem_nvmBlock73_512_R_D    512               redundant    73
+  bds_mem_nvmBlock74_512_R_D    512               redundant    74
+  bds_mem_nvmBlock75_512_R_D    512               redundant    75
+  bds_mem_nvmBlock76_512_N_D    512               native       76
+  bds_mem_nvmBlock77_1024_N_D   1024              native       77
+  bds_mem_nvmBlock78_1024_N_D   1024              native       78
+  bds_mem_nvmBlock79_1024_N_D   1024              native       79
+  ----------------------------- ----------------- ------------ --------------
+
+Table: NVM block overview
+
+ 
+
+ 

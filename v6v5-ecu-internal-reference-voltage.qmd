@@ -1,0 +1,71 @@
+# V6V5 ECU internal reference voltage {#v6v5-ecu-internal-reference-voltage .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Self-monitoring](ecu-self-monitoring.html) \> [Cyclic monitoring](cyclic-monitoring-checks.html) \> | [](temperaturemonitoring.html "Previous Topic") [](cyclic-monitoring-checks.html "Parent Chapter") [](vdd3v3-ecu-internal-voltage.html "Next Topic") |
+|                                                                                                                                                                                     |                                                                                                                                                      |
+| # V6V5 ECU internal reference voltage {#v6v5-ecu-internal-reference-voltage-1 .p_Heading1 style="page-break-after: avoid;"}                                                         |                                                                                                                                                      |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The cyclic check of the ECU internal voltage 6.5V
+
+ 
+
+## Remarks: {#remarks .p_Heading2 style="page-break-after: avoid;"}
+
+- Monitoring of overvoltage for warning.
+
+- Monitoring of overvoltage and undervoltage for error.
+
+- Warning and Error are indicated.
+
+- If battery voltage (supply of ECU) is lower than 7.5V then no error for undervoltage is messaged by this check.
+
+- Over Voltage Error Limit = 8.000V
+
+- Over Voltage Warning Limit = 7.300V
+
+- Under Voltage Error Limit = 5.000V
+
+- Refer [Safety function and safe state](safetyfunctionandsafestate.html){.topiclink} for details on the safety functions provided by the RCs and the related considerations to be observed.
+
+- Refer [Failure detection possibilities](failuredetectionpossibilities.html){.topiclink} for a broader overview of the different failure reactions observed.
+
+ 
+
+Error Reaction:
+
+ 
+
+- Over Voltage Error (V6V5 \>= Over Voltage Error Limit)
+
+  Error Description              Reaction
+  ------------------------------ -----------------------
+  DFC                            DFC_rbr_mo_OVErr_VPR6
+  Error Code                     0x081100
+  High Power Outputs(\...,OFF)   yes
+  ECU Reset                      no
+  Reaction time                  120ms
+
+ 
+
+- Over Voltage Warning (V6V5 \>= Over Voltage Warning Limit)
+
+  Error Description              Reaction
+  ------------------------------ ------------------------
+  DFC                            DFC_rbr_mo_OVWarn_VPR6
+  Error Code                     0x081200
+  High Power Outputs(\...,OFF)   no
+  ECU Reset                      no
+  Reaction time                  120ms
+
+ 
+
+- Under Voltage Error (V6V5  \<= Under Voltage Error Limit)
+
+  Error                          Reaction
+  ------------------------------ --------------------
+  DFC                            DFC_rbr_mo_UV_VPR6
+  Error Code                     0x081300
+  High Power Outputs(\...,OFF)   yes
+  ECU Reset                      no
+  Reaction time                  120ms

@@ -1,0 +1,9 @@
+# How to develop an application using CAN legacy APIs {#how-to-develop-an-application-using-can-legacy-apis .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [How-Tos](how-to.html) \>                                                                                                                  | [](how-to-develop-j1939-76-application.html "Previous Topic") [](how-to.html "Parent Chapter") [](howtoimplementcanlegacyusingtransmitreceivebuffers.html "Next Topic") |
+|                                                                                                                                                             |                                                                                                                                                                         |
+| # How to develop an application using CAN legacy APIs {#how-to-develop-an-application-using-can-legacy-apis-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                                                         |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+ 

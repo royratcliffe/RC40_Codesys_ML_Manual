@@ -1,0 +1,30 @@
+# Object 0x13FE configuration valid {#object-0x13fe-configuration-valid .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> [RC40 CANopen communication objects](rc40-canopen-communication-obj.html) \> | [](object-0x1381-to-0x1390-srdo-m.html "Previous Topic") [](rc40-canopen-communication-obj.html "Parent Chapter") [](object-0x13ff-safety-configura.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                                  |                                                                                                                                                                        |
+| # Object 0x13FE configuration valid {#object-0x13fe-configuration-valid-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                                                          |                                                                                                                                                                        |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This object shall contain an acknowledgment flag for a valid configuration. After write access to any of the safety-relevant parameter,
+
+this object shall be set to invalid configuration. After finalization the configuration has to be set to valid.
+
+  Index           0x13FE
+  --------------- ----------------------------------------
+  Name            Configuration valid
+  Object          VAR
+  Data Type       UNSIGNED 8
+  Category        Mandatory
+  Access          RW (only in NMT state pre-operational)
+  PDO Mapping     No
+  Value Range     See below
+  Default Value   0
+
+ 
+
+Value definitions:
+
+0xA5 : Configuration valid.
+
+All other values shall indicate an invalid configuration.

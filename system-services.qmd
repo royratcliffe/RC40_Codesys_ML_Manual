@@ -1,0 +1,9 @@
+# System services {#system-services .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \>      | [](wakeup-by-pattern-(wup).html "Previous Topic") [](bsw.html "Parent Chapter") [](postbuildselectable.html "Next Topic") |
+|                                                                                     |                                                                                                                           |
+| # System services {#system-services-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                           |
++-------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
+
+This section documents the system services provided by the RC - a collection of general purpose services.

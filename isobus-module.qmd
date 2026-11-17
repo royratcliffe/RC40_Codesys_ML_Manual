@@ -1,0 +1,57 @@
+# ISOBUS/J1939 {#isobusj1939 .p_Heading1 style="page-break-after: avoid;"}
+
++:---------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> | [](signal-endianness.html "Previous Topic") [](network-comm-protocols.html "Parent Chapter") [](isobus_dm1_dm2_failure_handling.html "Next Topic") |
+|                                                                                                                                                    |                                                                                                                                                    |
+| # ISOBUS/J1939 {#isobusj1939-1 .p_Heading1 style="page-break-after: avoid;"}                                                                       |                                                                                                                                                    |
++----------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This chapter describes the Application Programming Interface (API) of the ISOBUS/J1939 module.
+
+ 
+
+  ----------------------------------------------------------------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  ![Caution_RGB 255-224-0](hmfile_hash_6897acb7.png){style="margin:0;width:1.4792in;height:0.2813in;border:none"}   The ISOBUS module will never receive CAN messages which are already defined for other communication modules like UDS, XCP, CAN legacy or CAN signal based communication! An overview for the CAN RX and TX message evaluation flows are shown [here](can_message_overview.html){.topiclink}.
+  ----------------------------------------------------------------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ 
+
+The ISOBUS module is optional. If the ISOBUS module is present, the device supports several functions for handling the ISOBUS communication protocol according to the ISO 11783 standard, as described on the following pages.
+
+- [ISOBUS specifications](isobus_specifications.html){.topiclink}
+
+- [ISOBUS message formats and transport protocols](isobus_message_formats_and_transport_protocols.html){.topiclink}
+
+- [ISOBUS general description](isobus_general_description.html){.topiclink}
+
+- [ISOBUS integration into an application](isobus_integration_into_an_application.html){.topiclink}
+
+- [ISOBUS services and PGNs](isobus_services_and_pgns.html){.topiclink}
+
+- [ISOBUS DM1/DM2 failure handling](isobus_dm1_dm2_failure_handling.html){.topiclink}
+
+- ISOBUS programming interface (API)
+
+- [J1939-76 Safety Extension](j1939-76-safety-extension2.html){.topiclink}
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+.

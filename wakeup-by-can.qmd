@@ -1,0 +1,32 @@
+# Wakeup by CAN {#wakeup-by-can .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Runtime system & system states](runtime-system-system-states.html) \> [Wake up](wake-up-feature.html) \> | [](wake-up-feature.html "Previous Topic") [](wake-up-feature.html "Parent Chapter") [](configuration-parameters-required-for-wakeup-by-can.html "Next Topic") |
+|                                                                                                                                                                                          |                                                                                                                                                               |
+| # Wakeup by CAN {#wakeup-by-can-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                          |                                                                                                                                                               |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Wakeup by CAN refers to the wakeup of the ECU by receiving a CAN message.
+
+  ![Warning](warning.png){style="margin:0;width:8.3333in;height:0.4583in;border:none"}
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Wherever wakeup by CAN is being used by the application, there should also be a backup mechanism for wakeup i.e., wakeup by T15 is necessary at least as a backup mechanism.
+
+The ECU wakes up by CAN in the following ways:
+
+1.[CAN Wakeup/Wakeup by Pattern (WUP)](wakeup-by-pattern-(wup).html){.topiclink}
+
+2.[Wakeup by Frame (WUF)](wakeup-by-frame-(wuf).html){.topiclink}
+
+ 
+
+## CAN channels supported for CAN wakeup: {#can-channels-supported-for-can-wakeup .p_Heading2 style="page-break-after: avoid;"}
+
+  CAN Channel   CAN Wakeup/Wakeup by Pattern (WUP)   Wakeup by Frame (WUF)
+  ------------- ------------------------------------ -----------------------
+  CAN_1         Yes                                  No
+  CAN_2         No                                   No
+  CAN_3         No                                   No
+  CAN_4         Yes                                  Yes
+
+Wakeup by CAN is enabled only if configured in easyConfig (refer [Parameter Configuration in eC (CAN wakeup)](configuration-parameters-required-for-wakeup-by-can.html){.topiclink}).

@@ -1,0 +1,55 @@
+# Accessible DIDs {#accessible-dids .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [Bootloader](bootloader.html) \> [Diagnostics services (UDS) in Bootloader](diagnosticsservices(uds)inbootloader.html) \> | [](diagnosticsservices(uds)inbootloader.html "Previous Topic") [](diagnosticsservices(uds)inbootloader.html "Parent Chapter") [](cb-mediagnosis.html "Next Topic") |
+|                                                                                                                                                                                       |                                                                                                                                                                    |
+| # Accessible DIDs {#accessible-dids-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                   |                                                                                                                                                                    |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+# The below Data Identifiers (DIDs) are supported by CB-ME for the ReadDataByIdentifier (SID: 0x22) service: {#the-below-data-identifiers-dids-are-supported-by-cb-me-for-the-readdatabyidentifier-sid-0x22-service .p_Heading1 style="page-break-after: avoid;"}
+
+ 
+
++----------------+--------------------------------------------------+---------------------------------------------+----------------+
+| DID            | Description                                      | Session                                     | Security Level |
+|                |                                                  +---------+-------------+---------------------+                |
+|                |                                                  | Default | Programming | Extended Diagnostic |                |
++================+==================================================+=========+=============+=====================+================+
+| 0xF186         | ActiveDiagnosticSessionDataIdentifier            | yes     | yes         | yes                 | Not Required   |
++----------------+--------------------------------------------------+---------+-------------+---------------------+----------------+
+| 0xF190         | VIN                                              | yes     | yes         | yes                 | Not Required   |
++----------------+--------------------------------------------------+---------+-------------+---------------------+----------------+
+| 0xF198         | repairShopCodeOrTesterSerialNumberDataIdentifier | yes     | yes         | yes                 | Not Required   |
++----------------+--------------------------------------------------+---------+-------------+---------------------+----------------+
+| 0xF199         | programmingDateDataIdentifier                    | yes     | yes         | yes                 | Not Required   |
++----------------+--------------------------------------------------+---------+-------------+---------------------+----------------+
+| 0xF1F0         | systemSupplierCBIdentification                   | yes     | yes         | yes                 | Not Required   |
++----------------+--------------------------------------------------+---------+-------------+---------------------+----------------+
+| 0xF1F1         | systemSupplierBootCtrlIdentification             | yes     | yes         | yes                 | Not Required   |
++----------------+--------------------------------------------------+---------+-------------+---------------------+----------------+
+| 0xF18C         | ECUSerialNumberDataIdentifier                    | yes     | yes         | yes                 | Not Required   |
++----------------+--------------------------------------------------+---------+-------------+---------------------+----------------+
+| 0xF18A         | SystemSupplierIdentifier                         | yes     | yes         | yes                 | Not Required   |
++----------------+--------------------------------------------------+---------+-------------+---------------------+----------------+
+| 0xF192         | SystemSupplierECUHardwareNumberIdentifier        | yes     | yes         | yes                 | Not Required   |
++----------------+--------------------------------------------------+---------+-------------+---------------------+----------------+
+| 0xF19E         | ODX File Identifier                              | yes     | yes         | yes                 | Not Required   |
++----------------+--------------------------------------------------+---------+-------------+---------------------+----------------+
+| 0xFE00         | CB-ME Diagnosis Info                             | yes     | no          | no                  | Not Required   |
++----------------+--------------------------------------------------+---------+-------------+---------------------+----------------+
+
+# The below DIDs are supported by CB-ME for the WriteDataByIdentifier (SID: 0x2E) service:   {#the-below-dids-are-supported-by-cb-me-for-the-writedatabyidentifier-sid-0x2e-service .p_Heading1 style="page-break-after: avoid;"}
+
++--------+--------------------------------------------------+---------------------------------------------+----------------+
+| DID    | Description                                      | Session                                     | Security Level |
+|        |                                                  +---------+-------------+---------------------+                |
+|        |                                                  | Default | Programming | Extended Diagnostic |                |
++========+==================================================+=========+=============+=====================+================+
+| 0xF198 | repairShopCodeOrTesterSerialNumberDataIdentifier | no      | yes         | yes                 | L1             |
++--------+--------------------------------------------------+---------+-------------+---------------------+----------------+
+| 0xF199 | programmingDateDataIdentifier                    | no      | yes         | yes                 | L1             |
++--------+--------------------------------------------------+---------+-------------+---------------------+----------------+
+
+ 
+
+For more information on the encoding of standard DIDs, you can refer [Standard DIDs](standard-dids.html){.topiclink}.

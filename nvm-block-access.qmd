@@ -1,0 +1,9 @@
+# NVM block access {#nvm-block-access .p_Heading1 style="page-break-after: avoid;"}
+
++:-------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Memory](memory.html) \> [NVM management](nvm-management.html) \> | [](error-while-assigning-variable.html "Previous Topic") [](nvm-management.html "Parent Chapter") [](nvm-block-description.html "Next Topic") |
+|                                                                                                                                                  |                                                                                                                                               |
+| # NVM block access {#nvm-block-access-1 .p_Heading1 style="page-break-after: avoid;"}                                                            |                                                                                                                                               |
++--------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+
+ 

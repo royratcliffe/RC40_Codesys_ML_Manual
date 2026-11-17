@@ -1,0 +1,71 @@
+# DTC Status, Sub-function 0x02 {#dtc-status-sub-function-0x02 .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Diagnostic services (UDS)](diagnostic-services.html) \> [UDS overview](uds---overview.html) \> [Supported UDS services](supported-uds-services.html) \> [SID - ReadDTCInformation (0x19)](sid---readdtcinformation-(0x19.html) \> | [](sid---readdtcinformation-(0x19.html "Previous Topic") [](sid---readdtcinformation-(0x19.html "Parent Chapter") [](occurrence-counter_-sub-functi.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                                   |                                                                                                                                                                        |
+| # DTC Status, Sub-function 0x02 {#dtc-status-sub-function-0x02-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                                                                    |                                                                                                                                                                        |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The sub-function 0x02 - reportDTCByStatusMask allows the client to request the server to report all DTCs that are "testFailed" OR "confirmed" OR "etc.".
+
+The RC (server) performs a bit-wise AND operation between the DTC Status and DTCStatusMask provided as part of request message, and provides all the DTCs which match the resultant status.
+
+DTC status information shall be cleared upon a successful ClearDiagnosticInformation request from the client.
+
+8 Bit status of DTCStatusMask is described as follows:
+
+  ------------------------ ------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------
+  statusOfDTC bit Number   statusOfDTC bit field name            Function
+  0                        testFailed                            indicates the result of the most recently performed test
+  1                        testFailedThisOperationCycle          indicates whether or not a diagnostic test has reported a testFailed result at any time during the current operation cycle
+  2                        pendingDTC                            indicates whether or not a diagnostic test has reported a testFailed result at any time during the current or last completed operation cycle
+  3                        confirmedDTC                          indicates whether a malfunction was detected enough times to warrant that the DTC is desired to be stored in long-term memory
+  4                        testNotCompletedSinceLastClear        indicates whether a DTC test has ever run and completed since the last time a call was made to ClearDiagnosticInformation (SID 0x14)
+  5                        testFailedSinceLastClear              indicates whether a DTC test has completed with a failed result since the last time a call was made to ClearDiagnosticInformation (SID 0x14)
+  6                        testNotCompletedThisCompletionCycle   indicates whether a DTC test has ever run and completed during the current operation cycle
+  7                        warningIndicatorRequested             reports the status of any warning indicators associated with a particular DTC
+  ------------------------ ------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------
+
+ 
+
+<figure style="margin:0;padding:0">
+<a href="slide2.png" class="imagetogglelink"><img src="slide2_zoom53.png" title="Figure 48: DTC Status 8 bit" id="figad672cce" class="image-toggle" style="width:7.0313in;height:3.9583in;border:none" alt="Figure 48: DTC Status 8 bit" /><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=" class="image-toggle-magnifier" /></a>
+<figcaption><p>Figure 48: DTC Status 8 bit</p></figcaption>
+</figure>
+
+DTC status shown for each DTC is either of these types:
+
++-----------------------+----------------------------+-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Category              | 8 Bit Status (Hexadecimal) | 8 Bit Status (Binary) | Description                                                                                                                                              |
++-----------------------+----------------------------+-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Active DTC            | 0x2F                       | 0b00101111            | Test failed, test failed this operating cycle also, DTC was pending and then confirmed, and failed since last clear.                                     |
+|                       |                            |                       |                                                                                                                                                          |
+|                       |                            |                       | In short: It is an active DTC.                                                                                                                           |
++-----------------------+----------------------------+-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Deactive DTC          | 0x2A                       | 0b00101010            | Currently test not failed, but failed at least once during operating cycle. DTC was confirmed failed at least once, and failed at least once last clear. |
+|                       |                            |                       |                                                                                                                                                          |
+|                       |                            |                       | In short: It is deactive (can be test passed or at least healed since test failed since previous operating cycle).                                       |
++-----------------------+----------------------------+-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Previously Active DTC | 0x2D                       | 0b00101101            | The test is not failing in the current operating (drive) cycle.                                                                                          |
+|                       |                            |                       |                                                                                                                                                          |
+|                       |                            |                       | However, it did fail in the previous cycle, reached the confirmed state, and it has failed at least once since the last clear (in the previous cycle).   |
+|                       |                            |                       |                                                                                                                                                          |
+|                       |                            |                       | In short: The DTC is currently inactive, but it was active in the previous operating cycle.                                                              |
++-----------------------+----------------------------+-----------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+ 
+
+Note: For requesting DTC Status of all DTCs the DTCStatusMask shall be 0xFF (It means we request DTCs of all valid status).
+
+Sample request and response shall be as follows:
+
+<figure style="margin:0;padding:0">
+<a href="slide3.png" class="imagetogglelink"><img src="slide3_zoom52.png" title="Figure 49: Request and response for SID 0x19, Sub-function 0x02" id="figc1763461" class="image-toggle" style="width:6.8750in;height:3.8646in;border:none" alt="Figure 49: Request and response for SID 0x19, Sub-function 0x02" /><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=" class="image-toggle-magnifier" /></a>
+<figcaption><p>Figure 49: Request and response for SID 0x19, Sub-function 0x02</p></figcaption>
+</figure>
+
+ 
+
+ 
+
+ 

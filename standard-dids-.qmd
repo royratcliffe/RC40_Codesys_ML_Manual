@@ -1,0 +1,77 @@
+Standard DIDs
+
+ 
+
+ 
+
++:----------------------------------------------+------------------------------------+
+| **Navigation:**  »No topics above this level« | [](appendix.html "Parent Chapter") |
+|                                               |                                    |
+| Standard DIDs                                 |                                    |
+|                                               |                                    |
+|                                               |                                    |
+|                                               |                                    |
+|                                               |                                    |
++-----------------------------------------------+------------------------------------+
+
+1\. Standard DIDs that are used by the BODAS-service for Discovery App Identification and Communication :
+
+ 
+
++--------+------------------------------------------+-------------------+---------------------+--------------------------+-------------------+---------------+---------------+---------------+
+| DID    | Meaning                                  | Size              | Format of data sent | Format of data displayed | Signal Conversion | Min.          | Max.          | Session       |
++========+==========================================+===================+=====================+==========================+===================+===============+===============+===============+
+| 0xF18A | Manufacturer Code                        | 2                 | uint8               | Numeric hex              | Identical         | 0             | 65535         | Default       |
++--------+------------------------------------------+-------------------+---------------------+--------------------------+-------------------+---------------+---------------+---------------+
+| 0xF18C | Serial Number                            | Customer specific | uint8               | Numeric Decimal          | Identical         | 0             | \...          | Default       |
++--------+------------------------------------------+-------------------+---------------------+--------------------------+-------------------+---------------+---------------+---------------+
+| 0xF192 | Hardware Number                          | Customer specific | uint8               | Numeric hex              | Identical         | 0             | 65535         | Default       |
++--------+------------------------------------------+-------------------+---------------------+--------------------------+-------------------+---------------+---------------+---------------+
+| 0xF19E | ODX File Identifier                      | 18                | ASCII               | ASCII                    | 16 bytes ODX UUID                                 | Default       |
+|        |                                          |                   |                     |                          |                                                   |               |
+|        |                                          |                   |                     |                          | 1   byte Major Ver                                |               |
+|        |                                          |                   |                     |                          |                                                   |               |
+|        |                                          |                   |                     |                          | 1   byte Minor Ver                                |               |
++--------+------------------------------------------+-------------------+---------------------+--------------------------+-------------------+---------------+---------------+---------------+
+| 0xF181 | Application SW ID(reserved-not yet used) | To be decided     | To be decided       | To be decided            | To be decided     | To be decided | To be decided | To be decided |
++--------+------------------------------------------+-------------------+---------------------+--------------------------+-------------------+---------------+---------------+---------------+
+
+ 
+
+ 
+
+  ----------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------
+  ![Notice_RGB 39-153-209](hmfile_hash_c5013a84.png){style="margin:0;width:1.4792in;height:0.2813in;border:none"}   ODX-UUID shall be unique for every BODAS-service App due to BODAS-app Concept and 16 bytes long.
+  ----------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------
+
+ 
+
+The usage of the DIDs are described below:
+
+ 
+
+  DID      USE                                                                                                                                                                                                                               MNEMONIC
+  -------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------
+  0xF18A   SystemSupplierIdentifier: This value shall be used to reference the system supplier name and address information. Record data content and format shall be server specific and defined by the system supplier.                     SSIDDID
+  0xF18C   ECUSerialNumberDataIdentifier: This value shall be used to reference the ECU(serial number).Record data content and format shall be server specific.                                                                              ECUSNDID
+  0xF192   SystemSupplierECUHardwareNumberIdentifier: This value shall be used to reference the system supplier specific ECU(hardware number). Record data content and format shall be server specific and defined by the system supplier.   SSECUHWNDID
+  0xF19E   ODXFileDataIdentifier: This value shall be used to reference the ODX (Open Diagnostic Data Exchange) file of the server to be used to interprete and scale the server data.                                                       ODXFDID
+
+ 
+
+2\. Standard DIDs that are used by the BODAS-service for Service App - Device Identification :
+
+ 
+
+  DID             Meaning
+  --------------- -----------------------------------------------------
+  0xF181          Application Software Identification Data Identifier
+  0xFE30/0xFE21   Operating Hours
+  0xF199          Programming Date Data Identifier
+  0xF18B          ECU Manufacturing Date Data Identifier
+  0xF183          Boot Software Fingerprint
+  0xF186          Active Diagonostic Session Data Identifier
+
+ 
+
+ 

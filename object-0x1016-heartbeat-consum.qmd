@@ -1,0 +1,73 @@
+# Object 0x1016 heartbeat consumer entries {#object-0x1016-heartbeat-consumer-entries .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> [RC40 CANopen communication objects](rc40-canopen-communication-obj.html) \> | [](object-0x1015-inhibit-time-emc.html "Previous Topic") [](rc40-canopen-communication-obj.html "Parent Chapter") [](object-0x1017-producer-heartbe.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                                  |                                                                                                                                                                        |
+| # Object 0x1016 heartbeat consumer entries {#object-0x1016-heartbeat-consumer-entries-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                                            |                                                                                                                                                                        |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The consumer heartbeat time defines the expected heartbeat cycle time and thus has to be higher than
+
+the corresponding producer heartbeat time configured on the device producing this heartbeat.
+
+ 
+
+  Index         0x1016
+  ------------- ----------------------------
+  Name          Heartbeat Consumer Entries
+  Object        ARRAY
+  Data Type     UNSIGNED 32
+  Category      Optional
+  PDO Mapping   No
+
+ 
+
+ 
+
+SubIndex Supported
+
+ 
+
+  SubIndex        0
+  --------------- -------------------
+  Description     number of entries
+  Access          RO
+  Value Range     NA
+  Default Value   0x20
+
+ 
+
+ 
+
+  SubIndex        1-32
+  --------------- ------------------------------
+  Description     Consumer heartbeat Time 1-32
+  Access          RW
+  Value Range     UNSIGNED 32
+  Default Value   0
+
+ 
+
+ 
+
+Object Entry description:
+
+  ------------------- ---------------------- ----------- ----------------
+  Bits                31-24                  23-16       15-0
+  Description/Value   reserved(value: 00h)   Node-ID     Heartbeat time
+  Encoded as          \-                     UNSIGNED8   UNSIGNED16
+  ------------------- ---------------------- ----------- ----------------
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 

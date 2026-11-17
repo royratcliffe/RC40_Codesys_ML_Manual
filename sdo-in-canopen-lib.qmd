@@ -1,0 +1,35 @@
+# SDO in CANopen lib {#sdo-in-canopen-lib .p_Heading1 style="page-break-after: avoid;"}
+
++:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> [CANopen features description](canopen-features-description.html) \> | [](pdo-in-canopen-lib.html "Previous Topic") [](canopen-features-description.html "Parent Chapter") [](canopen-library-concept.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                          |                                                                                                                                                   |
+| # SDO in CANopen lib {#sdo-in-canopen-lib-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                                                                                |                                                                                                                                                   |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+
+CANopen library implements both SDO client and SDO server functionality.
+
+## SDO Client {#sdo-client .p_Heading2 style="page-break-after: avoid;"}
+
+The SDO client in the CANopen library supports the access of remote objects. Only one SDO client is supported by the CANopen library. That means the CANopen lib can open a SDO connection with one node to access its objects at a time. This connection needs to be closed before accessing objects from a different node. Functions like opening the SDO connection, SDO services, and deciding the SDO transfer mode are handled in the CANopen library.
+
+When ASW wants to access an object from a node, then ASW needs to call API  bds_canopen_setClientSdo with the node address of which objects need to be accessed. The SDO client is now ready to communicate with the given node address. ASW can read or write the remote node\'s objects using the APIs  bds_canopen_sdoRead and  bds_canopen_sdoWrite respectively. If ASW needs to access objects from a different node then  bds_canopen_setClientSdo should be called again with the new node address. After that  bds_canopen_sdoRead and  bds_canopen_sdoWrite can be used again for accessing different objects from the selected node.
+
+## SDO server {#sdo-server .p_Heading2 style="page-break-after: avoid;"}
+
+The SDO server in the CANopen library facilitates a remote node to access local objects. Any remote node on a CANopen network can access objects supported by the CANopen library and ASW. The CANopen library has all SDO services implemented.
+
+The CANopen library handles remote node accesses to communication objects without the intervention of ASW. But, when a remote node access the objects that were added by ASW through  bds_canopen_regApplObjects, then the CANopen lib indicates that to the ASW through a callback registered by using the APIs  bds_canopen_regSdoReadIndcn and  bds_canopen_regSdoWriteIndcn. The purpose of these callbacks is only to inform the ASW about an SDO read or write for a particular object. The CANopen library will access the data address of the object and copy the data into the SDO response. In the callback, the ASW has the chance to modify the value of a particular object before the CANopen library copies it into the SDO response. The CANopen lib also provides an option where ASW can hold the SDO response for particular object access by returning BDS_CANOPEN_SDO_IND_BUSY_E in the callback and once ASW is ready, it can indicate the CANopen library by calling  bds_canopen_finishSdoRead and  bds_canopen_finishSdoWrite for a read and write access respectively. Possible use cases for holding a response for SDO could be accessing NVM when an SDO request is received.
+
+The ASW can access communication objects implemented by CANopen library and also objects added by ASW using  bds_canopen_sdoReadLocal and  bds_canopen_sdoWriteLocal. This is the recommended way to access your object dictionary. Nevertheless CANopen library supports local object access through  bds_canopen_sdoRead and  bds_canopen_sdoWrite when own node-ID is used.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 

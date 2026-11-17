@@ -1,0 +1,53 @@
+# Standards {#standards .p_Heading1 style="page-break-after: avoid;"}
+
+  -------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------
+  ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"}   List of referenced standards related to the use of RC series 40. This list does not confirm compliance with these standards.
+  -------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [Appendix](appendix.html) \>                                                                                                                                                                     | [](references.html "Previous Topic") [](appendix.html "Parent Chapter") [](terms-and-conditions.html "Next Topic") |
+|                                                                                                                                                                                                                   |                                                                                                                    |
+| # Standards {#standards-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                           |                                                                                                                    |
+|                                                                                                                                                                                                                   |                                                                                                                    |
+|   -------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------ |                                                                                                                    |
+|   ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"}   List of referenced standards related to the use of RC series 40. This list does not confirm compliance with these standards.   |                                                                                                                    |
+|   -------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------ |                                                                                                                    |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
+
+  Standard           Publication year   Title
+  ------------------ ------------------ -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  ANSI Z535.6        2011               Product Safety Information in Product Manuals, Instructions, and Other Collateral Materials
+  ANSI/IEEE 1149.1   2013               Standard for Boundary-Scan Testing of Advanced Digital Networks
+  EN 50325-5         2010               Industrial communications subsystem based on ISO 11898 (CAN) for controller-device interfaces - Part 5: Functional safety communication based on EN 50325-4
+  IEC 61131-3        2013               Programmable controllers -- Part 3: Programming languages
+  IEC 61508          2010               Functional safety of electrical/electronic/programmable electronic safety-related systems
+  IEC 61784-3        2023               Industrial communication networks -- Profiles -- Part 3: Functional safety fieldbuses -- General rules and profile definitions
+  ISO 11783-3        2014               Tractors and machinery for agriculture and forestry --- Serial control and communications data network --- Part 3: Data link layer
+  ISO 11783-5        2019               Tractors and machinery for agriculture and forestry --- Serial control and communications data network --- Part 5: Network management
+  ISO 11783-12       2019               Tractors and machinery for agriculture and forestry --- Serial control and communications data network --- Part 12: Diagnostics services
+  ISO 11898-1        2015               Road vehicles --- Controller area network (CAN) --- Part 1: Data link layer and physical signalling
+  ISO 13849-1        2023               Safety of machinery --- Safety-related parts of control systems --- Part 1: General principles for design
+  ISO 13849-2        2012               Safety of machinery --- Safety-related parts of control systems --- Part 2: Validation
+  ISO 14229-1        2020               Road vehicles --- Unified diagnostic services (UDS) --- Part 1: Application layer
+  ISO 14229-3        2022               Road vehicles --- Unified diagnostic services (UDS) --- Part 3: Unified diagnostic services on CAN implementation (UDSonCAN)
+  ISO 15031-6        2015               Road vehicles --- Communication between vehicle and external equipment for emissions-related diagnostics --- Part 6: Diagnostic trouble code definitions
+  ISO 15765-2        2016               Road vehicles --- Diagnostic communication over Controller Area Network (DoCAN) --- Part 2: Transport protocol and network layer services
+  FIPS 197           2001               Advanced Encryption Standard (AES) - Category: Computer Security Subcategory: Cryptography
+  ISO/IEC 18033-3    2010               Information technology --- Security techniques --- Encryption algorithms --- Part 3: Block ciphers
+  ISO 19014-1        2018               Earth-moving machinery --- Functional safety --- Part 1: Methodology to determine safety-related parts of the control system and performance requirements
+  ISO 19014-2        2022               Earth-moving machinery --- Functional safety --- Part 2: Design and evaluation of hardware and architecture requirements for safety-related parts of the control system
+  ISO 19014-3        2018               Earth-moving machinery --- Functional safety --- Part 3: Environmental performance and test requirements of electronic and electrical components used in safety-related parts of the control system
+  ISO 19014-4        2020               Earth-moving machinery --- Functional safety --- Part 4: Design and evaluation of software and data transmission for safety-related parts of the control system
+  ISO/TS 19014-5     2021               Earth-moving machinery --- Functional safety --- Part 5: Tables of performance levels
+  ISO 25119-1        2020               Tractors and machinery for agriculture and forestry --- Safety-related parts of control systems --- Part 1: General principles for design and development
+  ISO 25119-2        2019               Tractors and machinery for agriculture and forestry --- Safety-related parts of control systems --- Part 2: Concept phase
+  ISO 25119-3        2020               Tractors and machinery for agriculture and forestry --- Safety-related parts of control systems --- Part 3: Series development, hardware and software
+  ISO 25119-4        2020               Tractors and machinery for agriculture and forestry --- Safety-related parts of control systems --- Part 4: Production, operation, modification and supporting processes
+  SAE J1939          2023               Serial Control and Communications Heavy-Duty Vehicle Network - Top-Level Document
+  SAE J1939/76       2020               Functional Safety Communications Protocol
+  SAE J1939/81       2017               Network Management
+  SAE J2716          2016               SENT - Single Edge Nibble Transmission for Automotive Applications
+  ISO 13400-2        2012               Road vehicles --- Diagnostic communication over Internet Protocol (DoIP) --- Part 2:Transport protocol and network layer services.
+  ISO 14229-5        2012               Road vehicles --- Unified diagnostic services (UDS) --- Part 5: Unified diagnostic services on Internet Protocol implementation (UDSonIP)
+
+[]{#fig_740538 .hmanchor}Table 31: List of referenced standards

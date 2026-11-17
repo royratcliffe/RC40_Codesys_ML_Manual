@@ -1,0 +1,187 @@
+# Process Data Objects (PDO) {#process-data-objects-pdo .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [CANopen protocol description](canopen-protocol-description.html) \> | [](network-management(nmt).html "Previous Topic") [](canopen-protocol-description.html "Parent Chapter") [](safety-relevant-data-object(srdo).html "Next Topic") |
+|                                                                                                                                                                                                                                                     |                                                                                                                                                                  |
+| # Process Data Objects (PDO) {#process-data-objects-pdo-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                             |                                                                                                                                                                  |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Process Data Objects (PDOs) are intended for exchanging real-time data with high priority. During operation, PDOs are used to transmit data from one device to another, e.g. a controller transmits the calculated target values for the PWM outputs to other controllers via PDOs (I/O module). A PDO contains a fixed selection of parameters from the object dictionary of the device. The selection of parameters is defined by the PDO mapping before the actual operation. The sum of the parameters included in a PDO must not exceed 8 user data bytes.
+
+Each PDO has a unique identifier (COB-ID) and is transmitted by exactly one device (one node in the CAN network). The PDO can be received by multiple devices. Transmitter and receiver are defined by the user during project planning of the network.
+
+In the communication between the master controller and another CANopen subscriber, the PDOs which are created by the master controller and transmitted to a CANopen subscriber are referred to as Transmit PDOs (TPDOs). The PDOs received by the CANopen subscriber is referred to as Receive PDOs (RPDOs). The transmission of PDOs is triggered either dependently on the SYNC signal (Synchronous) or independently of the SYNC signal (Asynchronous).
+
+ 
+
+- Synchronous transmission
+
+Synchronous PDOs are transmitted after a SYNC is received. You can, however, add additional conditions like below
+
+1.Cyclic synchronous transmission: The PDO is transmitted after a specified number of SYNC signals has been received. This number is defined during parametrization.
+
+2.Acyclic synchronous transmission: The PDO is transmitted after the SYNC signal has been received and a defined event has occurred.
+
+ 
+
+- Asynchronous transmission
+
+The PDO is transmitted after a defined event has occurred. The following events are possible:
+
+- Timer expired
+
+- User-defined event (e.g. new data pending)
+
+- Requested by the consumer
+
+ 
+
+PDOs are used for transporting process data. The content of the data is specified by PDO mapping entries. These are objects in the object dictionary that define which data is transmitted via a PDO.  Upon receipt of a PDO, the data is written to the objects of the object dictionary according to the mapping entries.
+
+If the default PDO mapping cannot be used for an application, then PDO mapping must be set before the device is operated. For this PDO has to support dynamic mapping.
+
+PDOs are transferred on CAN as CAN messages with a length of up to 8 bytes without any protocol overhead in the CAN messages. Multiple sub-indices of different objects can be transferred in one PDO. The PDO communication is always broadcasted from one PDO producer to one or many PDO consumers.
+
+Suppose a PDO up to \'L\' bytes are received and the PDO mapping length configured is \'n\' number of bytes. If \'L\' exceeds \'n\' then only the first \'n\' bytes are used by the consumer. If \'L\' is less than \'n\', then the data of the received PDO is not processed and an emergency message with error code 8210h has to be produced in case an emergency is supported.
+
+A CANopen device may have up to 512 TPDOs and 512 RPDOs. In reality, most devices, in particular CANopen slave devices, have fewer PDOs -- often only 4. All these PDOs must be configured in the communication segment in the object dictionary. Each PDO requires 2 objects for configuration. The PDO communication parameter objects define the communication parameters (CAN-ID, transmission type, timings, ..) and the PDO mapping parameter objects define the content of a PDO.
+
+ 
+
+## Receive-PDOs (RPDO): {#receive-pdos-rpdo .p_Heading2 style="page-break-after: avoid;"}
+
+- Communication parameters: Index [0x1400 .. 0x1407](object-0x1400-to-0x1407-receiv.html){.topiclink}
+
+- Mapping parameters: Index [0x1600 .. 0x1607](object-0x1600-to-0x1607-receiv.html){.topiclink}
+
+## Transmit-PDOs (TPDO): {#transmit-pdos-tpdo .p_Heading2 style="page-break-after: avoid;"}
+
+- Communication parameters: Index [0x1800 .. 0x1807](object-0x1800-to-0x1807-transm.html){.topiclink}
+
+- Mapping parameters: Index [0x1A00 .. 0x1A07](object-0x1a00-to-0x1a07-transm.html){.topiclink}
+
+ 
+
+The communication parameters consist of the COB-ID (sub-index 1), the transmission type (sub-index 2), optionally an inhibit time (sub-index 3), optionally an event timer (sub-index 5).
+
+ 
+
+## SYNC Protocol {#sync-protocol .p_Heading2 style="page-break-after: avoid;"}
+
+The Synchronisation Object is broadcasted periodically by the SYNC producer. This SYNC provides the basic network clock. The time period between the SYNCs is specified by the standard parameter communication cycle period (object [1006h](object-0x1006-communication-cy.html){.topiclink}: Communication Cycle Period), which may be written by a configuration tool to the application devices during the boot-up process. There can be a time jitter in transmission by the SYNC producer corresponding approximately to the latency due to some other message being transmitted just before the SYNC. To guarantee timely access to the CAN bus, the SYNC is given a very high priority identifier ([1005h](object-0x1005-cob-id-sync-mess.html){.topiclink}).
+
+Devices that operate synchronously may use the SYNC object to synchronize their timing with that of the synchronization object producer.
+
+ 
+
+## PDO Configuration {#pdo-configuration .p_Heading2 style="page-break-after: avoid;"}
+
+First, the device should be in a pre-operational state. Any PDO (TPDO or RPDO) can be configured as follows:
+
+1.Set PDO invalid by switching Bit 31 in the related COB-ID entry.
+
+2.Set PDO mapping invalid by writing 00h to sub-index 00h of the related mapping entries.
+
+3.Adjust the desired PDO mapping. The structure of the PDO mapping entry is shown in the below table.
+
+ 
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| MSB                                                                                                                                         LSB           |
++===================================================+===================================================+===================================================+
+| Index (16 bit)                                    | Sub-index (8bit)                                  | Object length (8bit)                              |
++---------------------------------------------------+---------------------------------------------------+---------------------------------------------------+
+
+ 
+
+4.Set sub-index 00h of the related mapping index to a number of mapped objects.
+
+5.Switch PDO valid using bit 31 in the related COB-ID entry.
+
+ 
+
+## RPDO configuration: {#rpdo-configuration .p_Heading2 style="page-break-after: avoid;"}
+
+1.The device should be in a pre-operational state.
+
+2.Set PDO invalid by writing the bit 31 to 1 in the related COB-ID entry,
+
+    i.e; in subIndex-01h: COB-ID of  RPDO communication parameter objects [0x1400 .. 0x1407](object-0x1400-to-0x1407-receiv.html){.topiclink}.
+
+3.Clear the mapping count to 0,
+
+    i.e; in subIndex-00h: Number of mapped objects of RPDO mapping parameter objects [0x1600 .. 0x1607](object-0x1600-to-0x1607-receiv.html){.topiclink}.
+
+4\.  Set the Mapping object index, sub-index and size in desired mapping entry,
+
+    i.e; in subIndex-01 to 08h: Mapping entry of RPDO mapping parameter objects [0x1600 .. 0x1607](object-0x1600-to-0x1607-receiv.html){.topiclink}.
+
+    Note: Maximum total of 8 bytes of data can be mapped in each mapping parameter object.
+
+5\.  Set the number of mapped objects in sub-index 00h: Number of mapped objects of RPDO mapping parameter objects [0x1600 .. 0x1607](object-0x1600-to-0x1607-receiv.html){.topiclink}.
+
+6\.  Switch PDO valid by writing the bit 31 to 0 in the related COB-ID entry.
+
+    i.e; in sub-index-01h: COB-ID of  RPDO communication parameter objects [0x1400 .. 0x1407](object-0x1400-to-0x1407-receiv.html){.topiclink}.
+
+ 
+
+ 
+
++--------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"} | •If transmission type is asynchronous, then 254u is set in sub-index 02h of [0x1400 .. 0x1407](object-0x1400-to-0x1407-receiv.html){.topiclink}.                                                                                                                                                                                                                                       |
+|                                                                                |                                                                                                                                                                                                                                                                                                                                                                                        |
+|                                                                                | •If transmission type is synchronous, then 1u to 240u is set in sub-index 02h of [0x1400 .. 0x1407](object-0x1400-to-0x1407-receiv.html){.topiclink}. Using the SYNC signal, the device should be SYNC consumer and the SYNC signal should be sent from other devices (SYNC producer). The device will receive PDOs and copied into object dictionary when the SYNC signal is received |
++--------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+ 
+
+## TPDO configuration: {#tpdo-configuration .p_Heading2 style="page-break-after: avoid;"}
+
+1\. Device should be in Pre-Operational state.
+
+2\. Set PDO invalid by writing the bit 31 to 1 in the related COB-ID entry,
+
+   i.e; in subIndex-01h: COB-ID of  TPDO communication parameter objects [0x1800 .. 0x1807](object-0x1800-to-0x1807-transm.html){.topiclink}.
+
+3\. Clear the mapping count to 0,
+
+   i.e; in subIndex-00h: Number of mapped objects of TPDO mapping parameter objects[0x1A00 .. 0x1A07](object-0x1a00-to-0x1a07-transm.html){.topiclink}.
+
+4\.  Set the Mapping object index, sub-index and size in desired mapping entry,
+
+    i.e; in subIndex-01 to 08h: Mapping entry of TPDO mapping parameter objects [0x1A00 .. 0x1A07](object-0x1a00-to-0x1a07-transm.html){.topiclink}.
+
+    Note: Maximum total of 8 bytes of data can be mapped in each mapping parameter object.
+
+5\.  Set the number of mapped objects in sub-index 00h: Number of mapped objects of RPDO mapping parameter objects [0x1A00 .. 0x1A07](object-0x1a00-to-0x1a07-transm.html){.topiclink}.
+
+6\.  Switch PDO valid by writing the bit 31 to 0 in the related COB-ID entry.
+
+    i.e; in sub-index-01h: COB-ID of  TPDO communication parameter objects [0x1800 .. 0x1807](object-0x1800-to-0x1807-transm.html){.topiclink}
+
+ 
+
++--------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"} | •If transmission type is asynchronous, then 254u is set in sub-index 02h of [0x1800 .. 0x1807](object-0x1800-to-0x1807-transm.html){.topiclink} then event timer should be used to send PDO\'s cyclically based on event timer in  subIndex-05h: Event timer of  TPDO communication parameter objects [0x1800 .. 0x1807](object-0x1800-to-0x1807-transm.html){.topiclink} before enabling PDO valid(step 6) |
+|                                                                                |                                                                                                                                                                                                                                                                                                                                                                                                             |
+|                                                                                | •If transmission type is synchronous, then 1u to 240u is set in sub-index 02h of [0x1800 .. 0x1807](object-0x1800-to-0x1807-transm.html){.topiclink}. The device should be a SYNC consumer and SYNC signal should be sent from other devices (SYNC producer). The device will transmit PDOs when the SYNC signal is received.                                                                               |
++--------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 

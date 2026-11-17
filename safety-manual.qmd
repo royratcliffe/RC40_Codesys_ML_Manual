@@ -1,0 +1,21 @@
+# Safety manual {#safety-manual .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  »No topics above this level«                                   | [](pr4systemfeatures.html "Previous Topic") [](introduction.html "Parent Chapter") [](failuredetectionpossibilities.html "Next Topic") |
+|                                                                                 |                                                                                                                                        |
+| # Safety manual {#safety-manual-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                        |
++---------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+
+The RCs are universal control units with flexible configuration possibilities that are able to support safety functions up to PL d according to ISO 13849, AgPL d according to ISO 25119 and ASIL B according to ISO 26262.
+
+BODAS-service tools can be used for parametrization, flashing and diagnostics of RCs under the conditions stated in [Safety considerations using service tools](usingaservicetool.html){.topiclink}.
+
+This safety manual contains descriptions of the RCs\' [functional safety characteristics](reliabilityparameters.html){.topiclink} and instructions on [using the RCs for safety-related applications](safety-relatedfunctions.html){.topiclink}. It is to be used as a guideline for the planning of safety-related machine system projects. Machine manufacturers and machine operators are obligated to observe, understand and follow all relevant instructions and guidance provided in this document. If necessary, machine manufacturers shall convey relevant safety information mentioned in this document into a more appropriate form such as an operating manual.
+
+If not indicated otherwise, the instructions apply for the conformity in accordance with ISO 13849, ISO 25119 and ISO 26262. Measures that concern only one of them are explicitly indicated accordingly.
+
+The information in this document does not cover how to design, install or operate a complete machine, nor does it cover all peripheral equipment that can influence the safety of the complete machine system. The complete system shall be designed and installed in accordance with the safety requirements set forth in the standards and regulations of the country where the machine is operated.
+
+The machine manufacturers that use and configure the RCs in the machine systems are responsible for ensuring that the applicable safety laws and regulations of the country concerned are observed and that any significant hazards in the complete machine system application are mitigated. The information in this document will not result in any liability of Bosch Rexroth for a machine that is equipped with the RCs.
+
+The configuration of the RCs and the integration into the machine safety system shall only be carried out by trained and experienced specialists who have sufficient knowledge of electronic hardware, software programming and functional safety.

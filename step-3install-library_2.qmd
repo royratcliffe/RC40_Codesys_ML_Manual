@@ -1,0 +1,23 @@
+# BDS Flashing Tool Scope of Features {#bds-flashing-tool-scope-of-features .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [How-Tos](how-to.html) \> [Flashing using CODESYS IDE](required-tools_2.html) \>                           | [](step-1-add-gateway_cfg_2.html "Previous Topic") [](required-tools_2.html "Parent Chapter") [](report-generation.html "Next Topic") |
+|                                                                                                                             |                                                                                                                                       |
+| # BDS Flashing Tool Scope of Features {#bds-flashing-tool-scope-of-features-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                       |
++-----------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+
+## Current versions of BDS Flashing Tool allow: {#current-versions-of-bds-flashing-tool-allow .p_Heading2 style="page-break-after: avoid;"}
+
+ 
+
+- Flashing (via CAN 2.0)
+
+- Report Generation
+
+ 
+
+ 
+
+Further features are in development
+
+ 

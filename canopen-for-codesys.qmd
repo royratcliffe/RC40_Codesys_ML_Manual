@@ -1,0 +1,25 @@
+# CANopen for CODESYS {#canopen-for-codesys .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [BSW API](sw-api-reference-manual.html) \>                                 | [](data-types.html "Previous Topic") [](sw-api-reference-manual.html "Parent Chapter") [](canopen-initializing-in-codesy.html "Next Topic") |
+|                                                                                             |                                                                                                                                             |
+| # CANopen for CODESYS {#canopen-for-codesys-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                             |
++---------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+
+All available API documentation can be found within the CODESYS library. Each API entry includes a code example that demonstrates how to use the API in practice.
+
+ 
+
+## Important Notes: {#important-notes .p_Heading2 style="page-break-after: avoid;"}
+
+- The login monitoring feature relies on CANopen communication between the CODESYS gateway and the RC40 controller, specifically using the CAN1 channel. To prevent conflicts with the login monitoring process, it is recommended to configure CANopen for the application software (ASW) on channels other than CAN1.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 

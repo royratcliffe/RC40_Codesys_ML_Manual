@@ -1,0 +1,9 @@
+# bds_isobus_rxMsg_ts {#bds_isobus_rxmsg_ts .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------+------------------------------------+
+| **Navigation:**  »No topics above this level«                                               | [](appendix.html "Parent Chapter") |
+|                                                                                             |                                    |
+| # bds_isobus_rxMsg_ts {#bds_isobus_rxmsg_ts-1 .p_Heading1 style="page-break-after: avoid;"} |                                    |
++---------------------------------------------------------------------------------------------+------------------------------------+
+
+Structure of a ISOBUS Rx databox message definition within the array of defined Rx messages.

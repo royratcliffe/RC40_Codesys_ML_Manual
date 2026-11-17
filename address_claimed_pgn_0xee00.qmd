@@ -1,0 +1,23 @@
+# Address claimed (PGN = 0xEE00) {#address-claimed-pgn-0xee00 .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [ISOBUS/J1939](isobus-module.html) \> [ISOBUS services and PGNs](isobus_services_and_pgns.html) \> | [](isobus_services_and_pgns.html "Previous Topic") [](isobus_services_and_pgns.html "Parent Chapter") [](commanded_address_pgn_0xfed8.html "Next Topic") |
+|                                                                                                                                                                                                                                                       |                                                                                                                                                          |
+| # Address claimed (PGN = 0xEE00) {#address-claimed-pgn-0xee00-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                         |                                                                                                                                                          |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+With this PGN another controller can ask for a comparison of the controller application (CA) names. If this PGN was received then the following results are possible:
+
+ 
+
+- No answer message will be sent if the received and own addresses are different.
+
+An \'Address Claim\' message will be sent if the addresses are equal and the own CA name has a lower value (= higher priority).
+
+- If the addresses are equal and the own CA name has the same value or a higher value (= lower priority) then there exist 2 possibilities:
+
+oIf the arbitrary address capability is not activated then a \'Cannot Claim Address\' message will be sent.
+
+oIf the arbitrary address capability is activated then an \'Address Claim\' message will be sent with a new source address.
+
+ 

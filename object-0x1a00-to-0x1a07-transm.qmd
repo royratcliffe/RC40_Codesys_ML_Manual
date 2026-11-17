@@ -1,0 +1,85 @@
+# Object 0x1A00 to 0x1A07 transmit PDO mapping parameters {#object-0x1a00-to-0x1a07-transmit-pdo-mapping-parameters .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> [RC40 CANopen communication objects](rc40-canopen-communication-obj.html) \> | [](object-0x1800-to-0x1807-transm.html "Previous Topic") [](rc40-canopen-communication-obj.html "Parent Chapter") [](supported-features.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                                  |                                                                                                                                                            |
+| # Object 0x1A00 to 0x1A07 transmit PDO mapping parameters {#object-0x1a00-to-0x1a07-transmit-pdo-mapping-parameters-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                              |                                                                                                                                                            |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This object contains the mapping for the PDOs the device is able to transmit.
+
+###   {#section .p_Heading3 style="page-break-after: avoid; margin: 0 0 0 0;"}
+
++-----------------------------------+-----------------------------------+
+| Index                             | 0x1A00 to 1A07                    |
++===================================+===================================+
+| Description                       | TPDO x Mapping parameter          |
++-----------------------------------+-----------------------------------+
+| Object Code                       | RECORD                            |
++-----------------------------------+-----------------------------------+
+| Data Type                         | PDO Mapping                       |
++-----------------------------------+-----------------------------------+
+| Category                          | Conditional;                      |
+|                                   |                                   |
+|                                   | mandatory for each supported PDO  |
++-----------------------------------+-----------------------------------+
+
+ 
+
+ 
+
+SubIndex Supported
+
+ 
+
++-----------------------------------+---------------------------------------------+
+| SubIndex                          | 0                                           |
++===================================+=============================================+
+| Description                       | Number of mapped application objects in PDO |
++-----------------------------------+---------------------------------------------+
+| Access                            | RW(Dynamic mapping supported)               |
++-----------------------------------+---------------------------------------------+
+| Default Value                     | 0                                           |
++-----------------------------------+---------------------------------------------+
+| Range                             | 0: deactivated                              |
+|                                   |                                             |
+|                                   | 1-64: activated                             |
++-----------------------------------+---------------------------------------------+
+
+ 
+
+  SubIndex        1h-8h
+  --------------- ---------------------------------------------------------
+  Description     PDO mapping for the nth application object to be mapped
+  Access          RW
+  Default Value   0x00000000
+  Range           UNSIGNED32
+
+ 
+
+ 
+
+SubIndex 1h - 8h Entry definition
+
+ 
+
+  ------------- ------- ---------- ---------------
+  Bits          31-16   15-8       7-0
+  Description   Index   SubIndex   Object length
+  ------------- ------- ---------- ---------------
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 

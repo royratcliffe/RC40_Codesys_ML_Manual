@@ -1,0 +1,9 @@
+# Security advisory {#security-advisory .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [Security](security.html) \> | [](advanced-encryption-standard-(.html "Previous Topic") [](security.html "Parent Chapter") [](password-guideline.html "Next Topic") |
+|                                                                                          |                                                                                                                                      |
+| # Security advisory {#security-advisory-1 .p_Heading1 style="page-break-after: avoid;"}  |                                                                                                                                      |
++------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
+
+This section describes best practices and configuration advice to protect the RC against common threats to security.

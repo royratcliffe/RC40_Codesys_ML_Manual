@@ -1,0 +1,126 @@
+# SID - CommunicationControl (0x28) {#sid---communicationcontrol-0x28 .p_Heading1 style="page-break-after: avoid;"}
+
++:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Diagnostic services (UDS)](diagnostic-services.html) \> [UDS customer tool](uds-customer-tool.html) \> | [](security-access-levels.html "Previous Topic") [](uds-customer-tool.html "Parent Chapter") [](supported-uds-sessions.html "Next Topic") |
+|                                                                                                                                                                                        |                                                                                                                                           |
+| # SID - CommunicationControl (0x28) {#sid---communicationcontrol-0x28-1 .p_Heading1 style="page-break-after: avoid;"}                                                                  |                                                                                                                                           |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+
+The Communication Control (SID 0x28) service is used to enable or disable the transmission and/or reception of communication messages on the ECU (server).
+
+This service can be used, for example, to temporarily stop the transmission of application communication messages while maintaining diagnostic communication.
+
+## Supported Sub-Functions {#supported-sub-functions .p_Heading2 style="page-break-after: avoid;"}
+
+  -------------- ---------------------- -----------------------------------------------------------------------------------------------
+  Sub-Function   Name                   Description
+  0x00           enableRxAndTx          Enables both reception and transmission of messages for the specified communication type.
+  0x01           enableRxAndDisableTx   Enables reception and disables transmission of messages for the specified communication type.
+  0x02           disableRxAndEnableTx   Disables reception and enables transmission of messages for the specified communication type.
+  0x03           disableRxAndTx         Disables both reception and transmission of messages for the specified communication type.
+  -------------- ---------------------- -----------------------------------------------------------------------------------------------
+
+## Callback Functions {#callback-functions .p_Heading2 style="page-break-after: avoid;"}
+
+The callback functions for the supported sub-functions are implemented in the bds_diag_appl_adapt.c file.
+
+1\.  Sub function 0x00 : bds_uds_EnableRXTX()
+
+The transmission and reception of communication messages can be enabled using the following APIs:
+
+ a) CAN based signal : below API starts all message groups that were previously set
+
+          bds_can_startAllMsgGroups(bds_IPduGrpVctr_au8, 1)        
+
+ b) XCP: below API enables XCP
+
+          bds_xcp_setMode(BDS_ENABLE_XCP)
+
+ c) CAN start:
+
+          bds_can_start(BDS_CAN_1_D)
+
+2\.  Sub function 0x01 : bds_uds_EnableRxAndDisableTx()
+
+The application software (ASW) shall define the behavior required to:
+
+- Enable the reception of cyclic messages.
+
+- Disable the transmission of cyclic messages.
+
+3\.  Sub function 0x02 : bds_uds_DisableRxAndEnableTx()
+
+The application software (ASW) shall define the behavior required to:
+
+- Disable the reception of cyclic messages.
+
+- Enable the transmission of cyclic messages.
+
+4\. Sub function 0x03 : bds_uds_DisableRxAndTx()
+
+The transmission and reception of communication messages can be disabled using the following APIs:
+
+ a) CAN based signal : Please refer below:
+
+          Stopping of Message/PDUs
+
+ b) XCP: below API disables XCP
+
+          bds_xcp_setMode(BDS_DISABLE_XCP)
+
+ c) CAN stop
+
+          bds_can_stop(BDS_CAN_1_D)
+
+## Request and Response Format {#request-and-response-format .p_Heading2 style="page-break-after: avoid;"}
+
+### Communication Control Request {#communication-control-request .p_Heading3 style="page-break-after: avoid;"}
+
+  ------ ---------------------------- -------------
+  Byte   Parameter                    Value
+  1      Service Identifier (SID)     0x28
+  2      Sub-Function (controlType)   0x00 - 0xFF
+  3      communicationType            0x00 - 0xFF
+  ------ ---------------------------- -------------
+
+### Supported Sub-Functions {#supported-sub-functions-1 .p_Heading3 style="page-break-after: avoid;"}
+
+The current implementation supports the following sub-functions:
+
+- 0x00 -- enableRxAndTx
+
+- 0x01 -- enableRxAndDisableTx
+
+- 0x02 -- disableRxAndEnableTx
+
+- 0x03 -- disableRxAndTx
+
+### communicationType Parameter {#communicationtype-parameter .p_Heading3 style="page-break-after: avoid;"}
+
+The communicationType parameter allows one or more communication types to be controlled simultaneously.
+
+Only bits 1--0 are evaluated. Bits 7--2 shall be set to zero.
+
+  ------------ ------- -----------------------------------------------------------------------------
+  Bits (1-0)   Value   Description
+  01b          0x01    Normal communication messages
+  10b          0x02    Network management communication messages
+  11b          0x03    Normal communication messages and network management communication messages
+  ------------ ------- -----------------------------------------------------------------------------
+
+Example Request:\
+Enable Reception and Disable Transmission of Normal Communication Messages
+
+  ------------ -------------- -------------------
+  Service ID   Sub-Function   communicationType
+  0x28         0x01           0x01
+  ------------ -------------- -------------------
+
+ 
+
+Positive Response
+
+  -------------- -----------------
+  Response SID   Sub Function ID
+  0x68           0x01
+  -------------- -----------------

@@ -1,0 +1,41 @@
+# CAN Preparation steps {#can-preparation-steps .p_Heading1 style="page-break-after: avoid;"}
+
++:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CAN](can.html) \> [CAN communication](can-communication.html) \> | [](can_configuration_steps.html "Previous Topic") [](can-communication.html "Parent Chapter") [](parameter-configuration-on-ec-.html "Next Topic") |
+|                                                                                                                                                                                                                      |                                                                                                                                                    |
+| # CAN Preparation steps {#can-preparation-steps-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                      |                                                                                                                                                    |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The following figures give an overview of the CAN legacy communication preparation.
+
+ 
+
+1.Preparing CAN transmit function
+
+ 
+
+<figure style="margin:0;padding:0">
+<img src="can_prepare_tx.png" title="Figure76: Preparing CAN legacy transmit function" id="fig882183ec" style="width:6.0208in;height:8.6042in;border:none" alt="Figure76: Preparing CAN legacy transmit function" />
+<figcaption aria-hidden="true"><p>Figure76: Preparing CAN legacy transmit function</p></figcaption>
+</figure>
+
+ 
+
+ 
+
+2.Preparing CAN receive function
+
+ 
+
+ 
+
+<figure style="margin:0;padding:0">
+<img src="can_prepare_rx.png" title="Figure77: Preparing CAN legacy receive function" id="fig769b2c76" style="width:6.0208in;height:10.3021in;border:none" alt="Figure77: Preparing CAN legacy receive function" />
+<figcaption aria-hidden="true"><p>Figure77: Preparing CAN legacy receive function</p></figcaption>
+</figure>
+
+ 
+
+ 
+
+ 

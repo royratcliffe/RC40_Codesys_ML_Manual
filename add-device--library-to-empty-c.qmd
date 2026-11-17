@@ -1,0 +1,65 @@
+# Add a device and a library to an empty CODESYS project {#add-a-device-and-a-library-to-an-empty-codesys-project .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [Introduction](introduction.html) \> [First steps with RC](preparation.html) \> [Configurations](required-tools.html) \> [Step 5: ASW development & components involved](step-5-asw-development--compon.html) \> | [](step-5-asw-development--compon.html "Previous Topic") [](step-5-asw-development--compon.html "Parent Chapter") [](add-safe_non-safe-pous---use-.html "Next Topic") |
+|                                                                                                                                                                                                                                   |                                                                                                                                                                       |
+| # Add a device and a library to an empty CODESYS project {#add-a-device-and-a-library-to-an-empty-codesys-project-1 .p_Heading1 style="page-break-after: avoid;"}                                                                 |                                                                                                                                                                       |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+## Create Empty project {#create-empty-project .p_Heading2 style="page-break-after: avoid;"}
+
+To open a new empty CODESYS project - open CODESYS  \> File \> New Project \> Chose Empty Project
+
+ 
+
+<figure style="margin:0;padding:0">
+<img src="emptyproject.png" title="Create an empty CODESYS project" style="width:9.8229in;height:6.4583in;border:none" alt="Create an empty CODESYS project" />
+<figcaption aria-hidden="true"><p>Create an empty CODESYS project</p></figcaption>
+</figure>
+
+ 
+
+ 
+
+## Add device to the project {#add-device-to-the-project .p_Heading2 style="page-break-after: avoid;"}
+
+After creating an empty CODESYS project add a previously installed device from the device repository to the current project.
+
+ 
+
+<figure style="margin:0;padding:0">
+<img src="adddevice.png" title="Add device to the project" style="width:12.0521in;height:5.9896in;border:none" alt="Add device to the project" />
+<figcaption aria-hidden="true"><p>Add device to the project</p></figcaption>
+</figure>
+
+ 
+
+Once the device is added to the current project, it appears in the device explorer
+
+ 
+
+<figure style="margin:0;padding:0">
+<img src="addeddevice.png" title="View an added device in the project" style="width:11.1875in;height:3.8125in;border:none" alt="View an added device in the project" />
+<figcaption aria-hidden="true"><p>View an added device in the project</p></figcaption>
+</figure>
+
+## Add a library to the project {#add-a-library-to-the-project .p_Heading2 style="page-break-after: avoid;"}
+
+Now you can add any CODESYS library to the current project from CODESYS library repository. Right click on the Library Manager under added device \> Add library
+
+ 
+
+<figure style="margin:0;padding:0">
+<img src="addlib.png" title="Add a library from the library repository to the project" style="width:11.9271in;height:4.7813in;border:none" alt="Add a library from the library repository to the project" />
+<figcaption aria-hidden="true"><p>Add a library from the library repository to the project</p></figcaption>
+</figure>
+
+ 
+
+ 
+
+  -------------------------------------------------------------------------------- ----------------------------------------------------------------------------------------
+  ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"}   The above mentioned steps in this sub-chapter are needed for every new CODESYS project
+  -------------------------------------------------------------------------------- ----------------------------------------------------------------------------------------
+
+ 

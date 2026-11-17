@@ -1,0 +1,80 @@
+# BDS Flashing Tool {#bds-flashing-tool .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [How-Tos](how-to.html) \> [Flashing using CODESYS IDE](required-tools_2.html) \> | [](configuration-arguments-for-fl.html "Previous Topic") [](required-tools_2.html "Parent Chapter") [](step-3install-library_2.html "Next Topic") |
+|                                                                                                   |                                                                                                                                                   |
+| # BDS Flashing Tool {#bds-flashing-tool-1 .p_Heading1 style="page-break-after: avoid;"}           |                                                                                                                                                   |
++---------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+
+BDS Flashing tool is a script used for the software update of RC5-6/40, RC18-12/40 or RC27-18/40.
+
+## Prerequisites {#prerequisites .p_Heading2 style="page-break-after: avoid;"}
+
++-------------------------------------------------------------------------+--------------------------------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| SW Name                                                                 | Purpose                              | Costs           |                                                                                                                                                                            |
++=========================================================================+======================================+=================+============================================================================================================================================================================+
+| Latest BDS Flashing Tool                                                | Required to flash your application   | Free of charge  | In build folder from easyConfig\                                                                                                                                           |
+|                                                                         |                                      |                 | \...\\Build_s242_rts_HelloWorld\\tools\\BDS_Flashing_Tool.zip                                                                                                              |
++-------------------------------------------------------------------------+--------------------------------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| For RC5-6: CODESYS Development System V3 3.5.21.40 - 32 bit             | IEC 61131-3 Programming Tool         | Free of charge  | [-CODESYS v3.5.21.40](https://store-archive.codesys.com/ftp_download/3S/CODESYS/300000/3.5.21.40/CODESYS%203.5.21.40.exe){.weblink target="_blank"}                        |
+|                                                                         |                                      |                 |                                                                                                                                                                            |
+|                                                                         |                                      |                 |                                                                                                                                                                            |
+|                                                                         |                                      |                 |                                                                                                                                                                            |
+| For RC18-12 & RC27-18: CODESYS Development System V3 3.5.21.40 - 32 bit |                                      |                 |                                                                                                                                                                            |
++-------------------------------------------------------------------------+--------------------------------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| CAN-USB Driver                                                          | Required if Rexroth CAN-USB is used. | Free of charge  | [CAN-USB-Drivers](https://www.boschrexroth.com/en/de/search.html?dnavs=DC_mediatype%3Adc_media_type_software&q=p1079056&c=de&lang=en&s=download){.weblink target="_blank"} |
++-------------------------------------------------------------------------+--------------------------------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+ 
+
+ 
+
+## Contents of BDS Flashing tool package {#contents-of-bds-flashing-tool-package .p_Heading2 style="page-break-after: avoid;"}
+
+BDS Flashing tool contains following packages:
+
+ 
+
+oFlashing tool EXE file
+
+oBatch script to start the flashing procedure
+
+oPython script
+
+oAll needed DLLs for CAN-USB library
+
+oConfig.ini to configure:
+
+§Hex file to be flashed
+
+§Baud Rate
+
+§Report log text file path
+
+§Flashing mode
+
+ 
+
+Details on the full list of arguments and how to configure them are mentioned in the next chapter.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 

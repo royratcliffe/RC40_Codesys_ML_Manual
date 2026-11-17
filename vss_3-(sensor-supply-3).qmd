@@ -1,0 +1,61 @@
+# VSS_3 (sensor supply 3) {#vss_3-sensor-supply-3 .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Self-monitoring](ecu-self-monitoring.html) \> [Cyclic monitoring](cyclic-monitoring-checks.html) \> | [](vss_2-(sensor-supply-2).html "Previous Topic") [](cyclic-monitoring-checks.html "Parent Chapter") [](vss_4-(sensor-supply-4).html "Next Topic") |
+|                                                                                                                                                                                     |                                                                                                                                                    |
+| # VSS_3 (sensor supply 3) {#vss_3-sensor-supply-3-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                   |                                                                                                                                                    |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The cyclic check of the sensor supply voltage 3.
+
+ 
+
+## Remarks: {#remarks .p_Heading2 style="page-break-after: avoid;"}
+
+- Monitoring of overvoltage and undervoltage for error.
+
+- The VSS_3 voltage can be queried using bds_sys_aiv().
+
+- In case of short circuit to ground and short circuit to battery the sensor supply will be switched-off.
+
+- If error is recovered then switch-on of sensor supply is possible only after 1000ms.
+
+- To switch-on the sensor supply after the error recovery use the bds_sys_setVSS().
+
+- Over Voltage Error Limit = 5.250V
+
+- Under Voltage Error Limit = 4.750V
+
+- Refer [Safety function and safe state](safetyfunctionandsafestate.html){.topiclink} for details on the safety functions provided by the RCs and the related considerations to be observed.
+
+- Refer [Failure detection possibilities](failuredetectionpossibilities.html){.topiclink} for a broader overview of the different failure reactions observed.
+
+ 
+
+Error Reaction:
+
+- Over Voltage Error  ( VSS_3  \>= Over Voltage Error Limit )
+
+  Error Description              Reaction
+  ------------------------------ --------------------
+  DFC                            DFC_rbr_mo_OV_VSS3
+  Error Code                     0x080500
+  High Power Outputs(\...,OFF)   no
+  ECU Reset                      no
+  bds_sys_setVSS(\...,OFF)       yes
+  Reaction time                  80ms
+
+ 
+
+- Under Voltage Error ( VSS3 \<= Under Voltage Error Limit )
+
+  Error Description              Reaction
+  ------------------------------ --------------------
+  DFC                            DFC_rbr_mo_UV_VSS3
+  Error Code                     0x080600
+  High Power Outputs(\...,OFF)   no
+  ECU Reset                      no
+  bds_sys_setVSS(\...,OFF)       yes
+  Reaction time                  80ms
+
+ 

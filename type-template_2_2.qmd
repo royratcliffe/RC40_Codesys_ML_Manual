@@ -1,0 +1,108 @@
+# \<Type name\> {#type-name .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  »No topics above this level«                               | [](javascript:HMToggleExpandAll(!HMAnyToggleOpen()) "Click to open/close expanding sections") [](appendix.html "Parent Chapter") |
+|                                                                             |                                                                                                                                  |
+| # \<Type name\> {#type-name-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                  |
++-----------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+
+\<Add Type description here\>
+
+\<for generated types please add the following disclaimer:\>
+
+ 
+
++-----------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
+| ![Notice_RGB 39-153-209](hmfile_hash_c5013a84.png){style="margin:0;width:1.4792in;height:0.2813in;border:none"} | The content of this type is project specific and is generated based on the settings in easyConfig.\ |
+|                                                                                                                 | Therefore the declaration below is just an example.                                                 |
++-----------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
+
+ 
+
+\<Pic the correct declaration type\>
+
+## ![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a1_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [Enum declaration](javascript:HMToggle('toggle','toggle0186a1','toggle0186a1_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#hmtoggle_plus1-enum-declaration .p_Heading2 style="page-break-after: avoid;"}
+
++-----------------------------------------------------------------------------------------------------------+
+|                                                                                                           |
+|                                                                                                           |
+| +-----------------------------------+-------------------------------------------------------------------+ |
+| | Name                              | Meaning                                                           | |
+| +===================================+===================================================================+ |
+| | \<enum literal\>                  | \<optional comment regarding meaning of element\>                 | |
+| |                                   |                                                                   | |
+| |                                   | \<please add only literals that are intended for customer usage\> | |
+| +-----------------------------------+-------------------------------------------------------------------+ |
+| |                                   |                                                                   | |
+| +-----------------------------------+-------------------------------------------------------------------+ |
+| |                                   |                                                                   | |
+| +-----------------------------------+-------------------------------------------------------------------+ |
+| |                                   |                                                                   | |
+| +-----------------------------------+-------------------------------------------------------------------+ |
+| |                                   |                                                                   | |
+| +-----------------------------------+-------------------------------------------------------------------+ |
+| |                                   |                                                                   | |
+| +-----------------------------------+-------------------------------------------------------------------+ |
+| |                                   |                                                                   | |
+| +-----------------------------------+-------------------------------------------------------------------+ |
+| |                                   |                                                                   | |
+| +-----------------------------------+-------------------------------------------------------------------+ |
+| |                                   |                                                                   | |
+| +-----------------------------------+-------------------------------------------------------------------+ |
+| |                                   |                                                                   | |
+| +-----------------------------------+-------------------------------------------------------------------+ |
+|                                                                                                           |
+|                                                                                                           |
++-----------------------------------------------------------------------------------------------------------+
+
+ 
+
+## ![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a2_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [Struct declaration](javascript:HMToggle('toggle','toggle0186a2','toggle0186a2_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} (little endian (intel format)) {#hmtoggle_plus1-struct-declaration-little-endian-intel-format .p_Heading2 style="page-break-after: avoid;"}
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                                                                                                                                                                  |
+|                                                                                                                                                                                  |
+|   Name                Type                                                                                                    Meaning                                            |
+|   ------------------- ------------------------------------------------------------------------------------------------------- -------------------------------------------------- |
+|   \<struct member\>   \<type of the member (as link to the corresponding type or [base type](data-types.html){.topiclink}\>   \<optional comment regarding meaning of member\>   |
+|                                                                                                                                                                                  |
+|                                                                                                                                                                                  |
+|                                                                                                                                                                                  |
+|                                                                                                                                                                                  |
+|                                                                                                                                                                                  |
+|                                                                                                                                                                                  |
+|                                                                                                                                                                                  |
+|                                                                                                                                                                                  |
+|                                                                                                                                                                                  |
+|                                                                                                                                                                                  |
+|                                                                                                                                                                                  |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+\< the struct template can also be used for unions, just adjust the title accordingly\>
+
+ 
+
+## ![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a3_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [Declaration](javascript:HMToggle('toggle','toggle0186a3','toggle0186a3_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#hmtoggle_plus1-declaration .p_Heading2 style="page-break-after: avoid;"}
+
++------------------------------------------------------------------------+
+|                                                                        |
+|                                                                        |
+|   Declaration       Meaning                                            |
+|   ----------------- -------------------------------------------------- |
+|   \<declaration\>   \<optional comment regarding meaning of member\>   |
+|                                                                        |
+|                                                                        |
+|                                                                        |
+|                                                                        |
+|                                                                        |
+|                                                                        |
+|                                                                        |
+|                                                                        |
+|                                                                        |
+|                                                                        |
+|                                                                        |
++------------------------------------------------------------------------+
+
+\< use this for any other types, e.g. function pointer typedefs. Adjust table if necessary\>
+
+ 

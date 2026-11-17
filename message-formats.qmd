@@ -1,0 +1,91 @@
+# LIN overview {#lin-overview .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [LIN](lin-module.html) \> | [](lin-integration-into-an-application.html "Previous Topic") [](lin-module.html "Parent Chapter") [](parameter-configuration-on-ec.html "Next Topic") |
+|                                                                                                                                                                              |                                                                                                                                                        |
+| # LIN overview {#lin-overview-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                |                                                                                                                                                        |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The following chapter gives a short overview of the LIN communication protocol.
+
+All the LIN frames (TX and RX) are always started by the LIN master. In case of a RX frame the slave node sends its data after the master node has sent the PID (Protected Identifier Data) field of the frame. In case of a TX frame the master node send the whole LIN frame.
+
+## 1. Message format {#message-format .p_Heading2 style="page-break-after: avoid;"}
+
+The LIN messages have the following format:
+
++------------+-------------+------------+--------------------------------------+-----------------+------------+
+| LIN Format | LIN Frame Structure                                                                            |
+|            +-------------+------------+--------------------------------------+-----------------+------------+
+|            | Break Field | Sync Field | PID Field                            | Data Field      | Checksum   |
+|            +-------------+------------+--------------------------------------+-----------------+------------+
+|            | \>= 13 Bits | 8 Bits     | 6 Bits (frameId) + 2 Bits (checksum) | (1..8) x 8 Bits | 8 Bits     |
++------------+-------------+------------+--------------------------------------+-----------------+------------+
+| Tx Frame   | sent by Master node                                             | sent by Master node          |
++------------+-----------------------------------------------------------------+------------------------------+
+| Rx Frame   | sent by Master node                                             | sent by Slave node           |
++------------+-----------------------------------------------------------------+------------------------------+
+
+ 
+
+- Break field: Indicates the beginning of a new frame, at least 13 bit times long, in order to be able to distinguish it reliably from all other characters.
+
+- Sync field: Allows the resynchronization of slave nodes with imprecise clock sources by measuring the bit times and reconfiguring the UART baud rate. Sync field is always sent by the master.
+
+- PID(Protected Identifier Data) Field: A character with the frame ID. The 8-bit character contains 2 parity bits to protect the identifier, resulting in a total range of 0\...63.
+
+- Data Field: 1\...8 Data bytes which contain the information that will be transmitted.
+
+- Checksum byte: Contains the inverted 8 bit sum with Carry handling over all data bytes (Classic checksum) or over data bytes and Protected Id (Enhanced checksum).
+
+The following frame IDs are possible:
+
+- 0..59: These frames can be used by the application.
+
+- 60: This frame is the MasterRequest frame and is used for diagnostic services.
+
+- 61: This frame is the SlaveResponse frame and is used for diagnostic services.
+
+- 62..63: These frame types are reserved for future use.
+
+The PID field is calculated in the following way:
+
+- Bit 0 .. Bit 5 of the PID field is the frame identifier.
+
+- Bit 6 of the PID field is a checksum bit, it is calculated as: Bit 6 = Bit 0 xor Bit 1 xor Bit 2 xor Bit 4
+
+- Bit 7 of the PID field is a checksum bit, it is calculated as: Bit 7 = not (Bit 1 xor Bit 3 xor Bit 4 xor Bit 5)
+
+The Data field has the following format:
+
+- The data field contains 1..8 data bytes, dependent on the frame definition.
+
+- The data bytes are sent in the order: byte 0, byte 1, \... byte 7.
+
+- The bits of a data byte are sent in the order: bit 0, bit 1, \... bit 7.
+
+- The data of scalar signals may exceed the byte boundaries.
+
+## 2. LIN Schedule Table {#lin-schedule-table .p_Heading2 style="page-break-after: avoid;"}
+
+- The order in which the frames are sent to the LIN bus is defined in a Schedule Table. It defines the sequence and time grid in which messages are sent.
+
+- Schedule tables make it possible to assure that the bus will never be overloaded.
+
+- They are also the key component to guarantee the periodicity of signals. One or more Schedule Table(s) are defined in each LDF (LIN Description File).
+
+- Each table entry describes a frame by its LDF name and a delay time, which is the time that is made available to the frame on the bus.
+
+- A Schedule Table is always executed by the master.Only the master can switch the Schedule Table.
+
+- The master application determines which frames appear on the bus in which time sequence.The LIN Schedule sets the send time point of the LIN message to be transmitted.
+
+ 
+
+ 
+
+##   {#section .p_Heading2 style="page-break-after: avoid;"}
+
+ 
+
+ 

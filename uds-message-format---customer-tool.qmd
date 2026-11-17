@@ -1,0 +1,71 @@
+# UDS message format - customer tool {#uds-message-format---customer-tool .p_Heading1 style="page-break-after: avoid;"}
+
++:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Diagnostic services (UDS)](diagnostic-services.html) \> [UDS customer tool](uds-customer-tool.html) \> | [](supported-uds-sessions.html "Previous Topic") [](uds-customer-tool.html "Parent Chapter") [](uds---overview.html "Next Topic") |
+|                                                                                                                                                                                        |                                                                                                                                   |
+| # UDS message format - customer tool {#uds-message-format---customer-tool-1 .p_Heading1 style="page-break-after: avoid;"}                                                              |                                                                                                                                   |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
+
+CAN ID can be configured from easyConfig tool as below:
+
+ 
+
+  -------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------
+  ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"}   CAN ID configuration must not be overlapped with ASW CAN ID from the CAN API bds_can_sendData.
+  -------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------
+
+CAN IDs can be configured from easyConfig tool as below:
+
+## Standard CAN ID for 29 bit identifier: {#standard-can-id-for-29-bit-identifier .p_Heading2 style="page-break-after: avoid;"}
+
+According to ISO 15765-2,
+
+ Physical Request CAN ID    :  0x18DA\<TA\>\<SA\>
+
+ Physical Response CAN ID  :  0x18DA\<SA\>\<TA\>
+
+ Functional Request CAN ID :  0x18DBFF\<TA\> (Optional Configuration)
+
+## Non standard CAN ID for 29 bit identifier: {#non-standard-can-id-for-29-bit-identifier .p_Heading2 style="page-break-after: avoid;"}
+
+Example:    
+
+ Physical Request CAN ID    :  0xYYYY\<TA\>\<SA\>
+
+ Physical Response CAN ID  :  0xYYYY\<SA\>\<TA\>
+
+ Functional Request CAN ID :  0xYYYY\<TA\>\<SA\> (Optional Configuration)  
+
+where,
+
+TA  - Target address is the ECU node ID which can be configured from easyConfig.
+
+SA  - Source Address is the tester ID which can be configured from easyConfig.
+
+ 
+
++--------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
+| ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"} | •The source address 0xFA and 0xF1 is reserved by Bosch Rexroth and must not be used by application. |
+|                                                                                |                                                                                                     |
+|                                                                                | •The target address i.e., ECU Node ID must be unique for the new UDS instances.                     |
+|                                                                                |                                                                                                     |
+|                                                                                | •Only \<TA\> and \<SA\> can be configured from easyConfig.                                          |
+|                                                                                |                                                                                                     |
+|                                                                                | •The configuration of the functional Request Id in easyConfig is optional and not mandatory.        |
++--------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+
+
+## Non standard CAN ID for 11 bit identifier: {#non-standard-can-id-for-11-bit-identifier .p_Heading2 style="page-break-after: avoid;"}
+
+ Configuration of  CAN ID(MIN)   : 0x001
+
+ Configuration of  CAN ID(MAX)  : 0x7FF
+
+ 
+
+Note:  In case of the Non-Standard CAN ID the request CAN ID can be linked with any response CAN ID.
+
+          The request and response CAN ID\'s can be configured from the easyConfig.
+
+ 
+
+ 

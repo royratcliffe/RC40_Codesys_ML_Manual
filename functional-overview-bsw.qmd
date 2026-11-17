@@ -1,0 +1,22 @@
+# Functional overview of the BSW {#functional-overview-of-the-bsw .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [SW architecture](sw-architecture.html) \>            | [](sw-architecture-overview.html "Previous Topic") [](sw-architecture.html "Parent Chapter") [](bootloader.html "Next Topic") |
+|                                                                                                                   |                                                                                                                               |
+| # Functional overview of the BSW {#functional-overview-of-the-bsw-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                               |
++-------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
+
+On a high abstraction level the RC provides the following system use cases via the BSW:
+
+<figure style="margin:0;padding:0">
+<img src="rc40_functionalusecaseoverview.png" title="Figure 30: RC high level use case overview." id="figcc8e894" style="width:100%;height:auto;border:none" alt="Figure 30: RC high level use case overview." />
+<figcaption aria-hidden="true"><p>Figure 30: RC high level use case overview.</p></figcaption>
+</figure>
+
+ 
+
+This grouping of system use cases is used:
+
+oInside this manual to structure the description of the [System Features](system-concepts.html){.topiclink}
+
+oAs basis for the BSW C-APIs partitioning into packages, detailed in Structure of the BSW C-API

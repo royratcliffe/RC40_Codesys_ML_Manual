@@ -1,0 +1,63 @@
+# Query response communication {#query-response-communication .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Self-monitoring](ecu-self-monitoring.html) \> [Cyclic monitoring](cyclic-monitoring-checks.html) \> | [](program-flow-control.html "Previous Topic") [](cyclic-monitoring-checks.html "Parent Chapter") [](safety-feature-configuration.html "Next Topic") |
+|                                                                                                                                                                                     |                                                                                                                                                      |
+| # Query response communication {#query-response-communication-1 .p_Heading1 style="page-break-after: avoid;"}                                                                       |                                                                                                                                                      |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The function implements the query−response communication between the function controller and the monitoring module, integrates the partial responses from the different software modules into the response and the monitoring module is checked for plausibility by periodically generating erroneous responses in the value and time ranges.
+
+Generation of new query when response is correct.
+
+ 
+
+## Remarks: {#remarks .p_Heading2 style="page-break-after: avoid;"}
+
+Error Counter behaviour:
+
+- Correct and In Time :    -1.
+
+- Correct but too early :  +1.
+
+- In correct but in time :  +1.
+
+- Too late                 :  +2.  
+
+- Refer [Safety function and safe state](safetyfunctionandsafestate.html){.topiclink} for details on the safety functions provided by the RCs and the related considerations to be observed.
+
+- Refer [Failure detection possibilities](failuredetectionpossibilities.html){.topiclink} for a broader overview of the different failure reactions observed.
+
+ 
+
+ 
+
+Error Reaction:
+
++-----------------------------------+----------------------------------------+
+| Error                             | Reaction                               |
++===================================+========================================+
+| DFC                               | No                                     |
++-----------------------------------+----------------------------------------+
+| Error Code                        | No                                     |
++-----------------------------------+----------------------------------------+
+| High Power Outputs(\...,OFF)      | Yes                                    |
++-----------------------------------+----------------------------------------+
+| ECU Reset                         | Yes                                    |
++-----------------------------------+----------------------------------------+
+| Reaction time                     | 200ms                                  |
++-----------------------------------+----------------------------------------+
+| Reset Reason - Group ID           | RESET_SWRESET_MOC                      |
++-----------------------------------+----------------------------------------+
+| Reset Reason  - Reset number      | RESET_SWRESET_ILLEGAL_SW_PATH/         |
+|                                   |                                        |
+|                                   | RESET_SWRESET_MOCCOM_PWR_ERROR/        |
+|                                   |                                        |
+|                                   | RESET_SWRESET_MOCCOM_OS_TIMEOUT_ERROR/ |
+|                                   |                                        |
+|                                   | RESET_SWRESET_MOCCOM_SOPTST/           |
+|                                   |                                        |
+|                                   | RESET_SWRESET_MOCCOM_BUS_ERROR/        |
+|                                   |                                        |
+|                                   | RESET_SWRESET_MOCCOM_CTSOPTST          |
++-----------------------------------+----------------------------------------+

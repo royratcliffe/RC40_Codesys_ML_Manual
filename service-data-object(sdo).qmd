@@ -1,0 +1,321 @@
+# Service Data Object (SDO) {#service-data-object-sdo .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [CANopen protocol description](canopen-protocol-description.html) \> | [](safety-relevant-data-object(srdo).html "Previous Topic") [](canopen-protocol-description.html "Parent Chapter") [](rc40-canopen-library.html "Next Topic") |
+|                                                                                                                                                                                                                                                     |                                                                                                                                                               |
+| # Service Data Object (SDO) {#service-data-object-sdo-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                               |                                                                                                                                                               |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The Service Data Objects (SDOs) are used for accessing device parameters. The data transmission between two CANopen subscribers via SDO corresponds to a client/server relationship. A single SDO access can be used to read or write a single subindex of an object. The node whose object dictionary is accessed is referred to as the SDO server and the node which wants to request or write the data is referred to as the \"SDO client\". The SDO client initiates the SDO transfer to an SDO server and the SDO server responds with data from the local object dictionary of the SDO server. An \"upload\" refers to the reading of a value of an object from the object dictionary, a \"download\" refers to the writing of a value in the object dictionary.
+
+ 
+
+The SDO transfers are divided into three types of access:
+
+- \"Expedited transfer\" for transferring objects with up to four bytes.
+
+- \"Segmented transfer\" for transferring any number of bytes, whereby each CAN message is confirmed individually.
+
+- \"Block transfer\" is also for any number of bytes; here, a given block of CAN message is confirmed at once.
+
+ 
+
+Generally, the master CANopen node will send a request to the network, and the node of interest will respond with the data requested. CANopen uses reserved message IDs to facilitate this communication. When the SDO client wants to request information from the server, it sends an SDO request using a CAN-ID of 600h + Node ID. The server will then respond using a CAN-ID of 580h + Node ID.
+
+The SDO client sends the request to the SDO server as shown in the table below.
+
+ 
+
+  ------------------------------------- ------------- ----------- -------------
+  Byte 0                                Byte 1 to 2   Byte 3      Byte 4 to 7
+  SDO request from a client to server   index         sub-index   reserved
+  ------------------------------------- ------------- ----------- -------------
+
+ 
+
+Generally, a reserved byte is usually \'00h\'
+
+The SDO server sends the request to the SDO client as shown in the table below.
+
+  ---------------------------------------------- ------------- ----------- -------------
+  Byte 0                                         Byte 1 to 2   Byte 3      Byte 4 to 7
+  SDO confirmation/error from server to client   index         sub-index   data
+  ---------------------------------------------- ------------- ----------- -------------
+
+## Expedited transfer {#expedited-transfer .p_Heading2 style="page-break-after: avoid;"}
+
+This method is used to write (download) or read (upload) values in objects with up to 4 bytes of data in the object dictionary. This service is confirmed, i.e., each access is answered with data, with a confirmation, or with an error message.
+
+## SDO Download {#sdo-download .p_Heading2 style="page-break-after: avoid;"}
+
+An expedited SDO message for writing data in the object dictionary of the server from the client is shown in the table below.
+
++----------------+-------------------------------------------------------------------------+
+| COB-ID         | Data                                                                    |
+|                +-------------------+-----------------+-----------------+-----------------+
+|                | Byte 0            | Byte 1 to 2     | Byte 3          | Byte 4 to 7     |
++================+===================+=================+=================+=================+
+| 600h + node-Id | command specifier | index           | sub-index       | data            |
+|                |                   |                 |                 |                 |
+|                |                   |                 |                 |                 |
++----------------+-------------------+-----------------+-----------------+-----------------+
+
+ 
+
+ 
+
+The command specifier depends on the length of the data that is written. Refer to table below.
+
+  Command specifier   Data length
+  ------------------- -------------
+  2Fh                 1 byte
+  2Bh                 2 byte
+  27h                 3 byte
+  23h                 4 byte
+
+ 
+
+The response from the server is either a confirmation of the write operation or an error message (the structure of the messages is given below). In the latter case, the reason for the error is also sent with the data (see list of the SDO error messages in section SDO abort codes).
+
+The response from the server to the client with confirmation of the write operation is as shown in the table below.
+
++----------------+------------------------------------------------+
+| COB-ID         | Data                                           |
+|                +--------+-------------+-----------+-------------+
+|                | Byte 0 | Byte 1 to 2 | Byte 3    | Byte 4 to 7 |
++================+========+=============+===========+=============+
+| 580h + node-Id | 60h    | Index       | Sub-index | Data        |
++----------------+--------+-------------+-----------+-------------+
+
+ 
+
+The response from the server to client with error information is as shown in the table below.
+
++----------------+------------------------------------------------+
+| COB-ID         | Data                                           |
+|                +--------+-------------+-----------+-------------+
+|                | Byte 0 | Byte 1 to 2 | Byte 3    | Byte 4 to 7 |
++================+========+=============+===========+=============+
+| 580h + node-Id | 80h    | Index       | Sub-index | Error code  |
++----------------+--------+-------------+-----------+-------------+
+
+ 
+
+Example: Write object 2001h (USIGNED8 bit data-type) to value 3E8h (=1000d) of a device with node-ID = 2.
+
+  CANID   Data
+  ------- ---------------------------------
+  602h    2Fh 01h 20h 00h E8h 03h 00h 00h
+
+ 
+
+Where,
+
+  -------- ----------------- ----------------------------
+  Byte     Data              Meaning
+  0        2Fh               1 byte of data
+  1 to 2   01h 20h           index of object is 2001h
+  3        00h               sub-index of object is 00h
+  5 to 8   E8h 03h 00h 00h   value of object
+  -------- ----------------- ----------------------------
+
+ 
+
+If successful, the device responds with this message:
+
+  CANID   Data
+  ------- -------------------------
+  582h    60 01 20 00 00 00 00 00
+
+ 
+
+## SDO upload {#sdo-upload .p_Heading2 style="page-break-after: avoid;"}
+
+When an object has a data length of fewer than 4 bytes, the client sends the CANopen telegram is as shown in the table below
+
++----------------+------------------------------------------------+
+| COB-ID         | Data                                           |
+|                +--------+-------------+-----------+-------------+
+|                | Byte 0 | Byte 1 to 2 | Byte 3    | Byte 4 to 7 |
++================+========+=============+===========+=============+
+| 600h + node-ID | 40h    | index       | sub-index | 00h         |
++----------------+--------+-------------+-----------+-------------+
+
+The response from the server is either a confirmation of the read operation or an error message (the structure of the messages is given below). In the latter case, the reason for the error is also sent with the data (see list of the SDO error messages in section SDO abort codes).
+
+The response from the server to the client with confirmation of the write operation is as shown in the table below.
+
++----------------+-----------------------------------------------------------+
+| COB-ID         | Data                                                      |
+|                +-------------------+-------------+-----------+-------------+
+|                | Byte 0            | Byte 1 to 2 | Byte 3    | Byte 4 to 7 |
++================+===================+=============+===========+=============+
+| 600h + node-ID | command specifier | Index       | Sub-index | Data        |
++----------------+-------------------+-------------+-----------+-------------+
+
+ 
+
+The command specifier depends on the length of the data that is read. Refer to table below.
+
+  Command specifier   Data length
+  ------------------- -------------
+  4Fh                 1 byte
+  4Bh                 2 byte
+  47h                 3 byte
+  43h                 4 byte
+
+ 
+
+The response from the server to the client with error information is as shown in the table below.
+
++----------------+------------------------------------------------+
+| COB-ID         | Data                                           |
+|                +--------+-------------+-----------+-------------+
+|                | Byte 0 | Byte 1 to 2 | Byte 3    | Byte 4 to 7 |
++================+========+=============+===========+=============+
+| 580h + node-ID | 80h    | Index       | Sub-index | Error code  |
++----------------+--------+-------------+-----------+-------------+
+
+ 
+
+Example: To read the object (2000h:00) from the object dictionary, it suffices to send the following message (always 8 bytes):
+
+  CANID   Data
+  ------- ---------------------------------
+  602h    40h 00h 20h 00h 00h 00h 00h 00h
+
+ 
+
+The device generally responds with the following message:
+
+  CANID   Data
+  ------- ---------------------------------
+  582h    4Fh 00h 20h 00h 0Ah 00h 00h 00h
+
+ 
+
+Where,
+
+  -------- ----------------- ----------------------------
+  Byte     Data              Meaning
+  0        4Fh               1 byte of data
+  1 to 2   00h 20h           index of object is 2000h
+  3        00h               sub-index of object is 00h
+  5 to 8   0Ah 00h 00h 00h   value of object
+  -------- ----------------- ----------------------------
+
+ 
+
+## Aborting the SDO transfer {#aborting-the-sdo-transfer .p_Heading2 style="page-break-after: avoid;"}
+
+Both the server and the client are authorized to abort the current transfer at any time. To do this, an \"Abort SDO Transfer\" must be sent; this is structured in the following.
+
++---------------------+-----------------------------------------------------------------------+
+| COB-ID              | Data                                                                  |
+|                     +-----------------+-----------------+-----------------+-----------------+
+|                     | Byte 0          | Byte 1 to 2     | Byte 3          | Byte 4 to 7     |
++=====================+=================+=================+=================+=================+
+| 600h + node-ID (or) | 80h             | Index           | Sub-index       | Error code      |
+|                     |                 |                 |                 |                 |
+| 580h + node-ID      |                 |                 |                 |                 |
++---------------------+-----------------+-----------------+-----------------+-----------------+
+
+The abort code is encoded as UNSIGNED32 value.
+
+ 
+
++-----------------------------------+-----------------------------------------------------------------------------+
+| Abort code                        | Description                                                                 |
++===================================+=============================================================================+
+| 0503 0000h                        | Toggle bit is not alternated.                                               |
++-----------------------------------+-----------------------------------------------------------------------------+
+| 0504 0000h                        | SDO protocol timed out.                                                     |
++-----------------------------------+-----------------------------------------------------------------------------+
+| 0504 0001h                        | Client/server command specifier not valid or unknown.                       |
++-----------------------------------+-----------------------------------------------------------------------------+
+| 0504 0002h                        | Invalid block size (block mode only).                                       |
++-----------------------------------+-----------------------------------------------------------------------------+
+| 0504 0003h                        | Invalid sequence number (block mode only).                                  |
++-----------------------------------+-----------------------------------------------------------------------------+
+| 0504 0004h                        | CRC error (block mode only).                                                |
++-----------------------------------+-----------------------------------------------------------------------------+
+| 0504 0005h                        | Out of memory.                                                              |
++-----------------------------------+-----------------------------------------------------------------------------+
+| 0601 0000h                        | Unsupported access to an object.                                            |
++-----------------------------------+-----------------------------------------------------------------------------+
+| 0601 0001h                        | Attempt to read a write only object.                                        |
++-----------------------------------+-----------------------------------------------------------------------------+
+| 0601 0002h                        | Attempt to write a read only object.                                        |
++-----------------------------------+-----------------------------------------------------------------------------+
+| 0602 0000h                        | Object does not exist in the object dictionary.                             |
++-----------------------------------+-----------------------------------------------------------------------------+
+| 0604 0041h                        | Object cannot be mapped to the PDO.                                         |
++-----------------------------------+-----------------------------------------------------------------------------+
+| 0604 0042h                        | The number and length of the objects to be mapped would exceed PDO          |
+|                                   |                                                                             |
+|                                   | length.                                                                     |
++-----------------------------------+-----------------------------------------------------------------------------+
+| 0604 0043h                        | General parameter incompatibility reason.                                   |
++-----------------------------------+-----------------------------------------------------------------------------+
+| 0604 0047h                        | General internal incompatibility in the device.                             |
++-----------------------------------+-----------------------------------------------------------------------------+
+| 0606 0000h                        | Access failed due to an hardware error.                                     |
++-----------------------------------+-----------------------------------------------------------------------------+
+| 0607 0010h                        | Data type does not match, length of service parameter does not match        |
++-----------------------------------+-----------------------------------------------------------------------------+
+| 0607 0012h                        | Data type does not match, length of service parameter too high              |
++-----------------------------------+-----------------------------------------------------------------------------+
+| 0607 0013h                        | Data type does not match, length of service parameter too low               |
++-----------------------------------+-----------------------------------------------------------------------------+
+| 0609 0011h                        | Sub-index does not exist.                                                   |
++-----------------------------------+-----------------------------------------------------------------------------+
+| 0609 0030h                        | Value range of parameter exceeded (only for write access).                  |
++-----------------------------------+-----------------------------------------------------------------------------+
+| 0609 0031h                        | Value of parameter written too high.                                        |
++-----------------------------------+-----------------------------------------------------------------------------+
+| 0609 0032h                        | Value of parameter written too low.                                         |
++-----------------------------------+-----------------------------------------------------------------------------+
+| 0609 0036h                        | Maximum value is less than minimum value.                                   |
++-----------------------------------+-----------------------------------------------------------------------------+
+| 0800 0000h                        | General error                                                               |
++-----------------------------------+-----------------------------------------------------------------------------+
+| 0800 0020h                        | Data cannot be transferred or stored to the application.                    |
++-----------------------------------+-----------------------------------------------------------------------------+
+| 0800 0021h                        | Data cannot be transferred or stored to the application because of local    |
+|                                   |                                                                             |
+|                                   | control.                                                                    |
++-----------------------------------+-----------------------------------------------------------------------------+
+| 0800 0022h                        | Data cannot be transferred or stored to the application because of the      |
+|                                   |                                                                             |
+|                                   | present device state.                                                       |
++-----------------------------------+-----------------------------------------------------------------------------+
+| 0800 0023h                        | Object dictionary dynamic generation fails or no object dictionary is       |
+|                                   |                                                                             |
+|                                   | present (e.g. object dictionary is generated from file and generation fails |
+|                                   |                                                                             |
+|                                   | because of an file error).                                                  |
++-----------------------------------+-----------------------------------------------------------------------------+
+
+ 
+
+The abort codes not listed here are reserved.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 

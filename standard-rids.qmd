@@ -1,0 +1,231 @@
+# Standard RIDs {#standard-rids .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Diagnostic services (UDS)](diagnostic-services.html) \> [UDS overview](uds---overview.html) \> [Routine Identifier (RID)](routine-identifier-(rid).html) \> | [](routine-identifier-(rid).html "Previous Topic") [](routine-identifier-(rid).html "Parent Chapter") [](configuration-sharing-through-nvm.html "Next Topic") |
+|                                                                                                                                                                                                                                             |                                                                                                                                                               |
+| # Standard RIDs {#standard-rids-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                             |                                                                                                                                                               |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This topic explains the implementation of the standard RIDs which are used in the BODAS-service.
+
+ 
+
+1\. Standard RID that is used by the BODAS-service for Saving all the parameters to NVM.
+
+Required RID with RoutineControl(0x31):
+
+  -------- ------------------------------ ------------- --------------------- --------------------------------
+  RID      Sub-function                   Size (Byte)   Format of data sent   Meaning
+  0xF000   0x01 (startRoutine)            1             uint8                 Save all the parameters to NVM
+  0xF000   0x02 (stopRoutine)             1             uint8                 reserved not yet used
+  0xF000   0x03 (requestRoutineResults)   1             uint8                 reserved not yet used
+  -------- ------------------------------ ------------- --------------------- --------------------------------
+
+ 
+
+2\. Standard RID that is used by the BODAS-service for Setting all the parameters to Default Values.
+
+  -------- ------------------------------ ------------- --------------------- --------------------------------------------
+  RID      Sub-function                   Size (Byte)   Format of data sent   Meaning
+  0xF001   0x01 (startRoutine)            1             uint8                 Set all the parameters with default values
+  0xF001   0x02 (stopRoutine)             1             uint8                 reserved not yet used
+  0xF001   0x03 (requestRoutineResults)   1             uint8                 reserved not yet used
+  -------- ------------------------------ ------------- --------------------- --------------------------------------------
+
+## Integration of Routine Control Callbacks in ASW: {#integration-of-routine-control-callbacks-in-asw .p_Heading2 style="page-break-after: avoid;"}
+
+The BSW supports three callbacks each for the implementation of the following:
+
+- saving all the parameters to NVM.
+
+- setting all the parameters to default values.
+
+The UDS callbacks with empty function definition will be generated in the \"bds_diag_appl_adapt.c\" file as part of the easyConfig build downloadable. These callbacks need to be integrated in the ASW build.
+
+1.Saving all the parameters to NVM
+
+- Callback for Start Routine : uint8 bds_uds_startRoutine_savePrm(uint8 dataIn1,uint8 OpStatus, uint8 \* dataOut1, uint8 \* ErrorCode);
+
+- Callback for Stop Routine : uint8 bds_uds_stopRoutine_savePrm(uint8 dataIn1,uint8 OpStatus, uint8 \* dataOut1, uint8 \* ErrorCode);
+
+- Callback for Request Routine Results : uint8 bds_uds_requestResults_savePrm(uint8 dataIn1,uint8 OpStatus, uint8 \* dataOut1, uint8 \* ErrorCode);
+
+ 
+
+/\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
+
+\* Callback Function bds_uds_startRoutine_savePrm()(RID : 0xF000)
+
+\*
+
+\* PARAM IN: \*dataIn1             : Data pointer where routine control option (Input) is available.
+
+\* PARAM INOUT:OpStatus           : 0x00 :Indicates the initial call to the operation(At first UDS will call with Initial Call).\
+\*                                : 0x01 :Indicates that a pending return has been done on the previous call of the operation\
+\*                                        the operation will be called again with status(Dcm_OpStatusType) 2(pending) until return value is E_OK.
+
+\*                                : 0x02 :Indicates the UDS request for cancel pending operation.\
+\*                                : 0x03 :Indicate confirm a response pending transmission the operation will be called again with Dcm_OpStatusType as 3.      
+
+\*
+
+\* PARAM OUT:  \*dataOut1          : Data pointer where routine status record (output) is available.
+
+\* PARAM OUT:  \*ErrorCode         : Data pointer to hold the NRC value (For the allowed NRC of the executed Service ID please refer to the
+
+\*                                  specification of the service in ISO14229-1 (UDS)).
+
+ 
+
+\* Return Values                  : 0x00 :Function call is valid, Positive Response.
+
+\*                                  0x01 :Function call is invalid, Negative Response with NRC = 0x22(conditionsNotCorrect).
+
+\*                                  0x0A :Function call still needs more time to be completed, NRC = 0x78(requestCorrectlyReceived-ResponsePending).
+
+/\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*/
+
+uint8 bds_uds_startRoutine_savePrm(uint8 dataIn1,uint8 OpStatus,uint8 \* dataOut1,uint8 \* ErrorCode)
+
+{
+
+ 
+
+ uint8 return_u8 = E_OK;
+
+ 
+
+ PARAM_UNUSED(dataIn1);
+
+ PARAM_UNUSED(OpStatus);
+
+ PARAM_UNUSED(dataOut1);
+
+ PARAM_UNUSED(ErrorCode);
+
+ 
+
+ /\* Application Specific function call for saving all the parameters to NVM \*/
+
+ return_u8 = PrmMgr_SaveNvmAll();
+
+ 
+
+ return (0u == return_u8)? E_OK: E_NOT_OK;
+
+ 
+
+}
+
+### 1.1   Request and Response {#request-and-response .p_Heading3 style="page-break-after: avoid;"}
+
+- UDS Request message for Saving all the parameters to NVM
+
+  ------------ ----------------- ------------------------- ------------------------- ------------------------
+  Service ID   Sub Function ID   Routine Identifier(MSB)   Routine Identifier(LSB)   Routine Control Byte 1
+  0x31         0x01              0xF0                      0x00                        0x00
+  ------------ ----------------- ------------------------- ------------------------- ------------------------
+
+ 
+
+- UDS Response (Positive response)
+
+  --------------------------------- ---------------------- ------------------------- ------------------------- -----------------------
+  Response ID for Routine Control   Routine Control Type   Routine Identifier(MSB)   Routine Identifier(LSB)   Routine Status Byte 1
+  0x71                              0x01                   0xF0                      0x00                        0x00
+  --------------------------------- ---------------------- ------------------------- ------------------------- -----------------------
+
+ 
+
+2.Setting all the parameters to default values
+
+- Callback for Start Routine : uint8 bds_uds_startRoutine_setDefValsPrm(uint8 dataIn1,uint8 OpStatus, uint8 \* dataOut1, uint8 \* ErrorCode);
+
+- Callback for Stop Routine : uint8 bds_uds_stopRoutine_setDefValsPrm(uint8 dataIn1,uint8 OpStatus, uint8 \* dataOut1, uint8 \* ErrorCode);
+
+- Callback for Request Routine Results : uint8 bds_uds_requestResults_setDefValsPrm(uint8 dataIn1,uint8 OpStatus, uint8 \* dataOut1, uint8 \* ErrorCode);
+
+/\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
+
+\* Callback Function bds_uds_startRoutine_setDefValsPrm()(RID : 0xF001)
+
+\*
+
+\* PARAM IN: \*dataIn1             : Data pointer where routine control option (Input) is available.
+
+\* PARAM INOUT:OpStatus           : 0x00 :Indicates the initial call to the operation(At first UDS will call with Initial Call).\
+\*                                : 0x01 :Indicates that a pending return has been done on the previous call of the operation\
+\*                                        the operation will be called again with status(Dcm_OpStatusType) 2(pending) until return value is E_OK.
+
+\*                                : 0x02 :Indicates the UDS request for cancel pending operation.\
+\*                                : 0x03 :Indicate confirm a response pending transmission the operation will be called again with Dcm_OpStatusType as 3.      
+
+\*
+
+\* PARAM OUT:  \*dataOut1          : Data pointer where routine status record (output) is available.
+
+\* PARAM OUT:  \*ErrorCode         : Data pointer to hold the NRC value (For the allowed NRC of the executed Service ID please refer to the
+
+\*                                  specification of the service in ISO14229-1 (UDS)).
+
+ 
+
+\* Return Values                  : 0x00 :Function call is valid, Positive Response.
+
+\*                                  0x01 :Function call is invalid, Negative Response with NRC = 0x22(conditionsNotCorrect).
+
+\*                                  0x0A :Function call still needs more time to be completed, NRC = 0x78(requestCorrectlyReceived-ResponsePending).
+
+/\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*/
+
+uint8 bds_uds_startRoutine_setDefValsPrm(uint8 dataIn1,uint8 OpStatus,uint8 \* dataOut1,uint8 \* ErrorCode)
+
+{
+
+ 
+
+ uint8 return_u8 = E_OK;
+
+ 
+
+ PARAM_UNUSED(dataIn1);
+
+ PARAM_UNUSED(OpStatus);
+
+ PARAM_UNUSED(dataOut1);
+
+ PARAM_UNUSED(ErrorCode);
+
+ 
+
+ /\* Application Specific function call for setting all the parameters to default values \*/
+
+ return_u8 = UdsPrmsDefaultVals_u8();
+
+ 
+
+ return (0u == return_u8)? E_OK: E_NOT_OK;
+
+}
+
+### 2.1   Request and Response {#request-and-response-1 .p_Heading3 style="page-break-after: avoid;"}
+
+- UDS Request message for Setting all the parameters to default values
+
+  ------------ ----------------- ------------------------- ------------------------- ------------------------
+  Service ID   Sub Function ID   Routine Identifier(MSB)   Routine Identifier(LSB)   Routine Control Byte 1
+  0x31         0x01              0xF0                      0x01                        0x00
+  ------------ ----------------- ------------------------- ------------------------- ------------------------
+
+ 
+
+- UDS Response (Positive response)
+
+  --------------------------------- ---------------------- ------------------------- ------------------------- -----------------------
+  Response ID for Routine Control   Routine Control Type   Routine Identifier(MSB)   Routine Identifier(LSB)   Routine Status Byte 1
+  0x71                              0x01                   0xF0                      0x01                        0x00
+  --------------------------------- ---------------------- ------------------------- ------------------------- -----------------------
+
+ 
+
+ 

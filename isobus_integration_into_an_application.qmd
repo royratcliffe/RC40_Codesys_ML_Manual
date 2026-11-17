@@ -1,0 +1,125 @@
+# ISOBUS integration into an application {#isobus-integration-into-an-application .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [ISOBUS/J1939](isobus-module.html) \> | [](isobus_general_description.html "Previous Topic") [](isobus-module.html "Parent Chapter") [](isobus_message_formats_and_transport_protocols.html "Next Topic") |
+|                                                                                                                                                                                          |                                                                                                                                                                   |
+| # ISOBUS integration into an application {#isobus-integration-into-an-application-1 .p_Heading1 style="page-break-after: avoid;"}                                                        |                                                                                                                                                                   |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The integration of the ISOBUS communication stack has to be done with the following steps:
+
+ 
+
+1\) Prepare the BSW configuration within easyConfig tool:
+
+a\) Define a CAN receive buffer within easyConfig:
+
+- A buffer size of at least 10 is recommended per CA instance.
+
+b\) Define a CAN transmit buffer within easyConfig:
+
+- A buffer size of at least 10 is recommended per CA instance.
+
+c\) Define the total number of required ISOBUS controller application instances within easyConfig:
+
+- The number of ISOBUS instances is independent on the assignment to the CAN channels.
+
+d\) Define the number of ISOBUS RX databoxes of each controller application instance:
+
+- Configure the required number of RX databoxes within easyConfig  -or-
+
+- configure value 0 in easyConfig and use API function bds_isobus_registerRxDataboxes in application.
+
+e\) Define the number of ISOBUS TX databoxes of each controller application instance within easyConfig:
+
+- Configure the required number of TX databoxes within easyConfig  -or-
+
+- configure value 0 in easyConfig and use API function bds_isobus_registerTxDataboxes in application.
+
+f\)  Define the cycle period for ISOBUS Main Task. By default it will be in 10ms.
+
+2\) Include header file bds_isobus_api.h within the application.
+
+3\) Define the ISOBUS RX databoxes of each controller application instance:
+
+- Define a data buffer for each databox (e.g. array or structure) with the required size (up to 1785 bytes)
+
+- Optional define a RX callback function for each databox
+
+- Initialize each RX databox with the function bds_isobus_initRxDatabox with the PGN to be received
+
+4\) Define the ISOBUS TX databoxes of each controller application instance:
+
+- Define a data buffer for each databox (e.g. array or structure) with the required size (up to 1785 bytes)
+
+- Optional define a TX callback function for each databox
+
+- Initialize each TX databox with the function bds_isobus_initTxDatabox with the PGN to be transmitted
+
+5\) Define the DM1/DM2 failure handling of each controller application instance (optional):
+
+- Define a DM1 failure buffer (array of bds_isobus_failure_ts)
+
+- Initialize and start failure handling with the function bds_isobus_initFailureList
+
+6\) Define the Address Claim Delay Format for the complete ISOBUS Communication (optional):
+
+- Configure the address claim delay format with the function bds_isobus_cfgAddrClaimFormat
+
+7\) Define the controller applications:
+
+- Define the controller application (CA) name with the function bds_isobus_setCaName of each controller application instance
+
+- The CA name is required for the address claiming procedure
+
+- Define also with bds_isobus_setCaName whether the arbitrary address capabilty should be active for the corresponding CA instance
+
+- Define the initial source address of each CA instance and assign it to a CAN channel with the function bds_isobus_setCaAddr
+
+- Optionally define hardware and software identification strings for the PGNs 0x00FDC5 (ECU identification information) and 0x00FEDA (Software identification) with the function bds_isobus_setCaInfo
+
+8\) Start the ISOBUS communication:
+
+- Initialize and start the ISOBUS communication of all CA instances of one CAN channel with the function bds_isobus_initComm
+
+- The communication has to be started separately on each CAN channel
+
+9\) Receive PGNs:
+
+- The reception of a PGN can be detected either by polling the databox status with bds_isobus_getRxDataboxStatus or with an optional RX callback function which can be defined with function bds_isobus_initRxDatabox
+
+- After the successfully reception of a PGN the received data can be copied from the databox buffer
+
+10\) Transmit PGNs:
+
+- If a cycle time is defined within the TX databox then the PGN will be transmitted automatically with this time interval
+
+- If no cycle time is defined or if an additional message has to be sent then the application can trigger the sending with the function bds_isobus_sendDatabox
+
+- In both cases the application can update the databox buffer within a callback function, which can be defined with function bds_isobus_initTxDatabox and will be called by the stack directly before sending the message
+
+An example code is shown in the description of the function  bds_isobus_initComm.
+
+## Usage of the ISOBUS protocol together with other protocols: {#usage-of-the-isobus-protocol-together-with-other-protocols .p_Heading2 style="page-break-after: avoid;"}
+
+The following table gives an overview about the API CAN resources, which are required by the different communication protocols. This information is important, if an application uses several different protocols on the same CAN bus. Some resources like the RX callback or the RX buffer of the CAN legacy API may be used only once.
+
+ 
+
++-------------------------------+--------------+-----------------------------+--------------------------------------------------+-------------------------------------------------------------------+
+| Protocol                      | CAN format   | Receive with                | Transmit                                         | Remarks                                                           |
++===============================+==============+=============================+==================================================+===================================================================+
+| UDS (e.g. for BODAS-service)  | 29 Bit       | CAN HW Databoxes in BSW     | CAN HW Databoxes in BSW                          | \-                                                                |
++-------------------------------+--------------+-----------------------------+--------------------------------------------------+-------------------------------------------------------------------+
+| XCP (e.g. for INCA or CANape) | 11 Bit       | CAN HW Databoxes in BSW     | CAN HW Databoxes in BSW                          | \-                                                                |
++-------------------------------+--------------+-----------------------------+--------------------------------------------------+-------------------------------------------------------------------+
+| ISOBUS                        | 29 Bit       | CAN legacy RX Buffer        | CAN legacy TX Buffer                             | CAN legacy RX buffer can not be used any more by the application! |
++-------------------------------+--------------+-----------------------------+--------------------------------------------------+-------------------------------------------------------------------+
+| Proprietary Protocol          | 11 or 29 Bit | CAN legacy RX Databoxes \*) | CAN legacy TX Buffer and legacy TX databoxes \*) | CAN IDs must be still unused!                                     |
+|                               |              |                             |                                                  |                                                                   |
+| with CAN legacy API           |              |                             |                                                  |                                                                   |
++-------------------------------+--------------+-----------------------------+--------------------------------------------------+-------------------------------------------------------------------+
+
+\*) The proprietary protocol may use all these CAN legacy API resources, which are not yet used by another protocol on the same CAN bus.
+
+ 

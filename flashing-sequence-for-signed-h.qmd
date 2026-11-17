@@ -1,0 +1,41 @@
+# Flashing steps for signed HEX files {#flashing-steps-for-signed-hex-files .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [How-Tos](how-to.html) \> [Flashing using CODESYS IDE](required-tools_2.html) \>                           | [](step3-install-device_2.html "Previous Topic") [](required-tools_2.html "Parent Chapter") [](xcp-usage-with-tools.html "Next Topic") |
+|                                                                                                                             |                                                                                                                                        |
+| # Flashing steps for signed HEX files {#flashing-steps-for-signed-hex-files-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                        |
++-----------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+
+ \
+ 
+
+  -------------------------------------------------------------------------------- --------------------------------------------------------
+  ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"}   These steps are only required for CRA compliant users.
+  -------------------------------------------------------------------------------- --------------------------------------------------------
+
+ 
+
+Step 1: Flash CB-ME  V03.11.00 or higher using BDS Flashing Tool configuring the argument SELECT_BLOCK_NAME as CB.
+
+Step 2: Flash KEYFILE using BDS Flashing Tool configuring the argument SELECT_BLOCK_NAME as KEYFILE.
+
+Step 3 (Optional): Flash signed CB-ME using BDS Flashing Tool configuring the argument SELECT_BLOCK_NAME as CB.
+
+Step 4: Flash signed ASW+DS0 using BDS Flashing Tool configuring the argument SELECT_BLOCK_NAME as ASW.
+
+ 
+
+ \
+ 
+
++--------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"} | For BDS Flashing Tool flashing instructions please refer to [Flashing using BDS Flashing tool in Codesys](step3-install-device_2.html){.topiclink}.                                                                                                                                           |
+|                                                                                |                                                                                                                                                                                                                                                                                               |
+|                                                                                |                                                                                                                                                                                                                                                                                               |
+|                                                                                |                                                                                                                                                                                                                                                                                               |
+|                                                                                | For signing HEX files using BODAS Secure Sign please refer to [BODAS Secure Sign](https://www.boschrexroth.com/de/de/myrexroth/myrexroth-home/collaboration-rooms/?search=&page=1&path=%2FME-Partner-Download%2F20_Engineering+Tools%2F41+BODAS-secure+Siging+Tool){.weblink target="_blank"} |
+|                                                                                |                                                                                                                                                                                                                                                                                               |
+|                                                                                |                                                                                                                                                                                                                                                                                               |
++--------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+ 

@@ -1,0 +1,9 @@
+# Memory layout {#memory-layout .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Memory](memory.html) \> | [](memory.html "Previous Topic") [](memory.html "Parent Chapter") [](memory-layout-rc40_midlarge.html "Next Topic") |
+|                                                                                                         |                                                                                                                     |
+| # Memory layout {#memory-layout-1 .p_Heading1 style="page-break-after: avoid;"}                         |                                                                                                                     |
++---------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------+
+
+This section documents the memory layout of the RC.

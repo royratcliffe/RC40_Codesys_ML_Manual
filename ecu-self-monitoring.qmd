@@ -1,0 +1,15 @@
+# Self-monitoring {#self-monitoring .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \>      | [](uds-specifications.html "Previous Topic") [](bsw.html "Parent Chapter") [](cyclic-monitoring-checks.html "Next Topic") |
+|                                                                                     |                                                                                                                           |
+| # Self-monitoring {#self-monitoring-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                           |
++-------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------+
+
+This section documents the internal self monitoring of the RC.
+
+## References {#references .p_Heading2 style="page-break-after: avoid;"}
+
+- [Diagnostic Trouble Code](diagnostic-trouble-code.html){.topiclink} lists potential DTCs raised as result of internal monitoring checks.
+
+- This section has no corresponding API, as there is no direct interaction between the ASW and the internal monitoring.

@@ -1,0 +1,437 @@
+# Abbreviations & definitions {#abbreviations-definitions .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [Appendix](appendix.html) \>                                                             | [](appendix.html "Previous Topic") [](appendix.html "Parent Chapter") [](impressum.html "Next Topic") |
+|                                                                                                           |                                                                                                       |
+| # Abbreviations & definitions {#abbreviations-definitions-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                       |
++-----------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------+
+
+## A {#a .p_Heading2 style="page-break-after: avoid;"}
+
+  Abbreviation   Meaning                                                               Explanation
+  -------------- --------------------------------------------------------------------- ------------------------------------------------------
+  ACK            Acknowledgement                                                       Acknowledgement from the receiver
+  ADC            Analog to Digital Converter                                            
+  AES            Advanced Encryption Standard                                           
+  AgPL           Agricultural Performance Level                                         
+  AI             Analog voltage Input                                                   
+  AIC            Analog Current Input                                                   
+  AIV            Analog Voltage Input                                                   
+  AOV            Analog Voltage Output                                                  
+  API            Application Programming Interface                                      
+  ASAM           Association for Standardisation of Automation and Measuring Systems    
+  ASW            Application Software                                                  Application specific user software running on the RC
+  AUTOSAR        Automotive Open System Architecture                                    
+  AWL            Amber Warning Lamp                                                     
+
+## B {#b .p_Heading2 style="page-break-after: avoid;"}
+
+  Abbreviation   Meaning                                       Explanation
+  -------------- --------------------------------------------- ----------------------------------------------------------------------------------
+  BAM            Broadcast Announce Message (Isobus/J1939)      
+  BDL            BODAS driver library                          Contains software drivers for BODAS devices e.g., sensors
+  BIST           Built-In Self-Test                             
+  BODAS          Bosch Rexroth Digital Application Solutions    
+  BR             Bosch Rexroth                                  
+  BSW            Base SoftWare                                 Core SW running on an ECU that provides basic (application independent) services
+
+## C {#c .p_Heading2 style="page-break-after: avoid;"}
+
+  Abbreviation   Meaning                                       Explanation
+  -------------- --------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  CA (1)         Certification Authority                        
+  CA (2)         Controller Application (Isobus/J1939)          
+  CAL            CAN Application layer                         CAL forms the application layer in the protocol hierarchy of the CAN bus
+  CAN            Controller Area Network                       Standardized (ISO 11898) automotive communication interface between control units
+  CAN FD         CAN Flexible Datarate                          
+  CarPU          Car Processing Unit                            
+  CB / CB-ME     Rexroth Bootloader Software Customer-block    Customer relevant part of the flashbootloader
+  CFI            BOSCH CarPU Flash Interface                    
+  CiA            CAN in Automation                             CiA organization is the international association of users and manufacturers of CAN-based communication protocols.
+  CLAPI          Customer Loader API                            
+  CLCC           Closed Loop Current Control                    
+  CM (1)         Current Measurement                           A method of the power output current feedback. The current measured  during both ON and OFF phase of PWM or digital state. This method provides a high performance of the current feedback.
+  CM (2)         Connection Mode (Isobus/J1939)                 
+  CMAC           Cipher-Based Message Authentication Code      Cipher-Based Message Authentication Code is a cryptographic technique used to ensure the integrity and authenticity of messages in cybersecurity.
+  CMDT           Connection Mode Data Transfer                  
+  CPU            Central Processing Unit                        
+  CRC            Cyclic Redundancy Check                        
+  CS (1)         Current Sensing                               A method of the power output current feedback. The current measured only during ON phase of PWM or digital state.  This method is less performance compare to Current Measurement(CM).
+  CS (2)         Chip Select (in Microcontroller)              Chip Select is a control signal used to enable or disable a specific integrated circuit on the bus.
+  CSAI           Cryptographic Service Application Interface    
+  CTS            Clear To Send                                  
+
+## D {#d .p_Heading2 style="page-break-after: avoid;"}
+
++-----------------------+-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Abbreviation          | Meaning                                   | Explanation                                                                                                                                                                                 |
++=======================+===========================================+=============================================================================================================================================================================================+
+| DA                    | Destination Address                       |                                                                                                                                                                                             |
++-----------------------+-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| DBC                   | Database Container                        |                                                                                                                                                                                             |
++-----------------------+-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| DC                    | Diagnostic Coverage                       | Measure of the effectiveness of diagnostics, which may be determined as the ratio between the failure rate of detected dangerous failures and the failure rate of total dangerous failures. |
+|                       |                                           |                                                                                                                                                                                             |
+|                       |                                           |                                                                                                                                                                                             |
+|                       |                                           |                                                                                                                                                                                             |
+|                       |                                           | +----------------------+----------------------+                                                                                                                                             |
+|                       |                                           | | DC according to EN ISO 13849-1, Table 5     |                                                                                                                                             |
+|                       |                                           | +----------------------+----------------------+                                                                                                                                             |
+|                       |                                           | | Denotation           | Range                |                                                                                                                                             |
+|                       |                                           | +----------------------+----------------------+                                                                                                                                             |
+|                       |                                           | | None                 | DC \< 60%            |                                                                                                                                             |
+|                       |                                           | +----------------------+----------------------+                                                                                                                                             |
+|                       |                                           | | Low                  | 60% ≤ DC \< 90%      |                                                                                                                                             |
+|                       |                                           | +----------------------+----------------------+                                                                                                                                             |
+|                       |                                           | | Medium               | 90% ≤ DC \< 99%      |                                                                                                                                             |
+|                       |                                           | +----------------------+----------------------+                                                                                                                                             |
+|                       |                                           | | High                 | 99% ≤ DC             |                                                                                                                                             |
+|                       |                                           | +----------------------+----------------------+                                                                                                                                             |
+|                       |                                           |                                                                                                                                                                                             |
+|                       |                                           |                                                                                                                                                                                             |
+|                       |                                           |                                                                                                                                                                                             |
+|                       |                                           | +--------------------+--------------------+                                                                                                                                                 |
+|                       |                                           | | DC according to ISO 25119-2, Table 5    |                                                                                                                                                 |
+|                       |                                           | +--------------------+--------------------+                                                                                                                                                 |
+|                       |                                           | | Denotation         | Range              |                                                                                                                                                 |
+|                       |                                           | +--------------------+--------------------+                                                                                                                                                 |
+|                       |                                           | | Low                | DC \< 60%          |                                                                                                                                                 |
+|                       |                                           | +--------------------+--------------------+                                                                                                                                                 |
+|                       |                                           | | Medium             | 60% ≤ DC \< 90%    |                                                                                                                                                 |
+|                       |                                           | +--------------------+--------------------+                                                                                                                                                 |
+|                       |                                           | | High               | 90% ≤ DC           |                                                                                                                                                 |
+|                       |                                           | +--------------------+--------------------+                                                                                                                                                 |
++-----------------------+-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| DDRC                  | Diagnostic Debounce and Report Check      |                                                                                                                                                                                             |
++-----------------------+-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| DFC                   | Diagnostic Fault Check                    |                                                                                                                                                                                             |
++-----------------------+-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| DFES                  | Diagnostic Fault Event Storage            |                                                                                                                                                                                             |
++-----------------------+-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| DFlash                | Data flash                                |                                                                                                                                                                                             |
++-----------------------+-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| DI                    | Digital voltage Input                     |                                                                                                                                                                                             |
++-----------------------+-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| DID                   | DataIdentifier                            | Data Identifiers which are defined according to the ISO 14229-1 Edition 2013-03-15, Annex C.                                                                                                |
++-----------------------+-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| DLC                   | Data Length Code                          | Part of protocol where it represent the number of data present in a message. It varies based on the protocol.                                                                               |
++-----------------------+-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| DM                    | Diagnostic Message (Isobus/J1939)         |                                                                                                                                                                                             |
++-----------------------+-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| DO                    | Digital Output                            |                                                                                                                                                                                             |
++-----------------------+-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| DSM (1)               | Diagnosis System Managment                |                                                                                                                                                                                             |
++-----------------------+-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| DSM (2)               | Speed sensor DSM series 10 (see RE 95132) |                                                                                                                                                                                             |
++-----------------------+-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| DTC                   | Diagnostic Trouble Code                   | Diagnostic Trouble Code is a numerical common identifier for a fault condition identified by the on-board diagnostic system. It is sent via UDS protocol.                                   |
++-----------------------+-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| DoIP                  | Diagnostics over Internet Protocol        |                                                                                                                                                                                             |
++-----------------------+-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| DLL                   | Data Link Layer                           |                                                                                                                                                                                             |
++-----------------------+-------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+## E {#e .p_Heading2 style="page-break-after: avoid;"}
+
+  Abbreviation    Meaning                                      Explanation
+  --------------- -------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------
+  eC              easyConfig tool                               
+  ECC             Error correcting code                         
+  ECU             Electronic Control Unit                      e.g., the Rexroth RC40 control unit
+  EDC             Error Detection Code                         Error Detection Code is a code added to a block of data to detect, but not correct, errors that may have occurred during transmission or storage.
+  EDS             Electronic data sheets                        
+  EMCY            Emergency                                    A service, which signals internal fatal device errors to inform other CANopen devices in the network.
+  EOF             End-Of-Frame                                 Section of CAN 2.0B / CAN-FD, this section will tell the end of the frame
+  EOL             End of Line                                  Final stage of production assembly line (e.g., of an ECU or vehicle), typically includes final flashing, calibration and testing.
+  ETP             Extended Transport Protocol (Isobus/J1939)    
+
+## F {#f .p_Heading2 style="page-break-after: avoid;"}
+
++-----------------------+------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Abbreviation          | Meaning                                        | Explanation                                                                                                                                                                                                                                  |
++=======================+================================================+==============================================================================================================================================================================================================================================+
+| FFI                   | Freedom from Interference                      | Indicates that an system element with a lower safety classification cannot negatively influence an element with a higher safety classification (ISO26262).                                                                                   |
++-----------------------+------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| FI                    | Frequency                                      | \                                                                                                                                                                                                                                            |
++-----------------------+------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| FMEDA                 | Failure Modes, Effects and Diagnostic Analysis |                                                                                                                                                                                                                                              |
++-----------------------+------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| FMI                   | Failure Mode Identifier (Isobus/J1939)         |                                                                                                                                                                                                                                              |
++-----------------------+------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| FRT                   | Fault response time                            |                                                                                                                                                                                                                                              |
++-----------------------+------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| FSP                   | Feature Store Platform                         |                                                                                                                                                                                                                                              |
++-----------------------+------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| FTB                   | Failure Type Byte                              | FTB is defined as the Failure Type Byte in extended DTCs most commonly used in CAN networks. Failure Types like Electrical Faults, Signal Low etc., can be specified using a FTB (contributes to DTC low byte in an extended DTC (3 bytes)). |
++-----------------------+------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+## G {#g .p_Heading2 style="page-break-after: avoid;"}
+
+  Abbreviation   Meaning                    Explanation
+  -------------- -------------------------- -------------------------------
+  GFC            Global Fail safe Command   Speed up the system reaction.
+  GTM            General Timer Module        
+
+## H {#h .p_Heading2 style="page-break-after: avoid;"}
+
+  Abbreviation   Meaning                                     Explanation
+  -------------- ------------------------------------------- -------------
+  HLCC           High-side and Low-side Current Comparison    
+  HS             High-Side                                    
+  HSM            Hardware Security Module                     
+  HVD            High Voltage Detector                        
+  HW             Hardware                                     
+
+## I {#i .p_Heading2 style="page-break-after: avoid;"}
+
+  Abbreviation   Meaning                                    Explanation
+  -------------- ------------------------------------------ ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  \-             Ignition Phase                             Time from which the RC is activated (e.g., by the ignition signal or CAN wake-up) until the RC is deactivated after the ignition is switched off and the after-run functions have been completed.
+  IC             Integrated Circuit                         An integrated circuit (IC) is a compact assembly of electronic circuits formed from various electronic components --- such as transistors, resistors, and capacitors --- and their interconnections.
+  ID             Identifier                                  
+  IOCBI          InputOutputControlByIdentifier             UDS Service Input Output Control By Identifier. UDS Service ID: 0x2F
+  IoT            Internet of Things                          
+  IPCM           Inter-Partition Communication Management   Inter-partition communication between ASW partition\'s function calls to realise Freedom from interference.
+  ISR            Interrupt Service Routine                  A software routine that is invoked by hardware when an interrupt occurs.
+  IP             Internet Protocol                           
+
+  ------- -------------------------------------- -----------------------------------------------------------------------
+  IOCBI   InputOutputControlByIdentifier         Specifies the InputOutput Control functional unit.
+  I-PDU   Interaction Layer Protocol Data Unit   a collection of messages transmitted between nodes in a network.
+  IL      Interaction Layer                       
+  ISR     Interrupt Service Routine              ISR handles interrupts by temporarily pausing main program execution.
+  ------- -------------------------------------- -----------------------------------------------------------------------
+
+## J {#j .p_Heading2 style="page-break-after: avoid;"}
+
+  Abbreviation   Meaning                   Explanation
+  -------------- ------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  JTAG           Joint Test Action Group   Industry standard for verifying designs and testing printed circuit boards after manufacture. Most commonly used for the JTAG-Connector - for connecting a debugger.
+
+## L {#l .p_Heading2 style="page-break-after: avoid;"}
+
+  Abbreviation   Meaning                                       Explanation
+  -------------- --------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------
+  LDF            LIN Description File                           
+  LIN            Local Interconnect Network                     
+  LS (1)         Low-Side                                       
+  LS (2)         Least Significant (Byte/Bit) (Isobus/J1939)    
+  LSS            Layer setting services                        With Layer setting services protocol, devices in a network can be identified by their unique manufacturer, product, serial, and revision number
+  LSS_MEAS       Low Side Shut-OFF analog readback             Analog feedback signal for the Low Side Shut-OFF path.It is monitoring signal.
+
+## M {#m .p_Heading2 style="page-break-after: avoid;"}
+
++-----------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Abbreviation          | Meaning                                         | Explanation                                                                                                                                               |
++=======================+=================================================+===========================================================================================================================================================+
+| \-                    | Machine                                         | Whole system with all hydraulic and electronic partial components, including the RC.                                                                      |
++-----------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| MCU                   | MicroController Unit                            | A Microcontroller Unit is a small computer on a single integrated circuit containing a processor core, memory, and programmable input/output peripherals. |
++-----------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| MEM                   | Memory                                          |                                                                                                                                                           |
++-----------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| MIL                   | Malfunction Indicator Light                     |                                                                                                                                                           |
++-----------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| MISRA                 | Motor Industry Software Reliability Association | Publisher of the MISRA-C coding standard.\                                                                                                                |
+|                       |                                                 | [https://www.misra.org.uk](https://www.misra.org.uk){.weblink target="_blank"}                                                                            |
++-----------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| MoCSOP                | MicroController ShutOff Path                    |                                                                                                                                                           |
++-----------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| MPU                   | Memory Protection Unit                          | A hardware unit that divides memory into regions and sets access permissions to protect it.                                                               |
++-----------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| MS                    | Most Significant (Byte/Bit) (Isobus/J1939)      |                                                                                                                                                           |
++-----------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| MTP                   | Multi Transport Protocol (Isobus/J1939)         |                                                                                                                                                           |
++-----------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| MTTFD                 | Mean Time To Dangerous Failure                  | Average value of the expected time to a dangerous failure.                                                                                                |
+|                       |                                                 |                                                                                                                                                           |
+|                       |                                                 | +-------------------------------------+-------------------------------------+                                                                             |
+|                       |                                                 | | MTTFD according to                                                        |                                                                             |
+|                       |                                                 | |                                                                           |                                                                             |
+|                       |                                                 | | EN ISO 13849-1, Table 4 and ISO 25119-2, Table 4                          |                                                                             |
+|                       |                                                 | +-------------------------------------+-------------------------------------+                                                                             |
+|                       |                                                 | | Denotation                          | Range                               |                                                                             |
+|                       |                                                 | +-------------------------------------+-------------------------------------+                                                                             |
+|                       |                                                 | | Low                                 | 3 years ≤ MTTFD \< 10 years         |                                                                             |
+|                       |                                                 | +-------------------------------------+-------------------------------------+                                                                             |
+|                       |                                                 | | Medium                              | 10 years ≤ MTTFD \< 30 years        |                                                                             |
+|                       |                                                 | +-------------------------------------+-------------------------------------+                                                                             |
+|                       |                                                 | | High                                | 30 years ≤ MTTFD \< 100 years\*     |                                                                             |
+|                       |                                                 | +-------------------------------------+-------------------------------------+                                                                             |
+|                       |                                                 |                                                                                                                                                           |
+|                       |                                                 | \* limitation of the MTTFD for each channel to 100 years is only required by EN ISO 13849.                                                                |
++-----------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+## N {#n .p_Heading2 style="page-break-after: avoid;"}
+
++-----------------------+-------------------------------------+---------------------------------------------------------------------------------------+
+| Abbreviation          | Meaning                             | Explanation                                                                           |
++=======================+=====================================+=======================================================================================+
+| NACK                  | Negative Acknowledge (Isobus/J1939) | Response sent by the ECU and request cannot be fulfilled (ISOBUS/J1939).              |
++-----------------------+-------------------------------------+---------------------------------------------------------------------------------------+
+| NMT                   | Network Management                  | Necessary for the function of a master or slave in the network.                       |
+|                       |                                     |                                                                                       |
+|                       |                                     |                                                                                       |
++-----------------------+-------------------------------------+---------------------------------------------------------------------------------------+
+| NTC                   | Negative Temperature Coefficient    |                                                                                       |
++-----------------------+-------------------------------------+---------------------------------------------------------------------------------------+
+| NVM                   | Non Volatile Memory                 | \"Permanent\" data storage on an ECU (e.g. in Flash), used e.g. for Parameter memory. |
++-----------------------+-------------------------------------+---------------------------------------------------------------------------------------+
+
+## O {#o .p_Heading2 style="page-break-after: avoid;"}
+
+  Abbreviation   Meaning                             Explanation
+  -------------- ----------------------------------- -------------------------------------------------------------------
+  OC (1)         Over Current                         
+  OC (2)         Occurrence Counter (isobus/J1939)    
+  OL             Open Load                            
+  OR             Out of Range                         
+  OT             Over Temperature                     
+  OS             Operating System                    Software managing hardware, resources, and running user programs.
+
+## P {#p .p_Heading2 style="page-break-after: avoid;"}
+
+  Abbreviation   Meaning                                      Explanation
+  -------------- -------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  PACK           Positive Acknowledge (Isobus/J1939)          Response sent by the ECU and processed request executed successfully (ISOBUS/J1939).
+  PBS            Post Build Selectable                        possibility to have more then one configuration selectable by run time
+  PCACHE         Program Cache                                A small, fast memory that stores copies of frequently executed instructions to speed up fetching.
+  PDO            Process Data Objects                         Intended for exchanging real-time data with high priority.
+  PDU            Protocol Data Unit                            
+  PFlash         Program Flash                                 
+  PGN            Parameter Group Number                       Parameter Group Number according J1939 standard
+  PID            Protected Identifier                          
+  PL             Performance Level                             
+  PLL            Phase-Locked Loop                            A Phase-Locked Loop is a control system that generates a stable output signal of a specific frequency.
+  POC            Proportional Output with CLCC                 
+  POD            Proportional Output used as Digital output    
+  PRL            Protected Lamp                                
+  PVG            Proportional Voltage Outputs                 Proportional Valve Group
+  PWM            Pulse Width Modulation                        
+  PoDL           Power over Data Line                         It is a technology that enables power and data to be transmitted over the same Ethernet cable. In the automotive industry, PoDL is used to power various electronic components and devices in a vehicle using the Ethernet network
+
+## R {#r .p_Heading2 style="page-break-after: avoid;"}
+
++-----------------------+--------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Abbreviation          | Meaning                        | Explanation                                                                                                                                                                                                                                                                      |
++=======================+================================+==================================================================================================================================================================================================================================================================================+
+| \-                    | Redundancy                     | Redundancy denotes the presence of an additional functional equivalent or comparable resource of a technical system. This kind of design in a safety function can be used to realize fail-safe and allows error detection through plausibility check between different channels. |
++-----------------------+--------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| \-                    | RC (= reset)                   | The RC processor is reset and the power outputs are deactivated via a hardware circuit. The application software starts again as if in a new ignition phase.                                                                                                                     |
++-----------------------+--------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| RAM                   | Random-Access Memory           |                                                                                                                                                                                                                                                                                  |
++-----------------------+--------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| RC                    | Rexroth Controller             | In this manual any type of the generation 40 family.                                                                                                                                                                                                                             |
++-----------------------+--------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| RE                    | Rexroth datasheet (English)    |                                                                                                                                                                                                                                                                                  |
++-----------------------+--------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| RI                    | Resistance                     | \                                                                                                                                                                                                                                                                                |
++-----------------------+--------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| RID                   | RoutineIdentifier              | Routine Identifiers which are defined according to the ISO 14229-1 Edition 2013-03-15, Annex F.                                                                                                                                                                                  |
++-----------------------+--------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| RMW                   | Read-Modify-Write              | A Read-Modify-Write is an atomic operation that involves reading a value from a memory location, modifying it, and then writing the new value back.                                                                                                                              |
++-----------------------+--------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ROM                   | Read-Only Memory               |                                                                                                                                                                                                                                                                                  |
++-----------------------+--------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| RPC                   | Remote procedure call          | Remote procedure call is applicable for inter-partition interactions                                                                                                                                                                                                             |
++-----------------------+--------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| RSL                   | Red Stop Lamp                  | \                                                                                                                                                                                                                                                                                |
++-----------------------+--------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| RSM                   | Runtime and State Machine      | \                                                                                                                                                                                                                                                                                |
++-----------------------+--------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| RTS                   | Run-Time-System (Isobus/J1939) | SW component providing basic infrastructure for programs to run in, e.g., the CODESYS-RTS allows to run CODESYS programs on the RC.                                                                                                                                              |
++-----------------------+--------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| RTS (ISOBUS)          | Request To Send                |                                                                                                                                                                                                                                                                                  |
++-----------------------+--------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+## S {#s .p_Heading2 style="page-break-after: avoid;"}
+
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Abbreviation          | Meaning                                                                                                                               | Explanation                                                                                                                                                                                                                                                    |
++=======================+=======================================================================================================================================+================================================================================================================================================================================================================================================================+
+| \-                    | Safe output configuration                                                                                                             | Special connections of the RC power outputs that permit redundant switch-off paths of the connected actuating elements (solenoids, etc.) as well as a high-level diagnostic capability for the power outputs and the connected actuating elements.             |
+|                       |                                                                                                                                       |                                                                                                                                                                                                                                                                |
+|                       | (corresponds SAFOUT mode in [\[RE95207\]](references.html#re_95207){.topiclink}, [\[RE95208\]](references.html#re_95208){.topiclink}) |                                                                                                                                                                                                                                                                |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| \-                    | Switch with direct opening action                                                                                                     | Switch or push button with following characteristics:                                                                                                                                                                                                          |
+|                       |                                                                                                                                       |                                                                                                                                                                                                                                                                |
+|                       |                                                                                                                                       | The full contact opening of the break contact elements is obtained when the actuator is moved through the direct opening travel by applying the force stated by the manufacturer (Ref. IEC 600947-5-1).                                                        |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| SA                    | Source Address (Isobus/J1939)                                                                                                         |                                                                                                                                                                                                                                                                |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| SCB                   | Short Circuit to Battery                                                                                                              |                                                                                                                                                                                                                                                                |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| SCG                   | Short Circuit to Ground                                                                                                               |                                                                                                                                                                                                                                                                |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| SCT (1)               | Safeguard cycle time                                                                                                                  |                                                                                                                                                                                                                                                                |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| SCT (2)               | Safety Cycle Time                                                                                                                     | The period of time that transpires between successive SDM instances of the same Safety Data Group series. The safety cycle time is typically the SAE-specified transmit rate                                                                                   |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| SDG                   | Safety Data Group                                                                                                                     | A specific instance of a pair of SAE J1939 messages consisting of the SDM and its corresponding SHM                                                                                                                                                            |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| SDG series            | Safety Data Group Series                                                                                                              | A Safety Data Group Series describes the sequence of periodic SDGs where every SDM consists of the same SAE J1939 PG sent by the same source address and, in the case of a PDU1 type PG, addressed to the same destination address                             |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| SDM                   | Safety Data Message                                                                                                                   | The standard SAE J1939 message containing the operational data provided by the producing safety application and used by the consuming safety application as part of a safety-related system                                                                    |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| SDO                   | Service Data Objects                                                                                                                  | For accessing device parameters.                                                                                                                                                                                                                               |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| SENT                  | Single Edge Nibble Transmission                                                                                                       | Digital communication control (SAE J2716) used, e.g., for external connection to sensors as replacement for an analogue or a PWM interface.                                                                                                                    |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| SHE+                  | Security Hardware Extension                                                                                                           | Interface to the HSM.                                                                                                                                                                                                                                          |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| SHM                   | Safety Header Message                                                                                                                 | The additional SAE J1939 message that is transmitted with each instance of a Safety Data Message as part of a Safety Data Group. The SHM provides CRC and sequencing data that enable the consuming safety application to detect data and communication errors |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Shut-OFF              |                                                                                                                                       | Shutdown in case of failure/emergency                                                                                                                                                                                                                          |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| SID                   | Service Identifier                                                                                                                    |                                                                                                                                                                                                                                                                |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| SPI                   | Serial Peripheral Interface                                                                                                           | Internal bus on control units for connecting, e.g., µC and ASICs                                                                                                                                                                                               |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| SPN                   | Suspect Parameter Number (Isobus/J1939)                                                                                               |                                                                                                                                                                                                                                                                |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| SRDO                  | Safety relevant data object                                                                                                           | Serves as the cyclic exchange of safe data in the NMT operational state.                                                                                                                                                                                       |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| SRL                   | Software Requirements Level                                                                                                           |                                                                                                                                                                                                                                                                |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| SRVT                  | Safety relevant object validation time                                                                                                |                                                                                                                                                                                                                                                                |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| SRVT                  | Safety Relevant Validation Time                                                                                                       | The period of time that transpires between the SHM and the SDM of the same SDG                                                                                                                                                                                 |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Switch-off            |                                                                                                                                       | Intentional shut-down                                                                                                                                                                                                                                          |
++-----------------------+---------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+## T {#t .p_Heading2 style="page-break-after: avoid;"}
+
+  Abbreviation   Meaning                         Explanation
+  -------------- ------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  \-             Total service life              Time from delivery to decommissioning of the machine.
+  TRNG           True Random Number Generator     
+  TCP            Transmission Control Protocol   TCP is one of the protocols of the Internet protocol(IP). TCP provides reliable, ordered, and error-checked delivery of a stream of octets (bytes) between applications running on hosts communicating via an IP network.
+
+## U {#u .p_Heading2 style="page-break-after: avoid;"}
+
+  Abbreviation   Meaning                       Explanation
+  -------------- ----------------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  UDS            Unified Diagnostic Services   Standard protocol used for communication with service tools.
+  UDP            User Datagram Protocol        UDP is one of the communication protocols of the Internet protocol(IP)  used to send messages (datagrams in packets) to other hosts on an Internet Protocol (IP) network. In an IP network, UDP does not require prior communication to set up communication channels or data paths.
+
+ 
+
+## V {#v .p_Heading2 style="page-break-after: avoid;"}
+
+  Abbreviation   Meaning                         Explanation
+  -------------- ------------------------------- -------------
+  VIN            Vehicle Identification Number    
+
+## X {#x .p_Heading2 style="page-break-after: avoid;"}
+
+  Abbreviation   Meaning                                                   Explanation
+  -------------- --------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------
+  XBAR           Crossbar Switch                                           The Crossbar Switch is a switching matrix that provides flexible connections between the various masters and slaves on the system bus.
+  XCP            eXtended Universal Measurement and Calibration Protocol   Standard protocol used for transferring measurement data, e.g., debug information.
+
+ 
+
+ 
+
+ 

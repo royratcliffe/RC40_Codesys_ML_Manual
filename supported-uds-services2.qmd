@@ -1,0 +1,57 @@
+# Supported UDS services {#supported-uds-services .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [Bootloader](bootloader.html) \> [Diagnostics services (UDS) in Bootloader](diagnosticsservices(uds)inbootloader.html) \> | [](cb-mediagnosis.html "Previous Topic") [](diagnosticsservices(uds)inbootloader.html "Parent Chapter") [](security-change-password-in-cb.html "Next Topic") |
+|                                                                                                                                                                                       |                                                                                                                                                              |
+| # Supported UDS services {#supported-uds-services-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                     |                                                                                                                                                              |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+To enable efficient communication, diagnosis, and reprogramming of the device, CB-ME supports specific UDS services. These include:
+
+- Diagnostic and communication management\
+ 
+
+  SID    Diagnostic Service         Description
+  ------ -------------------------- -------------------------------------------------------------------------------------------
+  0x10   DiagnosticSessionControl   request to control a diagnostic session with a ECU.
+  0x11   ECUReset                   force the ECU to perform a reset.
+  0x27   SecurityAccess             request to unlock a secured ECU.
+  0x28   CommunicationControl       control the setting of communication parameters in the ECU (e.g. communication baudrate).
+  0x3E   TesterPresent              indicate to the ECU that it is still present.
+  0x85   ControlDTCSetting          control the setting of DTCs in the server.
+
+- Data transmission\
+ 
+
+  SID    Diagnostic Service      Description
+  ------ ----------------------- ----------------------------------------------------------------------------------------
+  0x22   ReadDataByIdentifier    request to read the current value of a record identified by a provided dataIdentifier.
+  0x2E   WriteDataByIdentifier   request to write a record specified by a provided dataIdentifier.
+
+- Routine\
+ 
+
+  SID    Diagnostic Service   Description
+  ------ -------------------- ------------------------------------------------------------------------------------
+  0x31   RoutineControl       requests to start, stop a routine in the server(s) or request the routine results.
+
+- Upload Download\
+ 
+
+  SID    Diagnostic Services   Description
+  ------ --------------------- ------------------------------------------------------------------------
+  0x34   RequestDownload       request the negotiation of a data transfer from the tester to the ECU.
+  0x36   TransferData          transmit data to or request data from the ECU.
+  0x37   RequestTransferExit   request the termination of a data transfer.
+
+- Rexroth-specific
+
+ 
+
+  SID    Diagnostic Services   Description
+  ------ --------------------- ------------------------
+  0xBE   PasswordService       change or set password
+
+ 
+
+The details and sub-functions of UDS services important for software flashing are described in the Flashing Reference RC/40 Family (refer Flashing_Reference_RC40-Family_250616 onwards).

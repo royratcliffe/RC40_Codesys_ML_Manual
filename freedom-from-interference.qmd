@@ -1,0 +1,29 @@
+# Freedom from Interference (FFI) {#freedom-from-interference-ffi .p_Heading1 style="page-break-after: avoid;"}
+
++:-------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [Safety manual](safety-manual.html) \> [Safety-related software and software toolchain](safety-relatedsoftwareandsoftwaretoolchain.html) \> | [](safety-relatedsoftwareandsoftwaretoolchain.html "Previous Topic") [](safety-relatedsoftwareandsoftwaretoolchain.html "Parent Chapter") [](bsw-api-support-to-partition-c.html "Next Topic") |
+|                                                                                                                                                              |                                                                                                                                                                                                |
+| # Freedom from Interference (FFI) {#freedom-from-interference-ffi-1 .p_Heading1 style="page-break-after: avoid;"}                                            |                                                                                                                                                                                                |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This chapter briefly introduces the freedom from interference concept in general. It also describes how the partition concept can be used to develop application software in RC4x to achieve software independence.
+
+## Overview about the chapters: {#overview-about-the-chapters .p_Heading2 style="page-break-after: avoid;"}
+
+- [Freedom from interference introduction](what-is-freedom-of-interferenc.html){.topiclink}: This section gives an introduction to Freedom from interference concept in general.
+
+- [Freedom from interference in RC4x](concept-of-freedom-from-interf.html){.topiclink}: This section describes the implementation of partition concept in BSW to support freedom from interference concept. This section also gives an overview on how to assign the application software components into partitions.
+
+- [RC BSW API support to partition concept](bsw-api-support-to-partition-c.html){.topiclink}: This section describes how to use BSW APIs in the partitions.
+
+- [inter-partition interactions](cross-partition-communication.html){.topiclink}: This sections describes how to implement inter-partition interactions using the inter-partition communication manager API.
+
+## References {#references .p_Heading2 style="page-break-after: avoid;"}
+
+- How to develop Application using Freedom from Interference concept
+
+- [List of BSW API for FFI support](list-of-bsw-api-for-ffi-suppor.html){.topiclink}. In addition refer to respective API page for usage information.
+
+- [List of BSW API with no restrictions](list-of-bsw-api-with-no-restrictions.html){.topiclink}. In addition refer to respective API page for usage information.
+
+- IPCM: inter-partition communication manager

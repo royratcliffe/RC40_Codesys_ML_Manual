@@ -1,0 +1,233 @@
+# Proportional outputs {#proportional-outputs .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Outputs](outputs.html) \> | [](linked-outputs.html "Previous Topic") [](outputs.html "Parent Chapter") [](safety-outputs.html "Next Topic") |
+|                                                                                                           |                                                                                                                 |
+| # Proportional outputs {#proportional-outputs-1 .p_Heading1 style="page-break-after: avoid;"}             |                                                                                                                 |
++-----------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------+
+
+The BSW supports the following proportional outputs:
+
+- Low power outputs
+
+- High power outputs
+
+- Analog voltage outputs, see in table \"AOV Analog Voltage Output\" in [RC27-18/40 - Outputs](hw-ml-outputs.html){.topiclink}
+
+- Proportional voltage outputs, see in table \"PVG Proportional Voltage Output\" in [RC27-18/40 - Outputs](hw-ml-outputs.html){.topiclink}
+
+The BSW supports the following features to control the proportional outputs:
+
+- Configure a proportional output
+
+- Configures the proportional output as closed loop current control mode
+
+- Control a proportional output
+
+- Control test pulses for a proportional output
+
+- Read the proportional status and additional status information of a proportional output
+
+- Reset diagnostics errors and unlocks the proportional output
+
+## Low power outputs (low-side) {#low-power-outputs-low-side .p_Heading2 style="page-break-after: avoid;"}
+
+The low power outputs have the following functionality and behavior:
+
+- The low power outputs can be used for the control of loads with low current such as LEDs and relays.
+
+- The low power outputs are protected by the output device functionality:
+
+oThe faults SCG and OL are detected in STD_IDLE state.
+
+oThe faults SCB and OT are detected in STD_ACTIVE state.
+
+oAfter the faults SCB and/or OT the output is switched off by the output device.
+
+oWith any of these faults (SCG, SCB, OL, or OT) the output will be disabled and locked by the BSW.
+
+- The fault status can be read by using the API function bds_out_po_getStatus.
+
+- When API function bds_out_po_resetError is called, the BSW reset the faults and unlocks the output.
+
+- The unlocking is also possible by using API function bds_out_po_unlock, if the errors are no more persistent.
+
+- Loads connected to low side outputs must be powered from high side outputs (see bds_out_po_cfgPwrLs).
+
+- Test pulses are activated when a fault (e.g., SCG, SCB or OL) is active to check if the fault is healed; In this case, other faults can also be detected.
+
+ 
+
+Fault detection of the output device:
+
++--------------+--------------------------+--------------------------------+--------------------------+
+| Error status | STD_IDLE                 | STD_ACTIVE  (\<100%1))         | STD_ACTIVE  (100%)       |
+|              +--------+--------+--------+----------+----------+----------+--------+--------+--------+
+|              | SCB    | SCG    | OL     | SCB      | SCG      | OL       | SCB    | SCG    | OL     |
++==============+========+========+========+==========+==========+==========+========+========+========+
+| stDFC_SCB    | a2)    | \      | \      | a        | \        | \        | a      | \      | \      |
++--------------+--------+--------+--------+----------+----------+----------+--------+--------+--------+
+| stDFC_SCG    | \      | a      | a      | \        | a        | a        | \      |        | \      |
++--------------+--------+--------+--------+----------+----------+----------+--------+--------+--------+
+| stDFC_OL     | \      | a      | a      | \        | a        | a        | \      | \      |        |
++--------------+--------+--------+--------+----------+----------+----------+--------+--------+--------+
+
+a1): The high time of the duty cycle is higher than period - 250µs.
+
+a2): SCB only detected if there is any other active error is present e.g., OL (then additional test pulses active to detect all possible errors)
+
+a: Diagnostic error is detected.
+
+The stated error code in all cases of the table above is 0x3F7F. For detailed information about each hex code mentioned in the table please follow [diagnostics fault check](diagnostic-fault-check.html){.topiclink}.
+
+The over temperature fault cannot be detected. The temperature is detected by internal  NTC/PTCs. The user has to define the temperature limit and implement the temperature comparison in the application software.
+
+## High power outputs (high-side) {#high-power-outputs-high-side .p_Heading2 style="page-break-after: avoid;"}
+
+The high power outputs have the following functionality and behavior:
+
+- The high power outputs can be used for the control of e.g. proportional valves.
+
+- Current measurement is used to get the actual current of the outputs.
+
+- The configuration for current control (see bds_out_po_cfg) is possible and is the normal operating mode.
+
+- The outputs are protected by the output device:
+
+oThe faults SCB, SCG, OL and OT are detected but the fault OT will mostly not happen because SCG is detected in general before and this output is switched off in this case.\
+Remark:\
+Detection is possible, but the fault itself will not occur as the reason for OT in most cases is a high current on all outputs connected to the same circuit (DGDI) and when the ambient temperature is high.
+
+oThe faults SCB and OL are detected in STD_IDLE state.
+
+oThe fault SCG can be detected in STD_ACTIVE state.
+
+oWith any of these faults (SCG, SCB or OL) the output will be disabled and locked by the BSW.
+
+- When bds_out_po_resetError is called, the BSW reset the faults and unlocks the output.
+
+- An unlocking is also possible using bds_out_po_unlock if the errors are no more persistent.
+
+- After the occurrence of SCG (hot short circuit) fault, the unlocking of the output is only possible after a reactivation time of 2s.\
+Remark:\
+Test pulses are used to detect hot faults when an output is in OFF state. Depending on the cable length and cross-section, these test pulses may not be sufficient to detect hot faults in OFF state.\
+Therefore, the fault could be healed although the hot fault is still present. The fault will be detected when the output is activated and consequently the output is shut OFF to protect the output from over current.
+
+- All faults which are not detected in \"OFF\" or \"ON\" state are marked with 2), these faults are detected with additional test pulses (set periodically every 100ms).\
+The time for the test pulse is 65μs \"OFF\" if the output state is continuously \"ON\" and 5μs \"ON\" if the output state is continuously \"OFF\".\
+If test pulses are disabled using the bds_out_po_disableTstPls function, these errors marked with 2) will not be detected or automatically removed.
+
+- Additionally, a fault OC will be detected if current is above 6000mA and after the debounce time elapses the output will be locked.
+
+- If a current deviation is configured (see bds_out_poc_cfg), fault OR will also be detected but the output will not be locked.
+
+- The status can be read using bds_out_po_getStatus.
+
+ 
+
+Fault detection of the output device:
+
++--------------+--------------------+--------------------------------+--------------------------+
+| Error status | STD_IDLE           | STD_ACTIVE  (\<100%1))         | STD_ACTIVE  (100%)       |
+|              +------+------+------+----------+----------+----------+--------+--------+--------+
+|              | SCB  | SCG  | OL   | SCB      | SCG      | OL       | SCB    | SCG    | OL     |
++==============+======+======+======+==========+==========+==========+========+========+========+
+| stDFC_SCB    | a    |      |      | a        |          |          | a2)    |        |        |
++--------------+------+------+------+----------+----------+----------+--------+--------+--------+
+| stDFC_SCG    |      | a2)  |      |          | a        |          |        | a      |        |
++--------------+------+------+------+----------+----------+----------+--------+--------+--------+
+| stDFC_OL     |      |      | a    |          |          | a        |        |        | a2)    |
++--------------+------+------+------+----------+----------+----------+--------+--------+--------+
+
+a1): Minimum ON pulse width must be greater 10 us and minimum OFF pulse width must be 70us, if not test pulse is applied.
+
+a2): Detected with additional test pulses (set periodically every 100ms).
+
+a: Diagnostic error is detected.
+
+The stated error code in all cases of the table above is 0x3F7F. For detailed information about each hex code mentioned in the table please follow [diagnostics fault check](diagnostic-fault-check.html){.topiclink}.
+
+The over temperature fault cannot be detected. The temperature is detected by internal  NTC/PTCs. The user has to define the temperature limit and implement the temperature comparison in the application software.
+
+## High power outputs (low-side) {#high-power-outputs-low-side .p_Heading2 style="page-break-after: avoid;"}
+
+The high power outputs have the following functionality and behavior:
+
+- One low side output can also be used as proportional output. However, following restrictions will apply to it:
+
+oCurrent sensing is be used to get the actual current of the outputs.
+
+oThe configuration for current control (see bds_out_po_cfg) is not possible.
+
+- The outputs are protected by the output device:
+
+oThe faults SCB, SCG, OL and OT are detected but the fault OT will mostly not happen because SCB is detected in general before and this output is switched off in this case.\
+Remark:\
+Detection is possible, but the fault itself will not occur as the reason for OT in most cases is a high current on all outputs connected to the same circuit (DGDI) and when the ambient temperature is high.
+
+oThe faults SCG and OL are detected in state STD_IDLE.
+
+oThe fault SCB can be detected in state STD_ACTIVE.
+
+oWith any of these faults (SCG, SCB or OL) the output will be disabled and locked by the BSW.
+
+- When bds_out_po_resetError is called, the BSW reset the faults and unlocks the output.
+
+- An unlocking of the output is also possible with bds_out_po_unlock if there are no more errors persistent.
+
+- After the occurrence of SCB (hot short circuit) fault, the unlocking of the output is only possible after a reactivation time of 2s.\
+Remark:\
+Test pulses are used to detect hot faults when an output is in OFF state. Depending on the cable length and cross-section, these test pulses may not be sufficient to detect hot faults in OFF state.\
+Therefore, the fault could be healed although the hot fault is still present. The fault will be detected when the output is activated and consequently the output is shut OFF to protect the output from over current.
+
+- All faults which are not detected in \"OFF\" or \"ON\" state are marked with 2), these faults are detected with additional test pulses (set periodically every 100ms).\
+The time for the test pulse is 65μs \"ON\" if the output state is continuously \"ON\" and 5μs \"OFF\" if the output state is continuously \"OFF\".\
+If test pulses are disabled using the bds_out_po_disableTstPls function, these errors marked with 2) will not be detected or automatically removed.
+
+- Additionally, to the above faults, an OC (over current) fault is detected if the current is above 6000mA and after the debounce time the output will be locked.
+
+- The status can be read using bds_out_po_getStatus.
+
+- Loads connected to low side outputs must be powered from high side outputs.
+
+ 
+
+Fault detection of the output device:
+
++--------------+--------------------------+--------------------------------+--------------------------+
+| Error status | STD_IDLE                 | STD_ACTIVE  (\<100%1))         | STD_ACTIVE  (100%)       |
+|              +--------+--------+--------+----------+----------+----------+--------+--------+--------+
+|              | SCB    | SCG    | OL     | SCB      | SCG      | OL       | SCB    | SCG    | OL     |
++==============+========+========+========+==========+==========+==========+========+========+========+
+| stDFC_SCB    | a2)    | \      | \      | a        | \        | \        | a      | \      | \      |
++--------------+--------+--------+--------+----------+----------+----------+--------+--------+--------+
+| stDFC_SCG    | \      | a      | \      | \        | a        | \        | \      | a2)    | \      |
++--------------+--------+--------+--------+----------+----------+----------+--------+--------+--------+
+| stDFC_OL     | \      | \      | a      | \        | \        | a        | \      | \      | a2)    |
++--------------+--------+--------+--------+----------+----------+----------+--------+--------+--------+
+
+a1): The pulse length of the duty cycle must be greater than 65µs, otherwise a diagnostic error is recognized with an additional test pulse.
+
+a2): Detected with additional test pulses (set periodically every 100ms).
+
+a: Diagnostic error is detected.
+
+The stated error code in all cases of the table above is 0x3F7F. For detailed information about each hex code mentioned in the table please follow [diagnostics fault check](diagnostic-fault-check.html){.topiclink}.
+
+The over temperature fault cannot be detected. The temperature is detected by internal  NTC/PTCs. The user has to define the temperature limit and implement the temperature comparison in the application software.
+
+## Analog voltage outputs (AOV) and proportional voltage outputs (PVG) {#analog-voltage-outputs-aov-and-proportional-voltage-outputs-pvg .p_Heading2 style="page-break-after: avoid;"}
+
+The analog voltage outputs have the following functionality and behavior:
+
+- The analog voltage has two output types named PWM and AOV.
+
+- The set point range \[0.1%\] of the PVG is 0 or 250 to 750 of the battery voltage. It is used for control of e.g. proportional valves.
+
+- The set point range \[mV\] of the AOV is 0 to 10000mV. It is used e.g. as reference voltage.
+
+- Faults SCB, SCG are detected and if a voltage deviation is configured (see bds_out_aov_cfg) an OR fault will also be detected. After the debounce time elapses, the output will be locked.
+
+- When bds_out_po_resetError is called, the BSW reset the faults and unlocks the output.
+
+- The status can be read using bds_out_aov_getStatus.

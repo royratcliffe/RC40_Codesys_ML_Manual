@@ -1,0 +1,72 @@
+# RC40 CANopen communication objects {#rc40-canopen-communication-objects .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> | [](nvm-storage-support-for-canope.html "Previous Topic") [](rc40-canopen-library.html "Parent Chapter") [](object-0x1000-device-type.html "Next Topic") |
+|                                                                                                                                                                                                                                     |                                                                                                                                                         |
+| # RC40 CANopen communication objects {#rc40-canopen-communication-objects-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                           |                                                                                                                                                         |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+ The object dictionary contains all essential data which is necessary for configuring, parameterizing and operating a CANopen instance. All parameters of the object dictionary can be accessed via SDO protocol. The object dictionary represents an interface for communicating with the external devices. The structure of the object dictionary and of the individual objects themselves are described in CiA specifications CiA 301, CiA 304 etc.
+
+ 
+
+CANopen communication parameters supported by CANopen library:
+
+ 
+
+  --------------------------------------------------------------------- ---------------------------------------------------------------- ----------------
+  Index                                                                 Description                                                      Read/Write
+  [0x1000](object-0x1000-device-type.html){.topiclink}                  Device Type (specifies the device profile a device belongs to)   RO
+  [0x1001](object-0x1001-error-register.html){.topiclink}               Error Register                                                   RO
+  [0x1002](object-0x1002-manufacturer-sta.html){.topiclink}             Manufacturer Status Register                                     RO
+  [0x1003](object-0x1003-pre-defined-erro.html){.topiclink}             Pre-defined Error Field with last occurred errors                RO
+  [0x1005](object-0x1005-cob-id-sync-mess.html){.topiclink}             COB-ID SYNC message                                              RW
+  [0x1006](object-0x1006-communication-cy.html){.topiclink}             Communication Cycle Period (applicable in SYNC Producer)         RW
+  [0x1007](object-0x1007-synchronous-wind.html){.topiclink}             Synchronous Window Length (applicable in SYNC Receiver)          RW
+  [0x1008](object-0x1008-manufacturer-dev.html){.topiclink}             Manufacturer Device Name                                         RO
+  [0x1009](object-0x1009-manufacturer-har.html){.topiclink}             Manufacturer Hardware Version                                    RO
+  [0x100A](object-0x100a-manufacturer-sof.html){.topiclink}             Manufacturer Software Version                                    RO
+  [0x1010](object-0x1010-store-parameters.html){.topiclink}             Store Parameters for non-volatile storage                        RW
+  [0x1011](object-0x1011-restore-default-.html){.topiclink}             Restore default parameters for non-volatile storage              RW
+  [0x1014](object-0x1014-cob-id-emergency.html){.topiclink}             COB-ID Emergency Object                                          RO/Optional RW
+  [0x1015](object-0x1015-inhibit-time-emc.html){.topiclink}             Inhibit Time EMCY                                                RW
+  [0x1016](object-0x1016-heartbeat-consum.html){.topiclink}             Heartbeat Consumer Entries                                       RW
+  [0x1017](object-0x1017-producer-heartbe.html){.topiclink}             Producer Heartbeat Time                                          RW
+  [0x1018](object-0x1018-identity-object.html){.topiclink}              Identity Object                                                  RO
+  [0x1019](object-0x1019-synchronous-coun.html){.topiclink}             Synchronous counter overflow value                               RW
+  [0x1028](object-0x1028-emergency-consum.html){.topiclink}             Emergency Consumer                                               RW
+  [0x1029](object-0x1029-error-behaviour.html){.topiclink}              Error Behaviour                                                  RW
+  [0x1200](object-0x1200-server-sdo-param.html){.topiclink}             Server SDO Parameter 1                                           RO
+  [0x1280](object-0x1280-client-sdo-param.html){.topiclink}             Client SDO Parameter 1                                           RW
+  [0x1300](object-0x1300-global-failsafe-.html){.topiclink}             Global Fail Safe Command Parameter                               RW
+  [0x1301 to 0x1310](object-0x1301-to-0x1310-srdo-c.html){.topiclink}   SRDO Communication Parameter                                     RW
+  [0x1381 to 0x1390](object-0x1381-to-0x1390-srdo-m.html){.topiclink}   SRDO Mapping Parameter                                           RW
+  [0x13FE](object-0x13fe-configuration-va.html){.topiclink}             Configuration Valid                                              RW
+  [0x13FF](object-0x13ff-safety-configura.html){.topiclink}             Safety Configuration Check-sum                                   RW
+  [0x1400 to 0x1407](object-0x1400-to-0x1407-receiv.html){.topiclink}   Receive PDO Communication Parameters(1-32)                       RW
+  [0x1600 to 0x1607](object-0x1600-to-0x1607-receiv.html){.topiclink}   Receive PDO Mapping Parameters(1-32)                             RW
+  [0x1800 to 0x1807](object-0x1800-to-0x1807-transm.html){.topiclink}   Transmit PDO Communication Parameters(1-32)                      RW
+  [0x1A00 to 0x1A07](object-0x1a00-to-0x1a07-transm.html){.topiclink}   Transmit PDO Mapping Parameters(1-32)                            RW
+  --------------------------------------------------------------------- ---------------------------------------------------------------- ----------------
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 

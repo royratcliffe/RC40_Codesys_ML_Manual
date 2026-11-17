@@ -1,0 +1,19 @@
+# UDS customer tool {#uds-customer-tool .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Diagnostic services (UDS)](diagnostic-services.html) \> | [](uds-message-format---bodas-service.html "Previous Topic") [](diagnostic-services.html "Parent Chapter") [](security-access-levels.html "Next Topic") |
+|                                                                                                                                         |                                                                                                                                                         |
+| # UDS customer tool {#uds-customer-tool-1 .p_Heading1 style="page-break-after: avoid;"}                                                 |                                                                                                                                                         |
++-----------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This section provides hints for the creation of a customer specific diagnostic tool using UDS.
+
+ 
+
++--------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"} | •The UDS new instance on any CAN channel can be added from easyConfig.                                                                          |
+|                                                                                |                                                                                                                                                 |
+|                                                                                | •The Parameters and Process Data Identifiers (DIDs) with a new security level can be mapped from easyConfig.                                    |
+|                                                                                |                                                                                                                                                 |
+|                                                                                | •For security access the callbacks are provided to the application to have the customer algorithm. Standard 16 bytes seed and key is supported. |
++--------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+

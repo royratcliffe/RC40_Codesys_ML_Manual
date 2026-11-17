@@ -1,0 +1,29 @@
+# How to implement CAN legacy using Transmit, Receive Buffers {#how-to-implement-can-legacy-using-transmit-receive-buffers .p_Heading1 style="page-break-after: avoid;"}
+
++:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [How-Tos](how-to.html) \> [How to develop an application using CAN legacy APIs](howtodevelopanapplicationusingcan-fdlegacyapis_2.html) \>                 | [](howtodevelopanapplicationusingcan-fdlegacyapis_2.html "Previous Topic") [](howtodevelopanapplicationusingcan-fdlegacyapis_2.html "Parent Chapter") [](howtoimplementcanlegacyusingtransmitreceivedataboxes.html "Next Topic") |
+|                                                                                                                                                                            |                                                                                                                                                                                                                                  |
+| # How to implement CAN legacy using Transmit, Receive Buffers {#how-to-implement-can-legacy-using-transmit-receive-buffers-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                                                                                                                  |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Following example suggests how to configure CAN-FD related parameters such as baudrate and buffer size.
+
+## Example: Configure all CAN 2.0 related parameters in easyConfig and use BSW APIs for communication. {#example-configure-all-can-2.0-related-parameters-in-easyconfig-and-use-bsw-apis-for-communication. .p_Heading2 style="page-break-after: avoid;"}
+
+### Step 1: {#step-1 .p_Heading3 style="page-break-after: avoid;"}
+
+Configure a CAN channel for CAN 2.0 during pre-compile time (configuration in easyConfig).
+
+in Communication \--\> Select CAN
+
+### Step 2: {#step-2 .p_Heading3 style="page-break-after: avoid;"}
+
+Configure CAN baudrate for the selected CAN channel.
+
+After selecting the CAN Channel, under settings(CAN 2.0/CAN-FD) choose CAN 2.0 and then configure the desired baudrate.
+
+### Step 3: {#step-3 .p_Heading3 style="page-break-after: avoid;"}
+
+Configure CAN transmit and CAN receive buffer in the Legacy section.
+
+Refer code example as below for sample usage:

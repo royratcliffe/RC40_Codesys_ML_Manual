@@ -1,0 +1,64 @@
+# Object 0x1381 to 0x1390 SRDO mapping parameter {#object-0x1381-to-0x1390-srdo-mapping-parameter .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> [RC40 CANopen communication objects](rc40-canopen-communication-obj.html) \> | [](object-0x1301-to-0x1310-srdo-c.html "Previous Topic") [](rc40-canopen-communication-obj.html "Parent Chapter") [](object-0x13fe-configuration-va.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                                  |                                                                                                                                                                        |
+| # Object 0x1381 to 0x1390 SRDO mapping parameter {#object-0x1381-to-0x1390-srdo-mapping-parameter-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                                |                                                                                                                                                                        |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+These objects shall contain the mapping parameters for the SRDO\'s the device is able to receive or transmit.
+
+ 
+
+  Index         0x1381 to 0x1390
+  ------------- -----------------------------------
+  Name          SRDO Mapping Parameter
+  Object Code   RECORD
+  Data Type     SRDO parameter
+  Category      Mandatory for each supported SRDO
+
+ 
+
+ 
+
+SubIndex Supported
+
+  SubIndex      0
+  ------------- ----------------------------
+  Description   Highest SubIndex Supported
+
+ 
+
+  SubIndex      1,3,5,7,9,11,13 to 15(only odd indices)
+  ------------- -------------------------------------------------------------------------------
+  Description   SRDO mapping for the n-th application object to be mapped (data not inverted)
+
+ 
+
+  SubIndex      2,4,6,8,10,12,14 to 16(only even indices)
+  ------------- ---------------------------------------------------------------------------
+  Description   SRDO mapping for the n-th application object to be mapped (data inverted)
+
+ 
+
+  -------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"}   Up to 16 entries supported i.e if object size is 1 bytes then 8 objects can be mapped. Dynamic mapping is supported and by default all mapping entry is set to 0. ASW is responsible for setting valid mapping for each SRDO.
+  -------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 

@@ -1,0 +1,105 @@
+# Object 0x1301 to 0x1310 SRDO communication parameter {#object-0x1301-to-0x1310-srdo-communication-parameter .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> [RC40 CANopen communication objects](rc40-canopen-communication-obj.html) \> | [](object-0x1300-global-failsafe-.html "Previous Topic") [](rc40-canopen-communication-obj.html "Parent Chapter") [](object-0x1381-to-0x1390-srdo-m.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                                  |                                                                                                                                                                        |
+| # Object 0x1301 to 0x1310 SRDO communication parameter {#object-0x1301-to-0x1310-srdo-communication-parameter-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                    |                                                                                                                                                                        |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This object contains the communication parameters for the SRDO\'s the device is able to receive or transmit.
+
+ 
+
+  Index         0x1301 to 0x1310
+  ------------- -----------------------------------
+  Name          SRDO Communication Parameter
+  Object Code   RECORD
+  Data Type     SRDO parameter
+  Category      Mandatory for each supported SRDO
+
+ 
+
+ 
+
+SubIndex Supported
+
+ 
+
+  SubIndex        0
+  --------------- -----------------------------
+  Description     Highest sub index supported
+  Default value   0x06
+
+ 
+
+  SubIndex        1
+  --------------- -----------------------
+  Description     Information direction
+  Default value   0x00
+
+ 
+
++-----------------------------------+-----------------------------------+
+| SubIndex                          | 2                                 |
++===================================+===================================+
+| Description                       | Tx: Refresh time                  |
+|                                   |                                   |
+|                                   | Rx:SCT                            |
++-----------------------------------+-----------------------------------+
+| Default value                     | 0x03E8                            |
++-----------------------------------+-----------------------------------+
+
+ 
+
++-----------------------------------+-----------------------------------+
+| SubIndex                          | 3                                 |
++===================================+===================================+
+| Description                       | Tx: Not used                      |
+|                                   |                                   |
+|                                   | Rx: SVT                           |
++-----------------------------------+-----------------------------------+
+| Default value                     | 0x0A                              |
++-----------------------------------+-----------------------------------+
+
+ 
+
+  SubIndex        4
+  --------------- -------------------
+  Description     Transmission type
+  Default value   0xFE
+
+ 
+
+  SubIndex        5
+  --------------- ----------
+  Description     COB-ID 1
+  Default value   0x101
+
+ 
+
+  SubIndex        6
+  --------------- ----------
+  Description     COB-ID 2
+  Default value   0x102
+
+ 
+
+  -------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"}   By default all 64 SRDO\'s are not initialized. i.e Subindex 1 Information direction is 0. ASW is responsible for setting right direction after valid mapping is configured for each SRDO.
+  -------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 

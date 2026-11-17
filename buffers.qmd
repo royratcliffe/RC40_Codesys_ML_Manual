@@ -1,0 +1,27 @@
+# Buffers {#buffers .p_Heading1 style="page-break-after: avoid;"}
+
++:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CAN-FD](can-fd.html) \> [CAN-FD legacy communication](chapter-page-template_2.html) \> | [](chapter-page-template_2.html "Previous Topic") [](chapter-page-template_2.html "Parent Chapter") [](databoxes.html "Next Topic") |
+|                                                                                                                                                                                                                                            |                                                                                                                                     |
+| # Buffers {#buffers-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                                        |                                                                                                                                     |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
+
+- \"Buffer\" or CAN-FD buffer in this context means a queue of messages (which follow fields of bds_can_Message_ts - ID, Format, Number of bytes, Data) in a First In First Out (FIFO) format.
+
+- This software buffers of CAN-FD are used to handle transmission / reception of a CAN-FD message (raw CAN-FD frame).
+
+- Configuration of buffer is done in easyConfig and additionally with the help of API  bds_can_fd_registerTxBuf() /  bds_can_fd_registerRxBuf().
+
+<figure style="margin:0;padding:0">
+<a href="rxbuffer.png" class="imagetogglelink"><img src="rxbuffer_zoom59.png" title="Receive Message buffer for CAN/CAN-FD" id="toggle0186a1" class="image-toggle" style="width:12.4583in;height:4.9063in;border:none" alt="Receive Message buffer for CAN/CAN-FD" /><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=" class="image-toggle-magnifier" /></a>
+<figcaption><p>Receive Message buffer for CAN/CAN-FD</p></figcaption>
+</figure>
+
+<figure style="margin:0;padding:0">
+<a href="txbuffer.png" class="imagetogglelink"><img src="txbuffer_zoom60.png" title="Transmit Message buffer for CAN/CAN-FD" id="toggle0186a2" class="image-toggle" style="width:11.6458in;height:4.9583in;border:none" alt="Transmit Message buffer for CAN/CAN-FD" /><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=" class="image-toggle-magnifier" /></a>
+<figcaption><p>Transmit Message buffer for CAN/CAN-FD</p></figcaption>
+</figure>
+
+- On how to use the  BSW APIs for CAN-FD legacy communication, refer the How-To page [How to implement CAN-FD legacy using Transmit, Receive Buffers](howtoimplementcan-fdlegacyusingtransmitreceivebuffers.html){.topiclink}.
+
+- On how to use the  BSW APIs for CAN legacy communication, refer the How-To page [How to implement CAN legacy using Transmit, Receive Buffers](howtoimplementcanlegacyusingtransmitreceivebuffers.html){.topiclink}.

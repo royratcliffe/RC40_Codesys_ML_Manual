@@ -1,0 +1,13 @@
+# Routine Identifier (RID) {#routine-identifier-rid .p_Heading1 style="page-break-after: avoid;"}
+
++:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Diagnostic services (UDS)](diagnostic-services.html) \> [UDS overview](uds---overview.html) \> | [](integration-of-variable-length-feature-for-dids.html "Previous Topic") [](uds---overview.html "Parent Chapter") [](standard-rids.html "Next Topic") |
+|                                                                                                                                                                                |                                                                                                                                                        |
+| # Routine Identifier (RID) {#routine-identifier-rid-1 .p_Heading1 style="page-break-after: avoid;"}                                                                            |                                                                                                                                                        |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This section gives information about Routine Identifier (RID) in BODAS-BSW and steps to use RIDs.
+
+## References {#references .p_Heading2 style="page-break-after: avoid;"}
+
+- For information about usage of a RID refer [SID - Routine Control (0x31)](sid---routine-control-(0x31).html){.topiclink} and sub-chapters.

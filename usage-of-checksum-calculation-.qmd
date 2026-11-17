@@ -1,0 +1,71 @@
+# Usage of Checksum Calculation Tool {#usage-of-checksum-calculation-tool .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [How-Tos](how-to.html) \> [How to calculate checksum for CODESYS merged HEX](how-to-calculate-checksum-for-.html) \> | [](configuration-arguments-for-ch.html "Previous Topic") [](how-to-calculate-checksum-for-.html "Parent Chapter") [](codesys-application-checksum-c.html "Next Topic") |
+|                                                                                                                                       |                                                                                                                                                                        |
+| # Usage of Checksum Calculation Tool {#usage-of-checksum-calculation-tool-1 .p_Heading1 style="page-break-after: avoid;"}             |                                                                                                                                                                        |
++---------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+ \
+ 
+
++------------------------------------------------------------------------------------------+------------------------------------------------------+
+| ![Attention](attention.png){style="margin:0;width:2.1667in;height:0.7083in;border:none"} | The following files should exist in the same folder: |
+|                                                                                          |                                                      |
+|                                                                                          | oBatch script to perform Hexmodx operations          |
+|                                                                                          |                                                      |
+|                                                                                          | oPython script                                       |
+|                                                                                          |                                                      |
+|                                                                                          | oConfig.ini to configure:                            |
+|                                                                                          |                                                      |
+|                                                                                          | §Path of hexmodx tool                                |
+|                                                                                          |                                                      |
+|                                                                                          | §Hex file to be flashed                              |
++------------------------------------------------------------------------------------------+------------------------------------------------------+
+
+ \
+ 
+
+  -------------------------------------------------------------------------------- -----------------------------------------------------------------------------
+  ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"}   Do not change the name of the batch file which performs Hexmodx operations.
+  -------------------------------------------------------------------------------- -----------------------------------------------------------------------------
+
+ 
+
+  -------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------
+  ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"}   Checksum calculation procedure enlarges HEX file as checksum is calculated on the whole PFLASH, this leads to an increase in the flashing time.
+  -------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------
+
+ 
+
+Step 1: Configure the config.ini with the path of the ASW merged hex file including the CODESYS app and path of Hexmodx tool.
+
+Note: To merge the hex file please refer to [Build ASW and generate hex](build-asw-and-generate-hex.html){.topiclink}.\
+ \
+Path to config.ini : D:/Codesys/delivery/tools/Checksum_Calculation_Tool/config.ini\
+ \
+![CRA_TOOL_CODESYS_CONFIG](cra_tool_codesys_config.png){style="margin:0;width:6.2813in;height:1.1250in;border:none"}
+
+ 
+
+Step 2: Open CODESYS IDE → Tools → Scripting → Execute Script file → Browse the python script inside the Checksum Calculation Tool(codesys_checksum_calculation.py)\
+ \
+![RunningPyScript](runningpyscript.jpg){style="margin:0;width:13.9375in;height:7.0521in;border:none"}
+
+ \
+ \
+Step 3: Select and double click on the Python source file codesys_checksum_calculation.py from Checksum_Calculation_Tool\
+ \
+Path to python script :  D:/Codesys/delivery/tools/Checksum_Calculation_Tool/codesys_checksum_calculation.py\
+![CRA_PYTHON](cra_python.png){style="margin:0;width:7.3646in;height:1.9896in;border:none"}\
+ \
+If Hexmodx operation is successful, the following log will be shown in CODESYS IDE
+
+![Log_Codesys](log_codesys.png){style="margin:0;width:8.9479in;height:3.3854in;border:none"}
+
+ 
+
+ 
+
+ \
+ 

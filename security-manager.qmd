@@ -1,0 +1,54 @@
+# Security Manager {#security-manager .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [Security](security.html) \> [Security components](security-components.html) \> | [](hardware-security-module.html "Previous Topic") [](security-components.html "Parent Chapter") [](tractor-implement-management.html "Next Topic") |
+|                                                                                                                                             |                                                                                                                                                     |
+| # Security Manager {#security-manager-1 .p_Heading1 style="page-break-after: avoid;"}                                                       |                                                                                                                                                     |
++---------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The Security Manager is a separate software component provided by the BSW that enables access to the HSM. It handles the management of access levels and provides security-relevant routines that are accessible by the application. In short:
+
+- The component abstracts the communication with the HSM through the Cryptographic Service Application Interface (CSAI).
+
+- The API description for the Security Manager can be found in the  SEC Module section.
+
+- The Security Manager takes part in the UDS key negotiation (see [Authentication](authentication.html){.topiclink}) between tester and RC by default.
+
+- The Security Manager is designed in a way that it can be used with the Rexroth supplied UDS stack as well as a customer specific diagnostic implementation.
+
+<figure style="margin:0;padding:0">
+<img src="secumgroverview.png" title="Figure9: The Security Manager in context with other system components. " id="fig6b08c65a" style="width:3.8021in;height:1.7604in;border:none" alt="Figure9: The Security Manager in context with other system components. " />
+<figcaption><p>Figure9: The Security Manager in context with other system components.</p></figcaption>
+</figure>
+
+## Configuration {#configuration .p_Heading2 style="page-break-after: avoid;"}
+
+The usage of the security manager for UDS can be configured in easyConfig.
+
+- If the option is unchecked, all authorization requests must be handled in the ASW.
+
+- You can still access the Security Manager and use the defined functions in your custom solution (see bds_sec_setLevel).
+
+ 
+
+<figure style="margin:0;padding:0">
+<img src="securitymanager_ec.png" title="Figure10: Security Manager configuration in easyConfig." id="fig6dc2d47" style="width:6.0521in;height:1.2708in;border:none" alt="Figure10: Security Manager configuration in easyConfig." />
+<figcaption aria-hidden="true"><p>Figure10: Security Manager configuration in easyConfig.</p></figcaption>
+</figure>
+
+  ------------------------------------------------------------------------------------------ -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  ![Attention](attention.png){style="margin:0;width:2.1667in;height:0.7083in;border:none"}   Customizing the key negotiation procedure is not recommended and should only be done if absolutely necessary. You are responsible for the security of the key negotiation if you disable this option.
+  ------------------------------------------------------------------------------------------ -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ 
+
+## Component Behavior {#component-behavior .p_Heading2 style="page-break-after: avoid;"}
+
+Functions defined in the  SEC Module provide secure and easy access to cryptographic algorithms that are executed on the HSM. As depicted below, the bds_sec function validates the input parameters and eventually redirects the request to the HSM, which performs the calculation and responds with a positive or negative answer. The answer is delegated back to the original caller of the function.
+
+The Security Manager (bds_sec) wraps the HSM CSAI communication into easy-to-use functions. The HSM routines are executed asynchronously, which means that the result is not directly available after sending the request. The Security Manager transforms the asynchronous call into a synchronous execution by polling for the result.
+
+<figure style="margin:0;padding:0">
+<img src="bds_sec_getrnd.png" title="Figure11: Exemplary behavior of a bds_sec function. The function coordinates the CSAI session handling that is required for HSM communication." id="fig3169cc4f" style="width:8.4896in;height:7.0521in;border:none" alt="Figure11: Exemplary behavior of a bds_sec function. The function coordinates the CSAI session handling that is required for HSM communication." />
+<figcaption aria-hidden="true"><p>Figure11: Exemplary behavior of a bds_sec function. The function coordinates the CSAI session handling that is required for HSM communication.</p></figcaption>
+</figure>

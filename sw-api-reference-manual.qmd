@@ -1,0 +1,27 @@
+# BSW API {#bsw-api .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  »No topics above this level«                       | [](temperatureprofileofthecontrolunit.html "Previous Topic") [](introduction.html "Parent Chapter") [](api-common.html "Next Topic") |
+|                                                                     |                                                                                                                                      |
+| # BSW API {#bsw-api-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                      |
++---------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
+
+ 
+
+ 
+
+The list of all the available BODAS-API can be seen in the CODESYS library that is part of build download folder of easyConfig.
+
+ 
+
+The documentation of each API can be seen in the corresponding documentation tab of each API
+
+ 
+
+ 
+
+## References {#references .p_Heading2 style="page-break-after: avoid;"}
+
+For a higher level overview of the BSW see the chapter [SW Architecture](sw-architecture.html){.topiclink}.
+
+ 

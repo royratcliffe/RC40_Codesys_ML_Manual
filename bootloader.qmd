@@ -1,0 +1,9 @@
+# Bootloader {#bootloader .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \>               | [](functional-overview-bsw.html "Previous Topic") [](system-concepts.html "Parent Chapter") [](emergency-flashing-through-cb-.html "Next Topic") |
+|                                                                           |                                                                                                                                                  |
+| # Bootloader {#bootloader-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                                  |
++---------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This section documents the bootloader feature of the RC.

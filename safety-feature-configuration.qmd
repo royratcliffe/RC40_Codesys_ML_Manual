@@ -1,0 +1,31 @@
+# Safety feature configuration check {#safety-feature-configuration-check .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Self-monitoring](ecu-self-monitoring.html) \> [Cyclic monitoring](cyclic-monitoring-checks.html) \> | [](queryresponsecommunication.html "Previous Topic") [](cyclic-monitoring-checks.html "Parent Chapter") [](temperaturemonitoring.html "Next Topic") |
+|                                                                                                                                                                                     |                                                                                                                                                     |
+| # Safety feature configuration check {#safety-feature-configuration-check-1 .p_Heading1 style="page-break-after: avoid;"}                                                           |                                                                                                                                                     |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Microcontroller provides various safety features in hardware, like ECC, lockstep−cores, E2E protection of internal communication, internal watchdogs, internal error management and so on. Those features represent a crucial part of the monitoring concept. Since most of these feature are configurable, that means a configuration error could lead to reduced monitoring capabilities thus leading to an unacceptable risk for the end user of the product. Therefore a continuous check of all relevant safety feature configurations is implemented in the module.
+
+The configuration of safety feature module  are compared with  predefined configuration, if there is deviation then error reaction performed.
+
+## Remarks: {#remarks .p_Heading2 style="page-break-after: avoid;"}
+
+- Refer [Safety function and safe state](safetyfunctionandsafestate.html){.topiclink} for details on the safety functions provided by the RCs and the related considerations to be observed.
+
+- Refer [Failure detection possibilities](failuredetectionpossibilities.html){.topiclink} for a broader overview of the different failure reactions observed.
+
+ 
+
+Error Reaction:.
+
+  Error                          Reaction
+  ------------------------------ -------------------------
+  DFC                            No
+  Error Code                     No
+  High Power Outputs(\...,OFF)   Yes
+  ECU Reset                      Yes
+  Reaction time                  80 ms
+  Reset Reason - Group ID        RBA_RESET_MOC
+  Reset Reason  - Reset number   RBA_RESET_MOCSCC_FAILED

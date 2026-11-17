@@ -1,0 +1,13 @@
+# Network communication & protocols {#network-communication-protocols .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \>                                        | [](frequency-acquisition.html "Previous Topic") [](bsw.html "Parent Chapter") [](canopen2.html "Next Topic") |
+|                                                                                                                       |                                                                                                              |
+| # Network communication & protocols {#network-communication-protocols-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                              |
++-----------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+
+
+This section documents using the RC with communication networks (e.g., CAN, LIN).
+
+## References {#references .p_Heading2 style="page-break-after: avoid;"}
+
+- The communication BSW API is documented in chapter Communication API.

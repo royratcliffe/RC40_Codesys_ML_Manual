@@ -1,0 +1,25 @@
+# Introduction {#introduction .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [Security](security.html) \> [Authorization](authorization.html) \> | [](authorization.html "Previous Topic") [](authorization.html "Parent Chapter") [](access-rights.html "Next Topic") |
+|                                                                                                                                 |                                                                                                                     |
+| # Introduction {#introduction-1 .p_Heading1 style="page-break-after: avoid;"}                                                   |                                                                                                                     |
++---------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------+
+
+The role management authorization concept in RCs determines the access permissions for different audiences to privileged features like flashing or calibration. [Access levels](access-levels.html){.topiclink} and [access rights](access-rights.html){.topiclink} are described in detail in the following sections.
+
+## Role Configuration Table {#role-configuration-table .p_Heading2 style="page-break-after: avoid;"}
+
+Ideally, each access level represents a different audience or user group (e.g., \'developer\', \'service technician\'). The \"Access level 1\" in the table below could for example be reserved for maintenance activities, whereas \"Access level 2\" could represent service technicians that need to calibrate the ECU without flashing it. Each group can then be assigned the necessary set of access rights that are relevant for their specific use-cases.
+
+ 
+
++-----------------+-----------------+-----------------+-----------------+
+| \               | Access right A  | Access right B  | Access right C  |
++=================+=================+=================+=================+
+| Access level 1  | P               |                 | P               |
++-----------------+-----------------+-----------------+-----------------+
+| Access level 2  |                 | O               | P               |
++-----------------+-----------------+-----------------+-----------------+
+
+ 

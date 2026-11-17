@@ -1,0 +1,83 @@
+# Logging in BSW {#logging-in-bsw .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [Security](security.html) \> [Secure Logging](secure-logging.html) \> | [](logging-in-cb-me.html "Previous Topic") [](secure-logging.html "Parent Chapter") [](application-integration.html "Next Topic") |
+|                                                                                                                                   |                                                                                                                                   |
+| # Logging in BSW {#logging-in-bsw-1 .p_Heading1 style="page-break-after: avoid;"}                                                 |                                                                                                                                   |
++-----------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
+
+This section details the secure logging features implemented by the BSW concerning parameter management and security access. These logs provide transparency and diagnostic information regarding configuration changes and security attempts.
+
+## Logged Events {#logged-events .p_Heading2 style="page-break-after: avoid;"}
+
+The ECU logs events related to parameter modifications, security access attempts, and configuration management. These logs help track what changes occurred and whether any unauthorized operation was attempted.
+
+### Parameter‑Related Events {#parameterrelated-events .p_Heading3 style="page-break-after: avoid;"}
+
+The following events are logged whenever ECU parameters are modified or managed:
+
+- Successful Parameter Writing: Logged when parameters are successfully updated using WriteDataByIdentifier (WDBI).
+
+- Saving Parameters to NVM: Logged when the "Save Parameters to NVM" routine completes successfully (Routine ID: 0xF000, Sub‑function: 0x01).
+
+- Setting Parameters to Default Values: Logged when the "Set Parameters to Default Values" routine completes successfully (Routine ID: 0xF001, Sub‑function: 0x01).
+
+### Security‑Related Events {#securityrelated-events .p_Heading3 style="page-break-after: avoid;"}
+
+These logs help identify unauthorized or failed security access attempts:
+
+- Incorrect Security Access Password: Logged when Security Access (Service 0x27) fails due to an incorrect password.
+
+- Security Access Denied (WDBI): Logged when a WDBI request (Service 0x2E) is denied with NRC 0x33.
+
+- Security Access Denied (RoutineControl): Logged when a RoutineControl request (Service 0x31) is denied with NRC 0x33 for the following operations:
+
+oAttempting to save parameters to NVM
+
+oAttempting to set parameters to default values
+
+## Timestamp Logging {#timestamp-logging .p_Heading2 style="page-break-after: avoid;"}
+
+The ECU records timestamps to maintain a clear history of configuration changes. Timestamps are stored whenever:
+
+- A parameter is successfully changed using WDBI.
+
+- The Save Parameters to NVM routine completes successfully.
+
+- The Set Parameters to Default Values routine completes successfully.
+
+## Accessing Logged Timestamps {#accessing-logged-timestamps .p_Heading2 style="page-break-after: avoid;"}
+
+Diagnostic tools can retrieve timestamp data using specific DID.
+
+DID 0xFE22 --- Last Configuration Change Timestamp
+
+- 4‑byte value (in minutes)
+
+- Indicates when parameters were last successfully modified
+
+## Reading the Last Flashing Date {#reading-the-last-flashing-date .p_Heading2 style="page-break-after: avoid;"}
+
+Users can retrieve the date of the most recent successful software flashing via a diagnostic request.
+
+DID 0xF199 --- Last Flashing Date
+
+- Read‑only parameter
+
+- Indicates the date of the last successful flashing event
+
+- Returned as an 8‑byte hexadecimal value representing DDMMYYYY
+
+## Diagnostic Fault Codes (DFCs) {#diagnostic-fault-codes-dfcs .p_Heading2 style="page-break-after: avoid;"}
+
+  DTC Code   DFC name                                                                   Description
+  ---------- -------------------------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0x220800   [DFC_rbr_secInvalidPassword](diagnostic-trouble-code.html){.topiclink}     Incorrect password during Security Access (Service 0x27).
+  0x220A00   [DFC_rbr_secAccessDenied_WDBI](diagnostic-trouble-code.html){.topiclink}   WDBI (Service 0x2E) denied due to insufficient security access (NRC 0x33).
+  0x220B00   [DFC_rbr_secAccessDenied_RC](diagnostic-trouble-code.html){.topiclink}     RoutineControl (Service 0x31) denied due to insufficient security access (NRC 0x33), applicable to saving parameters to NVM or setting parameters to default values.
+
+ 
+
+ 
+
+ 

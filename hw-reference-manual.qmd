@@ -1,0 +1,13 @@
+# Hardware {#hardware .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  »No topics above this level«                         | [](bdl-api.html "Previous Topic") [](introduction.html "Parent Chapter") [](hw_rc40_signals.html "Next Topic") |
+|                                                                       |                                                                                                                |
+| # Hardware {#hardware-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                |
++-----------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+
+This chapter focuses on the HW of the RCs with the topics:
+
+- That are common for all RCs
+
+- That are specific for the different RC types

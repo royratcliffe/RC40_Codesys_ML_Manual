@@ -1,0 +1,25 @@
+# Reprogramming through CAN {#reprogramming-through-can .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [Bootloader](bootloader.html) \>            | [](supported-sessions-and-securit.html "Previous Topic") [](bootloader.html "Parent Chapter") [](bsw.html "Next Topic") |
+|                                                                                                         |                                                                                                                         |
+| # Reprogramming through CAN {#reprogramming-through-can-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                         |
++---------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------+
+
+ In CB-ME, only one CAN channel will remain enabled for communication at a given time. All the other CAN channels will remain disabled.
+
+- If a valid shared configuration data is present in the NVM:
+
+  - only the channel updated in shared configuration will be enabled as per the NVM configuration values.
+
+  - all other CAN channels will be disabled by CB-ME.
+
+- If there is no valid shared configuration data present in the NVM (or virgin ECU):
+
+ - only CAN2 will be initialized by default with baud rate of 250kBaud.
+
+ - all other CAN channels will be disabled by CB-ME.
+
+ 
+
+ 

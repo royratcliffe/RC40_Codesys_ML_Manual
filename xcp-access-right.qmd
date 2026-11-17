@@ -1,0 +1,13 @@
+# XCP Access-Right {#xcp-access-right .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------+------------------------------------+
+| **Navigation:**  »No topics above this level«                                         | [](appendix.html "Parent Chapter") |
+|                                                                                       |                                    |
+| # XCP Access-Right {#xcp-access-right-1 .p_Heading1 style="page-break-after: avoid;"} |                                    |
++---------------------------------------------------------------------------------------+------------------------------------+
+
+Enabling the XCP interface in a series device should be avoided whenever possible. Once the XCP interface is enabled, arbitrary memory addresses can be accessed and modified, potentially leading to a malfunctioning and compromised device. The XCP interface should be used only for development purposes and in non-productive devices in a secure environment.
+
+ 
+
+ 

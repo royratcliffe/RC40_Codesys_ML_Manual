@@ -1,0 +1,59 @@
+# CANopen protocol description {#canopen-protocol-description .p_Heading1 style="page-break-after: avoid;"}
+
++:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> | [](canopen2.html "Previous Topic") [](canopen2.html "Parent Chapter") [](canopen-introduction.html "Next Topic") |
+|                                                                                                                                                                                |                                                                                                                  |
+| # CANopen protocol description {#canopen-protocol-description-1 .p_Heading1 style="page-break-after: avoid;"}                                                                  |                                                                                                                  |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------+
+
+This chapter describes about the general CANopen concept:
+
+ 
+
+- [CANopen Introduction](canopen-introduction.html){.topiclink}
+
+ 
+
+- [Network Management(NMT)](network-management(nmt).html){.topiclink}
+
+ 
+
+- [Heartbeat](heartbeat.html){.topiclink}
+
+ 
+
+- [Emergency(EMCY)](emergency(emcy).html){.topiclink}
+
+ 
+
+- [Service Data Object(SDO)](service-data-object(sdo).html){.topiclink}
+
+ 
+
+- [Process Data Object(PDO)](process-data-objects(pdo).html){.topiclink}
+
+ 
+
+- [Layer Setting Service(LSS)](layer-setting-service(lss).html){.topiclink}
+
+ 
+
+- [Safety Relevant Data Object(SRDO)](safety-relevant-data-object(srdo).html){.topiclink}
+
+ 
+
+- [Global Fail safe Command(GFC)](global-fail-safe-command(gfc).html){.topiclink}
+
+ 
+
+- [Electronic Data Sheets(EDS)](electronic-data-sheets(eds).html){.topiclink}
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 

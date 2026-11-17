@@ -1,0 +1,37 @@
+# SID - ClearDiagnosticInformation (0x14) {#sid---cleardiagnosticinformation-0x14 .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Diagnostic services (UDS)](diagnostic-services.html) \> [UDS overview](uds---overview.html) \> [Supported UDS services](supported-uds-services.html) \> | [](supported-uds-services.html "Previous Topic") [](supported-uds-services.html "Parent Chapter") [](sid---controldtcsetting-(0x85).html "Next Topic") |
+|                                                                                                                                                                                                                                         |                                                                                                                                                        |
+| # SID - ClearDiagnosticInformation (0x14) {#sid---cleardiagnosticinformation-0x14-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                       |                                                                                                                                                        |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This topic explains the service related to Stored data transmission functional unit - ClearDiagnosticInformation.
+
+ 
+
+Definition and Short description as per ISO 14229-1:
+
+ 
+
+  ---------------------------- ----------------------------------------------------------------------------------------------------------
+  Service                      Description
+  ClearDiagnosticInformation   Allows the client to clear diagnostic information from the server (including DTCs, captured data, etc.).
+  ---------------------------- ----------------------------------------------------------------------------------------------------------
+
+The ClearDiagnosticInformation service is used by the diagnostic tool (client) to clear diagnostic information in one or multiple servers' memory.
+
+Key data which shall be reset of a DTC / all DTCs are:
+
+- DTC status byte (DTC Status)
+
+- Captured DTC snapshot data (Operating Hours and Environment Data)
+
+- Captured DTC extended data (Occurrence Counter)
+
+A sample request and response shall be as follows:
+
+<figure style="margin:0;padding:0">
+<a href="slide7.png" class="imagetogglelink"><img src="slide7_zoom56.png" title="Figure 46: Sample Request and Response SID 0x14" id="fig9efb7c32" class="image-toggle" style="width:7.5000in;height:4.2188in;border:none" alt="Figure 46: Sample Request and Response SID 0x14" /><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=" class="image-toggle-magnifier" /></a>
+<figcaption><p>Figure 46: Sample Request and Response SID 0x14</p></figcaption>
+</figure>

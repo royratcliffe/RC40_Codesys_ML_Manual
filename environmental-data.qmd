@@ -1,0 +1,44 @@
+# Environmental Data {#environmental-data .p_Heading1 style="page-break-after: avoid;"}
+
++:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Error handling infrastructure](error-handling-infrastructure.html) \> [Diagnostic System Management](diagnosticsystemmanagement.html) \> | [](javascript:HMToggleExpandAll(!HMAnyToggleOpen()) "Click to open/close expanding sections") [](diagnostic-trouble-code.html "Previous Topic") [](diagnosticsystemmanagement.html "Parent Chapter") [](inputs.html "Next Topic") |
+|                                                                                                                                                                                                                          |                                                                                                                                                                                                                                   |
+| # Environmental Data {#environmental-data-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                |                                                                                                                                                                                                                                   |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Environmental conditions could be any values of the application software which are stored in the error memory at the occurrence of a fault.\
+The values must be provided as \"Signals\".\
+The required Environmental Data can be recorded through Signals via ED_Class (Environmental Data Class) mechanism.
+
+## Environmental Data Class (ED_Class): {#environmental-data-class-ed_class .p_Heading2 style="page-break-after: avoid;"}
+
+Environmental Data Classes are eC configurable. The user can configure a maximum of 5 ED Classes.\
+Note: The maximum number of bytes of ED Signals allowed per ED_Class is 10. Please ensure that ED Signal size doesn't exceed this limit.
+
+ \
+User can configure a maximum of 25 ED Signals.\
+Additionally, each ASW DFC is configured with an ED_Class also. So this means, DFCs which are configured to respective ED_Class have their DFES entry mapped with ED Signals of that particular ED_Class.\
+So depending on the kind of Signal the values can occupy 2 or 4 bytes of storage (as supported data types for Environment Data Signals in EasyConfig are UINT16, SINT16, UINT32 and SINT32).\
+Therefore the number of environmental data depends on the selected (calibrated) Signals configured in EasyConfig.\
+The storage is visible as byte array on the calibration tool under the measurement point variable DFES_EnvBlock.\
+Note: To read the DTC information stored in NVM, use the UDS service 0x19.
+
+Note: It is possible to replace customer-specific data for Environment data operating hours by using  bds_sys_regOverwriteOpHrsCbk().
+
+## ![Code Example](hmtoggle_plus1.gif "Code Example"){#toggle0186a1_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [Examples:](javascript:HMToggle('toggle','toggle0186a1','toggle0186a1_ICON') "Code Example"){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#code-example-examples .p_Heading2 style="page-break-after: avoid;"}
+
++-----------------------------------------------------------------------+
+|   CODESYS Example                                                     |
+|   -------------------------------------------------                   |
+|   This API is actually not supported for CODESYS.                     |
+|                                                                       |
+|                                                                       |
++-----------------------------------------------------------------------+
+
+ 
+
+ 
+
+ 
+
+ 

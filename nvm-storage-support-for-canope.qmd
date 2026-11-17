@@ -1,0 +1,151 @@
+# NVM storage support for CANopen objects {#nvm-storage-support-for-canopen-objects .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> | [](canopen-supported-cobid-list.html "Previous Topic") [](rc40-canopen-library.html "Parent Chapter") [](rc40-canopen-communication-obj.html "Next Topic") |
+|                                                                                                                                                                                                                                     |                                                                                                                                                            |
+| # NVM storage support for CANopen objects {#nvm-storage-support-for-canopen-objects-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                 |                                                                                                                                                            |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+As per CiA-301 specification, Parameters in Object Dictionary can be stored into Non Volatile memory using object [1010h](object-0x1010-store-parameters.html){.topiclink}. This feature is necessary for applications where parameters in the object dictionary need to be stored into NVM after commissioning or calibration. This section describes how this feature can be realized using the RC40 CANopen library.
+
+ 
+
+## Store, Restore and default Loading: {#store-restore-and-default-loading .p_Heading2 style="page-break-after: avoid;"}
+
+## Three types of operations are applicable for object dictionary parameters as per CiA 301 specification: {#three-types-of-operations-are-applicable-for-object-dictionary-parameters-as-per-cia-301-specification .p_Heading2 style="page-break-after: avoid;"}
+
+1.Storing into NVM (refer [1010h)](object-0x1010-store-parameters.html){.topiclink}
+
+2.Restoring from NVM (at init/boot-up, Reset communication and Reset Application)
+
+3.Default loading (refer [1011h](object-0x1011-restore-default-.html){.topiclink})
+
+ 
+
+Above operations for several parameters groups are distinguished as below
+
+1.Communication objects
+
+2.Manufacture specific objects
+
+3.Device profile or application specific objects
+
+4.All objects ( communication , manufacture and application objects)
+
+ 
+
+## Trigger condition for storage: {#trigger-condition-for-storage .p_Heading2 style="page-break-after: avoid;"}
+
+\"save\" signature is written into object [1010h](object-0x1010-store-parameters.html){.topiclink} store parameters,
+
+sub-index 1  : All parameters
+
+ sub-index 2  : Communication parameter.
+
+ sub-index 3  : Application/device profile parameter.
+
+ sub-index 4  : Manufacture specific parameter.
+
+## Trigger condition for Restore: {#trigger-condition-for-restore .p_Heading2 style="page-break-after: avoid;"}
+
+ Power on reset : restore for All Parameters
+
+ NMT reset communication command : restore for communication parameters
+
+ NMT reset application command : restore for all parameters
+
+ 
+
+## Trigger condition for Default load: {#trigger-condition-for-default-load .p_Heading2 style="page-break-after: avoid;"}
+
+\"load\" signature is written into Object [1011h](object-0x1011-restore-default-.html){.topiclink} Restore default Parameter,
+
+ subIndex 1  : All Parameters
+
+ subIndex 2  : Communication parameter.
+
+ subIndex 3  : Application/device profile parameter.
+
+ subIndex 4  : manufacture specific parameter.
+
+ 
+
+## Implementations in the CANopen lib: {#implementations-in-the-canopen-lib .p_Heading2 style="page-break-after: avoid;"}
+
+1\.  By default the CANopen library does not enable objects [1010h](object-0x1010-store-parameters.html){.topiclink} and [1011h](object-0x1011-restore-default-.html){.topiclink}.
+
+2\.  If ASW needs [1010h](object-0x1010-store-parameters.html){.topiclink}  and [1011h](object-0x1011-restore-default-.html){.topiclink}, then bds_canopen_enableObjStorage should be called with enable before bds_canopen_initComm.
+
+3\.  ASW shall register a callback for storage indication using API bds_canopen_regObjNvmOpIndcn.
+
+4\.  Callback registered through bds_canopen_regObjNvmOpIndcn will be called by the CANopen lib in below conditions for respective CANopen channels
+
+    a.  When \"save\" signature is written into object [1010h](object-0x1010-store-parameters.html){.topiclink} Store Parameters
+
+         objNvmSt_e = BDS_CANOPEN_STORE_E
+
+         objtype_e = BDS_CANOPEN_SEG_ALL_E  for subindex 1
+
+         objtype_e = BDS_CANOPEN_SEG_COM_E  for subindex 2
+
+         objtype_e = BDS_CANOPEN_SEG_APP_E  for subindex 3
+
+         objtype_e = BDS_CANOPEN_SEG_MNF_E  for subindex 4
+
+ 
+
+    b.  When \"load\" signature is written into Object [1011h](object-0x1011-restore-default-.html){.topiclink} Restore default Parameter
+
+         objNvmSt_e = BDS_CANOPEN_CLEAR_E
+
+         objtype_e = BDS_CANOPEN_SEG_ALL_E  for subindex 1
+
+         objtype_e = BDS_CANOPEN_SEG_COM_E  for subindex 2
+
+         objtype_e = BDS_CANOPEN_SEG_APP_E  for subindex 3
+
+         objtype_e = BDS_CANOPEN_SEG_MNF_E  for subindex 4
+
+ 
+
+    c.  When Power On- reset
+
+         objNvmSt_e = BDS_CANOPEN_RESTORE_E
+
+         objtype_e = BDS_CANOPEN_SEG_ALL_E  
+
+ 
+
+    d.  When NMT Reset Application command
+
+         objNvmSt_e = BDS_CANOPEN_RESTORE_E
+
+         objtype_e = BDS_CANOPEN_SEG_ALL_E    
+
+ 
+
+    e.  When NMT Reset communication command
+
+         objNvmSt_e = BDS_CANOPEN_RESTORE_E
+
+         objtype_e = BDS_CANOPEN_SEG_COM_E          
+
+ 
+
+5\.  In case of NMT master where reset commands will not be received but sent, MASTER device can implement restore operations before sending NMT reset commands to slave. This is not a mandatory action and shall be decided by ASW behaviour.
+
+ 
+
+6\.  In case of BDS_CANOPEN_CLEAR_E state for BDS_CANOPEN_SEG_COM_E or BDS_CANOPEN_SEG_ALL_E, default loading of communication objects is executed by the CANopen lib before calling the callback. ASW is responsible for handling only default loading of Application obejcts. The CANopen lib provides API bds_canopen_applObjSetDefault which can be used for this implementation.
+
+ 
+
+7\.  In case of storage support is not enabled by ASW, SDO abort code \"Object does not exist\" will be sent while accessing [1010h](object-0x1010-store-parameters.html){.topiclink} and [1011h](object-0x1011-restore-default-.html){.topiclink}
+
+ 
+
+  -------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"}   Note that the CANopen library does not implement the NVM storage functionality. The CANopen library provides necessary objects and callbacks for indications through which ASW can realize the functionality.
+  -------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ 

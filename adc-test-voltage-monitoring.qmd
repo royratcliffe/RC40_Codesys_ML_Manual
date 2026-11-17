@@ -1,0 +1,69 @@
+# ADC test voltage monitoring {#adc-test-voltage-monitoring .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Self-monitoring](ecu-self-monitoring.html) \> [Cyclic monitoring](cyclic-monitoring-checks.html) \> | [](cyclic-monitoring-checks.html "Previous Topic") [](cyclic-monitoring-checks.html "Parent Chapter") [](battery-voltage-monitoring-for.html "Next Topic") |
+|                                                                                                                                                                                     |                                                                                                                                                            |
+| # ADC test voltage monitoring {#adc-test-voltage-monitoring-1 .p_Heading1 style="page-break-after: avoid;"}                                                                         |                                                                                                                                                            |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This function monitors the analog−digital converter (ADC) of the microcontroller. The signals are read through an AD converter.
+
+The following monitoring tests are performed:
+
+ 
+
+- Test Voltage (amplification fault) - (signal VDD5_MON)
+
+The ADC−testvoltage−check reads a fixed testvoltage and checks the converted value for valid values. By this check particularly reference faults and amplification faults of the ADC are detected.
+
+ 
+
+- Null−load Test Pulse (value and update check)
+
+The NTP test is done cyclically at the ADC input signal are connected. The switching of the ADC channel to ground internally and checked ADC value read.
+
+ 
+
+## Remarks: {#remarks .p_Heading2 style="page-break-after: avoid;"}
+
+- Refer [Safety function and safe state](safetyfunctionandsafestate.html){.topiclink} for details on the safety functions provided by the RCs and the related considerations to be observed.
+
+- Refer [Failure detection possibilities](failuredetectionpossibilities.html){.topiclink} for a broader overview of the different failure reactions observed.
+
+ 
+
+Error reaction for Test Voltage:
+
+- Over Voltage Error (VDD5_MON \>= Over Voltage Error Limit)
+
+  Error Description              Reaction
+  ------------------------------ ----------------------------
+  DFC                            DFC_rbr_moOV_FirstConstADC
+  Error Code                     0x082C00
+  High Power Outputs(\...,OFF)   yes
+  ECU Reset                      no
+  Reaction time                  200ms
+
+ 
+
+- Under Voltage Error (VDD5_MON \<= Under Voltage Error Limit)
+
+  Error Description              Reaction
+  ------------------------------ ----------------------------
+  DFC                            DFC_rbr_moUV_FirstConstADC
+  Error Code                     0x082D00
+  High Power Outputs(\...,OFF)   yes
+  ECU Reset                      no
+  Reaction time                  200ms
+
+ 
+
+Error reaction for Null load Pulse Test:
+
+  Error                          Reaction
+  ------------------------------ ------------------------
+  DFC                            DFC_rbr_mo_adcPDD_fail
+  Error Code                     0x083000
+  High Power Outputs(\...,OFF)   yes
+  ECU Reset                      No
+  Reaction time                  160 ms

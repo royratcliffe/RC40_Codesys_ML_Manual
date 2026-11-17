@@ -1,0 +1,23 @@
+# Frequency/DSM inputs {#frequencydsm-inputs .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [Safety manual](safety-manual.html) \> [Safety-related inputs](safety-relatedinputs.html) \> | [](discreteanalogueinputs.html "Previous Topic") [](safety-relatedinputs.html "Parent Chapter") [](multi-functionalinputs.html "Next Topic") |
+|                                                                                                               |                                                                                                                                              |
+| # Frequency/DSM inputs {#frequencydsm-inputs-1 .p_Heading1 style="page-break-after: avoid;"}                  |                                                                                                                                              |
++---------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+The frequency/DSM inputs can be used to read frequency signals from active speed sensors and from Bosch Rexroth DSM1-x0 speed sensors.
+
+When used to read active speed sensors, please refer to chapter [Frequency inputs](frequencyinputs.html){.topiclink}.
+
+When used to read the DSM1-x0 speed sensor, following failures can be detected by the BSW thanks to the special hardware design and the DSM sensors characteristics:
+
+- Short circuit to ground
+
+- Short circuit to battery
+
+- Open circuit
+
+Nevertheless, in order to reach a higher diagnostic coverage, it is highly recommended to adopt the method described in [Multi-functional inputs in general](multi-functionalinputsingeneral.html){.topiclink}.
+
+ 

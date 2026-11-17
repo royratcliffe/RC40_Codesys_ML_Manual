@@ -1,0 +1,56 @@
+# Object 0x1019 synchronous counter overflow value {#object-0x1019-synchronous-counter-overflow-value .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> [RC40 CANopen communication objects](rc40-canopen-communication-obj.html) \> | [](object-0x1018-identity-object.html "Previous Topic") [](rc40-canopen-communication-obj.html "Parent Chapter") [](object-0x1028-emergency-consum.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                                  |                                                                                                                                                                       |
+| # Object 0x1019 synchronous counter overflow value {#object-0x1019-synchronous-counter-overflow-value-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                            |                                                                                                                                                                       |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The synchronous counter defines if a counter is mapped into the SYNC message and the highest value the counter can reach.
+
++-----------------------------------+------------------------------------+
+| Index                             | 0x1019                             |
++===================================+====================================+
+| Name                              | Synchronous counter overflow value |
++-----------------------------------+------------------------------------+
+| Object Code                       | VAR                                |
++-----------------------------------+------------------------------------+
+| Data Type                         | UNSIGNED8                          |
++-----------------------------------+------------------------------------+
+| Category                          | Optional;                          |
+|                                   |                                    |
+|                                   | Mandatory if Sync is used          |
++-----------------------------------+------------------------------------+
+| Access                            | RW                                 |
++-----------------------------------+------------------------------------+
+| PDO Mapping                       | No                                 |
++-----------------------------------+------------------------------------+
+| Value Range                       | UNSIGNED 8                         |
++-----------------------------------+------------------------------------+
+| Default Value                     | 0                                  |
++-----------------------------------+------------------------------------+
+
+ 
+
+ 
+
+  Value       Meaning
+  ----------- -----------------------------------------------------------------------------------
+  0           SYNC message transmitted with length 0
+  1           reserved
+  2 .. 240u   SYNC message transmitted with length 1,first data byte contains the counter value
+  241..255u   reserved
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 

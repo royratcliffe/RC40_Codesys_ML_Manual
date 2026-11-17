@@ -1,0 +1,53 @@
+# VDD5A ECU internal reference voltage {#vdd5a-ecu-internal-reference-voltage .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Self-monitoring](ecu-self-monitoring.html) \> [Cyclic monitoring](cyclic-monitoring-checks.html) \> | [](vdd5_s3530-ecu-internal-voltage.html "Previous Topic") [](cyclic-monitoring-checks.html "Parent Chapter") [](self-monitoring-overview.html "Next Topic") |
+|                                                                                                                                                                                     |                                                                                                                                                             |
+| # VDD5A ECU internal reference voltage {#vdd5a-ecu-internal-reference-voltage-1 .p_Heading1 style="page-break-after: avoid;"}                                                       |                                                                                                                                                             |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The cyclic check of the ECU internal voltage 5V via analog feedback.
+
+ 
+
+## Remarks: {#remarks .p_Heading2 style="page-break-after: avoid;"}
+
+- Monitoring of overvoltage and undervoltage for error.
+
+- Only Errors are indicated.
+
+- Over Voltage Error Limit = 5.050V
+
+- Under Voltage Error Limit = 4.950V
+
+- Refer [Safety function and safe state](safetyfunctionandsafestate.html){.topiclink} for details on the safety functions provided by the RCs and the related considerations to be observed.
+
+- Refer [Failure detection possibilities](failuredetectionpossibilities.html){.topiclink} for a broader overview of the different failure reactions observed.
+
+ 
+
+Error Reaction:
+
+ 
+
+- Over Voltage Error (VDD5A \> Over Voltage Error Limit)
+
+  Error Description              Reaction
+  ------------------------------ ----------------------------
+  DFC                            DFC_rbr_moOV_FirstConstADC
+  Error Code                     0x082C00
+  High Power Outputs(\...,OFF)   yes
+  ECU Reset                      no
+  Reaction time                  100ms
+
+ 
+
+- Under Voltage Error (VDD5A  \< Under Voltage Error Limit)
+
+  Error Description              Reaction
+  ------------------------------ ----------------------------
+  DFC                            DFC_rbr_moUV_FirstConstADC
+  Error Code                     0x082D00
+  High Power Outputs(\...,OFF)   yes
+  ECU Reset                      no
+  Reaction time                  100ms

@@ -1,0 +1,25 @@
+# Peripheral core monitoring {#peripheral-core-monitoring .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Self-monitoring](ecu-self-monitoring.html) \> [Cyclic monitoring](cyclic-monitoring-checks.html) \> | [](internalwatchdogmonitoring.html "Previous Topic") [](cyclic-monitoring-checks.html "Parent Chapter") [](program-flow-control.html "Next Topic") |
+|                                                                                                                                                                                     |                                                                                                                                                    |
+| # Peripheral core monitoring {#peripheral-core-monitoring-1 .p_Heading1 style="page-break-after: avoid;"}                                                                           |                                                                                                                                                    |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This function monitors the Central Processing Unit (CPU) of the microcontroller through a lockstep comparator logic. The Lockstep Comparator Logic provides the Safety Core with an identical checker (or shadow) core which has the same inputs and runs the same operations as the main core. This allows the core to be checked for soft errors and other transient failures by comparing the outputs of the two core instances.The checker core is delayed by two clock cycles compared to the master core instance to provide a degree of temporal separation.
+
+## Remarks: {#remarks .p_Heading2 style="page-break-after: avoid;"}
+
+- Refer [Safety function and safe state](safetyfunctionandsafestate.html){.topiclink} for details on the safety functions provided by the RCs and the related considerations to be observed.
+
+- Refer [Failure detection possibilities](failuredetectionpossibilities.html){.topiclink} for a broader overview of the different failure reactions observed.
+
+Error Reaction:
+
+  Error                          Reaction
+  ------------------------------ ----------
+  DFC                            No
+  Error Code                     No
+  High Power Outputs(\...,OFF)   Yes
+  ECU Reset                      Yes
+  Reaction time                  20 ms

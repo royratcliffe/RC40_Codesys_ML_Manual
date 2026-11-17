@@ -1,0 +1,22 @@
+# List of BSW API available for the untrusted partitions without any restrictions {#list-of-bsw-api-available-for-the-untrusted-partitions-without-any-restrictions .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [Safety manual](safety-manual.html) \> [Safety-related software and software toolchain](safety-relatedsoftwareandsoftwaretoolchain.html) \> [Freedom from Interference (FFI)](freedom-from-interference.html) \> [BSW API support to partition concept](bsw-api-support-to-partition-c.html) \> | [](list-of-bsw-api-for-ffi-suppor.html "Previous Topic") [](bsw-api-support-to-partition-c.html "Parent Chapter") [](concept-of-freedom-from-interf.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                                  |                                                                                                                                                                        |
+| # List of BSW API available for the untrusted partitions without any restrictions {#list-of-bsw-api-available-for-the-untrusted-partitions-without-any-restrictions-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                              |                                                                                                                                                                        |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The application software component in an untrusted partition is only allowed to call APIs listed in the table below without any restrictions and callback handling.
+
+ 
+
+  BSW API                    Documentation
+  -------------------------- --------------------------
+  bds_dsm_getFIdPermission   bds_dsm_getFIdPermission
+  bds_inI_get                bds_inI_get
+  bds_inDig_get              bds_inDig_get
+  bds_inR_get                bds_inR_get
+  bds_inU_get                bds_inU_get
+  bds_outClcU_get            bds_outClcI_get
+  bds_outDig_get             bds_outDig_get
+  bds_outPwm_get             bds_outPwm_get

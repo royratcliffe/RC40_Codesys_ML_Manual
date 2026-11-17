@@ -1,0 +1,23 @@
+# Programming Info {#programming-info .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [Appendix](appendix.html) \>                                         | [](ordering-information.html "Previous Topic") [](appendix.html "Parent Chapter") [](references.html "Next Topic") |
+|                                                                                       |                                                                                                                    |
+| # Programming Info {#programming-info-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                    |
++---------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
+
+To ensure a smooth development experience and provide full transparency, we maintain a comprehensive resource detailing known issues and their respective workarounds. This section guides you to this essential information, designed to assist you in effectively navigating any challenges related to our services.
+
+You may access the documentation by visiting the following link: [https://community.mybodas.boschrexroth.com/programming-info](https://community.mybodas.boschrexroth.com/programming-info){.weblink target="_blank"}
+
+On this page, you will find:
+
+- A detailed overview of currently identified issues
+
+- Descriptions of their impact and affected functionalities
+
+- Recommended interim solutions or workarounds
+
+- Status updates and resolution timelines, where applicable
+
+We appreciate your understanding and continued trust. Should you require further assistance, please do not hesitate to contact our [support team](https://community.mybodas.boschrexroth.com/support-info){.weblink target="_blank"}.

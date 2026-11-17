@@ -1,0 +1,330 @@
+# Layer Setting Service (LSS) {#layer-setting-service-lss .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [CANopen protocol description](canopen-protocol-description.html) \> | [](heartbeat.html "Previous Topic") [](canopen-protocol-description.html "Parent Chapter") [](network-management(nmt).html "Next Topic") |
+|                                                                                                                                                                                                                                                     |                                                                                                                                          |
+| # Layer Setting Service (LSS) {#layer-setting-service-lss-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                           |                                                                                                                                          |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
+
+Layer setting services protocol (LSS) is defined in the CiA-305 specification. With Layer setting services protocol, devices in a network can be identified by their unique manufacturer, product, serial, and revision number. After identification, bitrate and node-ID can be configured for each device. LSS offers the services to inquire and change the settings of node-ID and bitrate of a CANopen device with LSS slave capabilities by a CANopen device with LSS master capabilities via the CAN network.
+
+## LSS address {#lss-address .p_Heading2 style="page-break-after: avoid;"}
+
+The Identity object [1018h](object-0x1018-identity-object.html){.topiclink} (consisting of vendor-ID, product-code, revision number, serial number) is called the LSS address. The LSS address allows the LSS master to differentiate between the LSS slaves. Each LSS slave is equipped with a unique LSS address.
+
+The following parameters can be inquired and/or changed by the use of LSS
+
+- Node-ID
+
+- Bit timing (baud rate)
+
+- Inquiry of LSS slaves through LSS address (vendor-ID, product code, revision number, serial number)
+
+## LSS telegrams {#lss-telegrams .p_Heading2 style="page-break-after: avoid;"}
+
+The LSS telegram with CAN-ID 7E5h carries the command from the LSS master to one or several LSS slaves. The LSS telegram 7E4h is used to respond to the LSS master. LSS request and response telegram consist of a command specifier and additional parameters. The command specifier specifies different LSS services. The below table shows a typical LSS request and response telegram.
+
++------+-------------------+-----+-----+-----+-----+-----+-----+-----+
+| Byte | 0                 | 1   | 2   | 3   | 4   | 5   | 6   | 7   |
++======+===================+=====+=====+=====+=====+=====+=====+=====+
+| LSS  | Command specifier | Additional Parameters                   |
++------+-------------------+-----------------------------------------+
+
+ 
+
+The LSS can be categorized into the following services:
+
+- Switch state services
+
+- Configuration services
+
+- Inquiry services
+
+## 1. Switch state services {#switch-state-services .p_Heading2 style="page-break-after: avoid;"}
+
+With these services, the LSS master can switch the LSS slaves to \"configuration mode\" or \"wait mode\".
+
+The node-ID and baud rate can only be changed with the configuration services and inquiry services while in configuration mode.
+
+ 
+
+\(a\) Switch state global service
+
+With this service, the LSS master switches all the LSS slaves in the network into \"configuration mode\" or \"wait mode\".
+
++-----------------------+-----------------------------+-----------------------+
+| Byte 0                | Byte 1                      | Byte 2 to 7           |
++-----------------------+-----------------------------+-----------------------+
+| Command Specifier     | Mode                        | Reserved              |
++-----------------------+-----------------------------+-----------------------+
+| 04h                   | 00h: set operational mode   | 00h                   |
+|                       |                             |                       |
+|                       | 01h: set configuration mode |                       |
++-----------------------+-----------------------------+-----------------------+
+
+ 
+
+ 
+
+\(b\) Switch state selective service
+
+With this service, the LSS master switches the LSS slave of a given LSS address to the configuration mode. LSS response telegram is given in the below table.
+
+  ------------------- ----------------- -------------
+  Byte 0              Byte 1 to 4       Byte 5 to 7
+  Command Specifier   LSS address       Reserved
+  40h                 Vendor-ID         00h
+  41h                 Product code      00h
+  42h                 Revision number   00h
+  43h                 Serial number     00h
+  ------------------- ----------------- -------------
+
+ 
+
+The LSS master sends four telegrams that contain the LSS address of the LSS slave. The data in telegram 1 is the vendor-Id, in telegram 2 the product code, in telegram 3 the revision number, and telegram 4 the serial number. The data is sent with the respective command specifier as shown in the table above.
+
+Then, the LSS slave will send a response with the following telegram as shown in the table below
+
+  Byte 0              Byte 1 to 7
+  ------------------- -------------
+  Command Specifier   Reserved
+  44h                 00h
+
+ 
+
+## 2. Configuration services {#configuration-services .p_Heading2 style="page-break-after: avoid;"}
+
+To configure node-ID or bit-rate, the LSS slaves should be switched to configuration mode using switch state services. Then using the below mentioned services, respective parameters can be configured.
+
+ 
+
+\(a\) Configuration of Node-ID
+
+The LSS master sends a telegram to configure node-Id to LSS slave as given in the table below.
+
+  ------------------- --------- -------------
+  Byte 0              Byte 1    Byte 2 to 7
+  Command Specifier   Node-ID   Reserved
+  11h                 1..127    00h
+  ------------------- --------- -------------
+
+ 
+
+ 
+
+Then, the LSS slave will send a response with the following telegram as shown in the table below
+
++-----------------------+-----------------------+-----------------------+
+| Byte 0                | Byte 1                | Byte 2 to 7           |
++-----------------------+-----------------------+-----------------------+
+| Command Specifier     | Error code            | Reserved              |
++-----------------------+-----------------------+-----------------------+
+| 11h                   | 00h: no error         | 00h                   |
+|                       |                       |                       |
+|                       | 01h: invalid Node-ID  |                       |
++-----------------------+-----------------------+-----------------------+
+
+ 
+
+\(b\) Configuration of bit-rate
+
+ 
+
+The LSS master sends a telegram to configure a new bit-rate to the LSS slave as shown in the table below.
+
++-------------------+---------------------------------------------------------+----------------------------------------------------------+-----------------+
+| Byte 0            | Byte 1                                                  | Byte 2                                                   | Byte 3 to 7     |
++-------------------+---------------------------------------------------------+----------------------------------------------------------+-----------------+
+| Command Specifier | Table selector                                          | Table index                                              | Reserved        |
++-------------------+---------------------------------------------------------+----------------------------------------------------------+-----------------+
+| 13h               | 0: standard baud-rate, according to CiA-305             | refer to the table below for the standard bit-rate table | 00h             |
+|                   |                                                         |                                                          |                 |
+|                   | 1 to 127: reserved                                      |                                                          |                 |
+|                   |                                                         |                                                          |                 |
+|                   | 128 to 255: manufacturer-specific bit-rate timing table |                                                          |                 |
++-------------------+---------------------------------------------------------+----------------------------------------------------------+-----------------+
+
+ 
+
+## Standard bitrate table (as per CiA-305) {#standard-bitrate-table-as-per-cia-305 .p_Heading2 style="page-break-after: avoid;"}
+
+  Table Index   Bitrate
+  ------------- -------------
+  0             1000 kbit/s
+  1             800 kbit/s
+  2             500 kbit/s
+  3             250 kbit/s
+  4             125 kbit/s
+  5             100 kbit/s
+  6             50 kbit/s
+  7             25 kbit/s
+  8             10 kbit/s
+
+ 
+
+ 
+
+Then, the LSS slave will send a response with the following telegram as shown in the table below
+
++-----------------------+-------------------------------------------------------------+-----------------------+
+| Byte 0                | Byte 1                                                      | Byte 2 to 7           |
++-----------------------+-------------------------------------------------------------+-----------------------+
+| Command Specifier     | Error code                                                  | Reserved              |
++-----------------------+-------------------------------------------------------------+-----------------------+
+| 13h                   | 00h: no error                                               | 00h                   |
+|                       |                                                             |                       |
+|                       | 01h: Invalid table index/given baud rate is not supported   |                       |
++-----------------------+-------------------------------------------------------------+-----------------------+
+
+ 
+
+ 
+
+\(c\) Activate Bit-rate
+
+The LSS master sends a telegram to activate a new bit-rate to all LSS slaves in the network simultaneously as given in the below table. No response is expected for this service.
+
+ 
+
+  ------------------- --------------------------------------------------------------- -------------
+  Byte 0              Byte 1 to 2                                                     Byte 3 to 7
+  Command Specifier   Switch delay                                                    Reserved
+  15h                 Switch relative delay in ms to before activating new bit-rate   00h
+  ------------------- --------------------------------------------------------------- -------------
+
+ 
+
+ 
+
+\(d\) Store Configuration
+
+The LSS master sends a telegram to store the configuration of a new node-ID and/or a new bit-rate of the slave. Ensure that only one slave in the network is in configuration mode at this moment. Refer to the below table for the LSS store telegram.
+
+  Byte 0              Byte 1 to 7
+  ------------------- -------------
+  Command Specifier   Reserved
+  17h                 00h
+
+ 
+
+Then, the LSS slave will send a response with the following telegram as shown in the table below
+
+ 
+
++-----------------------+-------------------------------------------+-----------------------+
+| Byte 0                | Byte 1                                    | Byte 2 to 7           |
++-----------------------+-------------------------------------------+-----------------------+
+| Command Specifier     | Error code                                | Reserved              |
++-----------------------+-------------------------------------------+-----------------------+
+| 17h                   | 00h: no error                             | 00h                   |
+|                       |                                           |                       |
+|                       | 01h: Failed to access non-volatile memory |                       |
++-----------------------+-------------------------------------------+-----------------------+
+
+ 
+
+## 3. Inquiry services {#inquiry-services .p_Heading2 style="page-break-after: avoid;"}
+
+ 
+
+With these services, the LSS master can query the LSS address of an LSS slave. Ensure that only one slave in the network is in configuration mode at this moment. Refer to the below table for the LSS store telegram
+
+ 
+
+  Byte 0              Byte 1 to 7
+  ------------------- -------------
+  Command Specifier   Reserved
+  5Ah                 00h
+
+ 
+
+Then, the LSS slave will send a response with the following telegram as shown in the table below
+
+  ------------------- ----------------- -------------
+  Byte 0              Byte 1 to 4       Byte 5 to 7
+  Command Specifier   LSS address       Reserved
+  5Ah                 Vendor-ID         00h
+  5Bh                 Product code      00h
+  5Ch                 Revision number   00h
+  5Dh                 Serial number     00h
+  ------------------- ----------------- -------------
+
+## Summary {#summary .p_Heading2 style="page-break-after: avoid;"}
+
+ 
+
+- LSS node-ID assignment
+
+ 
+
+With LSS switch state selective command, the LSS can change only one LSS slave to enter the LSS configuration state. Only in this state, the LSS slave accepts a new CANopen node-ID that is proposed by the LSS master.
+
+The LSS sequence for assigning the node-ID to the LSS slave is as follows
+
+1.The LSS master device switches the LSS slave device into LSS configuration state, and
+
+2.Requests the LSS slave configure node-ID service.
+
+3.The configured parameter(Node-ID) can be stored by using the LSS store service (this step is optional).
+
+4.Subsequently, the LSS master device can switch the LSS slave device back into LSS waiting state.
+
+5.The LSS slave is then reset using NMT reset communication command.
+
+6.After reset, the LSS slave sends a boot-up message with a new node-ID that was configured.
+
+ 
+
+- LSS bit-rate assignment
+
+ 
+
+The LSS enables the LSS master to switch the entire CANopen system from one to another bit rate. Therefore the LSS master configures via LSS in all CANopen devices in the system. The new intended bit rate individually. After the successful configuration, the LSS master requests the bit rate switch. After a \"switch delay\", all devices in the network operate on the new bit rate.
+
+The LSS sequence for assigning the bit-rate to the LSS slave is as follows
+
+1.The LSS slave node has to be commanded into the NMT stop state.
+
+2.The LSS master device switches the LSS slave device into LSS configuration state
+
+3.The LSS master then sends the configure bit-rate request service.
+
+4.The configured parameter (bit-rate) can be stored by using the LSS store service (this step is optional).
+
+5.The LSS master then sends the activate bit rate request service.
+
+6.The LSS slave is now expected to change its bit-rate to the configured value.
+
+7.Subsequently, the LSS master device can change its bit rate
+
+8.After a certain delay, it is expected that both LSS master and slave works with the newly configured bit-rate.
+
+ 
+
+- LSS inquiry
+
+ 
+
+ The LSS master can inquire about the slave nodes that have an LSS address within the network by using the inquiry service as explained above. The nodes have to be set to configuration mode before issuing the LSS inquiry service. Ensure that only one slave in the network is in a configuration state at a moment.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 

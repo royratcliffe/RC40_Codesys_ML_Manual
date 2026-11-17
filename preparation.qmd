@@ -1,0 +1,13 @@
+# First steps with RC {#first-steps-with-rc .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [Introduction](introduction.html) \>                                       | [](system-overview.html "Previous Topic") [](introduction.html "Parent Chapter") [](organizational.html "Next Topic") |
+|                                                                                             |                                                                                                                       |
+| # First steps with RC {#first-steps-with-rc-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                       |
++---------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
+
+For a quick start with your RC, make sure to prepare a proper development environment, as outlined in this chapter. All the required tools and directories shall be in place.
+
+There are different ways to start working with RC, e.g., a template or from scratch. Rexroth also provides a training that helps beginners to familiarize themselves with the development environment, as well as to aquire useful experience working with BODAS EcoSystem. Please ask your Rexroth representative for \"BODAS-RC40-HelloWorld\" training if you are interested in participating.
+
+If you have questions, contact your Rexroth representative directly or send an email to [info.bodas@boschrexroth.de](mailto:info.bodas@boschrexroth.de){.weblink target="_blank"}.

@@ -1,0 +1,192 @@
+# CANopen safety - SRDO and GFC {#canopen-safety---srdo-and-gfc .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> | [](javascript:HMToggleExpandAll(!HMAnyToggleOpen()) "Click to open/close expanding sections") [](canopen-library-concept.html "Previous Topic") [](rc40-canopen-library.html "Parent Chapter") [](canopen-supported-cobid-list.html "Next Topic") |
+|                                                                                                                                                                                                                                     |                                                                                                                                                                                                                                                   |
+| # CANopen safety - SRDO and GFC {#canopen-safety---srdo-and-gfc-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                     |                                                                                                                                                                                                                                                   |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+## CiA-304 implementation in RC40 BSW CANopen library: {#cia-304-implementation-in-rc40-bsw-canopen-library .p_Heading2 style="page-break-after: avoid;"}
+
+CANopen library implements below functionality of CiA-304:
+
+ 
+
+1.[SRDO](safety-relevant-data-object(srdo).html){.topiclink} related objects:
+
+i.SRDO communication parameter object
+
+ii.SRDO mapping parameter object
+
+iii.SRDO configuration valid and checksum object
+
+2\.  SRDO mapping table.
+
+3\.  SRDO transmission at every refresh time.
+
+4\.  SRDO data validation for correct order and inform ASW in case of a problem.
+
+5\.  SRDO timeout monitoring like SCT and SRVT and inform ASW in case of a problem.
+
+6\.  Copy of Objects from/to when send/receive.
+
+7\.  SRDO configuration validation using the checksum and configuration valid object.
+
+8\.  GFC producer and consumer.
+
+The ASW shall maintain the updated data in objects mapped to SRDO and take the necessary actions based on the SRDO validation status (data incorrect/timeout). ASW can send a GFC and has to handle a GFC received.
+
+ 
+
+## SRDO {#srdo .p_Heading2 style="page-break-after: avoid;"}
+
+Once the configuration is done by the ASW, the CANopen library handles everything needed for transmission and reception of SRDO (similar to PDO)
+
+## For transmission: {#for-transmission .p_Heading2 style="page-break-after: avoid;"}
+
+- If refresh time is configured, then the CANopen library will automatically start transmitting SRDO\'s in the configured interval.
+
+- If ASW needs to trigger SRDO additional to refresh cycle then it can be done by calling bds_canopen_sendSrdo.
+
+- The CANopen lib will fetch the data from objects based on mapping configurations and dump it into the SRDO frame (both normal and inverted telegram) in all cases.
+
+- The ASW is only responsible for updating data in its objects which will be used by the CANopen library to transmit over SRDO.
+
+## For Reception: {#for-reception .p_Heading2 style="page-break-after: avoid;"}
+
+- The CANopen library will process received SRDO and automatically update the objects with values received over SRDO.
+
+- All necessary timing monitoring requirements as per CiA-304 are handled in the CANopen library.
+
+- ASW can get an indication upon SRDO reception by registering a callback using API bds_canopen_regSrdoRcvIndcn
+
+- The CANopen library automatically copies SRDO data into objects. When ASW needs the value of objects over SRDO, then it can directly access its object data
+
+ 
+
+## Global Fail safe command(GFC) {#global-fail-safe-commandgfc .p_Heading2 style="page-break-after: avoid;"}
+
+ASW can send GFC signal using API  bds_canopen_sendGfcand for indication when a GFC is received, the callback should be registered using API  bds_canopen_regGfcRcvIndcn
+
+  -------------------------------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------
+  ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"}   ASW is responsible for implementing a safety reaction. The CANopen library will only provide an indication in case of an SRDO or GFC safety event.
+  -------------------------------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+ 
+
+## Default configurations of SRDO {#default-configurations-of-srdo .p_Heading2 style="page-break-after: avoid;"}
+
+ 
+
+By default in CANopen library object dictionary, SRDO configurations is set to initialized state. i.e
+
+1.In SRDO Parameter 0x1301 to 0x1340, SubIndex 1 - Information direction is set to 0 (Uninitialized)
+
+2.SRDO mapping parameter 0x1381 to 0x13C0, mapping parameters are set to 0 (invalid mapping)
+
+3.Safety configuration CRC 0x13FF , SRDO related subindex is 0
+
+4.Configuration valid 0x13FE is 0 which is SRDO configuration is not valid
+
+ 
+
+The device will not go to an \"operational\" state with the configuration above because according to CiA-304, a minimum of one SRDO configuration should be valid.
+
+The ASW must set default values for these SRDO parameters of its own object dictionary. This can be done by using SDO local write API  bds_canopen_sdoWriteLocal and using API  bds_canopen_calcSrdoCnfCRC checksum for configurations can be calculated. The below example demonstrates how ASW can set the SRDO objects with default values.
+
+  -------------------------------------------------------------------------------- -----------------------------------------------------------------------------
+  ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"}   SRDO objects should be set to the desired value after bds_canopen_initComm.
+  -------------------------------------------------------------------------------- -----------------------------------------------------------------------------
+
+## ![Code Example](hmtoggle_plus1.gif "Code Example"){#toggle0186a1_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"}[Example:](javascript:HMToggle('toggle','toggle0186a1','toggle0186a1_ICON') "Code Example"){.dropdown-toggle style="font-style: normal; font-weight: bold; color: #000000; background-color: transparent; text-decoration: none;"} {#code-exampleexample .p_Heading2 style="page-break-after: avoid;"}
+
+ 
+
+  -----------------------------------------------------------------------
+  \
+
+  -----------------------------------------------------------------------
+
+ 
+
+ 
+
+## SRDO CRC calculation: {#srdo-crc-calculation .p_Heading2 style="page-break-after: avoid;"}
+
+Below table explains the byte order for CRC calculations.
+
+ 
+
++-------------+-----------------+------------------------------------------+-----------------+-----------------+
+| Object      | SubIndex        | Name                                     | Size            | Data            |
++-------------+-----------------+------------------------------------------+-----------------+-----------------+
+| 1301h       | SRDO Communication Parameter                                                                   |
++-------------+-----------------+------------------------------------------+-----------------+-----------------+
+|             | 01h             | Direction of information                 | 1 byte          | a1              |
++-------------+-----------------+------------------------------------------+-----------------+-----------------+
+|             | 02h             | Refresh time                             | 2 byte          | a2              |
++-------------+-----------------+------------------------------------------+-----------------+-----------------+
+|             | 03h             | Tx: reserved                             | 1 byte          | a3              |
+|             |                 |                                          |                 |                 |
+|             |                 | Rx: SRVT                                 |                 |                 |
++-------------+-----------------+------------------------------------------+-----------------+-----------------+
+|             | 05h             | COB-ID 1                                 | 4 byte          | a4              |
++-------------+-----------------+------------------------------------------+-----------------+-----------------+
+|             | 06h             | COB-ID 2                                 | 4 byte          | a5              |
++-------------+-----------------+------------------------------------------+-----------------+-----------------+
+| 1381        | SRDO Mapping Parameter                                                                         |
++-------------+-----------------+------------------------------------------+-----------------+-----------------+
+|             | 00h             | Highest Sub-Index Supported              | 1 byte          | b1              |
++-------------+-----------------+------------------------------------------+-----------------+-----------------+
+|             | 01h             | Sub-Index                                | 1 byte          | b2              |
++-------------+-----------------+------------------------------------------+-----------------+-----------------+
+|             | 01h             | Mapped Object 1 Index,Sub-Index and Size | 4 byte          | b3              |
++-------------+-----------------+------------------------------------------+-----------------+-----------------+
+|             | 02h             | Sub-Index                                | 1 byte          | b4              |
++-------------+-----------------+------------------------------------------+-----------------+-----------------+
+|             | 02h             | Mapped Object 2 Index,Sub-Index and Size | 4 byte          | b5              |
++-------------+-----------------+------------------------------------------+-----------------+-----------------+
+|             | .                                                                                              |
+|             |                                                                                                |
+|             | .                                                                                              |
+|             |                                                                                                |
+|             | .                                                                                              |
+|             |                                                                                                |
+|             | .                                                                                              |
+|             |                                                                                                |
+|             | .                                                                                              |
++-------------+                                                                                                |
+|             |                                                                                                |
++-------------+                                                                                                |
+|             |                                                                                                |
++-------------+                                                                                                |
+|             |                                                                                                |
++-------------+-----------------+------------------------------------------+-----------------+-----------------+
+|             | 0Fh             | Sub-Index                                | 1 byte          | b30             |
++-------------+-----------------+------------------------------------------+-----------------+-----------------+
+|             | 0Fh             | Mapped Object 3 Index,Sub-Index and Size | 4 byte          | b31             |
++-------------+-----------------+------------------------------------------+-----------------+-----------------+
+|             | 10h             | Sub-Index                                | 4 byte          | b32             |
++-------------+-----------------+------------------------------------------+-----------------+-----------------+
+|             | 10h             | Mapped Object 4 Index,Sub-Index and Size | 4 byte          | b33             |
+|             |                 |                                          |                 |                 |
+|             |                 |                                          |                 |                 |
+|             |                 |                                          |                 |                 |
+|             |                 |                                          |                 |                 |
++-------------+-----------------+------------------------------------------+-----------------+-----------------+
+
+ 
+
+The generator polynomial shall be: G(x) = x16+x12+x5+1
+
+The following databytes are used to calculate check-sum: a1,a2,a3,a4,a5,b1,b2,b3,b4,b5\...\...b30,b31,b32,b33
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 

@@ -1,0 +1,13 @@
+# Common API elements {#common-api-elements .p_Heading1 style="page-break-after: avoid;"}
+
+ 
+
++:--------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [BSW API](sw-api-reference-manual.html) \>                                 | [](sw-api-reference-manual.html "Previous Topic") [](sw-api-reference-manual.html "Parent Chapter") [](data-types.html "Next Topic") |
+|                                                                                             |                                                                                                                                      |
+| # Common API elements {#common-api-elements-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                      |
+|                                                                                             |                                                                                                                                      |
+|                                                                                             |                                                                                                                                      |
++---------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
+
+This section contains \"common\" elements of the BSW API, e.g., the basic data types.

@@ -1,0 +1,51 @@
+# Integration of IOCBI in ASW {#integration-of-iocbi-in-asw .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Diagnostic services (UDS)](diagnostic-services.html) \> [UDS overview](uds---overview.html) \> [Supported UDS services](supported-uds-services.html) \> [SID - InputOutputControlByIdentifier (0x2F)](iocbi.html) \> | [](iocbi.html "Previous Topic") [](iocbi.html "Parent Chapter") [](iocbi-parameter-configuration.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                      |                                                                                                                     |
+| # Integration of IOCBI in ASW {#integration-of-iocbi-in-asw-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                                                          |                                                                                                                     |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Warning](warning.png){style="margin:0;width:8.3333in;height:0.4583in;border:none"}                                                                                                                                                                                                                                                                                        |
++=============================================================================================================================================================================================================================================================================================================================================================================+
+| •Variables used in read/write callbacks must be reflected in every callback for controlling an input/output signal in InputOutputControl.                                                                                                                                                                                                                                   |
+|                                                                                                                                                                                                                                                                                                                                                                             |
+|    As a best  practice, signals associated with a particular datatype for input/output control should remain consistent across all callbacks.                                                                                                                                                                                                                               |
+|                                                                                                                                                                                                                                                                                                                                                                             |
+|    Refer to the sample code for an example.                                                                                                                                                                                                                                                                                                                                 |
+|                                                                                                                                                                                                                                                                                                                                                                             |
+| •During the IOCBI service operation, if a session changes for a configured DID, the returnControlToECU callback will be triggered to indicate that control over the IOCBI DID has been lost due to the session change.                                                                                                                                                      |
+|                                                                                                                                                                                                                                                                                                                                                                             |
+| •The Read DID callback will be triggered after the IOCBI-related callback is executed.                                                                                                                                                                                                                                                                                      |
+|                                                                                                                                                                                                                                                                                                                                                                             |
+| •Endianness handling is necessary for DID signal data due to the microcontroller\'s little endian format and the DID signal\'s default big endian configuration. Therefore, byte order swapping is required in the ASW for DID signals larger than 8 bits, depending on the configured signal datatype for IOCBI-related services. Refer to the sample code for an example. |
+|                                                                                                                                                                                                                                                                                                                                                                             |
+|    For the Read and write services the endianness handling is taken care in the BSW.                                                                                                                                                                                                                                                                                        |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Step 1: Configuration of IOCBI in easyConfig
+
+- Create a DID meant for IOCBI. Example: Configure DID 0x0155 with session configured for safety diagnostic session for one signal.
+
+- For the detailed parameters configuration please refer chapter [Parameter configuration in easyConfig](iocbi-parameter-configuration.html){.topiclink}.
+
+Step 2: Create callback functions for IOCBI DID (0x0155) for the following:
+
+- Read callback (for using readDataByIdentifier)
+
+- Write callback (for using writeDataByIdentifier  - configuration is necessary but using the callback is optional, based on application use case)
+
+- returnControlToECU callback
+
+- resetToDefault callback
+
+- freezeCurrentState callback
+
+- shortTermAdjustment callback
+
+Prototype of the configured callbacks in easyConfig, is available in file bds_diag_iocbi_appl_adapt.c.
+
+Step 3: Add related ASW code similar to readDataByIdentifier and writeDataByIdentifier, but specifically for InputOutputControlByIdentifier (0x2F).
+
+ 

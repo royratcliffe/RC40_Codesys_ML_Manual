@@ -1,0 +1,32 @@
+# LIN (Local Interconnect Network) {#lin-local-interconnect-network .p_Heading1 style="page-break-after: avoid;"}
+
++:---------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> | [](j1939-76-protocol-description.html "Previous Topic") [](network-comm-protocols.html "Parent Chapter") [](lin-integration-into-an-application.html "Next Topic") |
+|                                                                                                                                                    |                                                                                                                                                                    |
+| # LIN (Local Interconnect Network) {#lin-local-interconnect-network-1 .p_Heading1 style="page-break-after: avoid;"}                                |                                                                                                                                                                    |
++----------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The LIN feature facilitates the complete LIN communication with the advantage of transmission/reception using signals and frames available in LDF file.\
+This module provides a flexibility of transmission/reception message with individual signal data.
+
+The LIN module allows a communication with several LIN slave nodes. The own ECU with the LIN stack is always the LIN master node. A slave node within the own ECU will not be supported.
+
+The following specifications have been taken into account for the implementation of the LIN communication stack.
+
+- LIN Specification Version 2.0
+
+ 
+
+  ----------------------------------------------------------------------------------------------------------------- ----------------------------------------------------------------------------------------------------
+  ![Notice_RGB 39-153-209](hmfile_hash_c5013a84.png){style="margin:0;width:1.4792in;height:0.2813in;border:none"}   The APIs from this module facilitate LIN communication using signals as specified in the LDF file.
+  ----------------------------------------------------------------------------------------------------------------- ----------------------------------------------------------------------------------------------------
+
+ 
+
+This module APIs facilitate LIN communication using signals and PDUs obtained from LDF import. LDF import is done on eC config cloud tool and all the signal and PDU related properties are configured on cloud tool.
+
+##   {#section .p_Heading2 style="page-break-after: avoid;"}
+
+ 
+
+ 

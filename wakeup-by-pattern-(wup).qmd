@@ -1,0 +1,23 @@
+# CAN Wakeup/Wakeup by Pattern (WUP) {#can-wakeupwakeup-by-pattern-wup .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Runtime system & system states](runtime-system-system-states.html) \> [Wake up](wake-up-feature.html) \> [Wakeup by CAN](wakeup-by-can.html) \> | [](wakeup-by-frame-(wuf).html "Previous Topic") [](wakeup-by-can.html "Parent Chapter") [](system-services.html "Next Topic") |
+|                                                                                                                                                                                                                                 |                                                                                                                               |
+| # CAN Wakeup/Wakeup by Pattern (WUP) {#can-wakeupwakeup-by-pattern-wup-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                          |                                                                                                                               |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
+
+Wakeup by Pattern (WUP) is a mechanism to wake up the ECU with the help of a CAN frame received via CAN channels which support wakeup mechanism, independent of frame related parameters.
+
+It is supported on CAN1 and CAN4.
+
+## Prerequisites for WUP to happen: {#prerequisites-for-wup-to-happen .p_Heading2 style="page-break-after: avoid;"}
+
+- Wakeup by Pattern is configured in easyConfig (refer [Parameter configuration in eC (CAN wakeup)](configuration-parameters-required-for-wakeup-by-can.html){.topiclink}).
+
+- T15 should be OFF.
+
+Wakeup source related information can be found out using BSW API  bds_sys_getResetInfo.
+
+ 
+
+ 

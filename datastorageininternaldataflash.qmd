@@ -1,0 +1,23 @@
+# Data storage in internal data flash {#data-storage-in-internal-data-flash .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Memory](memory.html) \>                     | [](memory-layout-rc40_midlarge.html "Previous Topic") [](memory.html "Parent Chapter") [](flasherasecycles.html "Next Topic") |
+|                                                                                                                             |                                                                                                                               |
+| # Data storage in internal data flash {#data-storage-in-internal-data-flash-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                               |
++-----------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------+
+
+At power-on, the BSW performs a CRC on each block in the data flash in addition to the ECC. Failures detected by the CRC will be saved by the BSW and can be queried by the ASW via the API function bds_mem_getBlockStatus.
+
+In order to ensure the functional safety, it is ASW developer's responsibility to implement the ASW that
+
+- Calls the bds_mem_getBlockStatus to check the block status during ASW initialization and after every read / write of the data flash (NVM) during operation.
+
+- Takes appropriate actions to the data flash error, e.g. restoring the valid data, preventing the machine from starting up,  safe stop of the machine, etc.
+
+Details regarding the configuration of the block, status check of the block and restoration of the valid data can be found in [NVM management](nvm-management.html){.topiclink}.
+
+ 
+
+  --------------------------------------------------------------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------
+  ![Danger_RGB 223-0-36](hmfile_hash_1589f30a.png){style="margin:0;width:2.5000in;height:0.2813in;border:none"}   If the RCs is used without following the instructions on this page,  the functional safety of the control units may not be guaranteed.
+  --------------------------------------------------------------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------

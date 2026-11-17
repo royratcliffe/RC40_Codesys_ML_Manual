@@ -1,0 +1,81 @@
+# Parameter Configuration on eC {#parameter-configuration-on-ec .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [LIN](lin-module.html) \> | [](message-formats.html "Previous Topic") [](lin-module.html "Parent Chapter") [](outputs.html "Next Topic") |
+|                                                                                                                                                                              |                                                                                                              |
+| # Parameter Configuration on eC {#parameter-configuration-on-ec-1 .p_Heading1 style="page-break-after: avoid;"}                                                              |                                                                                                              |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+
+
+This topic explains the configuration of relevant parameters for LIN module in easyConfig.\
+The following parameters can be configured from eC tool. Some parameters are directly updated from LDF file while the other mandatory parameters should be configured in easyConfig.
+
+## Global Definition: {#global-definition .p_Heading2 style="page-break-after: avoid;"}
+
+## 1. LIN Protocol Version {#lin-protocol-version .p_Heading2 style="page-break-after: avoid;"}
+
+  ---------------------- --------------- ------- ------------------------------------- -------------------- ---------------------
+  Parameter Name         Default Value   Range   Description                           Mandatory (Yes/No)   Other remarks
+  LIN Protocol Version   2.0             \-      Specifies the LIN Protocol version.   Yes                  It is unmodifiable.
+  ---------------------- --------------- ------- ------------------------------------- -------------------- ---------------------
+
+ 
+
+2\. Baud Rate (for RC18-12/40, RC27-18/40)
+
+  ---------------- --------------- -------------- --------------------------------------------- -------------------- --------------------------------------
+  Parameter Name   Default Value   Range          Description                                   Mandatory (Yes/No)   Other remarks
+  Baud Rate        19200           1000 - 20000   Specifies the baud rate of the LIN channel.   Yes                  It should be configured by the user.
+  ---------------- --------------- -------------- --------------------------------------------- -------------------- --------------------------------------
+
+3\. Goto Sleep Frame Counter
+
+  -------------------------- --------------- ------- ------------------------------------------------------ -------------------- --------------------------------------
+  Parameter Name             Default Value   Range   Description                                            Mandatory (Yes/No)   Other remarks
+  Goto Sleep Frame Counter   3               1 - 5   Specifies the number of LIN sleep frames to be sent.   Yes                  It should be configured by the user.
+  -------------------------- --------------- ------- ------------------------------------------------------ -------------------- --------------------------------------
+
+## 4. Break Length {#break-length .p_Heading2 style="page-break-after: avoid;"}
+
+  ---------------- --------------- --------- ------------------------------------------ -------------------- --------------------------------------
+  Parameter Name   Default Value   Range     Description                                Mandatory (Yes/No)   Other remarks
+  Break Length     13              13 - 20   Specifies the Sync Break Length in bits.   Yes                  It should be configured by the user.
+  ---------------- --------------- --------- ------------------------------------------ -------------------- --------------------------------------
+
+## 5. Cycle Time {#cycle-time .p_Heading2 style="page-break-after: avoid;"}
+
++----------------+---------------+--------------+---------------------------------------------------------------------------------------+--------------------+--------------------------------------+
+| Parameter Name | Default Value | Range        | Description                                                                           | Mandatory (Yes/No) | Other remarks                        |
++----------------+---------------+--------------+---------------------------------------------------------------------------------------+--------------------+--------------------------------------+
+| Cycle Time     | 10            | 5 ms / 10 ms | Specifies the Cycle Time with which LIN communication stack operates in milliseconds. | Yes                | It should be configured by the user. |
+|                |               |              |                                                                                       |                    |                                      |
+|                |               |              | Delay time of configured LIN frame should be a multiple of Cycle Time.                |                    |                                      |
++----------------+---------------+--------------+---------------------------------------------------------------------------------------+--------------------+--------------------------------------+
+
+## Frame details: {#frame-details .p_Heading2 style="page-break-after: avoid;"}
+
+## 1. User Callout {#user-callout .p_Heading2 style="page-break-after: avoid;"}
+
+  ---------------- --------------- ------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------------- --------------------------------------
+  Parameter Name   Default Value   Range   Description                                                                                                                                                                Mandatory (Yes/No)   Other remarks
+  User Callout     \-              \-      By providing a function with the specified callout name further functionalities can be defined by the user. This function is called every time a new PDU is transmitted.   No                   It should be configured by the user.
+  ---------------- --------------- ------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------------- --------------------------------------
+
+ 
+
+## Frame details\' configuration specific for RC18-12/40, RC27-18/40: {#frame-details-configuration-specific-for-rc18-1240-rc27-1840 .p_Heading2 style="page-break-after: avoid;"}
+
+2\. Timeout Period
+
+  ---------------- --------------- ------------------ -------------------------------------------------------------------------- -------------------- --------------------------------------
+  Parameter Name   Default Value   Range              Description                                                                Mandatory (Yes/No)   Other remarks
+  Timeout          0               0 - 3600 seconds   Defines the length of the deadline monitoring timeout period in seconds.   No                   It should be configured by the user.
+  ---------------- --------------- ------------------ -------------------------------------------------------------------------- -------------------- --------------------------------------
+
+## 3. Error Notification {#error-notification .p_Heading2 style="page-break-after: avoid;"}
+
+  -------------------- --------------- ------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------------- --------------------------------------
+  Parameter Name       Default Value   Range   Description                                                                                                                                                                Mandatory (Yes/No)   Other remarks
+  Error Notification   \-              \-      By providing a function with the specified callout name further functionalities can be defined by the user. The function is called every time a PDU timeout is detected.   No                   It should be configured by the user.
+  -------------------- --------------- ------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------------- --------------------------------------
+
+ 

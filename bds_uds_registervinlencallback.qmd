@@ -1,0 +1,72 @@
+# bds_uds_registerVinLenCallback {#bds_uds_registervinlencallback .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  »No topics above this level«                                                                     | [](javascript:HMToggleExpandAll(!HMAnyToggleOpen()) "Click to open/close expanding sections") [](appendix.html "Parent Chapter") |
+|                                                                                                                   |                                                                                                                                  |
+| # bds_uds_registerVinLenCallback {#bds_uds_registervinlencallback-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                  |
++-------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+
+This function registers the callback which is used to set length for the DID 0xF190 used for the Vehicle Identification Number ([VIN](abbreviations.html){.topiclink}).
+
+ 
+
++--------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"} | •The Vehicle Identification Number([VIN](abbreviations.html){.topiclink}) configured in the ECU is mapped to the DID 0xF190.                                                                                       |
+|                                                                                |                                                                                                                                                                                                                    |
+|                                                                                | •By default, the VIN has a value of B0DASMACH1NE00001.                                                                                                                                                             |
+|                                                                                |                                                                                                                                                                                                                    |
+|                                                                                | •If VIN callback length is other than 17 bytes, it would affect the DOIP functionality. Hence user needs to be careful in configuring the VIN callback length when DOIP functionality is integrated in the system. |
++--------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+ \
+This API is actually not supported for CODESYS and can not be used.\
+ 
+
+## Remarks {#remarks .p_Heading2 style="page-break-after: avoid;"}
+
+- Registering this callback function is optional.
+
+- The function must be called from Initialization task (e.g., OsIniProc) and cannot be called from elsewhere.
+
+- The callback function must be defined in the application.
+
+- The length for the DID F190 can be dynamically defined between 0 to 17 bytes.
+
+## ![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a1_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [Declaration](javascript:HMToggle('toggle','toggle0186a1','toggle0186a1_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#hmtoggle_plus1-declaration .p_Heading2 style="page-break-after: avoid;"}
+
+  ---
+   
+  ---
+
+## ![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a2_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [Parameters](javascript:HMToggle('toggle','toggle0186a2','toggle0186a2_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#hmtoggle_plus1-parameters .p_Heading2 style="page-break-after: avoid;"}
+
++-----------------------------------------------------------------------+
+|   Parameter    Description                                            |
+|   ------------ ------------------------------------------------------ |
+|   funcLen_pf   callback function defining the length of DID 0xF190.   |
++-----------------------------------------------------------------------+
+
+ 
+
+## ![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a3_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [Return Values](javascript:HMToggle('toggle','toggle0186a3','toggle0186a3_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#hmtoggle_plus1-return-values .p_Heading2 style="page-break-after: avoid;"}
+
++---------------------------------------------------------------------------------------------------------------------------------+
+|   Return value            Description                                                                                           |
+|   ----------------------- ----------------------------------------------------------------------------------------------------- |
+|   bds_udsCmn_ok_E         API call successful.                                                                                  |
+|   bds_udsCmn_invldPrm_E   API call invalid because of an invalid parameter.                                                     |
+|   bds_udsCmn_notAvl_E     not available (e.g. busy, called to early in init, system is in a mode that it cannot measure, etc)   |
++---------------------------------------------------------------------------------------------------------------------------------+
+
+ 
+
+## ![Code Example](hmtoggle_plus1.gif "Code Example"){#toggle0186a4_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [Examples](javascript:HMToggle('toggle','toggle0186a4','toggle0186a4_ICON') "Code Example"){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#code-example-examples .p_Heading2 style="page-break-after: avoid;"}
+
+  -----------------------------------------------------------------------
+  \
+
+  -----------------------------------------------------------------------
+
+ 
+
+ 

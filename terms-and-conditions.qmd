@@ -1,0 +1,15 @@
+# Terms and conditions {#terms-and-conditions .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
+| **Navigation:**  [Appendix](appendix.html) \>                                                 | [](standards.html "Previous Topic") [](appendix.html "Parent Chapter") |
+|                                                                                               |                                                                        |
+| # Terms and conditions {#terms-and-conditions-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                        |
++-----------------------------------------------------------------------------------------------+------------------------------------------------------------------------+
+
+The "General terms and conditions of deliveries and services of Bosch Rexroth AG" and the "Terms and conditions for the provision of products of Bosch Rexroth AG free of charge" shall apply to the software described in this System & Application Manual.
+
+Link: [https://www.boschrexroth.com/en/dc/legal-notice/](https://www.boschrexroth.com/en/dc/legal-notice/){.weblink target="_blank"}
+
+ 
+
+ 

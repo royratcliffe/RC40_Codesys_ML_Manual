@@ -1,0 +1,23 @@
+# UDS Message Format - BODAS-service {#uds-message-format---bodas-service .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Diagnostic services (UDS)](diagnostic-services.html) \> [UDS - BODAS-service](uds-bodas-service.html) \> | [](standard-dids----discovery-app.html "Previous Topic") [](uds-bodas-service.html "Parent Chapter") [](uds-customer-tool.html "Next Topic") |
+|                                                                                                                                                                                          |                                                                                                                                              |
+| # UDS Message Format - BODAS-service {#uds-message-format---bodas-service-1 .p_Heading1 style="page-break-after: avoid;"}                                                                |                                                                                                                                              |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+## Standard Pre-Configured BODAS-service CAN ID : {#standard-pre-configured-bodas-service-can-id .p_Heading2 style="page-break-after: avoid;"}
+
+According to ISO 15765-2,
+
+ Physical Request CAN ID     : 0x18DA\<TA\>FA
+
+ Physical Response CAN ID   : 0x18DAFA\<TA\>
+
+ Functional Request CAN ID  : 0x18DBFFFA        
+
+TA  - Target address is the ECU node ID. Default TA is pre-configured as 0x01 and can be re-configured from easyConfig and also using the API  bds_uds_updNodeIDinNVM().
+
+SA  - Source Address is the tester ID. 0xFA is reserved by Bosch Rexroth for tester tool BODAS-service.
+
+Note: Only \<TA\> can be configured from easyConfig.

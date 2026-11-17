@@ -1,0 +1,66 @@
+# Object 0x1003 pre-defined error field with last occurred errors {#object-0x1003-pre-defined-error-field-with-last-occurred-errors .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> [RC40 CANopen communication objects](rc40-canopen-communication-obj.html) \> | [](object-0x1002-manufacturer-sta.html "Previous Topic") [](rc40-canopen-communication-obj.html "Parent Chapter") [](object-0x1005-cob-id-sync-mess.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                                  |                                                                                                                                                                        |
+| # Object 0x1003 pre-defined error field with last occurred errors {#object-0x1003-pre-defined-error-field-with-last-occurred-errors-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                              |                                                                                                                                                                        |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This object holds errors that have occurred on the device and have been signaled via an emergency object.
+
+It is an error history. Writing to sub-index 0 deletes the entire error history.
+
+  Index       0x1003
+  ----------- -------------------------
+  Name        Pre-defined Error Field
+  Object      ARRAY
+  Data Type   UNSIGNED 32
+  Category    Optional
+
+ 
+
+ 
+
+SubIndex Supported
+
+  SubIndex        0
+  --------------- ------------------
+  Description     Number of Errors
+  Access          RW
+  Value Range     UNSINGNED8
+  Default Value   0x0
+  PDO Mapping     No
+
+ 
+
+ 
+
+  SubIndex        01-10
+  --------------- ----------------------
+  Description     Standard Error Field
+  Access          RO
+  Value Range     UNSIGNED 32
+  Default Value   0x00000000
+  PDO Mapping     No
+
+ 
+
+ 
+
+  -------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"}   This object supports up to 10 entries. A new error is always entered in subindex 1. Before this occurs, however, any existing errors are moved down in the list by one position. In the event of more than 10 errors, the first errors are lost! The error messages are not stored in the persistent memory (NVM), i.e. they are lost when the device is switched off. refer to bds_canopen_emcySend for more details.
+  -------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 

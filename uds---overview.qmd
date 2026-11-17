@@ -1,0 +1,13 @@
+# UDS overview {#uds-overview .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Diagnostic services (UDS)](diagnostic-services.html) \> | [](uds-message-format---customer-tool.html "Previous Topic") [](diagnostic-services.html "Parent Chapter") [](data-identifier-(did).html "Next Topic") |
+|                                                                                                                                         |                                                                                                                                                        |
+| # UDS overview {#uds-overview-1 .p_Heading1 style="page-break-after: avoid;"}                                                           |                                                                                                                                                        |
++-----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This chapter describes basics of the supported UDS Services based on ISO 14229.
+
+By default the UDS on CAN is implemented on the CAN_2 channel. This can be configured in easyConfig:
+
+- CAN_1, CAN_2, CAN_3, CAN_4

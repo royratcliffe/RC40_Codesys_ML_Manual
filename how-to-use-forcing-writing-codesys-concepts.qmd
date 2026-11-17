@@ -1,0 +1,23 @@
+# Understanding Writing vs Forcing {#understanding-writing-vs-forcing .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [How-Tos](how-to.html) \> [How to use Forcing/Writing for CODESYS](how-to-use-forcing-writing-codesys.html) \> | [](how-to-use-forcing-writing-codesys.html "Previous Topic") [](how-to-use-forcing-writing-codesys.html "Parent Chapter") [](how-to-use-forcing-writing-codesys-procedure.html "Next Topic") |
+|                                                                                                                                 |                                                                                                                                                                                              |
+| # Understanding Writing vs Forcing {#understanding-writing-vs-forcing-1 .p_Heading1 style="page-break-after: avoid;"}           |                                                                                                                                                                                              |
++---------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+## 1. Writing a Variable {#writing-a-variable .p_Heading2 style="page-break-after: avoid;"}
+
+Writing is the most straightforward way to change a variable\'s value. The user commands the IDE to set a variable to a specific value. As soon as the user\'s cyclic POU executes again, that value can be immediately overwritten by the program logic.
+
+## 2. Forcing a Variable {#forcing-a-variable .p_Heading2 style="page-break-after: avoid;"}
+
+Forcing is a more powerful and continuous action.
+
+### What is Forcing? {#what-is-forcing .p_Heading3 style="page-break-after: avoid;"}
+
+Forcing a variable ensures it maintains the user chosen value at the start and end of every POU execution cycle. While the user\'s code is allowed to change the variable\'s value while it is running, the system will automatically reset it back to the \'forced\' value at the end of the POU execution cycle.
+
+ 
+
+ 

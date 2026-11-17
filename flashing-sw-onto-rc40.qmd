@@ -1,0 +1,11 @@
+# Flashing SW onto RC4x {#flashing-sw-onto-rc4x .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [Introduction](introduction.html) \> [First steps with RC](preparation.html) \> [Configurations](required-tools.html) \> [Step 5: ASW development & components involved](step-5-asw-development--compon.html) \> | [](device-scan-and-log-in.html "Previous Topic") [](step-5-asw-development--compon.html "Parent Chapter") [](import-easyconfig-generated-xm.html "Next Topic") |
+|                                                                                                                                                                                                                                   |                                                                                                                                                                |
+| # Flashing SW onto RC4x {#flashing-sw-onto-rc4x-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                   |                                                                                                                                                                |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The merged hex file generated from CODESYS which contains ASW + BODAS-RTS can be flashed using BODAS-service.
+
+For the instruction on how to install and flash BODAS-service - refer to the BODAS-service user manual.

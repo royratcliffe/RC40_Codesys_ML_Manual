@@ -1,0 +1,21 @@
+# AuthLib configuration {#authlib-configuration .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [Security](security.html) \> [Security components](security-components.html) \> [Tractor Implement Management (TIM)](tractor-implement-management.html) \> | [](tractor-implement-management.html "Previous Topic") [](tractor-implement-management.html "Parent Chapter") [](introduction2.html "Next Topic") |
+|                                                                                                                                                                                                                        |                                                                                                                                                   |
+| # AuthLib configuration {#authlib-configuration-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                        |                                                                                                                                                   |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This section describes how you can configure your copy of the AuthLib it can be used within an RC and along with the HSM. Please make sure that you have acquired a recent AuthLib version from ITK that is compatible with RC4x devices and have read the enclosed manual carefully.
+
+ 
+
+ 
+
+This API is currently not supported for CODESYS. At the moment, it is only available in C.
+
+ 
+
+ 
+
+ 

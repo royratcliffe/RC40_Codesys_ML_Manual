@@ -1,0 +1,28 @@
+# SENT inputs {#sent-inputs .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [Safety manual](safety-manual.html) \> [Safety-related inputs](safety-relatedinputs.html) \> [Multi-functional inputs](multi-functionalinputs.html) \> | [](multi-functionalinputsingeneral.html "Previous Topic") [](multi-functionalinputs.html "Parent Chapter") [](safety-relatedoutputs.html "Next Topic") |
+|                                                                                                                                                                         |                                                                                                                                                        |
+| # SENT inputs {#sent-inputs-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                             |                                                                                                                                                        |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+SENT (Single Edge Nibble Transmission), as a unidirectional communication scheme, is intended for high-resolution data communicated from a sensor to a RC.
+
+The SENT communication provided by the RC conforms to SAE J2716 standard. In additional to the default-by-protocol CRC, the SENT communication is equipped with diverse diagnostic methods to detect failures like open circuit, short circuit to ground/battery, message loss, etc. Optionally, the SENT communication can also be configured to support message counter and message time window monitoring if a sensor that supports these functions is used.  
+
+To use the SENT interface for safety-related inputs, it is the machine manufacturers' responsibility to follow the requirements of the corresponding standards by selecting the sensors with proper functional safety features (e.g., support message counter) and configuring the SENT communication correspondingly.
+
+For the conformity with ISO 25119, depending on the required DC, diagnostic methods could be implemented by the ASW following Table C.6 of the ISO 25119-2 (see the following table).
+
+  Technique/ measure   Recommended maximum diagnostic coverage   Example
+  -------------------- ----------------------------------------- ------------------------------------------------
+  Message protection   Medium                                    1\. Checksum on selected message data bytes
+                       Medium                                    2\. Message enumeration (incrementing counter)
+                       Low                                       3\. Send frequency verification
+                       High                                      1 to 3. combined
+
+[]{#fig_bf5cc8 .hmanchor}Table 29: Diagnostic methods for safety communication\_ extract of ISO 25119-2:2019,Table C.6.
+
+ 
+
+For the conformity with ISO 13849-1, all relevant requirements of IEC 61784-3 shall be fulfilled by the communication channel.

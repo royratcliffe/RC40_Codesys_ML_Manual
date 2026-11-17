@@ -1,0 +1,21 @@
+# Security {#security .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \>           | [](system-concepts.html "Previous Topic") [](system-concepts.html "Parent Chapter") [](security-concept-overview.html "Next Topic") |
+|                                                                       |                                                                                                                                     |
+| # Security {#security-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                     |
++-----------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
+
+This chapter provides a basic description of the general security mechanisms of the RCs. It is not intended as an implementation reference nor as a general security guideline for the area of application in which the device is used.
+
+The following topics are addressed:
+
+- General overview of the security concept
+
+- Security level and session management
+
+- Access control
+
+- Authorization concept
+
+ 

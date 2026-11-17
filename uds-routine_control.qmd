@@ -1,0 +1,29 @@
+# UDS Routine Control {#uds-routine-control .p_Heading1 style="page-break-after: avoid;"}
+
++:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Diagnostic services (UDS)](diagnostic-services.html) \> [UDS overview](uds---overview.html) \> [Supported UDS services](supported-uds-services.html) \> [SID - Routine Control (0x31)](sid---routine-control-(0x31).html) \> | [](integration-of-routine-control.html "Previous Topic") [](sid---routine-control-(0x31).html "Parent Chapter") [](iocbi.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                              |                                                                                                                                             |
+| # UDS Routine Control {#uds-routine-control-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                                                                                  |                                                                                                                                             |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+
+Routine Control Service can be configured in easyConfig with
+
+ 1)  Start a Routine (Sub Function 0x01).
+
+ 2)  Stop a Routine (Sub Function 0x02).
+
+ 3)  Get a result (Sub Function 0x03).
+
+## Configuration Parameters available in easyConfig for Routine Control {#configuration-parameters-available-in-easyconfig-for-routine-control .p_Heading2 style="page-break-after: avoid;"}
+
+  -------------------- --------------- --------------------------- ----------- ------------------------------------------------------------
+  Parameter Name       Default value   Range                       Mandatory   Description
+  Routine Name         N.A             N.A                         Yes         Unique name has to be provided for each routine.
+  Routine Identifier   N.A             0x0200 - 0xDFFF             Yes         This parameter identifies a server routine.
+  Routine Type         N.A             Start,Stop and Get Result   Yes         Type of routine.
+  Callback             N.A             N.A                         Yes         Callback function name for respective Routine.
+  IN Signal Length     N.A             0x0000-0x7FD8               Yes         Routine Control Option record (input data) length in bits.
+  OUT Signal Length    N.A             0x0000-0x7FD8               Yes         Routine Status record (output data) length in bits.
+  -------------------- --------------- --------------------------- ----------- ------------------------------------------------------------
+
+N.A - Not Applicable.

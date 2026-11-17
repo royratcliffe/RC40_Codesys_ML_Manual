@@ -1,0 +1,52 @@
+# Program memory layout {#program-memory-layout .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Memory](memory.html) \> | [](nvm-general-description.html "Previous Topic") [](memory.html "Parent Chapter") [](configuration-calibration.html "Next Topic") |
+|                                                                                                         |                                                                                                                                    |
+| # Program memory layout {#program-memory-layout-1 .p_Heading1 style="page-break-after: avoid;"}         |                                                                                                                                    |
++---------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------+
+
+## General {#general .p_Heading2 style="page-break-after: avoid;"}
+
+There are two main parts of software:
+
+- Boot block
+
+- Application block
+
+## Boot block {#boot-block .p_Heading2 style="page-break-after: avoid;"}
+
+The boot block consists of two parts:
+
+1.Start block
+
+2.Loader
+
+ 
+
+1\. Start block
+
+- Target initialization (CPU,  DFlash/RAM, if available)
+
+- Watchdog initialization
+
+- Reset handling (Soft resets, Reset Loop conditions)
+
+- Tuning protection
+
+- Test software loader for production with trigger condition
+
+- Validity check for loader
+
+2\. Loader
+
+- Standard Loader (Application re-programming)
+
+- Validity check application block
+
+In case of customer specific controllers the loader part could have a special functionality.
+
+## Application block {#application-block .p_Heading2 style="page-break-after: avoid;"}
+
+After boot block is processed successfully the application is started.\
+The application is generated with the help of Rexroth services, see [BSW-API](sw-api-reference-manual.html){.topiclink}.

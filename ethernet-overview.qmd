@@ -1,0 +1,17 @@
+# Ethernet overview {#ethernet-overview .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [Ethernet](ethernet.html) \> | [](ethernet.html "Previous Topic") [](ethernet.html "Parent Chapter") [](diagnostics-over-ip.html "Next Topic") |
+|                                                                                                                                                                                 |                                                                                                                 |
+| # Ethernet overview {#ethernet-overview-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                         |                                                                                                                 |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------+
+
+This chapter provides a short overview about the Ethernet.
+
+Additionally, this chapter describes the Diagnosis with Internet Protocol.
+
+## Chapters overview {#chapters-overview .p_Heading2 style="page-break-after: avoid;"}
+
+- [Ethernet introduction](ethernet-introduction.html){.topiclink}
+
+- [Diagnostics over Internet Protocol overview](diagnostics-over-ip.html){.topiclink}

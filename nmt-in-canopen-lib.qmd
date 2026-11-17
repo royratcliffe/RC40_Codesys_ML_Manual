@@ -1,0 +1,47 @@
+# NMT in CANopen lib {#nmt-in-canopen-lib .p_Heading1 style="page-break-after: avoid;"}
+
++:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> [CANopen features description](canopen-features-description.html) \> | [](lss-in-canopen-lib.html "Previous Topic") [](canopen-features-description.html "Parent Chapter") [](pdo-in-canopen-lib.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                          |                                                                                                                                              |
+| # NMT in CANopen lib {#nmt-in-canopen-lib-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                                                                                |                                                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+The CANopen library implements both NMT master and NMT slave.
+
+ 
+
+- The NMT role should be assigned to each CANopen instance separately using bds_canopen_setRole
+
+- The role assignment should be done before bds_canopen_initComm.
+
+- If bds_canopen_setRole is not used, the default role is assigned for each instance as below,
+
+  CANopen Instance 1 : Master, CANopen Instance 2 : Slave, CANopen Instance 3 : Slave. For more information refer, bds_canopen_setRole.
+
+- The configured NMT role of a given instance can be checked using API bds_canopen_getNmtRole .
+
+## NMT master: {#nmt-master .p_Heading2 style="page-break-after: avoid;"}
+
+If an instance is configured as NMT master, it is necessary to register the slave to which it communicates. This is done by using  bds_canopen_addSlaveNode API. The same API also allows you to configure heartbeat monitoring time for a given slave.
+
+bds_canopen_sendNmtCmd API should be used to send the NMT command to desired slave or all slaves in the network.  bds_canopen_getRemoteNodeState can be used to monitor slave NMT state, but this is supported only if heartbeat monitoring is enabled for a given slave. This is because the CANopen library detects the remote node state using a heartbeat message received from a remote node.
+
+The NMT master can set his own NMT state in two ways, using  bds_canopen_setLocalNmtState (recommended) or using  bds_canopen_sendNmtCmd .
+
+## NMT slave: {#nmt-slave .p_Heading2 style="page-break-after: avoid;"}
+
+If an instance is configured as an NMT slave, then the CANopen lib will process the received NMT commands and do the necessary state transitions internally. By registering a callback function using  bds_canopen_regNmtStateChangeIndcn ASW can get an indication whenever the CANopen slave library changes its NMT state. If ASW wants to reject a state transition to operation, then it can return FALSE in the registered callback.
+
+ASW can register a callback for NMT reset communication command using API  bds_canopen_regResetCommIndcn, CANopen lib internally resets stack handlers, states, and also communication objects before calling this callback. CANopen library also sends a boot-up message after the callback is executed. If ASW needs to handle anything during NMT reset communication, then it can be done inside the callback.
+
+ASW can register a callback for reset Application command using API  bds_canopen_regResetApplIndcn, CANopen lib internally resets stack handlers, states, and also communication objects before calling this callback. CANopen library also sends a boot-up message after the callback is executed. If ASW needs to handle anything during the NMT reset communication, then it can be implemented inside this callback. ASW can reset application objects inside this callback. To reset application objects, the CANopen library provides API  bds_canopen_applObjSetDefault to set default values of objects registered using API  bds_canopen_regApplObjects.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 

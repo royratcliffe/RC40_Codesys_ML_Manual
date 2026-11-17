@@ -1,0 +1,64 @@
+# Heartbeat {#heartbeat .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [CANopen protocol description](canopen-protocol-description.html) \> | [](global-fail-safe-command(gfc).html "Previous Topic") [](canopen-protocol-description.html "Parent Chapter") [](layer-setting-service(lss).html "Next Topic") |
+|                                                                                                                                                                                                                                                     |                                                                                                                                                                 |
+| # Heartbeat {#heartbeat-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                                             |                                                                                                                                                                 |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+With the heartbeat messages, a device in the CANopen network can monitor another device. For this purpose, a length of time is configured during which the monitoring device must receive a heartbeat message from the monitored device.
+
+The heartbeat protocol defines an error control service without the need for remote frames. A heartbeat producer transmits a heartbeat message cyclically. One or more heartbeat consumers receive the indication. The relationship between producer and consumer is configurable via the object dictionary. The heartbeat consumer monitors the reception of the heartbeat within the heartbeat consumer time. If the heartbeat is not received within the heartbeat consumer time, then a heartbeat event will be generated.
+
+The producer heartbeat service can be activated by writing the object [1017h](object-0x1017-producer-heartbe.html){.topiclink} to a value other than zero. The heartbeat consumer object entry description is given in the object [1016h](object-0x1016-heartbeat-consum.html){.topiclink}.
+
+The message sent by the heartbeat producer is structured as follows:
+
+ 
+
++--------------+-----------+
+| CAN-ID       | Data      |
+|              +-----------+
+|              | Byte 0    |
++==============+===========+
+| 0x700+NodeID | NMT state |
++--------------+-----------+
+
+ 
+
+  NMT state   Meaning
+  ----------- -----------------
+  0x00        Boot-up
+  0x04        Stopped
+  0x05        Operational
+  0x7F        Pre-Operational
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 

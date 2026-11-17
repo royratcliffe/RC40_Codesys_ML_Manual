@@ -1,0 +1,22 @@
+# Supported UDS Sessions for Customer Instance {#supported-uds-sessions-for-customer-instance .p_Heading1 style="page-break-after: avoid;"}
+
++:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Diagnostic services (UDS)](diagnostic-services.html) \> [UDS customer tool](uds-customer-tool.html) \> | [](sid---communicationcontrol-(0x28).html "Previous Topic") [](uds-customer-tool.html "Parent Chapter") [](uds-message-format---customer-tool.html "Next Topic") |
+|                                                                                                                                                                                        |                                                                                                                                                                  |
+| # Supported UDS Sessions for Customer Instance {#supported-uds-sessions-for-customer-instance-1 .p_Heading1 style="page-break-after: avoid;"}                                          |                                                                                                                                                                  |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+## Remarks: {#remarks .p_Heading2 style="page-break-after: avoid;"}
+
+- Refer the below table for the sessions supported and its sub function reference numbers with access levels.
+
+- Refer [UDS Services](supported-uds-services.html){.topiclink} for the supported UDS Services for the Customer Instance.
+
+ 
+
+  ---------------------------------- --------------------- --------------------------
+  Diagnostic Sessions                Sub Function Number   Security Access Level
+  EXTENDED_DIAGNOSTIC_SESSION        0x03                  All Customer Levels 1-10
+  SAFETY_SYSTEM_DIAGNOSTIC_SESSION   0x04                  All Customer Levels 1-10
+  EOL_SESSION                        0x40                  All Customer Levels 1-10
+  ---------------------------------- --------------------- --------------------------

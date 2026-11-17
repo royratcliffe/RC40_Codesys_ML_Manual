@@ -1,0 +1,13 @@
+# Startup monitoring {#startup-monitoring .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Self-monitoring](ecu-self-monitoring.html) \> | [](self-monitoring-overview.html "Previous Topic") [](ecu-self-monitoring.html "Parent Chapter") [](shutoffpathtest.html "Next Topic") |
+|                                                                                                                               |                                                                                                                                        |
+| # Startup monitoring {#startup-monitoring-1 .p_Heading1 style="page-break-after: avoid;"}                                     |                                                                                                                                        |
++-------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+
+List of start-up tests.
+
+  Startup Checks                                           Description
+  -------------------------------------------------------- ---------------------------------------------
+  [Shut-OFF path Test](shutoffpathtest.html){.topiclink}   Monitoring of all shut-OFF paths at startup

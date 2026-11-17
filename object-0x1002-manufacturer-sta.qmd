@@ -1,0 +1,59 @@
+# Object 0x1002 manufacturer status register {#object-0x1002-manufacturer-status-register .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> [RC40 CANopen communication objects](rc40-canopen-communication-obj.html) \> | [](object-0x1001-error-register.html "Previous Topic") [](rc40-canopen-communication-obj.html "Parent Chapter") [](object-0x1003-pre-defined-erro.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                                  |                                                                                                                                                                      |
+| # Object 0x1002 manufacturer status register {#object-0x1002-manufacturer-status-register-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                                        |                                                                                                                                                                      |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This object is a common status register for manufacturer specific purposes.
+
+ 
+
+  Index           0x1002
+  --------------- ------------------------------
+  Name            Manufacturer Status Register
+  Object          VAR
+  Data Type       UNSIGNED 32
+  Category        Mandatory
+  Access          RO
+  PDO Mapping     Optional
+  Value Range     UNSIGNED 32
+  Default Value   0x00000000
+
+ 
+
+in rc40 canopen lib, Structure of this status register can be defined as below
+
+ 
+
+  --------- ----------------- ------- ---------- ------------
+  Bit No    31-28             27      26-8       7-0
+  Details   Instance status   Error   reserved   NMT status
+  --------- ----------------- ------- ---------- ------------
+
+ 
+
+Instance status :  Status of canopen stack instance
+
+             0 : CANopen instance not initialised
+
+             1 : CANopen instance initialised
+
+             2 : CANopen boot message sent
+
+Error : Status of error in canopen instance
+
+            0 : No Error
+
+            1 : Error present
+
+NMT Status : canopen NMT state
+
+            0 : Bootup
+
+            4 : Stopped
+
+            5 : Operational
+
+           127: Pre-Operational

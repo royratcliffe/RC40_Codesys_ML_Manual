@@ -1,0 +1,55 @@
+# Databoxes {#databoxes .p_Heading1 style="page-break-after: avoid;"}
+
++:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CAN-FD](can-fd.html) \> [CAN-FD legacy communication](chapter-page-template_2.html) \> | [](buffers.html "Previous Topic") [](chapter-page-template_2.html "Parent Chapter") [](can.html "Next Topic") |
+|                                                                                                                                                                                                                                            |                                                                                                               |
+| # Databoxes {#databoxes-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                                    |                                                                                                               |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
+
+- Databoxes are messages which have separate memory allocated for them, which have
+
+oA dedicated databox number
+
+oCAN ID
+
+oCAN ID format
+
+oNumber of bytes (for Receive databox)
+
+oData (including a data buffer) (for Receive databox)
+
+oReceive callback (for Receive databox)
+
+- Transmit databoxes shall be used for priority sending of CAN-FD messages compared to CAN-FD buffers (i.e., CAN-FD databoxes are sent / received first)
+
+<figure style="margin:0;padding:0">
+<a href="txdatabox.png" class="imagetogglelink"><img src="txdatabox_zoom60.png" title="Image: Tx Databox and related Transmission CAN/CAN-FD" id="toggle0186a1" class="image-toggle" style="width:5.1563in;height:4.8229in;border:none" alt="Image: Tx Databox and related Transmission CAN/CAN-FD" /><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=" class="image-toggle-magnifier" /></a>
+<figcaption><p>Image: Tx Databox and related Transmission CAN/CAN-FD</p></figcaption>
+</figure>
+
+- Receive databoxes shall be used for effective organization of incoming messages.
+
+ 
+
+ 
+
+<figure style="margin:0;padding:0">
+<a href="rxdatabox.png" class="imagetogglelink"><img src="rxdatabox_zoom60.png" title="Image: Rx Databox and Related Reception for a given CAN channel, for CAN/CAN-FD messages." id="toggle0186a2" class="image-toggle" style="width:10.2188in;height:5.3750in;border:none" alt="Image: Rx Databox and Related Reception for a given CAN channel, for CAN/CAN-FD messages." /><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=" class="image-toggle-magnifier" /></a>
+<figcaption><p>Image: Rx Databox and Related Reception for a given CAN channel, for CAN/CAN-FD messages.</p></figcaption>
+</figure>
+
+- There are three phases of databox usage:
+
+oRegister databoxes - register memory for usage of Transmit / Receive Databoxes
+
+oInitialize databoxes - initializes parameters of databox
+
+§Transmit Databox - Databox number, CAN ID, CAN ID format
+
+§Receive Databox - Databox number, CAN ID, CAN ID format, Number of bytes of data, CAN-FD Receive Databox data buffer, Databox buffer length, Callback function name
+
+oSend / Receive databox
+
+- On how to use the  BSW APIs for CAN-FD legacy communication, refer the How-To page [How to implement CAN-FD legacy using Transmit, Receive Databoxes](howtoimplementcanlegacyusingtransmitreceivebuffers.html){.topiclink}
+
+- On how to use the  BSW APIs for CAN legacy communication, refer the How-To page [How to implement CAN legacy using Transmit, Receive Databoxes](howtoimplementcanlegacyusingtransmitreceivedataboxes.html){.topiclink}.

@@ -1,0 +1,66 @@
+# CAN communication {#can-communication .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CAN](can.html) \> | [](can.html "Previous Topic") [](can.html "Parent Chapter") [](can_configuration_steps.html "Next Topic") |
+|                                                                                                                                                                       |                                                                                                           |
+| # CAN communication {#can-communication-1 .p_Heading1 style="page-break-after: avoid;"}                                                                               |                                                                                                           |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------+
+
+The RC5-6/40, RC18-12/40 and RC27-18/40 control units provide each with 4 CAN-interfaces (see Table 8).
+
+ 
+
+  CAN number   Pin number CAN-High   Pin number CAN-Low
+  ------------ --------------------- --------------------
+  CAN_1        K88                   K66
+  CAN_2        K89                   K67
+  CAN_3        K90                   K68
+  CAN_4        K91                   K69
+
+[]{#fig_5df497 .hmanchor}Table 9: Pin assignment of CAN interfaces
+
+There are 2 possibilities for CAN communication, which can also be combined. An overview for the CAN RX and TX message evaluation flows are shown [here](can_message_overview.html){.topiclink}.
+
+## 1) CAN signal based communication {#can-signal-based-communication .p_Heading2 style="page-break-after: avoid;"}
+
+The whole CAN communication with all required CAN messages and signals have to be defined within a DBC file. This DBC file has to be uploaded into the cloud tool easyConfig. The communication configuration then will be included into the build of the BSW and can be directly used by the application program. But this configuration of the CAN communication cannot be changed any more within the application program. All required changes have to be done via the cloud tool easyConfig.
+
+ 
+
+## 2) CAN legacy communication {#can-legacy-communication .p_Heading2 style="page-break-after: avoid;"}
+
+For this kind of CAN communication only the required buffer sizes and maximum number of usable databoxes have to be defined within easyConfig. The CAN messages itself with their CAN-Ids and contents can be defined within application program during run time. New messages and message data can be added to the application without any actions in easyConfig. The corresponding API functions based on the API of the series 30 ECUs.
+
+Features of the CAN legacy communication module
+
+- Support of all available CAN channels
+
+- User defined receive [buffer](buffers.html){.topiclink} (limited only by user memory)
+
+- User defined send [buffer](buffers.html){.topiclink} (limited only by user memory)
+
+- Support of standard and extended identifier
+
+- Baud rate switchable by user for each CAN channel
+
+- Optional user defined callback function for communication node errors
+
+- Optional user defined callback function for receiving
+
+- Optional user defined [data boxes](databoxes.html){.topiclink} (limited only by user memory)
+
+- Detailed error information for each function
+
+The following chapters give an overview of the
+
+- [Preparation steps](can_preparation_steps.html){.topiclink}
+
+- [Configuration steps](can_configuration_steps.html){.topiclink}
+
+for the CAN legacy communication.
+
+ 
+
+ 
+
+ 

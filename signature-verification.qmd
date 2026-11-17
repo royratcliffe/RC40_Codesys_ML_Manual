@@ -1,0 +1,101 @@
+# Signature Verification {#signature-verification .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [Security](security.html) \> [Secure Flashing](secure-flashing.html) \> | [](encryption-decryption.html "Previous Topic") [](secure-flashing.html "Parent Chapter") [](software-(asw_cb)2.html "Next Topic") |
+|                                                                                                                                     |                                                                                                                                    |
+| # Signature Verification {#signature-verification-1 .p_Heading1 style="page-break-after: avoid;"}                                   |                                                                                                                                    |
++-------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------+
+
+## Root Certificate Requirements {#root-certificate-requirements .p_Heading2 style="page-break-after: avoid;"}
+
+This section outlines the specifications for the Root Certificate used by CB-ME for secure communication and verification. The Root Certificate is a fundamental component of security infrastructure, ensuring the authenticity and integrity of other certificates.
+
+1\. General Specifications
+
+- Format: The Root Certificate must be an X.509v3 certificate encoded in binary ASN.1 DER format.
+
+- Purpose: CB-ME uses this Root Certificate to verify the digital signature of user certificates, ensuring they are legitimate and trusted.
+
+- Maximum Size: The Root Certificate\'s total size must not exceed 1536 bytes. This size is sufficient for an X.509v3 root certificate with a 3072-bit key.
+
+- Self-Signed: The Root Certificate must be self-signed, meaning it is signed by its own private key.
+
+- Validity Period: To ensure long-term usability without requiring frequent updates, the Root Certificate should have a validity period of 100 years or be designated as \"infinite.\" This is important because the RC40 does not have a real-time clock to verify certificate expiration dates.
+
+2\. Required X.509v3 Extensions
+
+The Root Certificate must include the following critical X.509v3 extensions:
+
+-    Basic Constraints:
+
+o    CA:TRUE (Critical): This extension explicitly identifies the certificate as a Certificate Authority (CA), allowing it to issue and sign other certificates.
+
+-    Key Usage:
+
+o        Certificate Sign (Critical): This permits the private key associated with this certificate to be used for signing other certificates.
+
+o        CRL Sign (Critical): This permits the private key to be used for signing Certificate Revocation Lists (CRLs).
+
+3\. Supported Signature Variants
+
+The CB-ME supports the following signature variant for the Root Certificate. All necessary algorithm details are embedded directly within the certificate itself.
+
+- RSASSA-PKCS1-v1_5 with SHA256
+
+oSignature Algorithm: sha256WithRSAEncryption
+
+oPublic Key Algorithm: rsaEncryption
+
+§Public-Key Length: 2048 bits or 3072 bits
+
+§Exponent: 65537 (0x10001)
+
+## User Certificate Requirements {#user-certificate-requirements .p_Heading2 style="page-break-after: avoid;"}
+
+This section details the specifications for the User Certificates that are validated and used by the CB-ME. These certificates are crucial for verifying the authenticity and integrity of various data, such as software, key files, and unlock files.
+
+1\. General Specifications
+
+- Format: The User Certificate must be an X.509v3 certificate encoded in binary ASN.1 DER format.
+
+- Purpose: CB-ME uses this certificate to verify the digital signatures of various data, including Software (SW), Key File and Unlock File.
+
+- Maximum Size: A dedicated space of 2048 bytes is reserved for these certificates in the epilog.
+
+- Signed by Root Certificate: The User Certificate must be signed by a trusted Root Certificate. If it is not signed by a recognized Root Certificate, the CB-ME will reject it as invalid.
+
+- Validity Period: The validity period for a User Certificate can be chosen flexibly (e.g., 6 years). While the RC40 itself does not have a real-time clock to verify certificate expiration, the signing tool used to generate these certificates checks validity periods.
+
+- Revocation: User Certificates can be revoked by the Public Key Infrastructure (PKI). However, this revocation status is only checked during the signature generation process by the signing tool, not by the CB-ME itself at run time.
+
+2\. Required X.509v3 Extensions
+
+The User Certificate must include the following X.509v3 extensions:
+
+- Basic Constraints:
+
+oCA:FALSE (Critical): This explicitly indicates that this certificate is not a Certificate Authority and cannot be used to sign other certificates.
+
+- Key Usage:
+
+oDigital Signature (Critical): This permits the private key associated with this certificate to be used for digitally signing data.
+
+- Extended Key Usage:
+
+oCode Signing: This indicates that the certificate is specifically intended for signing executable code or other software components.
+
+3\. Supported Signature Variants
+
+The CB-ME supports the following signature variant for User Certificates. All necessary algorithm details are embedded directly within the certificate itself.
+
+- RSASSA-PKCS1-v1_5 with SHA256
+
+oSignature Algorithm: sha256WithRSAEncryption
+
+oPublic Key Algorithm: rsaEncryption
+
+§Public-Key Length: 2048 bits or 3072 bits
+
+§Exponent: 65537 (0x10001)
+
+ 

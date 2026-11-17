@@ -1,0 +1,73 @@
+# Logging in CB-ME {#logging-in-cb-me .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [Security](security.html) \> [Secure Logging](secure-logging.html) \> | [](secure-logging.html "Previous Topic") [](secure-logging.html "Parent Chapter") [](logging-in-bsw.html "Next Topic") |
+|                                                                                                                                   |                                                                                                                        |
+| # Logging in CB-ME {#logging-in-cb-me-1 .p_Heading1 style="page-break-after: avoid;"}                                             |                                                                                                                        |
++-----------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------+
+
+This section describes the secure logging features implemented in the bootloader and explains how users can interpret and access these recorded events. Bootloader‑level logging is essential for ensuring software flashing integrity and detecting unauthorized access.
+
+## Logged Events {#logged-events .p_Heading2 style="page-break-after: avoid;"}
+
+The ECU automatically captures key events that occur during software flashing and secure access operations. These logs help users to understand the flashing history and to identify any issues that occurred during the process.
+
+### Logged Bootloader Events {#logged-bootloader-events .p_Heading3 style="page-break-after: avoid;"}
+
+- Successful Software Flashing: A record is kept whenever new software (ASW, CB-ME, [keyfile](key-file.html){.topiclink}, or [unlockfile](unlock-file.html){.topiclink}) is successfully flashed onto the ECU.
+
+- Incorrect Security Access Password: Attempts to gain security access using Service 0x27 (e.g., for flashing operations) with an incorrect password is logged.
+
+- Software Flashing Failures: All security related flashing problems are logged to help identify and debug issues during the process.
+
+## Accessing Flashing Event Timestamps {#accessing-flashing-event-timestamps .p_Heading2 style="page-break-after: avoid;"}
+
+The bootloader makes the timestamp of any flashing event available to the ASW. This allows diagnostic tools to determine when new software was last updated.
+
+The timestamp is provided by the CB‑ME and is accessible via the dedicated DID 0xF199.
+
+## Reading the Last Flashing Date {#reading-the-last-flashing-date .p_Heading2 style="page-break-after: avoid;"}
+
+Users can retrieve the date of the most recent successful software flashing via a diagnostic request.
+
+DID 0xF199 --- Last Flashing Date
+
+- Read‑only parameter
+
+- Indicates the date of the last successful flashing event
+
+- Returned as an 8‑byte hexadecimal value representing DDMMYYYY
+
+## Reporting Security Access Failures {#reporting-security-access-failures .p_Heading2 style="page-break-after: avoid;"}
+
+If a security access attempt (Service 0x27) fails due to an incorrect password during ASW, CB-ME, [keyfile](key-file.html){.topiclink}, or [unlockfile](unlock-file.html){.topiclink} flashing, the bootloader reports the failure, and the BSW sets the DFC [DFC_rbr_secInvalidPassword](diagnostic-trouble-code.html){.topiclink}.
+
+## Reporting Flashing Failures {#reporting-flashing-failures .p_Heading2 style="page-break-after: avoid;"}
+
+The system logs and reports any type of flashing failure, ensuring that failed upgrades are detectable and diagnosable.
+
+The DFC [DFC_rbr_secFlashingFailure](diagnostic-trouble-code.html){.topiclink} is set whenever the flashing of ASW, CB-ME, [keyfile](key-file.html){.topiclink}, or [unlockfile](unlock-file.html){.topiclink} fails due to one the following reasons:
+
+- Flashing aborts
+
+- CRC mismatch
+
+- Signature verification failure
+
+- Encryption or decryption failure
+
+- CMAC verification failure
+
+This DFC entry provides a general indication that the flashing process encountered an error.
+
+ 
+
++--------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"} | The CB‑ME does not have its own [Error Management](diagnosticsystemmanagement.html){.topiclink} module. Faults detected by the CB‑ME are reported to the BSW via NVM. When the ASW is running, the BSW sets the corresponding DFC, thereby reporting the faults to the ASW. |
+|                                                                                |                                                                                                                                                                                                                                                                             |
+|                                                                                |                                                                                                                                                                                                                                                                             |
+|                                                                                |                                                                                                                                                                                                                                                                             |
+|                                                                                |                                                                                                                                                                                                                                                                             |
++--------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+ 

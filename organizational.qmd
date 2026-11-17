@@ -1,0 +1,55 @@
+# Organizational {#organizational .p_Heading1 style="page-break-after: avoid;"}
+
++:-------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [Introduction](introduction.html) \> [First steps with RC](preparation.html) \> | [](preparation.html "Previous Topic") [](preparation.html "Parent Chapter") [](required-hw.html "Next Topic") |
+|                                                                                                  |                                                                                                               |
+| # Organizational {#organizational-1 .p_Heading1 style="page-break-after: avoid;"}                |                                                                                                               |
++--------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
+
+## Registration and access rights {#registration-and-access-rights .p_Heading2 style="page-break-after: avoid;"}
+
+ME Partner Download Space is a source of data you require to work with RC. The following instructions explain how to obtain access to the data you need.
+
+1\. Contact your Rexroth representative in case the access to Collaboration Rooms at myRexroth has not been granted to you yet.
+
+2\. Start your registration at [https://www.boschrexroth.com](https://www.boschrexroth.com){.weblink target="_blank"} \> myRexroth \> Login.
+
+2\. Use your company email and your newly created password to login to myRexroth homepage.
+
+3\. After you successfully logged in, you can view ME Partner Download Space.
+
+See video [myRexroth Onboarding](https://media.video.bosch.com/media/Hello+World+Rexroth+Controllers+Series+40+++myRexroth+Onboarding/0_xdifrzn7){.weblink target="_blank"} for a step-by-step instruction on the registration for myRexroth.
+
+## Project structure {#project-structure .p_Heading2 style="page-break-after: avoid;"}
+
+Create the following directories on your PC to organize your project properly:
+
+1\. C:\\Tools
+
+2\. C:\\Tools\\Compiler
+
+3\. C:\\Projekte
+
+4\. C:\\Projekte\\HelloWorld
+
+## Example project {#example-project .p_Heading2 style="page-break-after: avoid;"}
+
+ME Partner Download Space provides project examples, which you can use to start working with your RC. Choose the folder corresponding to your RC and download it.
+
+1\. Go to ME Partner Download Space \> 20_Engineering Tools \> 00_Support Training \> RC40_HelloWorld \> 03_Examples
+
+2\. Choose the example corresponding to your RC, download and save it to C:\\Projekte\\HelloWorld
+
+3\. Extract the zip file to C:\\Projekte\\HelloWorld
+
+4\. Additionally, follow the same procedure as above for the ServiceApps_HelloWorld file located in 03_Examples.
+
+Your unpacked sample project has the following structure:
+
+  Folder name   Description
+  ------------- --------------------------------------------------------------------
+  \_dbs         Files for import to easyConfig or diagnosis.
+  \_udsImport   Files for import of UDS configurations (DIDs & DTCs) to easyConfig
+  Asw           An example of Application SW defined for HelloWorld project
+  Bsw           An example of Basic SW
+  Release       Hex-file ready for flashing.

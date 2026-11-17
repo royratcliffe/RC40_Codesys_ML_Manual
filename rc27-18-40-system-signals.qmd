@@ -1,0 +1,91 @@
+# RC27-18/40 common signal names {#rc27-1840-common-signal-names .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [Hardware](hw-reference-manual.html) \> [RC27-18/40](rc27-18-40.html) \>                        | [](rc27-18_40-closedloopparametersforvalves.html "Previous Topic") [](rc27-18-40.html "Parent Chapter") [](how-to.html "Next Topic") |
+|                                                                                                                  |                                                                                                                                      |
+| # RC27-18/40 common signal names {#rc27-1840-common-signal-names-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                      |
++------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+
+
+An overview about the System Inputs / Outputs pin names and functions can be found in following table
+
++-----------------------+-----------------------+-------------------------------------------------------------------------------+
+| Signal type           | Pin name used by API  | Comment                                                                       |
++=======================+=======================+===============================================================================+
+| Analog inputs         | UBAT_MON              | Protected battery voltage (after firewall)                                    |
+|                       |                       |                                                                               |
+| see bds_sys_aiv()     |                       |                                                                               |
+|                       +-----------------------+-------------------------------------------------------------------------------+
+|                       | UBRM24_MON            | Supply voltage of 5V monitoring circuit                                       |
+|                       +-----------------------+-------------------------------------------------------------------------------+
+|                       | VDD5A_MON             | ADC reference monitoring                                                      |
+|                       +-----------------------+-------------------------------------------------------------------------------+
+|                       | VDD5V_IN              | 5V ADC reference voltage                                                      |
+|                       +-----------------------+-------------------------------------------------------------------------------+
+|                       | VSS3V5                | Sensor supply voltage VSS3 (5V)                                               |
+|                       +-----------------------+-------------------------------------------------------------------------------+
+|                       | VSS4V10               | Sensor supply voltage VSS4 (10V)                                              |
++-----------------------+-----------------------+-------------------------------------------------------------------------------+
+| Temperature inputs    | TSGI1                 | Read the temperature on the upper side of printed circuit board               |
+|                       |                       |                                                                               |
+| see bds_sys_ait()     |                       |                                                                               |
+|                       +-----------------------+-------------------------------------------------------------------------------+
+|                       | TSGI2                 | Read the temperature on the bootom side of printed circuit board              |
++-----------------------+-----------------------+-------------------------------------------------------------------------------+
+| Digital outputs       | SHUNT1_EN             | Enable/Disable Shunt of K54 (input resistance is switched)                    |
+|                       |                       |                                                                               |
+| see bds_sys_do()      |                       |                                                                               |
+|                       +-----------------------+-------------------------------------------------------------------------------+
+|                       | SHUNT2_EN             | Enable/Disable Shunt of K55 (input resistance is switched)                    |
+|                       +-----------------------+-------------------------------------------------------------------------------+
+|                       | SHUNT3_EN             | Enable/Disable Shunt of K37 (input resistance is switched)                    |
+|                       +-----------------------+-------------------------------------------------------------------------------+
+|                       | SHUNT4_EN             | Enable/Disable Shunt of K61 (input resistance is switched)                    |
+|                       +-----------------------+-------------------------------------------------------------------------------+
+|                       | SHUNT5_EN             | Enable/Disable Shunt of K30 (input resistance is switched)                    |
+|                       +-----------------------+-------------------------------------------------------------------------------+
+|                       | SHUNT6_EN             | Enable/Disable Shunt of A43 (input resistance is switched)                    |
+|                       +-----------------------+-------------------------------------------------------------------------------+
+|                       | SHUNT_AIC1_EN         | Enable/Disable Shunt of K39 (input resistance is switched)                    |
+|                       +-----------------------+-------------------------------------------------------------------------------+
+|                       | SHUNT_AIC2_EN         | Enable/Disable Shunt of K38 (input resistance is switched)                    |
+|                       +-----------------------+-------------------------------------------------------------------------------+
+|                       | SHUNT_AIC3_EN         | Enable/Disable Shunt of K40 (input resistance is switched)                    |
+|                       +-----------------------+-------------------------------------------------------------------------------+
+|                       | SHUNT_AIC4_EN         | Enable/Disable Shunt of K41 (input resistance is switched)                    |
+|                       +-----------------------+-------------------------------------------------------------------------------+
+|                       | SHUNT_AIC5_EN         | Enable/Disable Shunt of K45 (input resistance is switched)                    |
+|                       +-----------------------+-------------------------------------------------------------------------------+
+|                       | SHUNT_AIC6_EN         | Enable/Disable Shunt of K44 (input resistance is switched)                    |
+|                       +-----------------------+-------------------------------------------------------------------------------+
+|                       | SHUNT_AIC7_EN         | Enable/Disable Shunt of K65 (input resistance is switched)                    |
+|                       +-----------------------+-------------------------------------------------------------------------------+
+|                       | SHUNT_AIC8_EN         | Enable/Disable Shunt of K63 (input resistance is switched)                    |
+|                       +-----------------------+-------------------------------------------------------------------------------+
+|                       | SHUNT_AIC9_EN         | Enable/Disable Shunt of K23 (input resistance is switched)                    |
+|                       +-----------------------+-------------------------------------------------------------------------------+
+|                       | SHUNT_AIC10_EN        | Enable/Disable Shunt of K37 (input resistance is switched)                    |
+|                       +-----------------------+-------------------------------------------------------------------------------+
+|                       | SHUNT_AIC11_EN        | Enable/Disable Shunt of K38 (input resistance is switched)                    |
+|                       +-----------------------+-------------------------------------------------------------------------------+
+|                       | SHUNT_AIC12_EN        | Enable/Disable Shunt of K42 (input resistance is switched)                    |
+|                       +-----------------------+-------------------------------------------------------------------------------+
+|                       | SHUNT_AIC13_EN        | Enable/Disable Shunt of K64 (input resistance is switched)                    |
+|                       +-----------------------+-------------------------------------------------------------------------------+
+|                       | SHUNT_AIC14_EN        | Enable/Disable Shunt of K39 (input resistance is switched)                    |
++-----------------------+-----------------------+-------------------------------------------------------------------------------+
+| Digital inputs        | ST_INH                | Read summary state of the inhibit signals.                                    |
+|                       |                       |                                                                               |
+| see bds_sys_di()      |                       |                                                                               |
++-----------------------+-----------------------+-------------------------------------------------------------------------------+
+| Sensor supplies       | VSS1                  | Enable/Disable VSS5V (via SPI)\...the state can be read with bds_sys_getVSS() |
+|                       |                       |                                                                               |
+| see bds_sys_setVss()  |                       |                                                                               |
+|                       +-----------------------+-------------------------------------------------------------------------------+
+|                       | VSS2                  | Enable/Disable VSS5V (via SPI)\...the state can be read with bds_sys_getVSS() |
+|                       +-----------------------+-------------------------------------------------------------------------------+
+|                       | VSS3                  | Enable/Disable VSS5V\...the voltage can be read with bds_sys_aiv()            |
+|                       +-----------------------+-------------------------------------------------------------------------------+
+|                       | VSS4                  | Enable/Disable VSS10V\...the voltage can be read with bds_sys_aiv()           |
++-----------------------+-----------------------+-------------------------------------------------------------------------------+
+
+ 

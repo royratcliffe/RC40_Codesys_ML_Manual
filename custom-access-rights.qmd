@@ -1,0 +1,9 @@
+# Custom Access-Rights {#custom-access-rights .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------+------------------------------------+
+| **Navigation:**  »No topics above this level«                                                 | [](appendix.html "Parent Chapter") |
+|                                                                                               |                                    |
+| # Custom Access-Rights {#custom-access-rights-1 .p_Heading1 style="page-break-after: avoid;"} |                                    |
++-----------------------------------------------------------------------------------------------+------------------------------------+
+
+Enter topic text here.

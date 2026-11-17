@@ -1,0 +1,83 @@
+# Failure detection capability of different SAFOUT configurations {#failure-detection-capability-of-different-safout-configurations .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [Safety manual](safety-manual.html) \> [Failure detection possibilities](failuredetectionpossibilities.html) \>                                                    | [](failuredetectionpossibilities.html "Previous Topic") [](failuredetectionpossibilities.html "Parent Chapter") [](high-sideandlow-sidecurrentcomparison(hlcc).html "Next Topic") |
+|                                                                                                                                                                                     |                                                                                                                                                                                   |
+| # Failure detection capability of different SAFOUT configurations {#failure-detection-capability-of-different-safout-configurations-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                                                                   |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The output status of the power outputs are monitored periodically by the following methods:
+
+- Diagnostic methods (e.g., internal hardware diagnosis of power stage) implemented by the output control devices
+
+- Current measurement (current measure or current sensing) of proportional high-sides and proportional low-sides
+
+- High-side and low-side current comparison (HLCC) to detect HS and LS current deviations
+
+In addition, the API  bds_out_poc_cfg is provided to be used to monitor the close-loop current control (CLCC).  
+
+ 
+
+Based on their characteristics, different safe output configurations (SAFOUT modes) are equipped with various failure detection capabilities. The failure detection capabilities of each safe output configuration are shown in the page of individual SAFOUT modes (see [Safety outputs](safety-outputs.html){.topiclink}).
+
+Upon failure detection, all power outputs belonging to the same safe output configuration will be switched off by BSW.
+
+ 
+
+The failure detection capabilities for each safe output configuration given in [Safety outputs](safety-outputs.html){.topiclink} as well as the corresponding diagnostic coverage values shown in [Reliability parameters](reliabilityparameters.html){.topiclink} are only valid under the following conditions. In case current measurement is not used, only point 3 has to be fulfilled.
+
+1.CLCC deviation monitoring API bds_out_poc_cfg is used by the ASW:
+
+oIts configured maximal deviations shall correspond to the dangerous current deviation for the application, and
+
+oThe ASW shall monitor the related error messages and react to them by bringing the machine into safe state, i.e., switching off the power outputs.
+
+2.A proper threshold is set for the HLCC function (for details see [High-side and low-side current comparison (HLCC)](high-sideandlow-sidecurrentcomparison(hlcc).html){.topiclink})
+
+3.For failure detections not relying on the HLCC, the SAFOUT channel shall stay in one state (ON/OFF) for at least 130 ms
+
+4.With RC18-12/40 and RC27-18/40, for failure detection relying on the HLCC, the SAFOUT channel shall be switched ON by the ASW for at least 45 ms
+
+If all the above pre-conditions are fulfilled, the failure detection intervals and the fault response time (FRT) of all safe output configurations are as follows.
+
+ 
+
++--------------------------------------------------+----------------------------------------------------------------------------------------------+--------------------------------------------+-------------------------------------+
+| Diagnostic method                                | Reaction                                                                                     | Worst case diagnostic test interval \[ms\] | Worst case FRT \[ms\]\*             |
++--------------------------------------------------+----------------------------------------------------------------------------------------------+--------------------------------------------+-------------------------------------+
+| Closed loop current control (CLCC)               | all power outputs belonging to the same SAFOUT configuration will be switched off by the BSW | 10                                         | 200                                 |
++--------------------------------------------------+----------------------------------------------------------------------------------------------+--------------------------------------------+-------------------------------------+
+| High side and low side current comparison (HLCC) | all power outputs belonging to the same SAFOUT configuration                                 |                                            |                                     |
+|                                                  |                                                                                              |                                            |                                     |
+|                                                  | shall be switched off by the ASW.                                                            | 100                                        | 200                                 |
+|                                                  |                                                                                              |                                            |                                     |
+|                                                  |                                                                                              |                                            |                                     |
++--------------------------------------------------+----------------------------------------------------------------------------------------------+--------------------------------------------+-------------------------------------+
+| \* The FRTs are only valid for the time settings of the \"BSW DFC Errors\" in eC, which is smaller than or equal to the default value.                                                                                             |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+[]{#fig_e52671 .hmanchor}Table 15: RC18-12/40 and R27-18/40 safe output diagnostic methods and failure reactions
+
+ 
+
+ 
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Warning](warning.png){style="margin:0;width:8.3333in;height:0.4583in;border:none"}                                                                                                                                                                                                                                                                                                 |
++======================================================================================================================================================================================================================================================================================================================================================================================+
+| For diagnostic purpose, there are test pulses generated by the output control devices and diagnosis current of the power outputs (for details see [\[RE95207\]](references.html#re_95207){.topiclink}, [\[RE95208\]](references.html#re_95208){.topiclink}, [Proportional outputs](proportional-outputs.html){.topiclink} and [Digital outputs](digital-outputs.html){.topiclink} ). |
+|                                                                                                                                                                                                                                                                                                                                                                                      |
+| •It shall be ensured that the test pulses and diagnosis current will not cause unintended actuation of the actuators.                                                                                                                                                                                                                                                                |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
++------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Warning](warning.png){style="margin:0;width:8.3333in;height:0.4583in;border:none"}                                                           |
++================================================================================================================================================+
+| Configurations of the time setting of \"BSW DFC Errors\" via easyConfig have impacts on the failure reaction time (FRT).                       |
+|                                                                                                                                                |
+| The FRTs given in the table above are only valid for the time setting that is smaller than or equal to the default value.                      |
+|                                                                                                                                                |
+| •If the time setting is changed to a greater value than the default, new evaluations and validations of the FRT shall be performed by the ASW. |
++------------------------------------------------------------------------------------------------------------------------------------------------+
+
+ 

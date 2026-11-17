@@ -1,0 +1,31 @@
+# BSW {#bsw .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> | [](-reprogramming-through-can-.html "Previous Topic") [](system-concepts.html "Parent Chapter") [](memory.html "Next Topic") |
+|                                                             |                                                                                                                              |
+| # BSW {#bsw-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                              |
++-------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+
+
+This chapter contains a high-level overview about the basic software (BSW) features the RCs provide.
+
+- [Configuration & calibration](configuration-calibration.html){.topiclink}
+
+- [Diagnostic services (UDS)](diagnostic-services.html){.topiclink}
+
+- [Error handling infrastructure](error-handling-infrastructure.html){.topiclink}
+
+- [Inputs](inputs.html){.topiclink}
+
+- [Memory](memory.html){.topiclink}
+
+- [Network communication & protocols](network-comm-protocols.html){.topiclink}
+
+- [Outputs](outputs.html){.topiclink}
+
+- [Power supply](power-supply.html){.topiclink}
+
+- [Runtime system & system states](runtime-system-system-states.html){.topiclink}
+
+- [Self-monitoring](ecu-self-monitoring.html){.topiclink}
+
+- [System services](system-services.html){.topiclink}

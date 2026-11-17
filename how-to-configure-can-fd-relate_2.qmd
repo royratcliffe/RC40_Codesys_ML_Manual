@@ -1,0 +1,85 @@
+# How to implement CAN-FD legacy using Transmit, Receive Databoxes {#how-to-implement-can-fd-legacy-using-transmit-receive-databoxes .p_Heading1 style="page-break-after: avoid;"}
+
++:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [How-Tos](how-to.html) \> [How to develop an application using CAN-FD legacy APIs](howtodevelopanapplicationusingcan-fdlegacyapis.html) \>                          | [](howtodevelopanapplicationusingcan-fdlegacyapis.html "Previous Topic") [](howtodevelopanapplicationusingcan-fdlegacyapis.html "Parent Chapter") [](howtoimplementcan-fdlegacyusingtransmitreceivebuffers.html "Next Topic") |
+|                                                                                                                                                                                      |                                                                                                                                                                                                                               |
+| # How to implement CAN-FD legacy using Transmit, Receive Databoxes {#how-to-implement-can-fd-legacy-using-transmit-receive-databoxes-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                                                                                                               |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
++------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Attention](attention.png){style="margin:0;width:2.1667in;height:0.7083in;border:none"} | •If a CAN-FD transmit buffer variable with more than 50 messages needs to be configured,the CAN-FD transmit buffer variable for the specified CAN channel shall be declared in a memory location other than RAM1, else RAM overflow may occur. |
+|                                                                                          |                                                                                                                                                                                                                                                |
+|                                                                                          | •This is because CAN-FD buffers configured in easyConfig are stored in the .bss section (RAM1), and configuration of such buffers for all CAN channels, will increase the RAM memory consumption significantly in RAM1.                        |
++------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+ 
+
+Following examples suggest how to configure and use CAN-FD related parameters such as number of databoxes, along with baud rate configuration, if databox usage is preferred.
+
+## Using Transmit/Receive Databox: {#using-transmitreceive-databox .p_Heading2 style="page-break-after: avoid;"}
+
+## Example 1: Configure all CAN-FD related parameters in easyConfig and use BSW APIs for communication. {#example-1-configure-all-can-fd-related-parameters-in-easyconfig-and-use-bsw-apis-for-communication. .p_Heading2 style="page-break-after: avoid;"}
+
+### Step 1: {#step-1 .p_Heading3 style="page-break-after: avoid;"}
+
+Configure a CAN channel for CAN-FD during pre-compile time (configuration in easyConfig).
+
+in Communication \--\> Select CAN Channel
+
+### Step 2: {#step-2 .p_Heading3 style="page-break-after: avoid;"}
+
+Configure CAN-FD baudrate for the selected CAN channel.
+
+After selecting the CAN Channel, under settings(CAN/CAN-FD) choose CAN-FD and then configure the desired baudrate.
+
+### Step 3: {#step-3 .p_Heading3 style="page-break-after: avoid;"}
+
+Configure transmit and receive databox numbers for CAN and CAN-FD in the Legacy section.
+
+## Example 2: Configure all CAN parameters in easyConfig and use BSW APIs for CAN-FD configuration and communication {#example-2-configure-all-can-parameters-in-easyconfig-and-use-bsw-apis-for-can-fd-configuration-and-communication .p_Heading2 style="page-break-after: avoid;"}
+
+### Step 1: {#step-1-1 .p_Heading3 style="page-break-after: avoid;"}
+
+Configure a CAN channel for CAN 2.0 during pre-compile time (configuration in easyConfig).
+
+in Communication \--\> Select CAN
+
+### Step 2: {#step-2-1 .p_Heading3 style="page-break-after: avoid;"}
+
+Configure CAN baudrate for the selected CAN channel.
+
+After selecting the CAN Channel, under settings(CAN/CAN-FD) choose CAN and then configure the desired baudrate.
+
+### Step 3: {#step-3-1 .p_Heading3 style="page-break-after: avoid;"}
+
+Configure CAN transmit and CAN receive buffer in the Legacy section.
+
+After configuring the baudrate go to legacy tab and configure transmit and receive buffers for CAN 2.0.
+
+### Step 4: {#step-4 .p_Heading3 style="page-break-after: avoid;"}
+
+In ASW, configure CAN-FD transmit databox by calling  bds_can_fd_registerTxDataboxes() in initialization task.
+
+### Step 5: {#step-5 .p_Heading3 style="page-break-after: avoid;"}
+
+In ASW, configure CAN-FD receive databox by calling  bds_can_fd_registerRxDataboxes() in initialization task.
+
+Step 6:
+
+In ASW, configure CAN-FD baudrate by calling  bds_can_initxt().
+
+### Step 7: {#step-7 .p_Heading3 style="page-break-after: avoid;"}
+
+In ASW, initialize CAN-FD Transmit Databox(es) by calling  bds_can_fd_initTxDatabox().
+
+### Step 8: {#step-8 .p_Heading3 style="page-break-after: avoid;"}
+
+In ASW, initialize CAN-FD Receive Databox(es) by calling  bds_can_fd_initRxDatabox().
+
++------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Attention](attention.png){style="margin:0;width:2.1667in;height:0.7083in;border:none"} | •Baud rate, CAN-FD transmit databox count and CAN-FD receive databox count have to be configured for a given CAN channel.                                                                          |
+|                                                                                          |                                                                                                                                                                                                    |
+|                                                                                          | •If the buffer size for CAN-FD transmit / receive buffer has to be configured with more than 50 messages then use BSW API  bds_can_fd_registerTxDataboxes() and  bds_can_fd_registerRxDataboxes(). |
++------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Refer code example as below for sample usage:

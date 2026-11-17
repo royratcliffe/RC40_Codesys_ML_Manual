@@ -1,0 +1,49 @@
+# Cyclic monitoring {#cyclic-monitoring .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Self-monitoring](ecu-self-monitoring.html) \> | [](ecu-self-monitoring.html "Previous Topic") [](ecu-self-monitoring.html "Parent Chapter") [](adc-test-voltage-monitoring.html "Next Topic") |
+|                                                                                                                               |                                                                                                                                               |
+| # Cyclic monitoring {#cyclic-monitoring-1 .p_Heading1 style="page-break-after: avoid;"}                                       |                                                                                                                                               |
++-------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+
+List of cyclic checks.
+
+ 
+
+ 
+
+ 
+
+Cyclic Monitoring checks for controllers RC18-12/40, RC27-18/40:
+
+  Cyclic Checks                                                                                                         Description
+  --------------------------------------------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------------
+  [ADC test voltage monitoring](adc-test-voltage-monitoring.html){.topiclink}                                           Monitoring of overvoltage and undervoltage (5.0 V)
+  [GTM monitoring](gtm-monitoring.html){.topiclink}                                                                     Monitoring of GTM functionality
+  [Program flow control](program-flow-control.html){.topiclink}                                                         Monitoring of safety function execution sequence
+  [Safety feature configuration check](safety-feature-configuration.html){.topiclink}                                   Monitoring of safety safety feature configurations
+  [Peripheral core monitoring](peripheral-core-monitoring.html){.topiclink}                                             Monitoring lockstep core test
+  [Error management module](errormanagementmodule.html){.topiclink}                                                     Collects faults from different error sources and performs a configurable error reaction
+  [Query response communication](queryresponsecommunication.html){.topiclink}                                           Monitoring of Query−response communication between the function controller and the monitoring module
+  [Cyclic RAM check](cyclic-ram-check.html){.topiclink}                                                                 Monitoring of RAM content and writability
+  [Inhibits Monitoring](inhibitmonitoring.html){.topiclink}                                                             Monitoring of Inhibits
+  [Internal watchdog monitoring](internalwatchdogmonitoring.html){.topiclink}                                           Monitoring of tasks in system
+  [VSS_1 (sensor supply 1)](vss_1-(sensor-supply-1).html){.topiclink}                                                   Monitoring of overvoltage and undervoltage
+  [VSS_2 (sensor supply 2)](vss_2-(sensor-supply-2).html){.topiclink}                                                   Monitoring of overvoltage and undervoltage
+  [VSS_3 (sensor supply 3)](vss_3-(sensor-supply-3).html){.topiclink}                                                   Monitoring of overvoltage and undervoltage
+  [VSS_4 (sensor supply 4)](vss_4-(sensor-supply-4).html){.topiclink}                                                   Monitoring of overvoltage and undervoltage
+  [ECU temperature 1](ecu-temperature-1.html){.topiclink}                                                               Monitoring of excess temperature
+  [ECU temperature 2](ecu-temperature-2.html){.topiclink}                                                               Monitoring of excess temperature
+  [VDD3V3(ECU internal voltage 3.3V)](vdd3v3-ecu-internal-voltage.html){.topiclink}                                     Monitoring of overvoltage and undervoltage
+  [V6V5(ECU internal reference voltage 6.5V)](v6v5-ecu-internal-reference-voltage.html){.topiclink}                     Monitoring of overvoltage and undervoltage
+  [VDD5A ECU internal reference voltage](vdd5a-ecu-internal-voltage.html){.topiclink}                                   Monitoring of overvoltage and undervoltage
+  [VDD5_IN ECU internal reference voltage](vdd5_in-ecu-internal-voltage.html){.topiclink}                               Monitoring of overvoltage and undervoltage
+  [VDD5_S3530 ECU internal reference voltage](vdd5_s3530-ecu-internal-voltage.html){.topiclink}                         Monitoring of overvoltage and undervoltage
+  [VKL30 (ECU power supply)](vkl30-(ecu-power-supply).html){.topiclink}                                                 Monitoring of overvoltage
+  [VKL30 after the HW-Firewall via Input device S4800](vkl30-after-the-hw-firewall-via-input-device.html){.topiclink}   Monitoring of overvoltage
+  [VKL30 after the HW-Firewall via Input device S4850](vkl30-after-the-hw-firewall-s4850.html){.topiclink}              Monitoring of overvoltage
+  [VKL30 via analog feedback](vkl30-via-analog-feedback.html){.topiclink}                                               Monitoring of overvoltage
+  [VKL30 deviation 1](vkl30-deviation-1.html){.topiclink}                                                               Monitoring of voltage difference of KL30
+  [Battery Voltage Monitoring for Power Output](battery-voltage-monitoring-for.html){.topiclink}                        Monitoring of battery voltage and inhibit signal
+
+ 

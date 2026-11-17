@@ -1,0 +1,146 @@
+# DIDs for Discovery App Communication {#dids-for-discovery-app-communication .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Diagnostic services (UDS)](diagnostic-services.html) \> [UDS - BODAS-service](uds-bodas-service.html) \> | [](uds-bodas-service.html "Previous Topic") [](uds-bodas-service.html "Parent Chapter") [](uds-message-format---bodas-service.html "Next Topic") |
+|                                                                                                                                                                                          |                                                                                                                                                  |
+| # DIDs for Discovery App Communication {#dids-for-discovery-app-communication-1 .p_Heading1 style="page-break-after: avoid;"}                                                            |                                                                                                                                                  |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Discovery App identifies the electronic devices that can be flashed and diagnosed by BODAS-service 4.x.
+
+It is developed and delivered by Bosch Rexroth.
+
+ 
+
+The table below lists the Data Identifiers (DIDs) relevant to Discovery App communication for RC18-12/40 or RC27-18/40, along with their associated functions and usage contexts.
+
+### Note: {#note .p_Heading3 style="page-break-after: avoid;"}
+
+- The DIDs are accessible within the Default diagnostic session without requiring any specific security access.
+
+- These DIDs are read-only and cannot be modified or written to.
+
+ 
+
+  -------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------
+  ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"}   ODX-UUID shall be unique for every BODAS-service App due to BODAS-app Concept and 16 bytes long.
+  -------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------
+
+ 
+
+ 
+
+<table style="width:8.3333in; border:none; border-spacing:0; border-collapse:collapse;">
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="vertical-align: middle; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>DID</p></td>
+<td style="vertical-align: middle; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Description (Long Name)</p></td>
+<td style="vertical-align: middle; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Short Name (Label)</p></td>
+<td style="vertical-align: middle; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Conversion (RC4x)</p></td>
+<td style="vertical-align: middle; width: 0.3542in; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Unit</p></td>
+<td style="vertical-align: middle; width: 0.3333in; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Data Type</p></td>
+<td style="vertical-align: middle; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Length (Byte / Bit)</p></td>
+<td style="vertical-align: middle; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Byte Position</p></td>
+<td style="vertical-align: middle; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Bit Position</p></td>
+<td style="vertical-align: middle; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Example</p></td>
+<td style="vertical-align: middle; width: 1.0729in; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Alternative BSW API</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0xF18A</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>SystemSupplierIdentifier</p></td>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p> </p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p> </p></td>
+<td style="vertical-align: top; width: 0.3542in; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p> </p></td>
+<td style="vertical-align: top; width: 0.3333in; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>uint8</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>2 bytes</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0x0024 - Rexroth</p></td>
+<td style="vertical-align: top; width: 1.0729in; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>-</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0xF18C</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Serial Number</p></td>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>ECUSerialNumberDataIdentifier</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p> </p></td>
+<td style="vertical-align: top; width: 0.3542in; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p> </p></td>
+<td style="vertical-align: top; width: 0.3333in; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>uint8</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>4 bytes (or cust. Spec.)</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>517 (4 bytes)</p></td>
+<td style="vertical-align: top; width: 1.0729in; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>bds_sys_getEcuInfo</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0xF192</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Hardware Id.</p></td>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>SystemSupplierECUHardwareNumberIdentifier</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p> </p></td>
+<td style="vertical-align: top; width: 0.3542in; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p> </p></td>
+<td style="vertical-align: top; width: 0.3333in; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>uint8</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>2 bytes (or cust. Spec.)</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>For RC40_mid - 0x0172, for RC40_large -0x0072</p></td>
+<td style="vertical-align: top; width: 1.0729in; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>bds_sys_getEcuInfo</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0xF19E</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>UUID</p></td>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>ODXFileDataIdentifier</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>16 bytes – ODX-UUID</p>
+<p>1 byte – Major Ver.</p>
+<p>1 byte – Minor Ver</p></td>
+<td style="vertical-align: top; width: 0.3542in; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p> </p></td>
+<td style="vertical-align: top; width: 0.3333in; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>ASCII</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>18 bytes</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>AB E5 39 66 C3 08 11 E8 A3 55 52 92 69</p>
+<p>FB 14 59</p>
+<p>01</p>
+<p>00</p></td>
+<td style="vertical-align: top; width: 1.0729in; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>bds_uds_setUUID</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0xF186</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Active Session</p></td>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>activeDiagnosticSessionDataIdentifier</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Identical (phys = 1*int)</p></td>
+<td style="vertical-align: top; width: 0.3542in; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p> </p></td>
+<td style="vertical-align: top; width: 0.3333in; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>uint8</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>1 byte</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0x01 - defaultSession; 0x02 - ProgrammingSession; 0x03 - extendedDiagnosticSession</p></td>
+<td style="vertical-align: top; width: 1.0729in; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>bds_uds_getActiveSession</p></td>
+</tr>
+</tbody>
+</table>
+
+ 
+
+The usage of the DIDs are described below:
+
+  -------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------
+  DID      USE                                                                                                                                                                                                                               MNEMONIC
+  0xF18A   SystemSupplierIdentifier: This value shall be used to reference the system supplier name and address information. Record data content and format shall be server specific and defined by the system supplier.                     SSIDDID
+  0xF18C   ECUSerialNumberDataIdentifier: This value shall be used to reference the ECU(serial number).Record data content and format shall be server specific.                                                                              ECUSNDID
+  0xF192   SystemSupplierECUHardwareNumberIdentifier: This value shall be used to reference the system supplier specific ECU(hardware number). Record data content and format shall be server specific and defined by the system supplier.   SSECUHWNDID
+  0xF19E   ODXFileDataIdentifier: This value shall be used to reference the ODX (Open Diagnostic Data Exchange) file of the server to be used to interprete and scale the server data.                                                       ODXFDID
+  -------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------
+
+ 

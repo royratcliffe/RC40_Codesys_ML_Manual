@@ -1,0 +1,51 @@
+# VDD3V3 ECU internal voltage {#vdd3v3-ecu-internal-voltage .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Self-monitoring](ecu-self-monitoring.html) \> [Cyclic monitoring](cyclic-monitoring-checks.html) \> | [](v6v5-ecu-internal-reference-voltage.html "Previous Topic") [](cyclic-monitoring-checks.html "Parent Chapter") [](vkl30-(ecu-power-supply).html "Next Topic") |
+|                                                                                                                                                                                     |                                                                                                                                                                 |
+| # VDD3V3 ECU internal voltage {#vdd3v3-ecu-internal-voltage-1 .p_Heading1 style="page-break-after: avoid;"}                                                                         |                                                                                                                                                                 |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The cyclic check of the ECU internal voltage 3.3V
+
+ 
+
+## Remarks: {#remarks .p_Heading2 style="page-break-after: avoid;"}
+
+- Monitoring of overvoltage and undervoltage for error.
+
+- Only errors are indicated.
+
+- Over Voltage Error Limit = 3.480V
+
+- Under Voltage Error Limit = 3.130V
+
+- Refer [Safety function and safe state](safetyfunctionandsafestate.html){.topiclink} for details on the safety functions provided by the RCs and the related considerations to be observed.
+
+- Refer [Failure detection possibilities](failuredetectionpossibilities.html){.topiclink} for a broader overview of the different failure reactions observed.
+
+ 
+
+Error Reaction:
+
+- Over Voltage Error (VDD3V3 \>= Over Voltage Error Limit)
+
+  Error Description              Reaction
+  ------------------------------ -----------------------------
+  DFC                            DFC_rbr_moOV_SecondConstADC
+  Error Code                     0x082E00
+  High Power Outputs(\...,OFF)   yes
+  ECU Reset                      no
+  Reaction time                  160ms
+
+ 
+
+- Under Voltage Error (VDD3V3 \<= Under Voltage Error Limit)
+
+  Error Description              Reaction
+  ------------------------------ -----------------------------
+  DFC                            DFC_rbr_moUV_SecondConstADC
+  Error Code                     0x082F00
+  High Power Outputs(\...,OFF)   yes
+  ECU Reset                      no
+  Reaction time                  160ms

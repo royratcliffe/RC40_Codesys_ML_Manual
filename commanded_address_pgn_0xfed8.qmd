@@ -1,0 +1,15 @@
+# Commanded address (PGN = 0xFED8) {#commanded-address-pgn-0xfed8 .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [ISOBUS/J1939](isobus-module.html) \> [ISOBUS services and PGNs](isobus_services_and_pgns.html) \> | [](address_claimed_pgn_0xee00.html "Previous Topic") [](isobus_services_and_pgns.html "Parent Chapter") [](name_management_pgn_0x9300.html "Next Topic") |
+|                                                                                                                                                                                                                                                       |                                                                                                                                                          |
+| # Commanded address (PGN = 0xFED8) {#commanded-address-pgn-0xfed8-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                     |                                                                                                                                                          |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+With this PGN another controller can change the address of the controller application (CA). Because of the length of 9 data bytes, this message will be sent with the BAM protocol. If the CA name matches with the own one then the own address will be changed according the request. From this moment the own application is only reachable with the new address.
+
+As soon as the own address has been changed, the RC sends a new \'Address Claim\' message with the new own address.
+
+ 
+
+ 

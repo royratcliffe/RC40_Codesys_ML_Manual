@@ -1,0 +1,57 @@
+# Integration of Routine Control in ASW {#integration-of-routine-control-in-asw .p_Heading1 style="page-break-after: avoid;"}
+
++:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Diagnostic services (UDS)](diagnostic-services.html) \> [UDS overview](uds---overview.html) \> [Supported UDS services](supported-uds-services.html) \> [SID - Routine Control (0x31)](sid---routine-control-(0x31).html) \> | [](sid---routine-control-(0x31).html "Previous Topic") [](sid---routine-control-(0x31).html "Parent Chapter") [](uds-routine_control.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                              |                                                                                                                                                         |
+| # Integration of Routine Control in ASW {#integration-of-routine-control-in-asw-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                                              |                                                                                                                                                         |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Example:
+
+A Routine Control with ID 0x0201 must be created to initiate the routine.\
+This routine requires a Routine Control Option (input) record of 24 bits and returns a Routine Status (output) record of 8 bits.
+
+In easyConfig we need to do following configuration for above mentioned example:
+
+1.In Routine Control configuration page in easyConfig need to provide following information.
+
+  Parameter Type       Description
+  -------------------- --------------------
+  Routine Name         Routine_ASW_Demo
+  Routine Identifier   0x0201
+  Routine Type         Start
+  Callback             Routine_start_0201
+  IN Signal Length     24
+  OUT Signal Length    8
+
+   
+
+Note: IN Signal Length and OUT Signal Length is variable length.\
+ i.e for above example maximum routine control option length(Input) is 24 bit.\
+ UDS will accept the request if routine control option length is less that 24 bits but not more than 24 bits.\
+ If requested a service with more than 24 bits will get negative response.\
+ Similarly for OUT Signal  maximum it can send in response is 8 bit.
+
+2\.  Routine Callback has to be defined in ASW for performing the routine start functionality
+
+   For callback registered in eC config the function definition will be generated in \"bds_diag_appl_adapt.c\" file.
+
+ 
+
+3\. Request and Response
+
+- UDS Request message for Example Routine
+
+  ------------ ----------------- ------------------------- ------------------------- ------------------------ ------------------------ ------------------------
+  Service ID   Sub Function ID   Routine Identifier(MSB)   Routine Identifier(LSB)   Routine Control Byte 1   Routine Control Byte 2   Routine Control Byte 3
+  0x31         0x01              0x02                      0x01                        0x10                   0x11                     0x12
+  ------------ ----------------- ------------------------- ------------------------- ------------------------ ------------------------ ------------------------
+
+ 
+
+- UDS Response (Positive response)
+
+  -------------------------------- ---------------------- ------------------------- ------------------------- -----------------------
+  Respose ID for Routine Control   Routine Control Type   Routine Identifier(MSB)   Routine Identifier(LSB)   Routine Status Byte 1
+  0x71                             0x01                   0x02                      0x01                        0x20
+  -------------------------------- ---------------------- ------------------------- ------------------------- -----------------------

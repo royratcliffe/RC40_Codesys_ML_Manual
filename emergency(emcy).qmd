@@ -1,0 +1,113 @@
+# Emergency (EMCY) {#emergency-emcy .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [CANopen protocol description](canopen-protocol-description.html) \> | [](electronic-data-sheets(eds).html "Previous Topic") [](canopen-protocol-description.html "Parent Chapter") [](global-fail-safe-command(gfc).html "Next Topic") |
+|                                                                                                                                                                                                                                                     |                                                                                                                                                                  |
+| # Emergency (EMCY) {#emergency-emcy-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                                 |                                                                                                                                                                  |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The Emergency Message (EMCY) is a service, which signals internal fatal device errors to inform other CANopen devices in the network. The error types are defined in the communication profile and the device profiles. The EMCY is transmitted with the highest priority.
+
+The CANopen defines EMCY producer and EMCY consumer. The producer transmits EMCYs and the consumers receive them.
+
+The EMCY telegram consists of 8 bytes. It contains an emergency error code, the contents of object [1001h](object-0x1001-error-register.html){.topiclink}, and 5 bytes of manufacturer-specific error code. Each transmitted error code and the first two bytes of the manufacturer-specific code will be pushed in the predefined error field on index [1003h](object-0x1003-pre-defined-erro.html){.topiclink}. This field can contain up to 255 error entries. The value of sub-index 0 shows the current number of entries. The most recent occurred error will be always inserted on the top of this field (sub-index 1). All older entries will be moved down.
+
+The Emergency message is sent with CAN-ID 0x80h+Node-ID. The Emergency telegram is structured as follows
+
+ 
+
++---------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| CAN-ID        | Data                                                                                                                                                                     |
+|               +--------------+--------------+-----------------------------------------------------------------+--------------+--------------+--------------+--------------+--------------+
+|               | Byte 0       | Byte 1       | Byte 2                                                          | Byte 3       | Byte 4       | Byte 5       | Byte 6       | Byte 7       |
++===============+==============+==============+=================================================================+==============+==============+==============+==============+==============+
+| 0x80h+Node-ID | Emergency Error Code        | Error Register\                                                 | Manufacturer Specific Error                                              |
+|               |                             | (Object [1001h](object-0x1001-error-register.html){.topiclink}) |                                                                          |
++---------------+-----------------------------+-----------------------------------------------------------------+--------------------------------------------------------------------------+
+
+ 
+
+If there are no more errors on the device, an EMCY with error code 0 will be sent as shown in the table below.
+
+ 
+
+  CANID           Data
+  --------------- ---------------------------------
+  0x80h+Node-ID   00h 00h 00h 00h 00h 00h 00h 00h
+
+ 
+
+ 
+
+## Emergency Error code: {#emergency-error-code .p_Heading2 style="page-break-after: avoid;"}
+
+ 
+
+  Error Code (hex)   Meaning
+  ------------------ ---------------------------------------
+  00xx               Error Reset or No Error
+  10xx               Generic Error
+  20xx               Current
+  21xx               Current, device input side
+  22xx               Current inside the device
+  23xx               Current, device output side
+  30xx               Voltage
+  31xx               Mains Voltage
+  32xx               Voltage inside the device
+  33xx               Output Voltage
+  40xx               Temperature
+  41xx               Ambient Temperature
+  42xx               Device Temperature
+  50xx               Device Hardware
+  60xx               Device Software
+  61xx               Internal Software
+  62xx               User Software
+  63xx               Data Set
+  70xx               Additional Modules
+  80xx               Monitoring
+  81xx               Communication
+  8110               CAN Overrun (Objects lost)
+  8120               CAN in Error Passive Mode
+  8130               Life Guard Error or Heartbeat Error
+  8140               Recovered from bus off
+  8150               Transmit COB-ID collision
+  82xx               Protocol Error
+  8210               PDO not processed due to length error
+  8220               PDO length exceeded
+  90xx               External Error
+  F0xx               Additional Functions
+  FFxx               Device specific
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 

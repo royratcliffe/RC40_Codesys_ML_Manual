@@ -1,0 +1,9 @@
+# Authorization {#authorization .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [Security](security.html) \> | [](x509certificates.html "Previous Topic") [](security.html "Parent Chapter") [](introduction3.html "Next Topic") |
+|                                                                                          |                                                                                                                   |
+| # Authorization {#authorization-1 .p_Heading1 style="page-break-after: avoid;"}          |                                                                                                                   |
++------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------+
+
+This section describes the role management concept for RCs and how it can be configured.

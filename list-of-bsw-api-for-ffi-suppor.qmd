@@ -1,0 +1,208 @@
+# List of BSW APIs with support for partition concept {#list-of-bsw-apis-with-support-for-partition-concept .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [Safety manual](safety-manual.html) \> [Safety-related software and software toolchain](safety-relatedsoftwareandsoftwaretoolchain.html) \> [Freedom from Interference (FFI)](freedom-from-interference.html) \> [BSW API support to partition concept](bsw-api-support-to-partition-c.html) \> | [](bsw-api-support-to-partition-c.html "Previous Topic") [](bsw-api-support-to-partition-c.html "Parent Chapter") [](list-of-bsw-api-with-no-restrictions.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                                  |                                                                                                                                                                              |
+| # List of BSW APIs with support for partition concept {#list-of-bsw-apis-with-support-for-partition-concept-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                      |                                                                                                                                                                              |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The table below lists base software APIs supporting the partition concept. The application software component in untrusted partition is allowed only to call APIs listed in the table below.
+
+ 
+
+ 
+
++-----------------------------------+------------------------------------------+-------------------------------+
+| BSW API - FFI Variant             | Callback function Name                   | BSW API                       |
++===================================+==========================================+===============================+
+| bds_inI_ctrlShunt_ffi             | bds_inI_ctrlShuntParamChk_cb             | bds_inI_ctrlShunt             |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_inI_cfgPull_ffi               | bds_inI_cfgPullParamChk_cb               | bds_inI_cfgPull               |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_inU_cfgPull_ffi               | bds_inU_cfgPullParamChk_cb               | bds_inU_cfgPull               |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_inDig_cfgPull_ffi             | bds_inDig_cfgPullParamChk_cb             | bds_inDig_cfgPull             |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_inPwm_getTi_ffi               | bds_inPwm_getTiParamChk_cb               | bds_inPwm_getTi               |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_inPwm_getFrq_ffi              | bds_inPwm_getFrqParamChk_cb              | bds_inPwm_getFrq              |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_inPwm_getTiBufd_ffi           | bds_inPwm_getTiBufdParamChk_cb           | bds_inPwm_getTiBufd           |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_inPha_get_ffi                 | bds_inPha_getParamChk_cb                 | bds_inPha_get                 |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_inPha_getTiBufd_ffi           | bds_inPha_getTiBufdParamChk_cb           | bds_inPha_getTiBufd           |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_out_do_ffi                    | bds_out_doParamChk_cb                    | bds_out_do                    |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_out_do_getCurrent_ffi         | bds_out_do_getCurrentParamChk_cb         | bds_out_do_getCurrent         |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_out_do_getStatus_ffi          | bds_out_do_getStatusParamChk_cb          | bds_out_do_getStatus          |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_out_do_cfgPwrLs_ffi           | bds_out_do_cfgPwrLsParamChk_cb           | bds_out_do_cfgPwrLs           |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_out_do_disable_ffi            | bds_out_do_disableParamChk_cb            | bds_out_do_disable            |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_out_do_disableTstPls_ffi      | bds_out_do_disableTstPlsParamChk_cb      | bds_out_do_disableTstPls      |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_out_po_ffi                    | bds_out_poParamChk_cb                    | bds_out_po                    |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_out_pod_ffi                   | bds_out_podParamChk_cb                   | bds_out_pod                   |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_out_po_cfg_ffi                | bds_out_po_cfgParamChk_cb                | bds_out_po_cfg                |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_out_po_cfgPeriod_ffi          | bds_out_po_cfgPeriodParamChk_cb          | bds_out_po_cfgPeriod          |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_out_po_cfgPwrLs_ffi           | bds_out_po_cfgPwrLsParamChk_cb           | bds_out_po_cfgPwrLs           |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_out_po_disable_ffi            | bds_out_po_disableParamChk_cb            | bds_out_po_disable            |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_out_po_disableTstPls_ffi      | bds_out_po_disableTstPlsParamChk_cb      | bds_out_po_disableTstPls      |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_out_po_getCurrent_ffi         | bds_out_po_getCurrentParamChk_cb         | bds_out_po_getCurrent         |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_out_po_getStatus_ffi          | bds_out_po_getStatusParamChk_cb          | bds_out_po_getStatus          |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_out_poc_ffi                   | bds_out_pocParamChk_cb                   | bds_out_poc                   |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_out_poc_cfg_ffi               | bds_out_poc_cfgParamChk_cb               | bds_out_poc_cfg               |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_out_poc_cfgPI_ffi             | bds_out_poc_cfgPIParamChk_cb             | bds_out_poc_cfgPI             |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_out_poc_cfgDither_ffi         | bds_out_poc_cfgDitherParamChk_cb         | bds_out_poc_cfgDither         |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_out_aov_ffi                   | bds_out_aovParamChk_cb                   | bds_out_aov                   |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_out_aov_cfg_ffi               | bds_out_aov_cfgParamChk_cb               | bds_out_aov_cfg               |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_out_aov_getVoltage_ffi        | bds_out_aov_getVoltageParamChk_cb        | bds_out_aov_getVoltage        |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_out_aov_getStatus_ffi         | bds_out_aov_getStatusParamChk_cb         | bds_out_aov_getStatus         |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_out_aov_cfgPI_ffi             | bds_out_aov_cfgPIParamChk_cb             | bds_out_aov_cfgPI             |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_out_cfgLoadCharacteristic_ffi | bds_out_cfgLoadCharacteristicParamChk_cb | bds_out_cfgLoadCharacteristic |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_outClcU_setVoltage_ffi        | bds_outClcU_setVoltageParamChk_cb        | bds_outClcU_setVoltage        |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_outClcU_setPercUBat_ffi       | bds_outClcU_setPercUBatParamChk_cb       | bds_outClcU_setPercUBat       |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_outClcU_get_ffi               | bds_outClcU_getParamChk_cb               |  \                            |
+|                                   |                                          | bds_outClcU_get               |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_outClcU_cfgClc_ffi            | bds_outClcU_cfgClcParamChk_cb            | bds_outClcU_cfgClc            |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_outClcU_rstErr_ffi            | bds_outClcU_rstErrParamChk_cb            | bds_outClcU_rstErr            |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_outDig_set_ffi                | bds_outDig_setParamChk_cb                | bds_outDig_set                |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_outDig_get_ffi                | bds_outDig_getParamChk_cb                | bds_outDig_get                |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_outDig_cfgDiag_ffi            | bds_outDig_cfgDiagParamChk_cb            | bds_outDig_cfgDiag            |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_outDig_rstErr_ffi             | bds_outDig_rstErrParamChk_cb             | bds_outDig_rstErr             |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_outPwm_setDutyCycle_ffi       | bds_outPwm_setDutyCycleParamChk_cb       | bds_outPwm_setDutyCycle       |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_outPwm_get_ffi                | bds_outPwm_getParamChk_cb                | bds_outPwm_get                |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_outPwm_cfgPeriod_ffi          | bds_outPwm_cfgPeriodParamChk_cb          | bds_outPwm_cfgPeriod          |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_outPwm_rstErr_ffi             | bds_outPwm_rstErrParamChk_cb             | bds_outPwm_rstErr             |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_outPwm_cfgDiag_ffi            | bds_outPwm_cfgDiagParamChk_cb            | bds_outPwm_cfgDiag            |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_outPwm_cfgMode_ffi            | bds_outPwm_cfgModeParamChk_cb            | bds_outPwm_cfgMode            |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_outPwm_setCurrent_ffi         | bds_outPwm_setCurrentParamChk_cb         | bds_outPwm_setCurrent         |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_outPwm_cfgDiagCurrentDe_ffi   | bds_outPwm_cfgDiagCurrentDeParamChk_cb   | bds_outPwm_cfgDiagCurrentDe   |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_outPwm_cfgClc_ffi             | bds_outPwm_cfgClcParamChk_cb             | bds_outPwm_cfgClc             |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_outPwm_cfgDither_ffi          | bds_outPwm_cfgDitherParamChk_cb          | bds_outPwm_cfgDither          |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_sent_getFastData_ffi          | bds_sent_getFastDataParamChk_cb          | bds_sent_getFastData          |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_sent_getSlowData_ffi          | bds_sent_getSlowDataParamChk_cb          | bds_sent_getSlowData          |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_sent_getFastDataBufd_ffi      | bds_sent_getFastDataBufdParamChk_cb      | bds_sent_getFastDataBufd      |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_sent_getSlowDataBufd_ffi      | bds_sent_getSlowDataBufdParamChk_cb      | bds_sent_getSlowDataBufd      |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_can_getData_ffi               | bds_can_getDataParamChk_cb               | bds_can_getData               |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_can_getDatabox_ffi            | bds_can_getDataboxParamChk_cb            | bds_can_getDatabox            |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_can_getStatus_ffi             | bds_can_getStatusParamChk_cb             | bds_can_getStatus             |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_can_getRxBufStatus_ffi        | bds_can_getRxBufStatusParamChk_cb        | bds_can_getRxBufStatus        |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_can_getTxBufStatus_ffi        | bds_can_getTxBufStatusParamChk_cb        | bds_can_getTxBufStatus        |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_can_isTxDataboxFree_ffi       | bds_can_isTxDataboxFreeParamChk_cb       | bds_can_isTxDataboxFree       |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_can_isTxChannelFree_ffi       | bds_can_isTxChannelFreeParamChk_cb       | bds_can_isTxChannelFree       |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_can_sendData_ffi              | bds_can_sendDataParamChk_cb              | bds_can_sendData              |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_can_sendDatabox_ffi           | bds_can_sendDataboxParamChk_cb           | bds_can_sendDatabox           |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_mem_writeBlock_ffi            | bds_mem_writeBlockParamChk_cb            | bds_mem_writeBlock            |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_mem_readBlock_ffi             | bds_mem_readBlockParamChk_cb             | bds_mem_readBlock             |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_mem_getBlockStatus_ffi        | bds_mem_getBlockStatusParamChk_cb        | bds_mem_getBlockStatus        |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_mem_markBlock_ffi             | bds_mem_markBlockParamChk_cb             | bds_mem_markBlock             |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_dsm_updateError_ffi           | bds_dsm_updateErrorParamChk_cb           | bds_dsm_updateError           |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_dsm_getErrors_ffi             | bds_dsm_getErrorsParamChk_cb             | bds_dsm_getErrors             |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_dsm_getNumErrors_ffi          | bds_dsm_getNumErrorsParamChk_cb          | bds_dsm_getNumErrors          |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_dsm_getDFC_Status_ffi         | bds_dsm_getDFC_StatusParamChk_cb         | bds_dsm_getDFC_Status         |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_sys_getStates_ffi             | bds_sys_getStatesParamChk_cb             | bds_sys_getStates             |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_sys_getCoreLoad_ffi           | bds_sys_getCoreLoadParamChk_cb           | bds_sys_getCoreLoad           |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_sys_getTaskRuntime_ffi        | bds_sys_getTaskRuntimeParamChk_cb        | bds_sys_getTaskRuntime        |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_sys_getEcuInfo_ffi            | bds_sys_getEcuInfoParamChk_cb            | bds_sys_getEcuInfo            |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_sys_getVersion_ffi            | bds_sys_getVersionParamChk_cb            | bds_sys_getVersion            |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_sys_getResetInfo_ffi          | bds_sys_getResetInfoParamChk_cb          | bds_sys_getResetInfo          |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_sys_getAge_ffi                | bds_sys_getAgeParamChk_cb                | bds_sys_getAge                |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_sys_getTime_ffi               | bds_sys_getTimeParamChk_cb               | bds_sys_getTime               |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_sysPb_getVariant_ffi          | bds_sysPb_getVariantParamChk_cb          | bds_sysPb_getVariant          |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_uds_getActiveSession_ffi      | bds_uds_getActiveSessionParamChk_cb      | bds_uds_getActiveSession      |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_uds_getActiveService_ffi      | bds_uds_getActiveServiceParamChk_cb      | bds_uds_getActiveService      |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_uds_GetActiveDid_ffi          | bds_uds_getActiveDidParamChk_cb          | bds_uds_GetActiveDid          |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_uds_getNodeID_ffi             | bds_uds_getNodeIDParamChk_cb             | bds_uds_getNodeID             |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_can_fd_getRxBufStatus_ffi     | bds_can_fd_getRxBufStatusParamChk_cb     | bds_can_fd_getRxBufStatus     |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_can_fd_sendData_ffi           | bds_can_fd_sendDataParamChk_cb           | bds_can_fd_sendData           |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_can_fd_getTxBufStatus_ffi     | bds_can_fd_getTxBufStatusParamChk_cb     | bds_can_fd_getTxBufStatus     |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_can_fd_getData_ffi            | bds_can_fd_getDataParamChk_cb            | bds_can_fd_getData            |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_can_fd_isTxChannelFree_ffi    | bds_can_fd_isTxChannelFreeParamChk_cb    | bds_can_fd_isTxChannelFree    |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_can_fd_getDatabox_ffi         | bds_can_fd_getDataboxParamChk_cb         | bds_can_fd_getDatabox         |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_can_fd_sendDatabox_ffi        | bds_can_fd_sendDataboxParamChk_cb        | bds_can_fd_sendDatabox        |
++-----------------------------------+------------------------------------------+-------------------------------+
+| bds_can_fd_isTxDataboxFree_ffi    | bds_can_fd_isTxDataboxFreeParamChk_cb    | bds_can_fd_isTxDataboxFree    |
++-----------------------------------+------------------------------------------+-------------------------------+

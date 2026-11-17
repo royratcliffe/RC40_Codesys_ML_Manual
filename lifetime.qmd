@@ -1,0 +1,33 @@
+# Lifetime {#lifetime .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [Safety manual](safety-manual.html) \>               | [](high-sideandlow-sidecurrentcomparison(hlcc).html "Previous Topic") [](safety-manual.html "Parent Chapter") [](reliabilityparameters.html "Next Topic") |
+|                                                                       |                                                                                                                                                           |
+| # Lifetime {#lifetime-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                                           |
++-----------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+RCs are designed for a defined lifetime as shown in the following table, depending on the temperature profiles given in [Temperature profile](temperatureprofileofthecontrolunit.html){.topiclink}:
+
++------------------+------------------------------------------------+------------------------------------------------+------------------------------------------------+
+|                  | Temperature profile T1                         | Temperature profile T2                         | Temperature profile T3                         |
++==================+================================================+================================================+================================================+
+| Storage time     | 5 years                                                                                                                                          |
++------------------+------------------------------------------------+------------------------------------------------+------------------------------------------------+
+| Service lifetime | 20 years operation /                           | 20 years operation /                           | 20 years operation /                           |
+|                  |                                                |                                                |                                                |
+|                  | 20 000 operating hours, whichever occurs first | 20 000 operating hours, whichever occurs first | 10 000 operating hours, whichever occurs first |
++------------------+------------------------------------------------+------------------------------------------------+------------------------------------------------+
+
+Please contact Bosch Rexroth (see [Impressum)](impressum.html){.topiclink} if a prolonged operating time is required.
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Warning](warning.png){style="margin:0;width:8.3333in;height:0.4583in;border:none"}                                                                        |
++=============================================================================================================================================================+
+| Beyond the given lifetime, failure probabilities may increase and the [reliability parameters](reliabilityparameters.html){.topiclink} cannot be guaranteed |
+|                                                                                                                                                             |
+| •The ASW shall control the elapsed operating hours regularly by querying the information from the BSW.                                                      |
+|                                                                                                                                                             |
+| •The ASW shall inform the machine operator accordingly.                                                                                                     |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+ 

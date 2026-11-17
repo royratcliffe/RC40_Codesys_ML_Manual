@@ -1,0 +1,274 @@
+# Standard DIDs {#standard-dids .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Diagnostic services (UDS)](diagnostic-services.html) \> [UDS overview](uds---overview.html) \> [Data Identifier (DID)](data-identifier-(did).html) \> | [](addingudsdidsineasyconfig.html "Previous Topic") [](data-identifier-(did).html "Parent Chapter") [](integration-of-variable-length-feature-for-dids.html "Next Topic") |
+|                                                                                                                                                                                                                                       |                                                                                                                                                                           |
+| # Standard DIDs {#standard-dids-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                       |                                                                                                                                                                           |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The tables below list the Standard DIDs (Data Identifiers), along with their associated functions and usage contexts.
+
+### Note: {#note .p_Heading3 style="page-break-after: avoid;"}
+
+- The DIDs are accessible within the Default diagnostic session without requiring any specific security access.
+
+- These DIDs are read-only and cannot be modified or written to.
+
+- Standard DIDs related to identification of device in a network (Device Discovery) are listed in [DIDs for Discovery App Communication](standard-dids----discovery-app.html){.topiclink}.
+
+## Standard DIDs for Device Information {#standard-dids-for-device-information .p_Heading2 style="page-break-after: avoid;"}
+
+ 
+
+<table style="width:8.3333in; border:none; border-spacing:0; border-collapse:collapse;">
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="vertical-align: middle; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>DID</p></td>
+<td style="vertical-align: middle; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Description (Long Name)</p></td>
+<td style="vertical-align: middle; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Short Name (Label)</p></td>
+<td style="vertical-align: middle; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Conversion (RC4x)</p></td>
+<td style="vertical-align: middle; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Unit</p></td>
+<td style="vertical-align: middle; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Data Type</p></td>
+<td style="vertical-align: middle; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Length (Byte / Bit)</p></td>
+<td style="vertical-align: middle; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Byte Position</p></td>
+<td style="vertical-align: middle; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Bit Position</p></td>
+<td style="vertical-align: middle; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Example</p></td>
+<td style="vertical-align: middle; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Alternative BSW API</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0xFE14</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Supply Voltage</p></td>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Supply Voltage</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Linear (phys = 0.001*int)</p>
+<p>Only the first 2 bytes</p>
+<p>contain information</p>
+<p>about voltage</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>mV</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>uint16</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>24 bytes</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>15.39V</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>bds_sys_aiv</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top; height: 1.6771in; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0xF181</p></td>
+<td style="vertical-align: top; height: 1.6771in; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Application Software</p></td>
+<td style="vertical-align: top; height: 1.6771in; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>applicationSoftwareIdentificationDataIdentifier</p></td>
+<td style="vertical-align: top; height: 1.6771in; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Application Software</p>
+<p>application is 50 bytes</p>
+<p>starting from the Byte</p>
+<p>Position 1</p></td>
+<td style="vertical-align: top; height: 1.6771in; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p> </p></td>
+<td style="vertical-align: top; height: 1.6771in; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>ASCII</p></td>
+<td style="vertical-align: top; height: 1.6771in; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>51 bytes</p></td>
+<td style="vertical-align: top; height: 1.6771in; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>1</p></td>
+<td style="vertical-align: top; height: 1.6771in; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; height: 1.6771in; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Hello World V01.01</p></td>
+<td style="vertical-align: top; height: 1.6771in; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>bds_sys_init</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0xF199</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Last Reprogrammed</p></td>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>programmingDateDataIdentifier</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>2 bytes for day, 2 bytes</p>
+<p>for month,4 bytes for</p>
+<p>year</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p> </p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>uint8</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>8 bytes</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>12/4/2020</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>No BSW API for this.</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0xF18C</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Serial Number</p></td>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>ECUSerialNumberDataIdentifier</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p> </p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p> </p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>uint8</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>4 bytes (or cust. Spec.)</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>00000924</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>bds_sys_getEcuInfo</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0xF192</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Hardware Number</p></td>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>systemSupplierECUhardwareNumberDataIdentifier</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p> </p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>hex</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>uint8</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>2 bytes (or cust. Spec.)</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>For RC40_mid - 0x0172, for RC40_large -0x0072</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>bds_sys_getEcuInfo</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0xFE0B</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Operating Hours</p></td>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Operating Hours</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Total operating hours of the ECU in minutes</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>minutes</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>uint32</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>4 bytes</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>78:44h</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>bds_sys_getAge</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0xF18B</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Manufacturing Date</p></td>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>ECUManufacturingDate</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>YY-MM-DD; offset to</p>
+<p>be added to 1st byte -</p>
+<p>hexadecimal value of</p>
+<p>2000</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p> </p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>uint8</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>3 bytes</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>12.12.2019</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>bds_sys_getEcuInfo</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0xF193</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Hardware Version Number</p></td>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>systemSupplierECUhardwareVersionNumberDataIdentifier</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p> </p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p> </p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>ASCII</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>10 bytes</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>R917011700</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>bds_sys_getEcuInfo</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0xFE22</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Last Configuration Change Timestamp</p></td>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>SystemSupplierSpecific (this DID is defined within BSW, read-only)</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>minutes</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p> </p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>uint32</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>4 bytes</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>12:12h</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>No BSW API for this.</p></td>
+</tr>
+</tbody>
+</table>
+
+ 
+
+## Standard DIDs for Base Software {#standard-dids-for-base-software .p_Heading2 style="page-break-after: avoid;"}
+
+<table style="width:8.3333in; border:none; border-spacing:0; border-collapse:collapse;">
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+</colgroup>
+<tbody>
+<tr>
+<td style="vertical-align: middle; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>DID</p></td>
+<td style="vertical-align: middle; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Description (Long Name)</p></td>
+<td style="vertical-align: middle; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Short Name (Label)</p></td>
+<td style="vertical-align: middle; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Conversion (RC4x)</p></td>
+<td style="vertical-align: middle; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Unit</p></td>
+<td style="vertical-align: middle; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Data Type</p></td>
+<td style="vertical-align: middle; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Length (Byte / Bit)</p></td>
+<td style="vertical-align: middle; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Byte Position</p></td>
+<td style="vertical-align: middle; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Bit Position</p></td>
+<td style="vertical-align: middle; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Example</p></td>
+<td style="vertical-align: middle; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Alternative BSW API</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0xF194</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Basic Software Name</p></td>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>systemSupplierECUsoftwareNumberDataIdentifier</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Basic Software Name</p>
+<p>is 32 bytes starting</p>
+<p>from the Byte Position</p>
+<p>1</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p> </p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>ASCII</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>33 bytes</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>1</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>For RC40_mid - RC18-12/40 BODAS-BSW, for RC40_large -RC27-18/40 BODAS-BSW</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>No API for this. But the BSW can handle this, all the required</p>
+<p>Information will be present in header file "rbr_system_cfg.h"</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0xF195</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>Version</p></td>
+<td style="vertical-align: top; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>systemSupplierECUsoftwareVersionNumberDataIdentifier</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p> </p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p> </p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>ASCII</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>32 bytes</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>0</p></td>
+<td style="vertical-align: top; background-color: #E5EEF2; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>01.14A</p></td>
+<td style="vertical-align: top; background-color: #FFFFFF; padding: 0.0417in; border: solid thin #000000; border-right: none; border-left: none"><p>No API for this. But the BSW can handle this, all the required</p>
+<p>Information will be present in header file "rbr_system_cfg.h"No API; see rbr_system_cfg.h</p></td>
+</tr>
+</tbody>
+</table>
+
+ 
+
+## Standard DIDs for Customer Bootblock {#standard-dids-for-customer-bootblock .p_Heading2 style="page-break-after: avoid;"}
+
+  -------- ------------------------- ------------------------------------------ ------------------- ------ ----------- --------------------- --------------- -------------- -------------------- -----------------------------------
+  DID      Description (Long Name)   Short Name (Label)                         Conversion (RC4x)   Unit   Data Type   Length (Byte / Bit)   Byte Position   Bit Position   Example              Alternative BSW API
+  0xF1F0   Customer Block Name       bootSoftwareIdentificationDataIdentifier                              ASCII       50 bytes              0               0              rbr_CB_ME_V0.5.3.0   No API; handled by BSW internally
+  -------- ------------------------- ------------------------------------------ ------------------- ------ ----------- --------------------- --------------- -------------- -------------------- -----------------------------------
+
+## Standard DIDs for Boot Control {#standard-dids-for-boot-control .p_Heading2 style="page-break-after: avoid;"}
+
+  -------- ------------------------- ------------------------------------------ ------------------- ------ ----------- --------------------- --------------- -------------- --------------------------------------- -----------------------------------
+  DID      Description (Long Name)   Short Name (Label)                         Conversion (RC4x)   Unit   Data Type   Length (Byte / Bit)   Byte Position   Bit Position   Example                                 Alternative BSW API
+  0xF1F1   Bootblock Name            bootSoftwareIdentificationDataIdentifier                              ASCII       50 bytes              0               0              CUBAS BOOTCTRL_V04.21.03/ST DEV340NC3   No API; handled by BSW internally
+  -------- ------------------------- ------------------------------------------ ------------------- ------ ----------- --------------------- --------------- -------------- --------------------------------------- -----------------------------------
+
+ 
+
++------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Attention](attention.png){style="margin:0;width:2.1667in;height:0.7083in;border:none"} | DID 0xF180, which is bootSoftwareIdentificationDataIdentifier, is configurable in easyConfig from workflow ml 240 (or BSW v01.24 onwards). |
+|                                                                                          |                                                                                                                                            |
+|                                                                                          | If you need this DID to be used:                                                                                                           |
+|                                                                                          |                                                                                                                                            |
+|                                                                                          | •Configure DID in easyConfig appropriately                                                                                                 |
+|                                                                                          |                                                                                                                                            |
+|                                                                                          | •In the DID callbacks make use of BSW API bds_sys_getVersion to get the CB and SB version.                                                 |
++------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+

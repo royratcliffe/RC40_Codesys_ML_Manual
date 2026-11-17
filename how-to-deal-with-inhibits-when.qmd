@@ -1,0 +1,27 @@
+# How to deal with the inhibits when engine cranking {#how-to-deal-with-the-inhibits-when-engine-cranking .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [How-Tos](how-to.html) \>                                                                                                                | [](define-a-look-up-table-for-temperature-sensors.html "Previous Topic") [](how-to.html "Parent Chapter") [](how-to-read-the-reset-informat.html "Next Topic") |
+|                                                                                                                                                           |                                                                                                                                                                |
+| # How to deal with the inhibits when engine cranking {#how-to-deal-with-the-inhibits-when-engine-cranking-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                                                |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+## Problem description {#problem-description .p_Heading2 style="page-break-after: avoid;"}
+
+## Cranking the engine leads to the battery voltage drop to ≤7V and as a result to the activation of the inhibit pins (K22, K21). If the inhibit pins were activated once, their state is latched and the related outputs are switched off and disabled. Before enabling the outputs, it is important make sure that the undervoltage situation is terminated. {#cranking-the-engine-leads-to-the-battery-voltage-drop-to-7v-and-as-a-result-to-the-activation-of-the-inhibit-pins-k22-k21.-if-the-inhibit-pins-were-activated-once-their-state-is-latched-and-the-related-outputs-are-switched-off-and-disabled.-before-enabling-the-outputs-it-is-important-make-sure-that-the-undervoltage-situation-is-terminated. .p_Heading2 style="page-break-after: avoid;"}
+
+## Solution {#solution .p_Heading2 style="page-break-after: avoid;"}
+
+1.Detect the end of the undervoltage state by querying the battery voltage. See bds_sys_aiv().
+
+2.If the battery voltage is ≥8V for longer than 50ms, you can enable the outputs by the means of bds_sys_resetINH() function.
+
+## Remarks {#remarks .p_Heading2 style="page-break-after: avoid;"}
+
+- After the function bds_sys_resetINH() was called, it takes up to 30ms to enable the outputs again.
+
+- Activating of the inhibit pins leads to switching off of all of the power outputs. As a result, the new out-command needs to be called again when the inhibits are in inactive state.
+
+- Additional enabling of the outputs or resetting the errors are not needed, unless non-related to the inhibits errors occurred in the system parallelly.
+
+- You can also use the combination of the information on the engine machine state (stopped, cranking, running) and querying of the battery voltage to enable the outputs.

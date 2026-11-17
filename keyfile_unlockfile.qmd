@@ -1,0 +1,58 @@
+# Keyfile/Unlockfile {#keyfileunlockfile .p_Heading1 style="page-break-after: avoid;"}
+
++:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [Security](security.html) \> [Secure Flashing](secure-flashing.html) \> [Signature Verification](signature-verification.html) \> | [](javascript:HMToggleExpandAll(!HMAnyToggleOpen()) "Click to open/close expanding sections") [](software-(asw_cb)2.html "Previous Topic") [](signature-verification.html "Parent Chapter") [](secure-logging.html "Next Topic") |
+|                                                                                                                                                                                              |                                                                                                                                                                                                                                  |
+| # Keyfile/Unlockfile {#keyfileunlockfile-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                     |                                                                                                                                                                                                                                  |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+For keyfile and unlockfile, the digital signature and associated user certificate are appended directly to the end of the file. This section details the precise structure of this appended signature block, which allows CB-ME to verify the authenticity and integrity of these critical files.
+
+Important Note: Unlike software memory blocks, this signature format for keyfile and unlockfile does not include a CRC32 checksum or any additional zero bytes after the User Certificate.
+
+ 
+
+![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a1_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [ Key File and Unlock File Signature Format:](javascript:HMToggle('toggle','toggle0186a1','toggle0186a1_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"}
+
++-------------------------+------------------------+-------------+---------------+----------------------------------------------------------------------------------------------+
+| Name                    | Address offset (Bytes) | Type        | Length(Bytes) | Description                                                                                  |
++=========================+========================+=============+===============+==============================================================================================+
+| Data-Signature Length   | 0                      | uint32      | 4             | Length of the data signature in Bytes.                                                       |
+|                         |                        |             |               |                                                                                              |
+| (LENDATASIG)            |                        |             |               | Little-endian on RC18-12/40, RC27-18/40, RC18-12E/40, RC27-18E/40, RC30-20/41.               |
+|                         |                        |             |               |                                                                                              |
+|                         |                        |             |               | Big-endian on RC5-6/40.                                                                      |
+|                         |                        |             |               |                                                                                              |
+|                         |                        |             |               | Valid range: 512 bytes max length                                                            |
+|                         |                        |             |               |                                                                                              |
+|                         |                        |             |               |                                                                                              |
+|                         |                        |             |               |                                                                                              |
+|                         |                        |             |               | CB-ME of RC reject the signature in case the length is invalid.                              |
++-------------------------+------------------------+-------------+---------------+----------------------------------------------------------------------------------------------+
+| User-Certificate-Length | 4                      | uint32      | 4             | Length of the user-certificate in Bytes.                                                     |
+|                         |                        |             |               |                                                                                              |
+| (LENUSER)               |                        |             |               | Little-endian on RC18-12/40, RC27-18/40, RC18-12E/40, RC27-18E/40, RC30-20/41.               |
+|                         |                        |             |               |                                                                                              |
+|                         |                        |             |               | Big-endian on RC5-6/40.                                                                      |
+|                         |                        |             |               |                                                                                              |
+|                         |                        |             |               | Valid range: 2048 bytes max length                                                           |
+|                         |                        |             |               |                                                                                              |
+|                         |                        |             |               |                                                                                              |
+|                         |                        |             |               |                                                                                              |
+|                         |                        |             |               | CB-ME of RC reject the signature in case the length is invalid.                              |
++-------------------------+------------------------+-------------+---------------+----------------------------------------------------------------------------------------------+
+| Data-Signature          | 8                      | uint8\[\]   | 512           | Data-signature issued by user-certificate.\                                                  |
+|                         |                        |             |               | The field is always 512 Byte in length. Remaining Bytes (if any) shall be padded with zero.\ |
+| (DATASIG)               |                        |             |               |  \                                                                                           |
+|                         |                        |             |               | CB-ME of RC reject the signature in case the data-signature is invalid.                      |
++-------------------------+------------------------+-------------+---------------+----------------------------------------------------------------------------------------------+
+| User-Certificate        | 520                    | uint8\[\]   | 2048          | User-certificate in X.509v3 DER format issued by ROOT.                                       |
+|                         |                        |             |               |                                                                                              |
+| (USER)                  |                        |             |               | The field is always 2048 Byte in length. Remaining Bytes (if any) shall be padded with zero. |
+|                         |                        |             |               |                                                                                              |
+|                         |                        |             |               |                                                                                              |
+|                         |                        |             |               |                                                                                              |
+|                         |                        |             |               | CB-ME of RC reject the signature in case the user-certificate is invalid.                    |
++-------------------------+------------------------+-------------+---------------+----------------------------------------------------------------------------------------------+
+
+ 

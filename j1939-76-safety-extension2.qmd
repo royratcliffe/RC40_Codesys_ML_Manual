@@ -1,0 +1,35 @@
+# J1939-76 Safety Extension {#j1939-76-safety-extension .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [ISOBUS/J1939](isobus-module.html) \> | [](isobus-address-info-table.html "Previous Topic") [](isobus-module.html "Parent Chapter") [](j1939-76-in-bodas-bsw.html "Next Topic") |
+|                                                                                                                                                                                          |                                                                                                                                         |
+| # J1939-76 Safety Extension {#j1939-76-safety-extension-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                  |                                                                                                                                         |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+
+## Introduction {#introduction .p_Heading2 style="page-break-after: avoid;"}
+
+SAE J1939\'s common communication architecture offers an open interconnect system that allows the ECUs associated with different component manufacturers to communicate with each other. J1939 and J1939-76 are communication standards used in the automotive and heavy-duty vehicle industries. J1939 is a general communication protocol used for various purposes in heavy-duty and commercial vehicles, while J1939-76 is a specific extension of J1939 that focuses on safety aspects.
+
+Both standards play important roles in the heavy-duty vehicles like trucks, bus, and off-highway vehicles, with J1939 providing the foundation for communication via CAN, and J1939-76 enhancing safety aspects. Safety-critical systems rely on these communication standards to exchange information and coordinate responses to potential safety threats. J1939-76, with its specific focus on safety, provides more robust tools and features for ensuring the safety and reliability of heavy-duty vehicles, making it particularly important for safety-critical applications.
+
+### Key Features {#key-features .p_Heading3 style="text-align: justify; page-break-after: avoid;"}
+
+- Safety and Reliability: Safety is paramount in the operation of heavy-duty vehicles, especially those used in commercial transportation and industrial settings. The J1939-76 protocol ensures that the vehicles meet certain safety standards like IEC 61508 SIL2 or SIL3 during communication via CAN by incorporating fail-safe mechanisms to prevent and mitigate safety-critical failures. It enables these systems to share information and respond to safety threats effectively.
+
+- Interoperability: J1939-76 ensures that different vehicle components, such as the engine, transmission, brakes, and other safety-critical systems, can communicate effectively and exchange diagnostic information. This promotes interoperability between components from different manufacturers.
+
+ 
+
+## J1939-76 Specification {#j1939-76-specification .p_Heading2 style="page-break-after: avoid;"}
+
+The J1939-76 Safety Extension in the BODAS-BSW ISOBUS/J1939 library has been implemented based on
+
+- J1939-76(2020-04): SAE J1939 functional safety communications protocol
+
+ 
+
+More information about the J1939-76 standard can be found on the SAE website:
+
+[https://saemobilus.sae.org/](https://saemobilus.sae.org/){.weblink target="_blank"}
+
+ 

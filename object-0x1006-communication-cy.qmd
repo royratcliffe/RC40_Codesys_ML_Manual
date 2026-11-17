@@ -1,0 +1,24 @@
+# Object 0x1006 communication cycle period {#object-0x1006-communication-cycle-period .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> [RC40 CANopen communication objects](rc40-canopen-communication-obj.html) \> | [](object-0x1005-cob-id-sync-mess.html "Previous Topic") [](rc40-canopen-communication-obj.html "Parent Chapter") [](object-0x1007-synchronous-wind.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                                  |                                                                                                                                                                        |
+| # Object 0x1006 communication cycle period {#object-0x1006-communication-cycle-period-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                                            |                                                                                                                                                                        |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This entry defines the communication cycle period in us. It is 0, if not used.
+
+ 
+
+  Index           0x1006
+  --------------- -------------------------------------------
+  Name            Communication cycle period
+  Object          VAR
+  Data Type       UNSIGNED 32
+  Category        Conditional; Mandatory for Sync producers
+  Access          RW
+  PDO Mapping     No
+  Value Range     UNSIGNED 32
+  Default Value   0x00000000
+
+ 

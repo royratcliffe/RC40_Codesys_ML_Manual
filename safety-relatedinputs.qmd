@@ -1,0 +1,11 @@
+# Safety-related inputs {#safety-related-inputs .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [Safety manual](safety-manual.html) \>                                         | [](systemarchitecture.html "Previous Topic") [](safety-manual.html "Parent Chapter") [](discreteanalogueinputs.html "Next Topic") |
+|                                                                                                 |                                                                                                                                   |
+| # Safety-related inputs {#safety-related-inputs-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                   |
++-------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------+
+
+RCs provide various types of inputs that can be used to read digital, analogue, frequency, or SENT signals (refer to [\[RE95207\]](references.html#re_95207){.topiclink} [\[RE95208\]](references.html#re_95208){.topiclink} for detailed functions and characteristics of each input type).  This chapter contains instructions for using the RC inputs for safety-related applications.
+
+ 

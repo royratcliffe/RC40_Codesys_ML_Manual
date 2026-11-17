@@ -1,0 +1,140 @@
+# SAFOUT function {#safout-function .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Outputs](outputs.html) \> | [](proportional-outputs.html "Previous Topic") [](outputs.html "Parent Chapter") [](dhdlm.html "Next Topic") |
+|                                                                                                           |                                                                                                              |
+| # SAFOUT function {#safout-function-1 .p_Heading1 style="page-break-after: avoid;"}                       |                                                                                                              |
++-----------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+
+
+The SAFOUT function is a combination of specific high-side (HS) and low-side (LS) outputs for use in safety critical applications. Either multiple HS (multiple outputs) are connected to one LS (common output) or multiple LS (multiple outputs) are connected to one HS (common output). For more information see [Safety-related outputs ─ power outputs in safe output configuration](safety-relatedoutputs.html){.topiclink}.
+
+ 
+
+## Configuration of a SAFOUT channel {#configuration-of-a-safout-channel .p_Heading2 style="page-break-after: avoid;"}
+
+ 
+
+For the RC18-12/40 up to 12 channels and for RC27-18/40 up to 18 channels can be configured with the available resources. The possible modes are [PHDLS](phdls.html){.topiclink}, [DHDLM](dhdlm.html){.topiclink}, [PHMDL](phmdl.html){.topiclink}, [PLDHS](pldhs.html){.topiclink}, [DLDHM](dldhm.html){.topiclink} or [PLMDH](plmdh.html){.topiclink}.
+
+For information regarding configuration see  bds_safout_cfg.
+
+Dependent upon SAFOUT mode, outputs are configured as closed loop current controlled outputs (POC) by BSW. POC is not needed to be configured explicitly.
+
+ 
+
+## Activation of a channel {#activation-of-a-channel .p_Heading2 style="page-break-after: avoid;"}
+
+- The common output is in OFF state if no multiple output in the SAFOUT channel is activated.
+
+- The common output is in ON state if at least one multiple output is activated.
+
+ 
+
+## Monitoring of a channel {#monitoring-of-a-channel .p_Heading2 style="page-break-after: avoid;"}
+
+The channels are monitored cyclically and in case of a fault, all outputs of the channel are switched off and the channel is locked. For more information about the fault detection see [Safety-related outputs - power outputs in safe output configuration](safety-relatedoutputs.html){.topiclink}.
+
+The following requirements must be observed:
+
+- A channel can be switched on again by resetting the error with  bds_safout_resetError as a precondition for the explicit reactivation with  bds_safout_unlock.
+
+- To increase the availability, faults that only affect the shutdown capability of the channel can be ignored with  bds_safout_ignoreError.\
+Afterwards the channel can be reactivated again. The configuration is not saved, therefore the fault is only ignored until the next reset of the ECU.
+
+The status of the channels can be queried with  bds_safout_getStatus.
+
+The diagnostic info of all outputs is indicated by a 32-bit value. A nibble is required to display the errors of an output.
+
+There are 2 32 bit words for diagnostic status:
+
+- bds_safout_as.diag_u32 are accumulated errors, cleared after calling  bds_safout_resetError.
+
+- bds_safout_as.diag2_u32 are errors of the previous monitoring cycle, this info word is updated every 10 ms.
+
+Errors are detected in safout channel in both ON state as well as in OFF state.
+
+The fault ordering (per nibble) of the 32 bit diagnostic status words is defined as:
+
+ 
+
+#define SAFOUT_SCB                0x0001
+
+#define SAFOUT_SCG                0x0002
+
+#define SAFOUT_OL                0x0004
+
+#define SAFOUT_OC                0x0008
+
+ 
+
+The assignment of the nibbles to the outputs is:
+
+ 
+
+  Bits     Output
+  -------- ---------------------------------------
+  3..0     common output
+  7..4     output 1
+  11..8    output 2
+  15..12   output 3
+  19..16   output 4
+  20       unintended switch ON of common output
+  21       unintended switch ON of common 1
+  22       unintended switch ON of common 2
+  23       unintended switch ON of common 3
+  24       unintended switch ON of common 4
+  31..25   unused
+
+ 
+
+## Reaction of Safout channel when inhibits are active {#reaction-of-safout-channel-when-inhibits-are-active .p_Heading2 style="page-break-after: avoid;"}
+
+When SAFOUT channel outputs belong to different clusters (where cluster 1 and 3 are connected to inhibits and cluster 2 is not connected to inhibits), the reaction of the SAFOUT channel when inhibits are active are shown in the table below.
+
+ 
+
+  Reaction of SAFOUT channel to Inhibits          Common output in cluster 1 or 3   Common output in cluster 2
+  ----------------------------------------------- --------------------------------- ---------------------------------------------------------------------
+  Individual output(s) in cluster(s) 1 and/or 3   SAFOUT channel is switched OFF    Only individual outputs are switched OFF  
+  Individual output(s) in cluster 2               SAFOUT channel is switched OFF    No action (No shut-OFF of the SAFOUT channel or individual outputs)
+
+ 
+
+  ----------------------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------------------
+  ![Notice_RGB 39-153-209](hmfile_hash_c5013a84.png){style="margin:0;width:1.4792in;height:0.2813in;border:none"}   Please check [safety manual](safety-manual.html){.topiclink} before selecting SAFOUT channel outputs.
+  ----------------------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------------------
+
+ 
+
+ 
+
++------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Warning_RGB 248-179-34](hmfile_hash_16ef3c80.png){style="margin:0;width:1.4792in;height:0.2813in;border:none"} | RCs provides the flexibility to combine up to four high-side power outputs with a single low-side power output and vice versa in one safe output configuration.                                                                                                                 |
+|                                                                                                                  |                                                                                                                                                                                                                                                                                 |
+|                                                                                                                  | It shall be ensured that the accumulated current of the multiple power outputs does not exceed the maximum current limit of the single power output (for details see [\[RE95208\]](references.html#re_95208){.topiclink}, [\[RE95207\]](references.html#re_95207){.topiclink}). |
++------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+## Attention: {#attention .p_Heading2 style="page-break-after: avoid;"}
+
+Due to the high current deviation at lower nominal currents, the threshold value may be undershot and this leads to an error.
+
+As a workaround for lower nominal currents  bds_safout_ignoreError can be used to suppress the fault for this critical nominal current range.
+
+ 
+
+ 
+
+  ![Attention](attention.png){style="margin:0;width:2.1667in;height:0.7083in;border:none"}   Test pulses are used to detect hot faults (e.g., SCG on HS or SCB on LS) when an output is OFF. Depending on the cable length and cross-section, these test pulses may not be sufficient to detect hot faults in OFF state. Hence, the error could be healed although the hot fault is still present. The fault will be detected when the output is activated. The time for the test pulse is 65μs \"OFF\" if the output state is continuously \"ON\" and 5μs \"ON\" if the output state is continuously \"OFF\". See [Proportional outputs](proportional-outputs.html){.topiclink} for more information.
+  ------------------------------------------------------------------------------------------ -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+               
+
+ 
+
+ 
+
+ 
+
+ 
+
+               

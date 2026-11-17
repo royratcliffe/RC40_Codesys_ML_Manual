@@ -1,0 +1,31 @@
+# XCP on CAN {#xcp-on-can .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Configuration & calibration](configuration-calibration.html) \> [XCP](xcp-module.html) \> | [](xcp-module.html "Previous Topic") [](xcp-module.html "Parent Chapter") [](diagnostic-services.html "Next Topic") |
+|                                                                                                                                                                           |                                                                                                                     |
+| # XCP on CAN {#xcp-on-can-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                 |                                                                                                                     |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------+
+
+XCP on CAN/CAN-FD is supported as a transport layer. The selection of either CAN or CAN-FD as the transport layer can be configured in easyConfig.
+
+The transport layer uses version number 1.2, as defined in the ASAM standard.
+
++----------------------------------------------------------------------------------------------------+
+| ![Notice](notice.png){style="margin:0;width:8.3333in;height:0.4479in;border:none"}                 |
++====================================================================================================+
+| \- XCP is configured on CAN channel 3 by default, with default Baud rate is 1000K (in easyConfig). |
+|                                                                                                    |
+| \- The request and response commands are of CAN Standard frame format:                             |
+|                                                                                                    |
+|                                                                                                    |
+|                                                                                                    |
+|   Master Node(REQUEST):    2045 (Default)                                                          |
+|   ------------------------ ----------------                                                        |
+|   Slave Node (RESPONSE):   2046 (Default)                                                          |
+|                                                                                                    |
+|                                                                                                    |
+|                                                                                                    |
+| The default IDs and the CAN channel can be changed using easyConfig.                               |
++----------------------------------------------------------------------------------------------------+
+
+ 

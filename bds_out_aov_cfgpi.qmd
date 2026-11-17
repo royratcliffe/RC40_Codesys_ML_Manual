@@ -1,0 +1,112 @@
+# bds_out_aov_cfgPI {#bds_out_aov_cfgpi .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  »No topics above this level«                                           | [](javascript:HMToggleExpandAll(!HMAnyToggleOpen()) "Click to open/close expanding sections") [](appendix.html "Parent Chapter") |
+|                                                                                         |                                                                                                                                  |
+| # bds_out_aov_cfgPI {#bds_out_aov_cfgpi-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                  |
++-----------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+
+Sets the gain values for Kp and Ki of a analog voltage output.
+
+## Remarks: {#remarks .p_Heading2 style="page-break-after: avoid;"}
+
+- The information about definitions and structures can be found in  BODAS API library, bds_rts_ec.xml.
+
+- The range of Kp is defined as 0..2000 and for Ki as 0..500.
+
+- The default values after reset of the ECU are Kp = 100 and Ki = 25.
+
+- For more information see [bds_out_aov_getStatus](bds_out_aov_getstatus.html){.topiclink}.
+
+## ![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a1_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [FFI](javascript:HMToggle('toggle','toggle0186a1','toggle0186a1_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#hmtoggle_plus1-ffi .p_Heading2 style="page-break-after: avoid;"}
+
+  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  This API can be used in trusted partitions. For untrusted partitions use bds_out_aov_cfgPI_ffi. See [Freedom from Interference (FFI) concept](freedom-from-interference.html){.topiclink} for more details.
+  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ 
+
+## ![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a2_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [Declaration](javascript:HMToggle('toggle','toggle0186a2','toggle0186a2_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#hmtoggle_plus1-declaration .p_Heading2 style="page-break-after: avoid;"}
+
++-----------------------------------------------------------------------+
+| +-------------------------------------------------------------------+ |
+| | CODESYS Declaration                                               | |
+| +=========+===================+============+========================+ |
+| | USINT   | bds_out_aov_cfgPI | (signal_e: | bds_out_aov_signal_te; | |
+| +---------+-------------------+------------+------------------------+ |
+| |         |                   | Kp_u16:    | UINT;                  | |
+| +---------+-------------------+------------+------------------------+ |
+| |         |                   | Ki_u16:    | UINT;)                 | |
+| +---------+-------------------+------------+------------------------+ |
+|                                                                       |
+|                                                                       |
++-----------------------------------------------------------------------+
+
+## ![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a3_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [Parameters](javascript:HMToggle('toggle','toggle0186a3','toggle0186a3_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#hmtoggle_plus1-parameters .p_Heading2 style="page-break-after: avoid;"}
+
++------------------------------------------------------------------------------------------+
+| +-----------------------------------+--------------------------------------------------+ |
+| | Parameter                         | Description                                      | |
+| +===================================+==================================================+ |
+| | signal_e                          | The connector assigned signal name of the output | |
+| +-----------------------------------+--------------------------------------------------+ |
+| | Kp_u16                            | Kp value                                         | |
+| |                                   |                                                  | |
+| |                                   |                                                  | |
+| |                                   |                                                  | |
+| |                                   | Range:                                           | |
+| |                                   |                                                  | |
+| |                                   | 0..2000                                          | |
+| |                                   |                                                  | |
+| |                                   |                                                  | |
+| |                                   |                                                  | |
+| |                                   | Default : 100                                    | |
+| +-----------------------------------+--------------------------------------------------+ |
+| | Ki_u16                            | Ki value                                         | |
+| |                                   |                                                  | |
+| |                                   |                                                  | |
+| |                                   |                                                  | |
+| |                                   | Range:                                           | |
+| |                                   |                                                  | |
+| |                                   | 0..500                                           | |
+| |                                   |                                                  | |
+| |                                   |                                                  | |
+| |                                   |                                                  | |
+| |                                   | Default : 25                                     | |
+| +-----------------------------------+--------------------------------------------------+ |
++------------------------------------------------------------------------------------------+
+
+## ![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a4_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [Return Values](javascript:HMToggle('toggle','toggle0186a4','toggle0186a4_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#hmtoggle_plus1-return-values .p_Heading2 style="page-break-after: avoid;"}
+
++-----------------------------------------------------------------------+
+|   Return value   Description                                          |
+|   -------------- -------------------------                            |
+|   0              No error.                                            |
+|   1              A parameter is invalid.                              |
++-----------------------------------------------------------------------+
+
+## ![Code Example](hmtoggle_plus1.gif "Code Example"){#toggle0186a5_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [Example](javascript:HMToggle('toggle','toggle0186a5','toggle0186a5_ICON') "Code Example"){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#code-example-example .p_Heading2 style="page-break-after: avoid;"}
+
++---------------------------------------------------------------------------+
+| +-----------------------------------------------------------------------+ |
+| | CODESYS Example                                                       | |
+| +=======================================================================+ |
+| | PROGRAM PLC_PRG                                                       | |
+| |                                                                       | |
+| |   VAR                                                                 | |
+| |                                                                       | |
+| |   END_VAR                                                             | |
+| |                                                                       | |
+| |                                                                       | |
+| |                                                                       | |
+| | (\* configure the gain values for output K25 \*)                      | |
+| |                                                                       | |
+| | bds_out_aov_cfgPI(bds_out_aov_signal_te.K25, 200, 100);               | |
+| |                                                                       | |
+| | END                                                                   | |
+| +-----------------------------------------------------------------------+ |
+|                                                                           |
+|                                                                           |
++---------------------------------------------------------------------------+
+
+ 

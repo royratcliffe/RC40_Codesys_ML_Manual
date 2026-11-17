@@ -1,0 +1,208 @@
+# Data types and definitions {#data-types-and-definitions .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------+------------------------------------+
+| **Navigation:**  »No topics above this level«                                                             | [](appendix.html "Parent Chapter") |
+|                                                                                                           |                                    |
+| # Data types and definitions {#data-types-and-definitions-1 .p_Heading1 style="page-break-after: avoid;"} |                                    |
++-----------------------------------------------------------------------------------------------------------+------------------------------------+
+
+The following basic numeric data types are used by the CLAPI. It is recommended to use them also in the application.
+
+  Type    Storage Space   Meaning / Range
+  ------- --------------- ---------------------------------------------------------
+  void    \-              No Value
+  SINT    8bit            signed numeric value (-128 .. +127)
+  USINT   8bit            unsigned numeric value (0 .. 255)
+  UINT    8bit            unsigned numeric value (0 .. 255)
+  INT     16 bit          signed numeric value (-32768 .. +32767)
+  UINT    16 bit          unsigned numeric value (0 .. 65535)
+  UINT    32 bit          unsigned numeric value (0 .. 4294967295)
+  SINT    32 bit          signed numeric value (-2147483648 .. +2147483647)
+  DINT    32 bit          signed numeric value (-2147483648 .. +2147483647)
+  UDINT   32 bit          unsigned numeric value (0 .. 4294967295)
+  LINT    64 bit          signed numeric value (-2\^63.. +2\^63-1)
+  ULINT   64 bit          unsigned numeric value (0 .. 2\^64-1)
+  REAL    32 bit          32-bit binary floating point according to IEEE 754-2008
+  LREAL   64 bit          64-bit binary floating point according to IEEE 754-2008
+
+## Data type clnvm_EcuInfo_ts {#data-type-clnvm_ecuinfo_ts .p_Heading2 style="page-break-after: avoid;"}
+
+typedef struct clnvm_EcuInfo_t
+
+{
+
+   uint8 IdNr_Custom_au8\[19\];    // identifier number custom
+
+   uint8 IdNr_BR_au8\[12\];        // identifier number BR (Bosch Rexroth)
+
+   uint8 ChangeRev_AE_au8\[10\];   // change revision AE (Automotive Electronics)clnvm_EcuInfo_ts
+
+   uint8 FactoryCode_au8\[2\];     // factory code
+
+   uint8 ProdDate_au8\[3\];        // production date (yy-mm-dd)
+
+   uint8 Eeprom_Version_u8; // EEPROM version
+
+   uint8 Calib_u8;                // Calibration data
+
+   uint8 Hw_Typ_au8\[2\];        //hardware type
+
+   uint8 SerialNr_au8\[4\];        //Serial number
+
+} clnvm_EcuInfo_ts;
+
+## Data type clcan_Message_ts. {#data-type-clcan_message_ts. .p_Heading2 style="page-break-after: avoid;"}
+
+typedef struct
+
+{
+
+ uint32 id_u32;     // identifier of the message
+
+ uint8 format_u8;   // format which will be received, either STANDARD or EXTENDED
+
+ uint8 numBytes_u8; // number of data bytes which will be received
+
+ uint8 data_au8\[8\]; // data which will be received
+
+} clcan_Message_ts;
+
+## Data type clcan_MessageTxt_ts. {#data-type-clcan_messagetxt_ts. .p_Heading2 style="page-break-after: avoid;"}
+
+typedef struct
+
+{
+
+ uint32 id_u32;      // identifier of the received message
+
+ uint8  format_u8;   // format of the received message, either STANDARD or EXTENDED
+
+ uint8  numBytes_u8; // number of data bytes which were received
+
+ uint8  \*data_pu8;     // data bytes which were received
+
+} clcan_MessageTxt_ts;
+
+## Data type clcan_AswConfig_ts. {#data-type-clcan_aswconfig_ts. .p_Heading2 style="page-break-after: avoid;"}
+
+typedef struct clcan_AswConfig_t
+
+{
+
+   uint8  channelNo_u8;                 /\* CAN channel number set by ASW \*/
+
+   uint32 baudrate_u32;                 /\* CAN baudrate set by ASW\*/
+
+   uint32 RxID_u32;                        /\* CAN Recieve ID set by ASW \*/
+
+   uint32 TxID_u32;                        /\* CAN Transmit ID set by ASW \*/
+
+} clcan_AswConfig_ts;
+
+ 
+
+## Data type clcan_fd_AswConfig_ts. {#data-type-clcan_fd_aswconfig_ts. .p_Heading2 style="page-break-after: avoid;"}
+
+typedef struct clcan_fd_baudrate_t
+
+{
+
+    uint32 nominalBaudrate_u32;             /\* nominal CAN FD baudrate \*/
+
+    uint32 dataBaudrate_u32;                /\* data CAN FD baudrate \*/
+
+ 
+
+ } clcan_fd_baudrate_ts;
+
+ 
+
+/\* Structure to read CAN FD data from NVM \*/
+
+typedef struct clcan_fd_AswConfig_t
+
+{
+
+   uint8  channelNo_u8;                     /\* UDS based CAN channel number stored in NVM by ASW \*/
+
+   clcan_fd_baudrate_ts fdBaudrate_s;      /\* UDS based CAN FD baudrates stored in NVM by ASW \*/
+
+   uint32 rxID_u32;                         /\* CAN Recieve ID stored in NVM by ASW \*/
+
+   uint32 txID_u32;                         /\* CAN Transmit ID stored in NVM by ASW \*/
+
+ 
+
+} clcan_fd_AswConfig_ts;
+
+## Data type clcan_BusOffCallback_tpf. {#data-type-clcan_busoffcallback_tpf. .p_Heading2 style="page-break-after: avoid;"}
+
+typedef void(\* clcan_BusOffCallback_tpf) (uint16 status_u16);
+
+ 
+
+status_u16 : Reason for bus off event. Value = 0 (currently not supported).
+
+ 
+
+Data type cluds_instance_ts;
+
+typedef struct uds_instance_t
+
+{
+
+ clcan_MessageTxt_ts    rxBoxBuff_s \_\_attribute\_\_ ((aligned (4)));  // temp. buffer for rx can msg
+
+ // raw can message data of rx buffer
+
+ canMsg_ts           rxCanMsg_as\[rxCanBufferSize_DU8\] \_\_attribute\_\_ ((aligned (4)));
+
+ // raw can message data of tx buffer
+
+ canMsg_ts           txCanMsg_as\[txCanBufferSize_DU8\] \_\_attribute\_\_ ((aligned (4)));
+
+ canMsgBuffer_ts     rxCanBuff_s \_\_attribute\_\_ ((aligned (4)));  // rx can msg buffer control
+
+ canMsgBuffer_ts     txCanBuff_s \_\_attribute\_\_ ((aligned (4)));  // tx can msg buffer control
+
+ cludsMsg_ts         rxKwpMsg_s \_\_attribute\_\_ ((aligned (4)));   // rx uds message buffer
+
+ cludsMsg_ts         txKwpMsg_s \_\_attribute\_\_ ((aligned (4)));   // tx uds message buffer
+
+ tpState_ts          tpState_s \_\_attribute\_\_ ((aligned (4)));    // transport protocol control
+
+ cludsParam_ts       udsParam_s \_\_attribute\_\_ ((aligned (4)));   // common uds parameters
+
+ rxCallback_tpf      rxFunc_pf;                          // function to evaluate a rx msg
+
+ errorCallback_tpf   errorFunc_pf;                       // function to evaluate run time errors
+
+} cluds_instance_ts;
+
+## Data type rxCallback_tpf. {#data-type-rxcallback_tpf. .p_Heading2 style="page-break-after: avoid;"}
+
+typedef struct CLUDSMSG_TS
+
+{
+
+ uint16 size_u16;            // buffer size
+
+ uint16 DLC_u16;            // actual data length
+
+ uint8  \*data_au8;           // pointer to uds message buffer
+
+} cludsMsg_ts;
+
+## Data type rxCallback_tpf. {#data-type-rxcallback_tpf.-1 .p_Heading2 style="page-break-after: avoid;"}
+
+typedef uint8(\*rxCallback_tpf)(cludsMsg_ts \*rxUdsMsg_ps, cludsMsg_ts \*txUdsMsg_ps);
+
+## Data type errorCallback_tpf. {#data-type-errorcallback_tpf. .p_Heading2 style="page-break-after: avoid;"}
+
+typedef void (\*errorCallback_tpf)(uint16 errorCode_u16);
+
+## Data type rxCanCallback_tpf. {#data-type-rxcancallback_tpf. .p_Heading2 style="page-break-after: avoid;"}
+
+typedef uint8 (\*rxCanCallback_tpf)(clcan_MessageTxt_ts \*rxCanMsg_ps);
+
+ 

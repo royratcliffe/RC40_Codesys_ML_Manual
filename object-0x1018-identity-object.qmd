@@ -1,0 +1,95 @@
+# Object 0x1018 identity object {#object-0x1018-identity-object .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> [RC40 CANopen communication objects](rc40-canopen-communication-obj.html) \> | [](object-0x1017-producer-heartbe.html "Previous Topic") [](rc40-canopen-communication-obj.html "Parent Chapter") [](object-0x1019-synchronous-coun.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                                  |                                                                                                                                                                        |
+| # Object 0x1018 identity object {#object-0x1018-identity-object-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                                                                  |                                                                                                                                                                        |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This object contains general information about the device.
+
+ 
+
+ 
+
+  Index       0x1018
+  ----------- -----------------
+  Name        Identity Object
+  Object      Record
+  Data Type   Identity
+  Category    Mandatory
+
+ 
+
+ 
+
+SubIndex Supported
+
+  SubIndex        0
+  --------------- -------------------
+  Description     number of entries
+  Access          RO
+  Value Range     NA
+  Default Value   4
+
+ 
+
+ 
+
+  SubIndex        1
+  --------------- -------------------------
+  Description     Vendor ID as per CiA
+  Access          RO
+  Value Range     NA
+  Default Value   0x24 (Bosch Rexroth AG)
+
+ 
+
+  SubIndex        2
+  --------------- -----------------------------
+  Description     Product number
+  Access          RO
+  Value Range     NA
+  Default Value   Hardware code of the device
+
+ 
+
+  SubIndex        3
+  --------------- ----------------------------------------------------------------------
+  Description     Revision number
+  Access          RO
+  Value Range     NA
+  Default Value   Change revision AE (Automotive Electronics) excluding Alphabet \'R\'
+
+ 
+
+  SubIndex        4
+  --------------- ------------------------------
+  Description     Serial number
+  Access          RO
+  Value Range     NA
+  Default Value   Serial number of the device.
+
+ 
+
+ 
+
++--------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"} | By default this object is updated with Bosch Rexroth values. If needed ASW can override this object data using API bds_canopen_setIdentity. |
+|                                                                                |                                                                                                                                             |
+|                                                                                |                                                                                                                                             |
+|                                                                                |                                                                                                                                             |
+|                                                                                | Refer to the table above for Bosch Rexroth default values.                                                                                  |
++--------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 

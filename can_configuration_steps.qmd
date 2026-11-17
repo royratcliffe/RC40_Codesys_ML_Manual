@@ -1,0 +1,31 @@
+# CAN configuration steps {#can-configuration-steps .p_Heading1 style="page-break-after: avoid;"}
+
++:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CAN](can.html) \> [CAN communication](can-communication.html) \> | [](can-communication.html "Previous Topic") [](can-communication.html "Parent Chapter") [](can_preparation_steps.html "Next Topic") |
+|                                                                                                                                                                                                                      |                                                                                                                                     |
+| # CAN configuration steps {#can-configuration-steps-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                  |                                                                                                                                     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
+
+This description should help to find the right configuration for the CAN legacy function and to configure it. On the following figures you can identify your required CAN sending or receiving methods. The API functions belonging to the methods are listed as comment.
+
+1.TX method
+
+ 
+
+<figure style="margin:0;padding:0">
+<img src="can_tx_method.png" title="Figure74: TX method" id="fig5984a8ea" style="width:7.5521in;height:5.9063in;border:none" alt="Figure74: TX method" />
+<figcaption aria-hidden="true"><p>Figure74: TX method</p></figcaption>
+</figure>
+
+ 
+
+ 
+
+2.RX method
+
+ 
+
+<figure style="margin:0;padding:0">
+<img src="can_rx_method.png" title="Figure75: RX method" id="figf453f2c8" style="width:9.1667in;height:7.1042in;border:none" alt="Figure75: RX method" />
+<figcaption aria-hidden="true"><p>Figure75: RX method</p></figcaption>
+</figure>

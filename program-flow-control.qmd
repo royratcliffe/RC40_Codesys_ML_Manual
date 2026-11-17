@@ -1,0 +1,38 @@
+# Program flow control {#program-flow-control .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Self-monitoring](ecu-self-monitoring.html) \> [Cyclic monitoring](cyclic-monitoring-checks.html) \> | [](peripheral-core-monitoring.html "Previous Topic") [](cyclic-monitoring-checks.html "Parent Chapter") [](queryresponsecommunication.html "Next Topic") |
+|                                                                                                                                                                                     |                                                                                                                                                          |
+| # Program flow control {#program-flow-control-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                       |                                                                                                                                                          |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Scheduling/ execution of internal safety/ monitoring functions is monitored with the aid of an external hardware watchdog (monitoring module inside CY32x):
+
+- Execution order.
+
+- Execution frequency.
+
+- Compliance with timing requirements.
+
+## Remarks: {#remarks .p_Heading2 style="page-break-after: avoid;"}
+
+ 
+
+- Fundamental error reaction must be independent from CPU. In case of an error the power stages will be switched off by CY326 directly.
+
+- Refer [Safety function and safe state](safetyfunctionandsafestate.html){.topiclink} for details on the safety functions provided by the RCs and the related considerations to be observed.
+
+- Refer [Failure detection possibilities](failuredetectionpossibilities.html){.topiclink} for a broader overview of the different failure reactions observed.
+
+ 
+
+Error Reaction:
+
+  Error                          Reaction
+  ------------------------------ -------------------
+  DFC                            No
+  Error Code                     No
+  High Power Outputs(\...,OFF)   Yes
+  ECU Reset                      Yes
+  Reaction time                  200 ms
+  Reset Reason - Group ID        RESET_SWRESET_MOC

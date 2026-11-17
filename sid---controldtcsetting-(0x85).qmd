@@ -1,0 +1,39 @@
+# SID - ControlDTCSetting (0x85) {#sid---controldtcsetting-0x85 .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Diagnostic services (UDS)](diagnostic-services.html) \> [UDS overview](uds---overview.html) \> [Supported UDS services](supported-uds-services.html) \> | [](sid---cleardiagnosticinformati.html "Previous Topic") [](supported-uds-services.html "Parent Chapter") [](sid---readdtcinformation-(0x19.html "Next Topic") |
+|                                                                                                                                                                                                                                         |                                                                                                                                                                |
+| # SID - ControlDTCSetting (0x85) {#sid---controldtcsetting-0x85-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                         |                                                                                                                                                                |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This topic explains the service related to Diagnostic and communication management functional unit - ControlDTCSetting.
+
+ 
+
+Definition and Short description as per ISO 14229-1:
+
+ 
+
+  ------------------- --------------------------------------------------------
+  Service             Description
+  ControlDTCSetting   The client controls the setting of DTCs in the server.
+  ------------------- --------------------------------------------------------
+
+ 
+
+This service has two sub-functions:
+
+- CDTC_ON: DTCSettingType = ON, enables / resumes update of DTC status in the RC (server).
+
+- CDTC_OFF: DTCSettingType = OFF: the RC (server) shall suspend any updates to the DTC status bits (i.e. freeze current values) to Active / Deactive / Previously Active until the functionality is enabled again. After this setting is enabled, DTC status cannot be updated to Active/Previously Active/Deactive until CDTC_ON is triggered or until next driving cycle.
+
+ 
+
+Sample request and response shall be as follows:
+
+ 
+
+<figure style="margin:0;padding:0">
+<a href="slide9.png" class="imagetogglelink"><img src="slide9_zoom55.png" title="Figure 47: Request and response for SID 0x85" id="fig23094697" class="image-toggle" style="width:7.2813in;height:4.0938in;border:none" alt="Figure 47: Request and response for SID 0x85" /><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=" class="image-toggle-magnifier" /></a>
+<figcaption><p>Figure 47: Request and response for SID 0x85</p></figcaption>
+</figure>

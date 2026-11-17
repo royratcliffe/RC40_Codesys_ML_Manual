@@ -1,0 +1,51 @@
+# Cyclic Memory check {#cyclic-memory-check .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Self-monitoring](ecu-self-monitoring.html) \> [Cyclic monitoring](cyclic-monitoring-checks.html) \> | [](battery-voltage-monitoring-for.html "Previous Topic") [](cyclic-monitoring-checks.html "Parent Chapter") [](ecu-temperature-1.html "Next Topic") |
+|                                                                                                                                                                                     |                                                                                                                                                     |
+| # Cyclic Memory check {#cyclic-memory-check-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                         |                                                                                                                                                     |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The function monitors the memory areas of the function monitoring. The following monitoring functions are performed:
+
+- Double storage with value and complement (complement test)
+
+  Within the function monitoring, all variables and bits used in the next run or in the time−based subsequent modules are stored twice as value and complement.
+
+- Cyclical RAM test (writeability test)
+
+- Cyclic checksum of the postbuild pointers
+
+- Cyclical ROM test (checksum test)
+
+- Cyclical Stack test (writeability test)
+
+- Cyclical CSA test (writeability test)
+
+- Asynchronous stack/CSA test (writeability test)
+
+- Single 32−/16−/8−Bit Test (writability test)
+
+ 
+
+## Remarks: {#remarks .p_Heading2 style="page-break-after: avoid;"}
+
+- It is not possible to assure a stable system run after appearance of a RAM error. Because of this reason, system will be reset immediately in case of a RAM failure detection.
+
+- Refer [Safety function and safe state](safetyfunctionandsafestate.html){.topiclink} for details on the safety functions provided by the RCs and the related considerations to be observed.
+
+- Refer [Failure detection possibilities](failuredetectionpossibilities.html){.topiclink} for a broader overview of the different failure reactions observed.
+
+ 
+
+Error Reaction:
+
+  Error                            Reaction
+  -------------------------------- ------------------------------------
+  DFC                              no
+  Error Code                       no
+  High Power Outputs(\...,OFF)     Yes
+  ECU Reset                        Yes
+  Reaction time                    2 seconds
+  Reset Reason  - Reset Group ID   RESET_SWRESET_MOC
+  Reset Reason  - Reset number     RESET_SWRESET_MOCMEM_CHKRAM_FAILED

@@ -1,0 +1,43 @@
+# VKL30 via analog feedback {#vkl30-via-analog-feedback .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Self-monitoring](ecu-self-monitoring.html) \> [Cyclic monitoring](cyclic-monitoring-checks.html) \> | [](vkl30-deviation-1.html "Previous Topic") [](cyclic-monitoring-checks.html "Parent Chapter") [](vss_1-(sensor-supply-1).html "Next Topic") |
+|                                                                                                                                                                                     |                                                                                                                                              |
+| # VKL30 via analog feedback {#vkl30-via-analog-feedback-1 .p_Heading1 style="page-break-after: avoid;"}                                                                             |                                                                                                                                              |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+The cyclic check of the ECU power supply KL30 via microcontroller ADC.
+
+## Remarks: {#remarks .p_Heading2 style="page-break-after: avoid;"}
+
+- Monitoring of overvoltage for error.
+
+- Only Error are indicated.
+
+- Over Voltage Error Limit = 33.000V
+
+- Refer [Safety function and safe state](safetyfunctionandsafestate.html){.topiclink} for details on the safety functions provided by the RCs and the related considerations to be observed.
+
+- Refer [Failure detection possibilities](failuredetectionpossibilities.html){.topiclink} for a broader overview of the different failure reactions observed.
+
+ 
+
+Error Reaction:
+
+ 
+
+- Over Voltage Error
+
+  Error Description              Reaction
+  ------------------------------ --------------------------
+  DFC                            DFC_rbr_mo_OV_UBRM24_MON
+  Error Code                     0x080A00
+  High Power Outputs(\...,OFF)   yes
+  ECU Reset                      no
+  Reaction time                  200ms
+
+ 
+
+ 
+
+ 

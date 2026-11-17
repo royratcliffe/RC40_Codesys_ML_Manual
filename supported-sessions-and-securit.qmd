@@ -1,0 +1,58 @@
+# Supported sessions and security access levels {#supported-sessions-and-security-access-levels .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [Bootloader](bootloader.html) \> [Diagnostics services (UDS) in Bootloader](diagnosticsservices(uds)inbootloader.html) \> [Supported UDS services](supported-uds-services2.html) \> | [](security-change-password-in-cb.html "Previous Topic") [](supported-uds-services2.html "Parent Chapter") [](-reprogramming-through-can-.html "Next Topic") |
+|                                                                                                                                                                                                                                                 |                                                                                                                                                              |
+| # Supported sessions and security access levels {#supported-sessions-and-security-access-levels-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                 |                                                                                                                                                              |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The below diagnostics sessions are used by CB-ME:\
+ 
+
+  ID     Name                        Description
+  ------ --------------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0x01   Default Session             This session automatically enables the server\'s default diagnostics. It remains active only when no other diagnostic session is in progress and is suitable for basic, non-security-critical services (e.g. Device Identification).
+  0x02   ProgrammingSession          This session enables all the diagnostic services necessary to safely support the memory programming of the ECU (e.g., flashing software), suspending normal operation during the process.
+  0x03   extendedDiagnosticSession   This session unlocks all the advanced diagnostic services (e.g., change in parameters).
+
+ 
+
+ 
+
+The following table details the UDS sessions and associated security access levels (refer [Access levels](access-levels.html){.topiclink}) required to access and utilize the supported UDS services:
+
+ 
+
++------+--------------------------+---------------------------------------------+-----------------------+
+| SID  | Service                  | Session                                     | Security Access Level |
+|      |                          +---------+-------------+---------------------+                       |
+|      |                          | Default | Programming | Extended Diagnostic |                       |
++======+==========================+=========+=============+=====================+=======================+
+| 0x10 | DiagnosticSessionControl | yes     | yes         | yes                 | Not Required          |
++------+--------------------------+---------+-------------+---------------------+-----------------------+
+| 0x11 | ECUReset                 | no      | yes         | yes                 | L1, L2                |
++------+--------------------------+---------+-------------+---------------------+-----------------------+
+| 0x27 | SecurityAccess           | no      | yes         | yes                 | Not Required          |
++------+--------------------------+---------+-------------+---------------------+-----------------------+
+| 0x28 | CommunicationControl     | no      | yes         | yes                 | Not Required          |
++------+--------------------------+---------+-------------+---------------------+-----------------------+
+| 0x3E | TesterPresent            | yes     | yes         | yes                 | Not Required          |
++------+--------------------------+---------+-------------+---------------------+-----------------------+
+| 0x85 | ControlDTCSetting        | no      | yes         | yes                 | Not Required          |
++------+--------------------------+---------+-------------+---------------------+-----------------------+
+| 0x22 | ReadDataByIdentifier     | yes     | yes         | yes                 | Not Required          |
++------+--------------------------+---------+-------------+---------------------+-----------------------+
+| 0x2E | WriteDataByIdentifier    | no      | yes         | yes                 | L1                    |
++------+--------------------------+---------+-------------+---------------------+-----------------------+
+| 0x31 | RoutineControl           | no      | yes         | no                  | L1                    |
++------+--------------------------+---------+-------------+---------------------+-----------------------+
+| 0x34 | RequestDownload          | no      | yes         | no                  | L1                    |
++------+--------------------------+---------+-------------+---------------------+-----------------------+
+| 0x36 | TransferData             | no      | yes         | no                  | L1                    |
++------+--------------------------+---------+-------------+---------------------+-----------------------+
+| 0x37 | RequestTransferExit      | no      | yes         | no                  | L1                    |
++------+--------------------------+---------+-------------+---------------------+-----------------------+
+| 0xBE | RexrothUDSSecrets        | no      | yes         | no                  | L2                    |
++------+--------------------------+---------+-------------+---------------------+-----------------------+
+
+ 

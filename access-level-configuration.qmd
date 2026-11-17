@@ -1,0 +1,39 @@
+# Access Level configuration example {#access-level-configuration-example .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [Security](security.html) \> [Security advisory](security-advisory.html) \> | [](password-guideline.html "Previous Topic") [](security-advisory.html "Parent Chapter") [](storage-of-confidential-inform.html "Next Topic") |
+|                                                                                                                                         |                                                                                                                                               |
+| # Access Level configuration example {#access-level-configuration-example-1 .p_Heading1 style="page-break-after: avoid;"}               |                                                                                                                                               |
++-----------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
+
+The following table shows an example configuration that can be used for reference. Some access rights in the default level (i.e., the initial level for which no password is required) are not configurable due to security considerations. All other access levels can be freely adjusted.
+
+ 
+
++----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                      | Access Rights\*                                                                                                                                                                                 |
++----------------------+------------------+-----------------------+----------------------+------------------+---------------------+---------------------+------------------+----------------------+----------------------+
+| Access levels        | ECU Reset        | Communication Control | Control DTC Settings | Clear DTC        | Save changed DID\'s | Flash Control Block | Flash BSW + ASW  | Change User Password | Custom Right 1 .. 32 |
++======================+==================+=======================+======================+==================+=====================+=====================+==================+======================+======================+
+| No access Level (0)  | O                | W                     | W                    | O                | W                   | W                   | W                | W                    | ?                    |
++----------------------+------------------+-----------------------+----------------------+------------------+---------------------+---------------------+------------------+----------------------+----------------------+
+| Development (1)      | P                | P                     | P                    | P                | P                   | P                   | P                | O                    | ?                    |
++----------------------+------------------+-----------------------+----------------------+------------------+---------------------+---------------------+------------------+----------------------+----------------------+
+| Password change (2)  | P                | O                     | O                    | O                | O                   | O                   | O                | P                    | ?                    |
++----------------------+------------------+-----------------------+----------------------+------------------+---------------------+---------------------+------------------+----------------------+----------------------+
+| Service (3)          | P                | O                     | O                    | P                | P                   | O                   | O                | O                    | ?                    |
++----------------------+------------------+-----------------------+----------------------+------------------+---------------------+---------------------+------------------+----------------------+----------------------+
+| Custom\*\* (4 .. 10) | ?                | ?                     | ?                    | ?                | ?                   | O                   | O                | O                    | ?                    |
++----------------------+------------------+-----------------------+----------------------+------------------+---------------------+---------------------+------------------+----------------------+----------------------+
+| O=No access right P=Right granted ?=Project Specific W=No access right, Not configurable                                                                                                                               |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| \* These are predefined default role names. You can change them in easyConfig.                                                                                                                                         |
+|                                                                                                                                                                                                                        |
+| \*\* You can add up to seven additional access-levels on demand in easyConfig.                                                                                                                                         |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+[]{#fig_07a4c0 .hmanchor}Table 4: Example access level configuration
+
+ 
+
+The access level 0 (no access level) is granted to the tester without authorization. It is therefore not allowed to enable some access rights as this could pose a threat for the RC. We suggest to define different roles, e.g., for the development and servicing of the RC as well as one dedicated level to change the access level passwords of the RC.

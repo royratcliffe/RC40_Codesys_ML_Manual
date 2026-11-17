@@ -1,0 +1,21 @@
+# Wake up {#wake-up .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Runtime system & system states](runtime-system-system-states.html) \> | [](system-state-machine---legacy.html "Previous Topic") [](runtime-system-system-states.html "Parent Chapter") [](wakeup-by-can.html "Next Topic") |
+|                                                                                                                                                       |                                                                                                                                                    |
+| # Wake up {#wake-up-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                   |                                                                                                                                                    |
++-------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Wakeup in terms of system (ECU) refers to transition of ECU system state from OFF state, to make the ECU up and running.
+
+For transition in system states please refer the page [System State Machine](system-state-machine.html){.topiclink}.
+
+Wakeup happens in RC4x series ECUs with the help of the following methods:
+
+ 
+
+- Wakeup by T15 - It refers to wakeup of ECU by turning T15 (Ignition Pin) On.
+
+- [Wakeup by CAN](wakeup-by-can.html){.topiclink}
+
+ 

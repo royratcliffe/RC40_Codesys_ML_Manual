@@ -1,0 +1,19 @@
+# Configuration Parameters for Checksum Calculation Tool {#configuration-parameters-for-checksum-calculation-tool .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [How-Tos](how-to.html) \> [How to calculate checksum for CODESYS merged HEX](how-to-calculate-checksum-for-.html) \>                             | [](introduction-to-checksum-calcu.html "Previous Topic") [](how-to-calculate-checksum-for-.html "Parent Chapter") [](usage-of-checksum-calculation-.html "Next Topic") |
+|                                                                                                                                                                   |                                                                                                                                                                        |
+| # Configuration Parameters for Checksum Calculation Tool {#configuration-parameters-for-checksum-calculation-tool-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                                                        |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
++----------------------------------+-----------------------+---------------------------------------------------------------------------------+
+| Parameter                        | Possible Arguments    | Description                                                                     |
++==================================+=======================+=================================================================================+
+| Hexmodx Tool Path                |                       | The path to the hexmodx tool.\                                                  |
+|                                  |                       |  \                                                                              |
+|                                  |                       | Example: C:/Tools/Hexmodx//14.6.0/bin/HexmodX.cmd                               |
++----------------------------------+-----------------------+---------------------------------------------------------------------------------+
+| Hex File(CODESYS MERGED ASW HEX) |                       | The path to the ASW/DS0 software hex file that needs to be flashed to the ECUs\ |
+|                                  |                       |  \                                                                              |
+|                                  |                       | Example: D:\\Code\\Tool_File\\appl_RC40_large_merge.hex                         |
++----------------------------------+-----------------------+---------------------------------------------------------------------------------+

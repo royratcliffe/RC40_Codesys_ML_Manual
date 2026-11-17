@@ -1,0 +1,24 @@
+# SID - Routine Control (0x31) {#sid---routine-control-0x31 .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Diagnostic services (UDS)](diagnostic-services.html) \> [UDS overview](uds---overview.html) \> [Supported UDS services](supported-uds-services.html) \> | [](operating-hours-and-environmen.html "Previous Topic") [](supported-uds-services.html "Parent Chapter") [](integration-of-routine-control.html "Next Topic") |
+|                                                                                                                                                                                                                                         |                                                                                                                                                                |
+| # SID - Routine Control (0x31) {#sid---routine-control-0x31-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                             |                                                                                                                                                                |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This topic explains the service related to Routine functional unit - Routine Control.
+
+ 
+
+Definition and Short description as per ISO 14229-1:
+
+ 
+
+  ----------------- ------------------------------------------------------------------------------------------------
+  Service           Description
+  Routine Control   The client requests to start, stop a routine in the server(s) or requests the routine results.
+  ----------------- ------------------------------------------------------------------------------------------------
+
+Routine Control service is used by the client to execute a defined sequence of steps and obtain any relevant results.
+
+There is lot of flexibility with this service but typical usage may include functionality such as erasing memory,resetting or learning adaptive data, running a self-test, overriding the normal server control strategy, and controlling a server value to change over time including predefined sequences (e.g., close convertible roof).

@@ -1,0 +1,39 @@
+# How to implement CAN legacy using Transmit, Receive Databoxes {#how-to-implement-can-legacy-using-transmit-receive-databoxes .p_Heading1 style="page-break-after: avoid;"}
+
++:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [How-Tos](how-to.html) \> [How to develop an application using CAN legacy APIs](howtodevelopanapplicationusingcan-fdlegacyapis_2.html) \>                     | [](howtoimplementcanlegacyusingtransmitreceivebuffers.html "Previous Topic") [](howtodevelopanapplicationusingcan-fdlegacyapis_2.html "Parent Chapter") [](howtodevelopanapplicationusingcan-fdlegacyapis.html "Next Topic") |
+|                                                                                                                                                                                |                                                                                                                                                                                                                              |
+| # How to implement CAN legacy using Transmit, Receive Databoxes {#how-to-implement-can-legacy-using-transmit-receive-databoxes-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                                                                                                              |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Following examples suggest how to configure and use CAN related parameters such as number of databoxes, along with baud rate configuration, if databox usage is preferred.
+
+## Using Transmit/Receive Databox: {#using-transmitreceive-databox .p_Heading2 style="page-break-after: avoid;"}
+
+## Example 1: Configure all CAN 2.0 related parameters in easyConfig and use BSW APIs for communication. {#example-1-configure-all-can-2.0-related-parameters-in-easyconfig-and-use-bsw-apis-for-communication. .p_Heading2 style="page-break-after: avoid;"}
+
+### Step 1: {#step-1 .p_Heading3 style="page-break-after: avoid;"}
+
+Configure a CAN channel for CAN 2.0 during pre-compile time (configuration in easyConfig).
+
+in Communication \--\> Select CAN Channel
+
+### Step 2: {#step-2 .p_Heading3 style="page-break-after: avoid;"}
+
+Configure CAN baudrate for the selected CAN channel.
+
+After selecting the CAN Channel, under settings(CAN/CAN-FD) choose CAN 2.0 and then configure the desired baudrate.
+
+### Step 3: {#step-3 .p_Heading3 style="page-break-after: avoid;"}
+
+Configure transmit and receive databox numbers for CAN 2.0 in the Legacy section.
+
+### Step 4: {#step-4 .p_Heading3 style="page-break-after: avoid;"}
+
+In ASW, initialize CAN Transmit Databox(es) by calling  bds_can_initTxDatabox().
+
+### Step 5: {#step-5 .p_Heading3 style="page-break-after: avoid;"}
+
+In ASW, initialize CAN Receive Databox(es) by calling  bds_can_initRxDatabox().
+
+Refer code example as below for sample usage:

@@ -1,0 +1,208 @@
+# CAN-FD parameter configuration {#can-fd-parameter-configuration .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CAN-FD](can-fd.html) \> [CAN-FD signal based communication](can-fd-signal-based-communicat.html) \> | [](can-fd-signal-based-communicat.html "Previous Topic") [](can-fd-signal-based-communicat.html "Parent Chapter") [](chapter-page-template_2.html "Next Topic") |
+|                                                                                                                                                                                                                                                         |                                                                                                                                                                 |
+| # CAN-FD parameter configuration {#can-fd-parameter-configuration-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                       |                                                                                                                                                                 |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This topic explains the configuration of relevant parameters for the signal-based CAN-FD module on eC.
+
+The following parameters can be configured from eC: some parameters are updated directly from the .dbc file, while the remaining mandatory parameters need to be filled in by the user.
+
+## Frame Details {#frame-details .p_Heading2 style="page-break-after: avoid;"}
+
+1.Direction
+
+  ---------------- --------------- -------------- ------------------ -------------------- --------------------
+  Parameter Name   Default Value   Range          Description        Mandatory (Yes/No)   Other remarks
+  Direction        \-              send/receive   Frame direction.   Yes                  Imported from dbc.
+  ---------------- --------------- -------------- ------------------ -------------------- --------------------
+
+2.Frame Id
+
++----------------+---------------+-------------------+-------------------+--------------------+--------------------+
+| Parameter Name | Default Value | Range             | Description       | Mandatory (Yes/No) | Other remarks      |
++----------------+---------------+-------------------+-------------------+--------------------+--------------------+
+| Frame Id       | \-            | 0 - 0x1FFFFFFF or | Frame message ID. | Yes                | Imported from dbc. |
+|                |               |                   |                   |                    |                    |
+|                |               | 0 -- 0x7FF        |                   |                    |                    |
++----------------+---------------+-------------------+-------------------+--------------------+--------------------+
+
+3.Name
+
++----------------+---------------+-----------+---------------------------------+--------------------+--------------------------------------------------------------------------+
+| Parameter Name | Default Value | Range     | Description                     | Mandatory (Yes/No) | Other remarks                                                            |
++----------------+---------------+-----------+---------------------------------+--------------------+--------------------------------------------------------------------------+
+| Frame Name     | \-            | \-        | Frame name as available in DBC. | Yes                | Imported from dbc.\                                                      |
+|                |               |           |                                 |                    | The name should be alphanumeric, and special characters are not allowed. |
++----------------+---------------+-----------+---------------------------------+--------------------+--------------------------------------------------------------------------+
+
+4.Length
+
+  ---------------- --------------- ---------------------------------------- ------------------------------- -------------------- --------------------
+  Parameter Name   Default Value   Range                                    Description                     Mandatory (Yes/No)   Other remarks
+  Frame Length     \-              1- 8, 12, 16, 20, 24, 32, 48, 64 bytes   Length of the frame in bytes.   Yes                  Imported from dbc.
+  ---------------- --------------- ---------------------------------------- ------------------------------- -------------------- --------------------
+
+5.CAN Id Type
+
++----------------+---------------+----------------------+--------------------------------------+--------------------+--------------------+
+| Parameter Name | Default Value | Range                | Description                          | Mandatory (Yes/No) | Other remarks      |
++----------------+---------------+----------------------+--------------------------------------+--------------------+--------------------+
+| CAN Id Type    | \-            | Standard/ Extended/\ | CAN ID type for the selected frame . | Yes                | Imported from dbc. |
+|                |               | Standard_FD/\        |                                      |                    |                    |
+|                |               | Extended_FD          |                                      |                    |                    |
++----------------+---------------+----------------------+--------------------------------------+--------------------+--------------------+
+
+6.User Callout
+
++----------------+---------------+-----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+---------------------------------+
+| Parameter Name | Default Value | Range     | Description                                                                                                                                                              | Mandatory (Yes/No) | Other remarks                   |
++----------------+---------------+-----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+---------------------------------+
+| User Callout   | \-            | \-        | By providing a function with the specified callout name further functionalities can be defined by the user. This function is called every time a new PDU is transmitted. | No                 | Needs to be configured by user. |
+|                |               |           |                                                                                                                                                                          |                    |                                 |
+|                |               |           |                                                                                                                                                                          |                    |                                 |
++----------------+---------------+-----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+---------------------------------+
+
+7.Timeout Period
+
++----------------+---------------+----------------+--------------------------------------------------------------------------+--------------------+---------------------------------+
+| Parameter Name | Default Value | Range          | Description                                                              | Mandatory (Yes/No) | Other remarks                   |
++----------------+---------------+----------------+--------------------------------------------------------------------------+--------------------+---------------------------------+
+| Timeout Period | 0             | 0-3600 seconds | Defines the length of the deadline monitoring timeout period in seconds. | No                 | Needs to be configured by user. |
+|                |               |                |                                                                          |                    |                                 |
+|                |               |                | Up to two decimal points are allowed. Example: 0.15 sec                  |                    |                                 |
++----------------+---------------+----------------+--------------------------------------------------------------------------+--------------------+---------------------------------+
+
+8.First Timeout Period
+
++----------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+---------------------------------+
+| Parameter Name       | Default Value | Range          | Description                                                                                                                                                                                                                                                                      | Mandatory (Yes/No) | Other remarks                   |
++----------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+---------------------------------+
+| First Timeout Period | 0             | 0-3600 seconds | Defines the length of the initial deadline monitoring timeout period in seconds. This timeout is applied immediately after the start (or restart) of the deadline monitoring service. The timeout period for subsequent intervals is configured by the Timeout Period parameter. | No                 | Needs to be configured by user. |
+|                      |               |                |                                                                                                                                                                                                                                                                                  |                    |                                 |
+|                      |               |                | Up to two decimal points are allowed. Example: 0.01 sec                                                                                                                                                                                                                          |                    |                                 |
++----------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+---------------------------------+
+
+9.Timeout Callout
+
+  ----------------- --------------- ------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------------- ---------------------------------
+  Parameter Name    Default Value   Range   Description                                                                                                                                                                Mandatory (Yes/No)   Other remarks
+  Timeout Callout   \-              \-      By providing a function with the specified callout name further functionalities can be defined by the user. The function is called every time a PDU timeout is detected.   No                   Needs to be configured by user.
+  ----------------- --------------- ------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------------- ---------------------------------
+
+## 10. Tx Mode {#tx-mode .p_Heading2 style="page-break-after: avoid;"}
+
+  ---------------- --------------- ------------------- ----------------------------------------------------------- -------------------- ---------------------------------
+  Parameter Name   Default Value   Range               Description                                                 Mandatory (Yes/No)   Other remarks
+  Tx Mode          \-              Direct / Periodic   The available transmission modes are Direct and Periodic.   Yes                  Needs to be configured by user.
+  ---------------- --------------- ------------------- ----------------------------------------------------------- -------------------- ---------------------------------
+
+## 10.1 Tx Mode - Direct {#tx-mode---direct .p_Heading2 style="page-break-after: avoid;"}
+
+The below attributes should be available for selection only if Tx Mode value is Direct.
+
+## 10.1.1 Tx Mode No. of Repetitions {#tx-mode-no.-of-repetitions .p_Heading2 style="page-break-after: avoid;"}
+
+  ---------------------------- --------------- ------- --------------------------------------------------------------------- -------------------- ---------------------------------
+  Parameter Name               Default Value   Range   Description                                                           Mandatory (Yes/No)   Other remarks
+  Tx Mode No. of Repetitions   \-              1-255   Defines the number of repetitions for the transmission mode DIRECT.   Yes                  Needs to be configured by user.
+  ---------------------------- --------------- ------- --------------------------------------------------------------------- -------------------- ---------------------------------
+
+## 10.1.2 Tx Mode Repetition Period {#tx-mode-repetition-period .p_Heading2 style="page-break-after: avoid;"}
+
+  --------------------------- --------------- ------------ --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------------- ---------------------------------
+  Parameter Name              Default Value   Range        Description                                                                                                                                                                       Mandatory (Yes/No)   Other remarks
+  Tx Mode Repetition Period   \-              10-3600000   Defines the repetition period in milliseconds of the multiple transmissions in case Tx Mode No. of repetitions is configured greater than 1 and TxMode is configured to DIRECT.   No                   Needs to be configured by user.
+  --------------------------- --------------- ------------ --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------------- ---------------------------------
+
+ 
+
+10.2 Tx Mode - Periodic
+
+The below attributes should be available for selection only if Tx Mode value is Periodic.
+
+## 10.2.1 Tx Mode Time Period {#tx-mode-time-period .p_Heading2 style="page-break-after: avoid;"}
+
+  --------------------- --------------- ------------ ------------------------------------------------------------------------------------------------------------------------------- -------------------- ---------------------------------
+  Parameter Name        Default Value   Range        Description                                                                                                                     Mandatory (Yes/No)   Other remarks
+  Tx mode Time Period   \-              10-3600000   Defines the repetition period in milliseconds of the periodic transmission requests in case TxMode is configured to PERIODIC.   Yes                  Needs to be configured by user.
+  --------------------- --------------- ------------ ------------------------------------------------------------------------------------------------------------------------------- -------------------- ---------------------------------
+
+## 10.2.2 Tx Mode Time Offset {#tx-mode-time-offset .p_Heading2 style="page-break-after: avoid;"}
+
+  --------------------- --------------- ------------ ------------------------------------------------------------------------------------------------------- -------------------- ---------------------------------
+  Parameter Name        Default Value   Range        Description                                                                                             Mandatory (Yes/No)   Other remarks
+  Tx Mode Time Offset   \-              10-3600000   Defines the period in milliseconds between the start of the frame and the first transmission request.   No                   Needs to be configured by user.
+  --------------------- --------------- ------------ ------------------------------------------------------------------------------------------------------- -------------------- ---------------------------------
+
+## Signal Details: {#signal-details .p_Heading2 style="page-break-after: avoid;"}
+
+1.Name
+
++----------------+---------------+-----------+-----------------------------------------+--------------------+--------------------------------------------------------------------------+
+| Parameter Name | Default Value | Range     | Description                             | Mandatory (Yes/No) | Other remarks                                                            |
++----------------+---------------+-----------+-----------------------------------------+--------------------+--------------------------------------------------------------------------+
+| Signal Name    | \-            | \-        | Name of the signal as available in dbc. | Yes                | Imported from dbc.\                                                      |
+|                |               |           |                                         |                    | The name should be alphanumeric, and special characters are not allowed. |
++----------------+---------------+-----------+-----------------------------------------+--------------------+--------------------------------------------------------------------------+
+
+## 2. Length {#length .p_Heading2 style="page-break-after: avoid;"}
+
+  ---------------- --------------- -------- ------------------------- -------------------- -----------------------------------------------
+  Parameter Name   Default Value   Range    Description               Mandatory (Yes/No)   Other remarks
+  Signal Length    \-              1 - 64   Size of signal in bits.   Yes                  Imported from dbc, can be configured by user.
+  ---------------- --------------- -------- ------------------------- -------------------- -----------------------------------------------
+
+## 3. Sign {#sign .p_Heading2 style="page-break-after: avoid;"}
+
++-----------------+---------------+-------------+------------------------------------------------------------------------------------------------------------------+--------------------+--------------------+
+| Parameter Name  | Default Value | Range       | Description                                                                                                      | Mandatory (Yes/No) | Other remarks      |
++-----------------+---------------+-------------+------------------------------------------------------------------------------------------------------------------+--------------------+--------------------+
+| Signal Datatype | \-            | signed(-)/  | Defines the signal datatype. \'+\' indicates an unsigned signal datatype, and \'-\' indicates a signed datatype. | Yes                | Imported from dbc. |
+|                 |               |             |                                                                                                                  |                    |                    |
+|                 |               | unsigned(+) |                                                                                                                  |                    |                    |
++-----------------+---------------+-------------+------------------------------------------------------------------------------------------------------------------+--------------------+--------------------+
+
+## 4. Start Position {#start-position .p_Heading2 style="page-break-after: avoid;"}
+
++-----------------------+---------------+-----------+------------------------------------------------------------------------------+--------------------+--------------------+
+| Parameter Name        | Default Value | Range     | Description                                                                  | Mandatory (Yes/No) | Other remarks      |
++-----------------------+---------------+-----------+------------------------------------------------------------------------------+--------------------+--------------------+
+| Signal Start Position | \-            | \-        | It defines the                                                               | Yes                | Imported from dbc. |
+|                       |               |           |                                                                              |                    |                    |
+|                       |               |           | MSB bit of first byte of signal data,if signal endianness is Big endian and  |                    |                    |
+|                       |               |           |                                                                              |                    |                    |
+|                       |               |           | LSB bit of first byte of signal data, if signal endianness is Little endian. |                    |                    |
++-----------------------+---------------+-----------+------------------------------------------------------------------------------+--------------------+--------------------+
+
+## 5. Init Value {#init-value .p_Heading2 style="page-break-after: avoid;"}
+
++-------------------+---------------+--------------------------+--------------------------------+--------------------+-------------------------------------------+
+| Parameter Name    | Default Value | Range                    | Description                    | Mandatory (Yes/No) | Other remarks                             |
++-------------------+---------------+--------------------------+--------------------------------+--------------------+-------------------------------------------+
+| Signal Init Value | 0             | \-                       | Initial value for this signal. | No                 | Needs to be configured by user if needed. |
+|                   |               |                          |                                |                    |                                           |
+|                   |               | (Depends on signal size) |                                |                    |                                           |
++-------------------+---------------+--------------------------+--------------------------------+--------------------+-------------------------------------------+
+
+## 6. Event Transfer Signal {#event-transfer-signal .p_Heading2 style="page-break-after: avoid;"}
+
+  ----------------------- ----------------- ------------------------------------- ---------------------------------------------------------------------------------------------------------------------- -------------------- ---------------------------------
+  Parameter Name          Default Value     Range                                 Description                                                                                                            Mandatory (Yes/No)   Other remarks
+  Event Transfer Signal   Transfer_Always   Transfer_Always /Transfer-on-Change   Event trigger property for direct signal. Should be configurable only for direct signal and N.A for Periodic signal.   Yes                  Needs to be configured by user.
+  ----------------------- ----------------- ------------------------------------- ---------------------------------------------------------------------------------------------------------------------- -------------------- ---------------------------------
+
+## 7. Signal Groups {#signal-groups .p_Heading2 style="page-break-after: avoid;"}
+
+- Addition, deletion, and updating of signal groups are possible on eC.
+
+- Signals to be added to a signal group must be selected from the Signal Group dropdown in eC.
+
+## Event Transfer Signal group {#event-transfer-signal-group .p_Heading2 style="page-break-after: avoid;"}
+
+  ----------------------------- ----------------- ------------------------------------- ------------------------------------------ -------------------- ---------------------------------
+  Parameter Name                Default Value     Range                                 Description                                Mandatory (Yes/No)   Other remarks
+  Event Transfer Signal Group   Transfer_Always   Transfer_Always /Transfer-on-Change   Event trigger property for signal group.   Yes                  Needs to be configured by user.
+  ----------------------------- ----------------- ------------------------------------- ------------------------------------------ -------------------- ---------------------------------

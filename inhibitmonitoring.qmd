@@ -1,0 +1,43 @@
+# Inhibits monitoring {#inhibits-monitoring .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Self-monitoring](ecu-self-monitoring.html) \> [Cyclic monitoring](cyclic-monitoring-checks.html) \> | [](gtm-monitoring.html "Previous Topic") [](cyclic-monitoring-checks.html "Parent Chapter") [](internalwatchdogmonitoring.html "Next Topic") |
+|                                                                                                                                                                                     |                                                                                                                                              |
+| # Inhibits monitoring {#inhibits-monitoring-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                         |                                                                                                                                              |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+In this module a continuous monitoring of the inhibits is implemented.
+
+## Remarks: {#remarks .p_Heading2 style="page-break-after: avoid;"}
+
+- Monitoring is done every 10 ms.
+
+- Refer [Safety function and safe state](safetyfunctionandsafestate.html){.topiclink} for details on the safety functions provided by the RCs and the related considerations to be observed.
+
+- Refer [Failure detection possibilities](failuredetectionpossibilities.html){.topiclink} for a broader overview of the different failure reactions observed.
+
+ 
+
+Error Reaction:
+
+- Inhibit input states are not plausible (both high or both low)
+
+  Error Description              Reaction
+  ------------------------------ ----------------
+  DFC                            DFC_rbr_mo_INH
+  Error Code                     0x082100
+  High Power Outputs(\...,OFF)   Yes
+  ECU Reset                      No
+  Reaction time                  10 ms
+
+ 
+
+- Latch status is faulty
+
+  Error Description              Reaction
+  ------------------------------ ---------------------
+  DFC                            DFC_rbr_mo_INHLatch
+  Error Code                     0x082200
+  High Power Outputs(\...,OFF)   Yes
+  ECU Reset                      No
+  Reaction time                  10 ms

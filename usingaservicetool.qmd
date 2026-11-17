@@ -1,0 +1,37 @@
+# Safety considerations using service tools {#safety-considerations-using-service-tools .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [Introduction](introduction.html) \> [The BODAS EcoSystem](ecosystem.html) \>                                          | [](ecosystem.html "Previous Topic") [](ecosystem.html "Parent Chapter") [](general-information.html "Next Topic") |
+|                                                                                                                                         |                                                                                                                   |
+| # Safety considerations using service tools {#safety-considerations-using-service-tools-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                   |
++-----------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------+
+
+Service tools can be used for parametrization, flashing and diagnostics of RCs.
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Warning](warning.png){style="margin:0;width:8.3333in;height:0.4583in;border:none"}                                                                                                                                                                |
++=====================================================================================================================================================================================================================================================+
+| Make sure to fulfill the following requirements to ensure functional safety according to ISO 13849-1 and/or ISO 25119.                                                                                                                              |
+|                                                                                                                                                                                                                                                     |
+| ## General {#general .p_Heading2 style="page-break-after: avoid;"}                                                                                                                                                                                  |
+|                                                                                                                                                                                                                                                     |
+| 1.Bring the machine into a safe state before starting the communication between the service tool and the RC.                                                                                                                                        |
+|                                                                                                                                                                                                                                                     |
+| 2.Stay in the safe state as long as the communication is established.                                                                                                                                                                               |
+|                                                                                                                                                                                                                                                     |
+| 3.Disconnection of the communication shall not lead to automatic initiation of machine movement.                                                                                                                                                    |
+|                                                                                                                                                                                                                                                     |
+| ## Flashing {#flashing .p_Heading2 style="page-break-after: avoid;"}                                                                                                                                                                                |
+|                                                                                                                                                                                                                                                     |
+| •After flashing validate that the correct software with the correct version is flashed to the correct RC (especially if the machine is equipped with more than one RC).                                                                             |
+|                                                                                                                                                                                                                                                     |
+| ## Parametrization of safety-related parameters {#parametrization-of-safety-related-parameters .p_Heading2 style="page-break-after: avoid;"}                                                                                                        |
+|                                                                                                                                                                                                                                                     |
+| 1.Parametrization of safety-related parameters shall fulfill the requirements of ISO 13849-1, Chapter 6.3 and/or ISO 25119-3, Chapter 7.8 (e.g., prevention from unauthorized modification, input range control, transmission error control, etc.). |
+|                                                                                                                                                                                                                                                     |
+| 2.After safety-related parametrization, conduct sufficient testing to make sure that the RC is correctly parametrized.                                                                                                                              |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+ 
+
+##   {#section .p_Heading2 style="page-break-after: avoid;"}

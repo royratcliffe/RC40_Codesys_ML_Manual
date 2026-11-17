@@ -1,0 +1,25 @@
+# Secure Flashing {#secure-flashing .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [Security](security.html) \> | [](storage-of-confidential-inform.html "Previous Topic") [](security.html "Parent Chapter") [](key-file.html "Next Topic") |
+|                                                                                          |                                                                                                                            |
+| # Secure Flashing {#secure-flashing-1 .p_Heading1 style="page-break-after: avoid;"}      |                                                                                                                            |
++------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------+
+
+This document outlines the secure flashing procedures for RC40, emphasizing the critical security features designed to protect device integrity and intellectual property during the software (CB-ME, ASW, keyfile, unlockfile) update process. Adherence to these guidelines is paramount for maintaining the security posture of products.
+
+The product security features are designed to address the following EU regulations and standards:
+
+- Machinery Regulation (MR) - EU 2023/1230
+
+- Cyber Resilience Act (CRA) - EU 2024/2847
+
+- Agricultural machinery, tractors, and earth-moving machinery -- Product cybersecurity ISO 24882
+
+- EN 40000
+
+The features are available in the below versions:
+
+BSW: BSW V01.29-bs, WF s/ml 290-bs and onwards
+
+CB-ME: rbr_CB_ME_S_V01.10.00 and onwards in RC40small, rbr_CB_ME_ML_V03.11.00 and onwards in RC40ML and rbr_CB_ME_ML_E_V01.04.00 and onwards in RC40ML Ethernet.

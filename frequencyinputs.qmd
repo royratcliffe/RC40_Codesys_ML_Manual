@@ -1,0 +1,11 @@
+# Frequency inputs {#frequency-inputs .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [Safety manual](safety-manual.html) \> [Safety-related inputs](safety-relatedinputs.html) \> [Multi-functional inputs](multi-functionalinputs.html) \> | [](digitalinputs.html "Previous Topic") [](multi-functionalinputs.html "Parent Chapter") [](multi-functionalinputsingeneral.html "Next Topic") |
+|                                                                                                                                                                         |                                                                                                                                                |
+| # Frequency inputs {#frequency-inputs-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                   |                                                                                                                                                |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Thanks to the characteristics of the frequency signals, many diagnostic coverage (DC) model failures (stuck-at failures, open circuit failures and short circuit failures) could be detected via direct frequency monitoring of the signal by the ASW.
+
+Nevertheless, in order to reach a higher DC, it is highly recommended to adopt the method described in [Multi-functional inputs in general](multi-functionalinputsingeneral.html){.topiclink}.

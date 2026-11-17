@@ -1,0 +1,59 @@
+# bds_sec_evalRespKey {#bds_sec_evalrespkey .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  »No topics above this level«                                               | [](javascript:HMToggleExpandAll(!HMAnyToggleOpen()) "Click to open/close expanding sections") [](appendix.html "Parent Chapter") |
+|                                                                                             |                                                                                                                                  |
+| # bds_sec_evalRespKey {#bds_sec_evalrespkey-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                                  |
++---------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------+
+
+This function is used to compare the given encrypted response key (e.g. from a diagnostic tool) with the corresponding internal stored and encrypted key for the same access level. If the keys are equal, the security manager switches to the corresponding level.
+
+ 
+
+This API is actually not supported for CODESYS and can not be used.
+
+## ![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a1_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [Declaration](javascript:HMToggle('toggle','toggle0186a1','toggle0186a1_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#hmtoggle_plus1-declaration .p_Heading2 style="page-break-after: avoid;"}
+
++-----------------------------------------------------------------------+
+|                                                                       |
+|                                                                       |
+| Not supported                                                         |
+|                                                                       |
+|                                                                       |
++-----------------------------------------------------------------------+
+
+## ![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a2_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [Parameters](javascript:HMToggle('toggle','toggle0186a2','toggle0186a2_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#hmtoggle_plus1-parameters .p_Heading2 style="page-break-after: avoid;"}
+
++-----------------------------------------------------------------------+
+|                                                                       |
+|                                                                       |
+| Not supported                                                         |
+|                                                                       |
+|                                                                       |
++-----------------------------------------------------------------------+
+
+ 
+
+![hmtoggle_plus1](hmtoggle_plus1.gif){#toggle0186a3_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [Return Values](javascript:HMToggle('toggle','toggle0186a3','toggle0186a3_ICON')){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"}
+
++-----------------------------------------------------------------------+
+|                                                                       |
+|                                                                       |
+| Not supported                                                         |
+|                                                                       |
+|                                                                       |
++-----------------------------------------------------------------------+
+
+ 
+
+## ![Code Example](hmtoggle_plus1.gif "Code Example"){#toggle0186a4_ICON .dropdown-toggle-icon style="margin:0;width:0.1042in;height:0.0938in;border:none"} [Examples](javascript:HMToggle('toggle','toggle0186a4','toggle0186a4_ICON') "Code Example"){.dropdown-toggle style="font-style: normal; font-weight: normal; color: #002b49; background-color: transparent; text-decoration: none;"} {#code-example-examples .p_Heading2 style="page-break-after: avoid;"}
+
++-----------------------------------------------------------------------+
+|   CODESYS Example                                                     |
+|   -------------------------------------------------                   |
+|   This API is actually not supported for CODESYS.                     |
+|                                                                       |
+|                                                                       |
++-----------------------------------------------------------------------+
+
+ 

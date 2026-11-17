@@ -1,0 +1,99 @@
+# Object 0x1400 to 0x1407 receive PDO communication parameters {#object-0x1400-to-0x1407-receive-pdo-communication-parameters .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> [RC40 CANopen communication objects](rc40-canopen-communication-obj.html) \> | [](object-0x13ff-safety-configura.html "Previous Topic") [](rc40-canopen-communication-obj.html "Parent Chapter") [](object-0x1600-to-0x1607-receiv.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                                  |                                                                                                                                                                        |
+| # Object 0x1400 to 0x1407 receive PDO communication parameters {#object-0x1400-to-0x1407-receive-pdo-communication-parameters-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                    |                                                                                                                                                                        |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This object contains the communication parameters of the current PDO the device is able to receive.
+
+ 
+
++-----------------------------------+-----------------------------------+
+| Index                             | 0x1400 to 1407                    |
++===================================+===================================+
+| Description                       | RPDO x Communication parameter    |
++-----------------------------------+-----------------------------------+
+| Object Code                       | RECORD                            |
++-----------------------------------+-----------------------------------+
+| Data Type                         | PDO CommPar                       |
++-----------------------------------+-----------------------------------+
+| Category                          | Conditional;                      |
+|                                   |                                   |
+|                                   | mandatory for each supported PDO  |
++-----------------------------------+-----------------------------------+
+
+ 
+
+ 
+
+SubIndex Supported
+
+ 
+
+  SubIndex        0
+  --------------- ----------------------------
+  Description     largest subIndex supported
+  Access          RO
+  Default Value   2
+  Range           NA
+
+ 
+
++-----------------------------------+-----------------------------------+
+| SubIndex                          | 1                                 |
++===================================+===================================+
+| Description                       | COB-ID used by PDO                |
++-----------------------------------+-----------------------------------+
+| Access                            | RW                                |
++-----------------------------------+-----------------------------------+
+| Default Value                     | Index 1400h: 80000200h + NodeID   |
+|                                   |                                   |
+|                                   | Index 1401h: 80000300h + NodeID   |
+|                                   |                                   |
+|                                   | Index 1402h: 80000400h + NodeID   |
+|                                   |                                   |
+|                                   | Index 1403h: 80000500h + NodeID   |
+|                                   |                                   |
+|                                   | Index 1404h: 80000201h            |
+|                                   |                                   |
+|                                   | Index 1405h: 80000301h            |
+|                                   |                                   |
+|                                   | Index 1406h: 80000401h            |
+|                                   |                                   |
+|                                   | Index 1407h: 80000501h            |
++-----------------------------------+-----------------------------------+
+| Range                             | UNSIGNED32                        |
++-----------------------------------+-----------------------------------+
+
+ 
+
+  SubIndex        2
+  --------------- -------------------
+  Description     Transmission type
+  Access          RW
+  Default Value   UNSIGNED8
+  Default Value   0xFE
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 

@@ -1,0 +1,29 @@
+# UDS - BODAS-service {#uds---bodas-service .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Diagnostic services (UDS)](diagnostic-services.html) \> | [](diagnostic-services.html "Previous Topic") [](diagnostic-services.html "Parent Chapter") [](standard-dids----discovery-app.html "Next Topic") |
+|                                                                                                                                         |                                                                                                                                                  |
+| # UDS - BODAS-service {#uds---bodas-service-1 .p_Heading1 style="page-break-after: avoid;"}                                             |                                                                                                                                                  |
++-----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+
+This chapter describes the UDS Message Format related to BODAS-service.
+
+## References {#references .p_Heading2 style="page-break-after: avoid;"}
+
+- Refer to [UDS Services](supported-uds-services.html){.topiclink} for the supported UDS Services in the BODAS-service.
+
+- [UDS Message Format - BODAS-service](uds-message-format---bodas-service.html){.topiclink} provides details about the used message.
+
+- Refer [Standard RIDs](standard-rids.html){.topiclink} for the implementation of standard RIDs used in the BODAS-service.
+
+ 
+
++--------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"} | The SAFETY_SYSTEM_DIAGNOSTIC_SESSION and EOL_SESSION are currently not supported by BODAS-service.                                                  |
+|                                                                                |                                                                                                                                                     |
+|                                                                                | If a particular service is mapped with any of these 2 sessions in the eC then the corresponding service will not be supported in the BODAS-service. |
++--------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+
+
+ 
+
+ 

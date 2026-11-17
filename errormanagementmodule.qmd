@@ -1,0 +1,45 @@
+# Error Management Module {#error-management-module .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Self-monitoring](ecu-self-monitoring.html) \> [Cyclic monitoring](cyclic-monitoring-checks.html) \> | [](ecu-temperature-2.html "Previous Topic") [](cyclic-monitoring-checks.html "Parent Chapter") [](gtm-monitoring.html "Next Topic") |
+|                                                                                                                                                                                     |                                                                                                                                     |
+| # Error Management Module {#error-management-module-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                 |                                                                                                                                     |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+
+
+An Error Management Module (EMM) which collects faults from different error sources and performs a configurable error reaction.
+
+Remarks:
+
+- DFCs are set when an error reaction has already taken place, so it is checked if an error has occurred in previous cycle.
+
+- Refer [Safety function and safe state](safetyfunctionandsafestate.html){.topiclink} for details on the safety functions provided by the RCs and the related considerations to be observed.
+
+- Refer [Failure detection possibilities](failuredetectionpossibilities.html){.topiclink} for a broader overview of the different failure reactions observed.
+
+ 
+
+Error reaction:
+
++-----------------------------------+-----------------------------------+
+| Error                             | Reaction                          |
++===================================+===================================+
+| DFC                               | No                                |
++-----------------------------------+-----------------------------------+
+| Error Code                        | No                                |
++-----------------------------------+-----------------------------------+
+| High Power Outputs(\...,OFF)      | Yes                               |
++-----------------------------------+-----------------------------------+
+| ECU Reset                         | Yes                               |
++-----------------------------------+-----------------------------------+
+| Reaction time                     | 150 ms                            |
++-----------------------------------+-----------------------------------+
+| Reset Reason - Group ID           | RESET_SWRESET_MOC                 |
++-----------------------------------+-----------------------------------+
+| Reset Reason  - Reset number      | RBA_RESET_MOCEMM_WTCHK_FAILED/    |
+|                                   |                                   |
+|                                   | RBA_RESET_MOCEMM_ID_UNKNOWN/      |
+|                                   |                                   |
+|                                   | RBA_RESET_MOCEMM_PLAUSY_FAILED/   |
+|                                   |                                   |
+|                                   | RBA_RESET_MOCEMM_INITORDER        |
++-----------------------------------+-----------------------------------+

@@ -1,0 +1,35 @@
+# Digital inputs {#digital-inputs .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [Safety manual](safety-manual.html) \> [Safety-related inputs](safety-relatedinputs.html) \> [Multi-functional inputs](multi-functionalinputs.html) \> | [](analogueinputs.html "Previous Topic") [](multi-functionalinputs.html "Parent Chapter") [](frequencyinputs.html "Next Topic") |
+|                                                                                                                                                                         |                                                                                                                                 |
+| # Digital inputs {#digital-inputs-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                       |                                                                                                                                 |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+
+Besides the comparison of 2 independent signals described in [Multi-functional inputs in general](multi-functionalinputsingeneral.html){.topiclink}, failures of the digital inputs could be detected by implementing an application specific plausibility check of the machine function via the ASW.
+
+For example, when using a travel direction switch with 3 position signals (forward, neutral and reverse), a single failure could be detected as indicated by the following table.
+
++---------------------------------------------------------------+-----------------------+------------------------------------------+
+| Bit combination for                                           |                       |                                          |
+|                                                               |                       |                                          |
+| 3-position travel direction switch (forwards/neutral/reverse) | State in the ASW      | Comment                                  |
++===============================================================+=======================+==========================================+
+| 0/0/0                                                         | Neutral               | Error, as one signal shall be active.    |
++---------------------------------------------------------------+-----------------------+------------------------------------------+
+| 0/0/1                                                         | Backward              | Normal operation.                        |
++---------------------------------------------------------------+-----------------------+------------------------------------------+
+| 0/1/0                                                         | Neutral               | Normal operation.                        |
++---------------------------------------------------------------+-----------------------+------------------------------------------+
+| 0/1/1                                                         | Neutral               | Error, as only one signal may be active. |
++---------------------------------------------------------------+-----------------------+------------------------------------------+
+| 1/0/0                                                         | Forward               | Normal operation.                        |
++---------------------------------------------------------------+-----------------------+------------------------------------------+
+| 1/0/1                                                         | Neutral               | Error, as only one signal may be active. |
++---------------------------------------------------------------+-----------------------+                                          |
+| 1/1/0                                                         | Neutral               |                                          |
++---------------------------------------------------------------+-----------------------+                                          |
+| 1/1/1                                                         | Neutral               |                                          |
++---------------------------------------------------------------+-----------------------+------------------------------------------+
+
+[]{#fig_45d9b9 .hmanchor}Table 26: Evaluation of travel direction switch

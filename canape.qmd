@@ -1,0 +1,13 @@
+# CANape {#canape .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [How-Tos](how-to.html) \> [XCP usage with tools](xcp-usage-with-tools.html) \> | [](xcp-usage-with-tools.html "Previous Topic") [](xcp-usage-with-tools.html "Parent Chapter") [](xcp-usage-with-canape.html "Next Topic") |
+|                                                                                                 |                                                                                                                                           |
+| # CANape {#canape-1 .p_Heading1 style="page-break-after: avoid;"}                               |                                                                                                                                           |
++-------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+
+This topic explains the interface to CANape tool for XCP communication.
+
+- [XCP on CAN usage with CANape](xcp-usage-with-canape.html){.topiclink}
+
+- XCP on Ethernet usage with CANape

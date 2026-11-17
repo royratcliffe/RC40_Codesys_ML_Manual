@@ -1,0 +1,20 @@
+# Occurrence Counter, Sub-function 0x06 {#occurrence-counter-sub-function-0x06 .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Diagnostic services (UDS)](diagnostic-services.html) \> [UDS overview](uds---overview.html) \> [Supported UDS services](supported-uds-services.html) \> [SID - ReadDTCInformation (0x19)](sid---readdtcinformation-(0x19.html) \> | [](dtc-status_-sub-function-0x02.html "Previous Topic") [](sid---readdtcinformation-(0x19.html "Parent Chapter") [](operating-hours-and-environmen.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                                   |                                                                                                                                                                       |
+| # Occurrence Counter, Sub-function 0x06 {#occurrence-counter-sub-function-0x06-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                                                    |                                                                                                                                                                       |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The sub-function 0x02 - reportDTCExtDataRecordByDTCNumber allows the client to retrieve captured DTCExtendedData record(s) associated with a DTC.
+
+Key data retrieved here is occurrence counter of DTC.
+
+A sample request and response for the same shall be depicted as follows:
+
+<figure style="margin:0;padding:0">
+<a href="slide5.png" class="imagetogglelink"><img src="slide5_zoom53.png" title="Figure 50: Request and response for SID 0x19, Sub-function 0x06" id="figc246df25" class="image-toggle" style="width:7.0833in;height:3.9896in;border:none" alt="Figure 50: Request and response for SID 0x19, Sub-function 0x06" /><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJpbWFnZS10b2dnbGUtbWFnbmlmaWVyIiB2aWV3Ym94PSItMSAtMSAyNSAyNSI+PHBhdGggZD0iTSA5LjE0NSAxOC4yOSBjIC01LjA0MiAwIC05LjE0NSAtNC4xMDIgLTkuMTQ1IC05LjE0NSBzIDQuMTAzIC05LjE0NSA5LjE0NSAtOS4xNDUgcyA5LjE0NSA0LjEwMyA5LjE0NSA5LjE0NSBzIC00LjEwMiA5LjE0NSAtOS4xNDUgOS4xNDUgWiBtIDAgLTE1LjE2NyBjIC0zLjMyMSAwIC02LjAyMiAyLjcwMiAtNi4wMjIgNi4wMjIgcyAyLjcwMiA2LjAyMiA2LjAyMiA2LjAyMiBzIDYuMDIzIC0yLjcwMiA2LjAyMyAtNi4wMjIgcyAtMi43MDIgLTYuMDIyIC02LjAyMyAtNi4wMjIgWiBtIDkuMjYzIDEyLjQ0MyBjIC0wLjgxNyAxLjE3NiAtMS44NTIgMi4xODggLTMuMDQ2IDIuOTgxIGwgNS40NTIgNS40NTMgbCAzLjAxNCAtMy4wMTMgbCAtNS40MiAtNS40MjEgWiIgLz48L3N2Zz4=" class="image-toggle-magnifier" /></a>
+<figcaption><p>Figure 50: Request and response for SID 0x19, Sub-function 0x06</p></figcaption>
+</figure>
+
+ 

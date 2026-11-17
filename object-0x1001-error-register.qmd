@@ -1,0 +1,62 @@
+# Object 0x1001 error register {#object-0x1001-error-register .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> [RC40 CANopen communication objects](rc40-canopen-communication-obj.html) \> | [](object-0x1000-device-type.html "Previous Topic") [](rc40-canopen-communication-obj.html "Parent Chapter") [](object-0x1002-manufacturer-sta.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                                  |                                                                                                                                                                   |
+| # Object 0x1001 error register {#object-0x1001-error-register-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                                                                    |                                                                                                                                                                   |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The error register is a field of 8 bits, each for a certain error type. If an error occurs the bit has to be set.
+
+  Index           0x1001
+  --------------- ----------------
+  Name            Error register
+  Object          VAR
+  Data Type       UNSIGNED 8
+  Category        Mandatory
+  Access          RO
+  PDO Mapping     Optional
+  Value Range     UNSIGNED 8
+  Default Value   0
+
+ 
+
+ 
+
+## Structure of Error Register {#structure-of-error-register .p_Heading2 style="page-break-after: avoid;"}
+
+  ----- ----- -------------------------------------------
+  Bit   M/O   Meaning
+  0     M     Generic error
+  1     O     Current
+  2     O     Voltage
+  3     O     Temperature
+  4     O     Communication error(overrun, error state)
+  5     O     Device profile specific
+  6     O     Reserved (always 0)
+  7     O     Manufacture specific
+  ----- ----- -------------------------------------------
+
+ 
+
+M: Mandatory; O: Optional
+
+If a bit is set to 1 the specified error has occurred. The only mandatory error that has to be signalled is
+
+the generic error. The generic error is signaled at any error situation.
+
+  -------------------------------------------------------------------------------- ------------------------------------------------------------------------
+  ![Info](info.png){style="margin:0;width:2.1667in;height:0.6979in;border:none"}   This object can be written by ASW using API bds_canopen_setErrRegister
+  -------------------------------------------------------------------------------- ------------------------------------------------------------------------
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 

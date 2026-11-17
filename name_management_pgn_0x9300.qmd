@@ -1,0 +1,49 @@
+# Name management (PGN = 0x9300) {#name-management-pgn-0x9300 .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [ISOBUS/J1939](isobus-module.html) \> [ISOBUS services and PGNs](isobus_services_and_pgns.html) \> | [](commanded_address_pgn_0xfed8.html "Previous Topic") [](isobus_services_and_pgns.html "Parent Chapter") [](pgn-request_pgn_0xea00.html "Next Topic") |
+|                                                                                                                                                                                                                                                       |                                                                                                                                                        |
+| # Name management (PGN = 0x9300) {#name-management-pgn-0x9300-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                         |                                                                                                                                                        |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+With this PGN the NAME management according ISO11783-5 is supported.
+
+After receiving a NAME management message the control mode within this message determines which of the following actions will be executed:
+
+- Set Pending NAME (Mode 0)
+
+This command copies the current name into the pending name and modifies one or more parts of it. The qualifier flags determine which parts of the name are modified. The answer message to this command is either the NAME ACK (Mode 3) message or the NAME NACK (Mode 4) message, if the received check sum does not match. The NAME ACK message contains the changed pending name.
+
+- Pending NAME (Mode 1)
+
+This form of the message is the response to the command \'Request pending NAME\' (Mode 5). All \'commanded\' fields of the message contain the complete pending name. The qualifier and checksum fields are not applicable. All these bits contain the value \'1\'.
+
+- Current NAME (Mode 2)
+
+This form of the message is the response to the command \'Request current NAME\' (Mode 6). All \'commanded\' fields of the message contain the complete pending name. The qualifier and checksum fields are not applicable. All these bits contain the value \'1\'.  
+
+- NAME ACK (Mode 3)
+
+This form of the message is the positive response to the command \'Set pending NAME\' (Mode 0). It also contains the pending name. The qualifier and checksum fields are not applicable. All these bits contain the value \'1\'.
+
+- NAME NACK (Mode 4)
+
+This form of the message is the negative response to the command \'Set pending NAME\' (Mode 0) or \'Request pending NAME\'.
+
+- Request pending NAME (Mode 5)
+
+This command requests the pending name which was previously set by the command \'Set pending NAME\' (Mode 0). The answer to this command is the message \'Pending NAME\' (Mode 1). If a pending name does not yet exist then the NAME NACK (mode 4) will be answered.
+
+- Request current NAME (Mode 6)
+
+This command requests the current name which is curerently active. The answer to this command is the message \'Current NAME\' (Mode 2).
+
+- Adopt pending NAME (Mode 7)
+
+This command copies the whole pending name into the current name. Afterwards it initiates an address claim with this new name. But this command will be rejected with NAME NACK (Mode 4) if the source address of this command does not match with the source address of the last command \'Set pending NAME\' (Mode 0) or if a pending NAME was not yet defined.
+
+- Request NAME address claim (Mode 8)
+
+This command requests an address claim from this CA, which current name corresponds to the name parts of this message.
+
+ 

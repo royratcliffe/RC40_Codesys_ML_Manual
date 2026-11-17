@@ -1,0 +1,65 @@
+# ECU temperature 2 {#ecu-temperature-2 .p_Heading1 style="page-break-after: avoid;"}
+
++:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Self-monitoring](ecu-self-monitoring.html) \> [Cyclic monitoring](cyclic-monitoring-checks.html) \> | [](ecu-temperature-1.html "Previous Topic") [](cyclic-monitoring-checks.html "Parent Chapter") [](errormanagementmodule.html "Next Topic") |
+|                                                                                                                                                                                     |                                                                                                                                            |
+| # ECU temperature 2 {#ecu-temperature-2-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                             |                                                                                                                                            |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------+
+
+The cyclic check of the temperature sensor 2 at ECU.
+
+ 
+
+## Remarks: {#remarks .p_Heading2 style="page-break-after: avoid;"}
+
+- Monitoring of excess temperature.
+
+- Warning and error are messaged.
+
+- Temperature limit for warning is lower than limit for error.
+
+- If there is a warning power must be decreased in order to avoid an excess of limit for error. Actual temperature can be queried by bds_sys_ait().
+
+- The outputs will be switched on again if the temperature is lower than the limit for warning.
+
+- Refer [Safety function and safe state](safetyfunctionandsafestate.html){.topiclink} for details on the safety functions provided by the RCs and the related considerations to be observed.
+
+- Refer [Failure detection possibilities](failuredetectionpossibilities.html){.topiclink} for a broader overview of the different failure reactions observed.
+
+ 
+
+Error Reaction:
+
+ 
+
+- High Temperature Warning
+
+  Error Description              Reaction
+  ------------------------------ -------------------------
+  DFC                            DFC_rbr_mo_Temp2_HTWarn
+  Error Code                     0x081800
+  High Power Outputs(\...,OFF)   no
+  ECU Reset                      no
+  Reaction time                  120ms
+
+ 
+
+- High Temperature Error
+
+  Error Description              Reaction
+  ------------------------------ ------------------------
+  DFC                            DFC_rbr_mo_Temp2_HTErr
+  Error Code                     0x081900
+  High Power Outputs(\...,OFF)   yes
+  ECU Reset                      no
+  Reaction time                  120ms
+
+ 
+
+The temperature values for warning and error is given below:
+
++---------------------------+--------------------------+-----+
+| Value (in degree Celsius) | High Temperature warning | 105 |
+|                           +--------------------------+-----+
+|                           | High Temperature error   | 115 |
++---------------------------+--------------------------+-----+

@@ -1,0 +1,20 @@
+# Ethernet {#ethernet .p_Heading1 style="page-break-after: avoid;"}
+
++:---------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> | [](supported-features.html "Previous Topic") [](network-comm-protocols.html "Parent Chapter") [](ethernet-overview.html "Next Topic") |
+|                                                                                                                                                    |                                                                                                                                       |
+| # Ethernet {#ethernet-1 .p_Heading1 style="page-break-after: avoid;"}                                                                              |                                                                                                                                       |
++----------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+
+This chapter describes the Ethernet feature - providing Internet Protocol with the RC.
+
+Additionally, this chapter describes about the Diagnosis with Internet Protocol.
+
+## Chapter overview {#chapter-overview .p_Heading2 style="page-break-after: avoid;"}
+
+- [Ethernet overview](ethernet-overview.html){.topiclink} : General information about Ethernet.
+
+ \
+ 
+
+ 

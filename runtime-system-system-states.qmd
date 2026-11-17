@@ -1,0 +1,15 @@
+# Runtime system & system states {#runtime-system-system-states .p_Heading1 style="page-break-after: avoid;"}
+
++:----------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \>                                  | [](powersupplyconcept.html "Previous Topic") [](bsw.html "Parent Chapter") [](system-state-machine.html "Next Topic") |
+|                                                                                                                 |                                                                                                                       |
+| # Runtime system & system states {#runtime-system-system-states-1 .p_Heading1 style="page-break-after: avoid;"} |                                                                                                                       |
++-----------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------+
+
+This section documents:
+
+oThe runtime system of the ECU (Operating System, Runtime Measurement, etc.)
+
+oCore system states (e.g., Startup)
+
+ 

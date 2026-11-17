@@ -1,0 +1,33 @@
+# Rexroth Security Levels {#rexroth-security-levels .p_Heading1 style="page-break-after: avoid;"}
+
++:--------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [Security](security.html) \> [Authorization](authorization.html) \> | [](access-levels.html "Previous Topic") [](authorization.html "Parent Chapter") [](configuration.html "Next Topic") |
+|                                                                                                                                 |                                                                                                                     |
+| # Rexroth Security Levels {#rexroth-security-levels-1 .p_Heading1 style="page-break-after: avoid;"}                             |                                                                                                                     |
++---------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------------+
+
+For testing, maintenance and support, all series RCs contain Rexroth-defined access levels. Along with each Rexroth-defined access level, a confidential password is stored on the HSM that only Rexroth has knowledge about. In case of a customer support incident or product return, Rexroth is able to restore the RC or to analyze the root cause of the problem that can then be solved in the future.
+
+With these access levels, Rexroth is able to
+
+- Flash and reset the RC
+
+- Clear errors and DTCs
+
+- Access UDS services, read out or manipulate data
+
+Note, that Rexroth is not able to recover or retrieve access level passwords or any other confidential information that is stored on the HSM.
+
+## Disabling Rexroth access levels {#disabling-rexroth-access-levels .p_Heading2 style="page-break-after: avoid;"}
+
+If desired, the Rexroth access rights can be made permanently unusable by calling the function  bds_sec_scrambleRexrothSecretsPerm. This function randomizes the passwords for all Rexroth levels (all passwords for the remaining levels will stay unchanged).
+
+ 
+
++------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ![Attention](attention.png){style="margin:0;width:2.1667in;height:0.7083in;border:none"} | This is an irreversible operation that permanently disables the Rexroth access levels!                                                                         |
+|                                                                                          |                                                                                                                                                                |
+|                                                                                          | Disabling Rexroth access levels significantly reduces Rexroths capability for analyzing returned RCs and prevents recovering an RC with overwritten passwords. |
++------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+ 

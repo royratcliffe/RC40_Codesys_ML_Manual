@@ -1,0 +1,24 @@
+# Object 0x1007 synchronous window length {#object-0x1007-synchronous-window-length .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> [RC40 CANopen communication objects](rc40-canopen-communication-obj.html) \> | [](object-0x1006-communication-cy.html "Previous Topic") [](rc40-canopen-communication-obj.html "Parent Chapter") [](object-0x1008-manufacturer-dev.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                                  |                                                                                                                                                                        |
+| # Object 0x1007 synchronous window length {#object-0x1007-synchronous-window-length-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                                              |                                                                                                                                                                        |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+It contains the length of the time window for synchronous messages in us. It is 0, if not used.
+
+ 
+
+  Index           0x1007
+  --------------- ---------------------------
+  Name            Synchronous Window Length
+  Object          VAR
+  Data Type       UNSIGNED32
+  Category        Optional
+  Access          RW
+  PDO Mapping     No
+  Value Range     UNSIGNED32
+  Default Value   0x00000000
+
+ 

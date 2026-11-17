@@ -1,0 +1,9 @@
+# CAN (Controller Area Network) {#can-controller-area-network .p_Heading1 style="page-break-after: avoid;"}
+
++:---------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> | [](databoxes.html "Previous Topic") [](network-comm-protocols.html "Parent Chapter") [](can-communication.html "Next Topic") |
+|                                                                                                                                                    |                                                                                                                              |
+| # CAN (Controller Area Network) {#can-controller-area-network-1 .p_Heading1 style="page-break-after: avoid;"}                                      |                                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+
+
+The CAN feature facilitates Controller Area Network communication according to ISO 11898.

@@ -1,0 +1,78 @@
+# Object 0x1200 server SDO parameter 1 {#object-0x1200-server-sdo-parameter-1 .p_Heading1 style="page-break-after: avoid;"}
+
++:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Navigation:**  [System features](system-concepts.html) \> [BSW](bsw.html) \> [Network communication & protocols](network-comm-protocols.html) \> [CANopen](canopen2.html) \> [RC40 CANopen Library](rc40-canopen-library.html) \> [RC40 CANopen communication objects](rc40-canopen-communication-obj.html) \> | [](object-0x1029-error-behaviour.html "Previous Topic") [](rc40-canopen-communication-obj.html "Parent Chapter") [](object-0x1280-client-sdo-param.html "Next Topic") |
+|                                                                                                                                                                                                                                                                                                                  |                                                                                                                                                                       |
+| # Object 0x1200 server SDO parameter 1 {#object-0x1200-server-sdo-parameter-1-1 .p_Heading1 style="page-break-after: avoid;"}                                                                                                                                                                                    |                                                                                                                                                                       |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+The object contains the parameters for the SDO\'s for which the device is the server.
+
+ 
+
+  Index         0x1200
+  ------------- ------------------------
+  Name          Server SDO parameter 1
+  Object Code   RECORD
+  Data Type     SDO parameter
+  Category      Conditional
+
+ 
+
+ 
+
+SubIndex Supported
+
+ 
+
+  SubIndex        0
+  --------------- -------------------
+  Description     Number of entries
+  Default value   0x02
+
+ 
+
+  SubIndex        1
+  --------------- -----------------------------
+  Description     COB-ID Client-\>Server (Rx)
+  Default value   0x600 + NodeID
+
+ 
+
+  SubIndex        2
+  --------------- -----------------------------
+  Description     COB-ID Server-\>Client (Tx)
+  Default value   0x580 + NodeID
+
+ 
+
+ 
+
+ 
+
+SubIndex 1 and 2 Entry definition
+
+ 
+
+  --------------- ----- ---- ---- ------------------------------------- -------------------
+  Bits            31    30   29   28-11                                 10-0
+  For 11 bit ID   0/1   0    0    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0   11 bit identifier
+  --------------- ----- ---- ---- ------------------------------------- -------------------
+
+ 
+
+Bit 31:
+
+0 - SDO exists/is valid
+
+1 - SDO does not exists/is not valid
+
+Bit 10-0 : COB-ID of SDO
+
+ 
+
+ 
+
+ 
+
+ 
